@@ -39,6 +39,7 @@ export function StatsStrip() {
   return (
     <div
       ref={ref}
+      id="stats"
       className="grid grid-cols-2 gap-3 rounded-[2rem] bg-card p-5 shadow-[0_28px_50px_-36px_var(--color-ink)] sm:gap-5 lg:grid-cols-4"
     >
       {stats.map((s) => (

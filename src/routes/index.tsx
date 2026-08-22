@@ -1,11 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Bus, MapPin, Clock, Apple, Play, Menu } from "lucide-react";
-import { useState } from "react";
+import { Bus, MapPin, Clock, Apple, Play, Menu, Globe, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
 import { Reveal } from "@/components/reveal";
 import { StatsStrip } from "@/components/stats-strip";
 import { LiveMapDemo } from "@/components/live-map-demo";
 import { HowItWorks } from "@/components/how-it-works";
 import { SiteFooter } from "@/components/site-footer";
+import { TestimonialsStrip } from "@/components/testimonials-strip";
+import { FaqSection } from "@/components/faq-section";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import campusScene from "@/assets/campus-scene.png";
 import phoneMap from "@/assets/phone-map.png";
 import busImg from "@/assets/bus.png";
@@ -32,7 +40,14 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const navLinks = ["Home", "Live Location", "Buses", "Time Schedule", "Routes"];
+const navLinks = [
+  { label: "Home", href: "#" },
+  { label: "How it works", href: "#how-it-works" },
+  { label: "Stats", href: "#stats" },
+  { label: "Footer", href: "#footer" },
+  { label: "Buses", href: "#" },
+  { label: "Time Schedule", href: "#" },
+];
 
 function Clouds() {
   return (
@@ -92,6 +107,30 @@ function RouteLine() {
 
 function Index() {
   const [open, setOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("Home");
+  const [language, setLanguage] = useState("English");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["how-it-works", "stats", "footer"];
+      let current = "Home";
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100) {
+            current = section === "how-it-works" ? "How it works" : 
+                      section === "stats" ? "Stats" : "Footer";
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,var(--color-sky-top),var(--color-sky-bottom)_62%,var(--color-background))]">
@@ -110,28 +149,62 @@ function Index() {
         <nav className="hidden items-center gap-7 lg:flex">
           {navLinks.map((l) => (
             <a
-              key={l}
-              href="#"
-              className="story-link text-sm font-bold text-ink/80 transition-colors hover:text-ink"
+              key={l.label}
+              href={l.href}
+              onClick={(e) => {
+                if (l.href.startsWith("#")) {
+                  e.preventDefault();
+                  const id = l.href.replace("#", "");
+                  if (!id) {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  } else {
+                    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                  }
+                }
+              }}
+              className={`story-link text-sm font-bold transition-colors hover:text-ink ${
+                activeSection === l.label ? "text-primary" : "text-ink/80"
+              }`}
             >
-              {l}
+              {l.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2 lg:flex">
-          <a
-            href="#"
-            className="rounded-full px-5 py-2.5 text-sm font-bold text-ink transition-colors hover:bg-card"
-          >
-            Login
-          </a>
-          <a
-            href="#"
-            className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-[0_10px_20px_-10px_var(--color-ink)] transition-transform hover:scale-105"
-          >
-            Sign Up
-          </a>
+        <div className="hidden items-center gap-4 lg:flex">
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-full bg-secondary/50 px-3 py-1.5 text-xs font-bold text-ink transition-colors hover:bg-secondary cursor-pointer">
+              <Globe className="h-3.5 w-3.5" />
+              {language}
+              <ChevronDown className="h-3.5 w-3.5 opacity-50" />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="rounded-2xl border-none shadow-xl">
+              {["English", "Bangla", "Arabic"].map((lang) => (
+                <DropdownMenuItem
+                  key={lang}
+                  onClick={() => setLanguage(lang)}
+                  className="rounded-xl font-bold cursor-pointer"
+                >
+                  {lang}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+
+          <div className="flex items-center gap-2">
+            <a
+              href="#"
+              className="rounded-full px-5 py-2.5 text-sm font-bold text-ink transition-colors hover:bg-card"
+            >
+              Login
+            </a>
+            <a
+              href="#"
+              className="rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-[0_10px_20px_-10px_var(--color-ink)] transition-transform hover:scale-105"
+            >
+              Sign Up
+            </a>
+          </div>
         </div>
 
         <button
@@ -146,8 +219,26 @@ function Index() {
           <div className="col-span-2 rounded-3xl bg-card p-4 shadow-lg animate-scale-in lg:hidden">
             <nav className="flex flex-col gap-1">
               {navLinks.map((l) => (
-                <a key={l} href="#" className="rounded-xl px-3 py-2 text-sm font-bold text-ink hover:bg-secondary">
-                  {l}
+                <a
+                  key={l.label}
+                  href={l.href}
+                  onClick={(e) => {
+                    if (l.href.startsWith("#")) {
+                      e.preventDefault();
+                      const id = l.href.replace("#", "");
+                      if (!id) {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      } else {
+                        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                      }
+                      setOpen(false);
+                    }
+                  }}
+                  className={`rounded-xl px-3 py-2 text-sm font-bold hover:bg-secondary ${
+                    activeSection === l.label ? "text-primary bg-secondary/30" : "text-ink"
+                  }`}
+                >
+                  {l.label}
                 </a>
               ))}
             </nav>
@@ -257,6 +348,10 @@ function Index() {
       </section>
 
       <HowItWorks />
+      
+      <TestimonialsStrip />
+
+      <FaqSection />
 
       <section className="relative z-10 mx-auto max-w-7xl px-5 pb-20">
         {/* Download section */}

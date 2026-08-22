@@ -4,7 +4,7 @@ const quickLinks = ["Home", "Live Location", "Buses", "Time Schedule", "Routes"]
 
 export function SiteFooter() {
   return (
-    <footer className="relative z-10 border-t border-border/70 bg-card/70">
+    <footer id="footer" className="relative z-10 border-t border-border/70 bg-card/70">
       <div className="mx-auto grid max-w-6xl gap-9 px-5 py-14 sm:grid-cols-2 lg:grid-cols-3">
         <div>
           <div className="flex items-center gap-2.5">
