@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Bus, MapPin, Clock, Apple, Play, Menu, Globe, ChevronDown } from "lucide-react";
+import { Bus, MapPin, Clock, Apple, Play, Menu, Globe, ChevronDown, Home } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Reveal } from "@/components/reveal";
 import { StatsStrip } from "@/components/stats-strip";
@@ -8,6 +8,7 @@ import { HowItWorks } from "@/components/how-it-works";
 import { SiteFooter } from "@/components/site-footer";
 import { TestimonialsStrip } from "@/components/testimonials-strip";
 import { FaqSection } from "@/components/faq-section";
+import { EmailSignup } from "@/components/email-signup";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,22 +21,19 @@ import busImg from "@/assets/bus.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    title: "PUB Bus Track — Live Pundra University Bus Tracking",
     meta: [
-      { title: "PUB Bus Track — Live Pundra University Bus Tracking" },
-      {
-        name: "description",
-        content:
-          "Track your Pundra University bus in real time. Live locations, routes, schedules and arrival times in one friendly app.",
-      },
+      { name: "description", content: "Track your Pundra University bus in real time. Live locations, routes, schedules and arrival times for students in Bogura." },
+      { name: "keywords", content: "Pundra University, Bus Track, Bogura, University Transport, Live Tracking, Student Shuttle" },
       { property: "og:title", content: "PUB Bus Track — Live University Bus Tracking" },
-      {
-        property: "og:description",
-        content:
-          "Live bus locations, routes and time schedules for Pundra University students. Never miss your ride to campus.",
-      },
+      { property: "og:description", content: "Live bus locations, routes and time schedules for Pundra University students. Never miss your ride to campus." },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "https://id-preview--a6d5566a-cf5d-4912-b2a0-7293faebb634.lovable.app/og-image.png" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [
+      { rel: "icon", href: "/favicon.ico" }
+    ]
   }),
   component: Index,
 });
@@ -69,39 +67,55 @@ function Clouds() {
   );
 }
 
-function RouteLine() {
+function HeroAnimation() {
   return (
-    <svg
-      aria-hidden
-      viewBox="0 0 400 120"
-      className="absolute left-8 -bottom-4 w-64 md:w-96"
-    >
-      <path
-        id="pubRoute"
-        d="M10 100 C 90 100, 100 30, 190 30 S 320 90, 390 60"
-        fill="none"
-        stroke="var(--color-brand)"
-        strokeWidth="4"
-        strokeLinecap="round"
-        strokeDasharray="10 14"
-        className="animate-dash opacity-70"
-      />
-      <g
-        className="animate-drive"
-        style={{
-          offsetPath: 'path("M10 100 C 90 100, 100 30, 190 30 S 320 90, 390 60")',
-          offsetRotate: "0deg",
-        }}
+    <div className="absolute inset-x-0 -bottom-8 h-48 pointer-events-none">
+      <svg
+        aria-hidden
+        viewBox="0 0 800 200"
+        className="h-full w-full opacity-40"
+        preserveAspectRatio="none"
       >
-        <circle r="16" fill="var(--color-brand)" />
-        <g transform="translate(-8,-8) scale(0.67)">
-          <path
-            d="M4 2h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2Zm1 4v5h14V6H5Zm1 9a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm12 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"
-            fill="var(--color-brand-foreground)"
-          />
+        <path
+          id="heroRoute"
+          d="M 50 150 C 200 150, 400 50, 750 50"
+          fill="none"
+          stroke="var(--color-primary)"
+          strokeWidth="3"
+          strokeDasharray="8 12"
+          className="animate-dash"
+        />
+        
+        {/* Animated Location Pin */}
+        <g className="animate-drive" style={{ offsetPath: "path('M 50 150 C 200 150, 400 50, 750 50')", offsetRotate: "0deg" }}>
+          <circle r="20" fill="var(--color-primary)" className="opacity-20 animate-ping-slow" />
+          <g transform="translate(-10,-24)">
+            <MapPin className="h-5 w-5 text-primary fill-current" />
+          </g>
         </g>
-      </g>
-    </svg>
+      </svg>
+      
+      {/* Student House Illustration (Left) */}
+      <div className="absolute left-[5%] bottom-[10%] flex flex-col items-center animate-float">
+        <div className="relative mb-2">
+          <div className="h-16 w-16 rounded-2xl bg-white shadow-xl flex items-center justify-center">
+            <Home className="h-8 w-8 text-primary" />
+          </div>
+          <div className="absolute -top-2 -right-2 h-6 w-6 rounded-full bg-accent animate-ping-slow flex items-center justify-center">
+             <div className="h-2 w-2 rounded-full bg-accent-foreground" />
+          </div>
+        </div>
+        <span className="text-[10px] font-bold uppercase tracking-widest text-ink/60">Your Home</span>
+      </div>
+
+      {/* University Campus (Right) */}
+      <div className="absolute right-[5%] top-[10%] flex flex-col items-center animate-float-slow">
+        <div className="h-20 w-20 rounded-3xl bg-white shadow-xl flex items-center justify-center">
+          <Bus className="h-10 w-10 text-accent" />
+        </div>
+        <span className="mt-2 text-[10px] font-bold uppercase tracking-widest text-ink/60">PUB Campus</span>
+      </div>
+    </div>
   );
 }
 
@@ -288,7 +302,7 @@ function Index() {
               6 Routes
               <span className="block text-[0.6rem] font-bold opacity-80">across Bogura</span>
             </div>
-            <RouteLine />
+            <HeroAnimation />
           </div>
 
           {/* Right illustration */}
@@ -352,6 +366,8 @@ function Index() {
       <TestimonialsStrip />
 
       <FaqSection />
+      
+      <EmailSignup />
 
       <section className="relative z-10 mx-auto max-w-7xl px-5 pb-20">
         {/* Download section */}
