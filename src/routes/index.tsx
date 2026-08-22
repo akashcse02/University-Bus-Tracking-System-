@@ -411,14 +411,13 @@ function Index() {
             </div>
           </div>
         </div>
-      </section>
-
 
         {/* Stats strip */}
         <Reveal className="mt-14">
           <StatsStrip />
         </Reveal>
       </section>
+
 
       {/* Live map demo */}
       <section id="live-location" className="relative z-10 mx-auto max-w-6xl px-5 py-16">
