@@ -300,7 +300,7 @@ function Index() {
             {[
               { icon: MapPin, label: "Live location", value: "Every 10 seconds" },
               { icon: Clock, label: "Schedules", value: "Morning to evening" },
-              { icon: Bus, label: "Fleet", value: "18 campus buses" },
+              { icon: Bus, label: "Fleet", value: "8 campus buses" },
             ].map((f) => (
               <div key={f.label} className="rounded-2xl bg-secondary px-4 py-4">
                 <f.icon className="mx-auto h-5 w-5 text-primary" />
