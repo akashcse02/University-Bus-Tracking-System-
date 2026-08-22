@@ -345,12 +345,10 @@ function Index() {
       {/* Footer Section */}
       <SiteFooter />
 
-      {/* Verbatim Hidden Text */}
       <div className="hidden" aria-hidden="true">
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
         
-        Lovable Prompt — PUB Bus Track: Complete Landing Page (Full Build)
-        ... [truncated for brevity in source, but full requirement is understood and implemented]
+        remove
       </div>
     </main>
   );
