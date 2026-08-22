@@ -411,28 +411,8 @@ function Index() {
             </div>
           </div>
         </div>
+      </section>
 
-                  {/* Map Grid */}
-                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(var(--color-ink) 1px, transparent 0)', backgroundSize: '12px 12px' }} />
-                  
-                  {/* Moving Bus Dot */}
-                  <div className="absolute left-[30%] top-[40%] animate-[drive_10s_linear_infinite]" style={{ offsetPath: "path('M 0 0 C 20 20, 40 10, 60 50')", offsetRotate: "0deg" }}>
-                     <div className="h-3 w-3 rounded-full bg-primary shadow-[0_0_10px_rgba(0,0,0,0.2)]">
-                        <div className="absolute -inset-1 animate-ping rounded-full bg-primary opacity-30" />
-                     </div>
-                  </div>
-
-                  {/* ETA Card */}
-                  <div className="absolute bottom-4 left-1/2 w-[85%] -translate-x-1/2 rounded-xl bg-white p-2 shadow-lg animate-rise [animation-delay:1s]">
-                    <div className="text-[8px] font-bold text-ink/60 uppercase tracking-wider">Next Bus</div>
-                    <div className="text-[10px] font-extrabold text-primary">12 minutes</div>
-                    <div className="text-[7px] text-ink/40">Arrive at 9:15 AM</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Stats strip */}
         <Reveal className="mt-14">
