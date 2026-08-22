@@ -315,7 +315,7 @@ function Index() {
             </div>
             
             {/* Animated Waiting Student Character */}
-            <div className="absolute -right-4 bottom-4 z-20 animate-shift-weight md:right-8">
+            <div className="absolute right-4 bottom-4 z-20 animate-shift-weight md:right-8 lg:right-12">
               <div className="relative h-20 w-16 md:h-28 md:w-20">
                 {/* Simplified Illustrated Student SVG */}
                 <svg viewBox="0 0 80 120" className="h-full w-full drop-shadow-lg">
