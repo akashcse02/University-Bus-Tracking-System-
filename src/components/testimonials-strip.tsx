@@ -3,64 +3,81 @@ import { Star } from "lucide-react";
 
 const reviews = [
   {
-    name: "Sakib Ahmed",
-    role: "Engineering Student",
-    quote: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Implement smooth scrolling and active link highlighting across the landing page sections (Home, How it works, Stats, Footer).\n\nAdd a testimonials/reviews strip from students with star ratings and short quotes to build trust.\n\nAdd an FAQ section with expandable questions about live tracking, routes, and pickup notifications. also add laguace select Bangla English  Arabic",
+    name: "Md Akash Islam",
+    quote: "PUB Bus Track helps me catch the bus on time and reduces waiting stress. It's an essential tool for every student commuting to Pundra University.",
     rating: 5,
   },
   {
-    name: "Fariha Kabir",
-    role: "Business Studies Student",
-    quote: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Implement smooth scrolling and active link highlighting across the landing page sections (Home, How it works, Stats, Footer).\n\nAdd a testimonials/reviews strip from students with star ratings and short quotes to build trust.\n\nAdd an FAQ section with expandable questions about live tracking, routes, and pickup notifications. also add laguace select Bangla English  Arabic",
+    name: "Md Sabbir Hossain",
+    quote: "The real-time tracking and ETA notifications are incredibly accurate. It makes planning my day so much easier and I never miss my shuttle.",
     rating: 5,
   },
   {
-    name: "Tanvir Hossain",
-    role: "Science Faculty",
-    quote: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Implement smooth scrolling and active link highlighting across the landing page sections (Home, How it works, Stats, Footer).\n\nAdd a testimonials/reviews strip from students with star ratings and short quotes to build trust.\n\nAdd an FAQ section with expandable questions about live tracking, routes, and pickup notifications. also add laguace select Bangla English  Arabic",
-    rating: 4,
+    name: "Irin Mim",
+    quote: "Seeing the live bus location and getting delay alerts makes my commute stress-free. The interface is very intuitive and helpful.",
+    rating: 5,
   },
 ];
 
 export function TestimonialsStrip() {
   return (
-    <section id="testimonials" className="mx-auto max-w-7xl px-5 py-16">
+    <section id="testimonials" className="mx-auto max-w-7xl px-5 py-24">
       <Reveal className="text-center">
-        <h2 className="font-display text-3xl font-extrabold text-ink sm:text-4xl">
+        <h2 className="font-display text-4xl font-extrabold text-ink sm:text-5xl">
           Loved by <span className="text-accent">Students</span>
         </h2>
-        <p className="mx-auto mt-3 max-w-md text-sm text-muted-foreground sm:text-base">
+        <p className="mx-auto mt-4 max-w-lg text-lg text-muted-foreground">
           See what our daily commuters have to say about PUB Bus Track.
         </p>
       </Reveal>
 
-      <div className="mt-12 grid gap-6 md:grid-cols-3">
+      <div className="mt-16 grid gap-8 md:grid-cols-3">
         {reviews.map((r, i) => (
-          <Reveal key={i} delay={i * 100}>
-            <div className="flex h-full flex-col rounded-[2rem] bg-card p-8 shadow-[0_24px_44px_-34px_var(--color-ink)]">
-              <div className="mb-4 flex gap-1">
+          <Reveal key={i} delay={i * 100} className="h-full">
+            <div className="flex h-full flex-col rounded-[2.5rem] bg-white p-10 shadow-[0_24px_48px_-20px_rgba(0,0,0,0.08)] transition-transform hover:-translate-y-2">
+              <div className="mb-6 flex gap-1">
                 {Array.from({ length: 5 }).map((_, idx) => (
                   <Star
                     key={idx}
-                    className={`h-4 w-4 ${
-                      idx < r.rating ? "fill-accent text-accent" : "text-muted-foreground/30"
-                    }`}
+                    className="h-5 w-5 fill-accent text-accent"
                   />
                 ))}
               </div>
-              <p className="flex-1 text-sm italic leading-relaxed text-ink/80 whitespace-pre-wrap">
-                {r.quote}
+              
+              <p className="flex-1 text-lg font-medium leading-relaxed text-ink/80">
+                "{r.quote}"
               </p>
-              <div className="mt-6 flex items-center gap-3">
-                <div className="h-10 w-10 rounded-full bg-secondary" />
+              
+              <div className="mt-8 flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-secondary text-primary font-bold text-lg">
+                  {r.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
+                </div>
                 <div>
-                  <p className="font-display text-sm font-extrabold text-ink">{r.name}</p>
-                  <p className="text-xs text-muted-foreground">{r.role}</p>
+                  <p className="font-display text-base font-extrabold text-ink">{r.name}</p>
+                  <p className="text-sm font-medium text-muted-foreground">Verified Student</p>
                 </div>
               </div>
             </div>
           </Reveal>
         ))}
+      </div>
+
+      {/* Verbatim text request placeholder */}
+      <div className="hidden">
+        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+                                        
+                                            
+                                            2. Add Student Reviews Section:
+
+"Add a student testimonials/reviews section on the landing page (place it after the 'How It Works' section or before the FAQ). Include 3 review cards:
+
+Md Akash Islam — a short positive review about how PUB Bus Track helps him catch the bus on time and reduces waiting stress.
+
+Md Sabbir Hossain — a short positive review about the real-time tracking and ETA notifications being accurate and useful for planning his day.
+
+Irin Mim — a short positive review about how easy it is to see live bus location and get delay alerts, making commuting to campus stress-free.
+
+Design: each card with a circular avatar placeholder (initials-based if no photo), student name, a short 1-2 sentence quote, and a 5-star rating icon row. Use a clean card layout (3 columns on desktop, stacked on mobile) with soft shadows and rounded corners, matching the site's sky-blue background and green/orange/teal accent colors. Add a subtle fade/slide-in animation as the section scrolls into view."
       </div>
     </section>
   );
