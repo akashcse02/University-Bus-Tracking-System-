@@ -580,7 +580,29 @@ Transform failed with 1 error:
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' Adjust smooth scrolling so section headings land correctly below the navbar height, with consistent offsets across screen sizes.
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' Add scroll-spy behavior so the active section link highlights as I scroll.
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' OLD NAV BAR WAS BETTER
+        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+                                        
+                                            
+                                            "Fix the following visual issues in the hero section:
+
+1. Remove white background boxes:
+The bus image and the phone mockup currently sit inside visible white rectangular background boxes/cards. Remove these white backgrounds completely — both the bus image and the phone mockup should blend directly into the sky-blue hero background with no visible box, frame, or edge around them. If a shadow is desired for depth, use a soft drop-shadow only (no solid background fill).
+
+2. Fix building image cropping:
+The building photo is still getting cut off at the bottom of the viewport/section. Increase the hero section's height and add proper padding so the entire building image is visible within its container without being clipped.
+
+3. Fix 'Waiting...' character placement:
+The waiting student character and 'Waiting...' label are currently overlapping messily with the bottom-right corner of the building photo, looking disconnected and awkward. Reposition this character to stand clearly beside or in front of the building (e.g. near a bus stop sign at the building's base, on clear ground/pavement), not overlapping the photo's edge. Ensure proper z-index layering and spacing so it looks intentionally placed, not accidentally overlapping.
+
+4. Add proper spacing:
+Add at least 60-80px of vertical spacing between the subtext ('Track your university bus in real-time...') and the building/bus images below it, so text and images don't feel cramped together.
+
+5. Consistent framing:
+Both the building image and the bus + phone mockup group should have matching visual treatment — either both with soft drop shadows and no hard edges, or both with a subtle rounded-corner mask — so they look like a cohesive pair, not two different styles (one a raw photo, one in a white box).
+
+Keep the sky-blue background, current headline, and logo badge as they are. Focus only on cleaning up spacing, removing the white background boxes, and fixing the character overlap."
       </div>
+
     </main>
   );
 }
