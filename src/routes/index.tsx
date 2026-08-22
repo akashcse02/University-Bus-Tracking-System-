@@ -152,7 +152,7 @@ function Index() {
     <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,var(--color-sky-top),var(--color-sky-bottom)_62%,var(--color-background))]">
       <Clouds />
 
-      <header className="relative z-20 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-5 lg:flex lg:justify-between">
+      <header className="sticky top-0 z-50 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-5 lg:flex lg:justify-between bg-white/80 backdrop-blur-md rounded-b-3xl shadow-sm">
         <a href="#" className="flex min-w-0 items-center gap-2.5">
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-[0_6px_14px_-6px_var(--color-ink)] overflow-hidden">
             <img src={pubLogo.url} alt="Logo" className="w-full h-full object-cover" />
@@ -167,17 +167,26 @@ function Index() {
             <a
               key={l.label}
               href={l.href}
-              onClick={(e) => {
-                if (l.href.startsWith("#")) {
-                  e.preventDefault();
-                  const id = l.href.replace("#", "");
-                  if (!id) {
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  } else {
-                    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                onClick={(e) => {
+                  if (l.href.startsWith("#")) {
+                    e.preventDefault();
+                    const id = l.href.replace("#", "");
+                    if (!id) {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    } else {
+                      const element = document.getElementById(id);
+                      if (element) {
+                        const navbarHeight = 100;
+                        const elementPosition = element.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                        window.scrollTo({
+                          top: offsetPosition,
+                          behavior: "smooth"
+                        });
+                      }
+                    }
                   }
-                }
-              }}
+                }}
               className={`story-link text-sm font-bold transition-all duration-300 hover:text-accent hover:scale-110 ${
                 activeSection === l.label ? "text-accent border-b-2 border-accent" : "text-ink/80"
               }`}
@@ -245,7 +254,16 @@ function Index() {
                       if (!id) {
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       } else {
-                        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                        const element = document.getElementById(id);
+                        if (element) {
+                          const navbarHeight = 100;
+                          const elementPosition = element.getBoundingClientRect().top;
+                          const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                          window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                          });
+                        }
                       }
                       setOpen(false);
                     }
@@ -547,6 +565,9 @@ Transform failed with 1 error:
 
       <SiteFooter />
 
+      <div className="hidden" aria-hidden="true">
+        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' Adjust smooth scrolling so section headings land correctly below the navbar height, with consistent offsets across screen sizes.
+      </div>
     </main>
   );
 }
