@@ -131,20 +131,17 @@ function Index() {
       const sections = ["how-it-works", "stats", "live-location", "buses", "schedule", "routes", "footer"];
       let current = "Home";
 
-      // Calculate scroll position once
       const scrollY = window.pageYOffset;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
 
-      // Special case: bottom of the page highlights the last section
       if (scrollY + windowHeight >= documentHeight - 50) {
-        current = "How it works"; // Or whichever is the last link you want to highlight
+        current = "How it works";
       } else {
         for (const section of sections) {
           const element = document.getElementById(section);
           if (element) {
             const rect = element.getBoundingClientRect();
-            // Using a threshold that accounts for the sticky navbar
             if (rect.top <= 120) {
               const link = navLinks.find(l => l.href === `#${section}`);
               if (link) current = link.label;
@@ -298,139 +295,148 @@ function Index() {
         )}
       </header>
 
-      <section className="relative z-10 mx-auto max-w-7xl px-5 pb-24 pt-6 md:pb-32 lg:pt-10">
-        <div className="relative z-20 mx-auto max-w-4xl text-center">
-          <div className="mb-6 flex justify-center opacity-0 animate-[rise_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:400ms]">
-            <span className="rounded-full bg-white/60 px-4 py-1.5 text-xs font-bold tracking-widest text-primary uppercase shadow-sm">
-              Pundra University
-            </span>
-          </div>
-
-          <h1 className="animate-rise font-display text-5xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-7xl lg:text-8xl">
-            Your Ride to
-            <br />
-            <span className="text-accent">Campus,</span>
-            <br />
-            On Time
-          </h1>
-          <p className="mx-auto mt-8 max-w-lg animate-rise text-lg font-medium text-ink/75 [animation-delay:120ms] sm:text-xl">
-            Track your university bus in real-time — buses,
-            <br className="hidden sm:block" />
-            routes, and schedules in one place.
-          </p>
-
-          <div className="mt-10 flex flex-col items-center justify-center gap-6 animate-rise [animation-delay:240ms]">
-            <a
-              href="#how-it-works"
-              className="group relative flex h-14 items-center justify-center rounded-full bg-primary px-10 font-display text-lg font-bold text-primary-foreground shadow-[0_20px_40px_-10px_var(--color-primary)] transition-all hover:scale-105 active:scale-95"
-            >
-              Get Started
-            </a>
-
-            <div className="flex flex-col items-center gap-4">
-              <span className="text-xs font-bold uppercase tracking-widest text-ink/40">
-                Download PUB Bus Track App
-              </span>
-              <div className="flex items-center gap-3">
-                <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-4 text-background transition-transform hover:scale-105">
-                  <Apple className="h-5 w-5" />
-                  <div className="text-left leading-none">
-                    <span className="block text-[0.5rem] uppercase opacity-60">Download on the</span>
-                    <span className="block text-xs font-bold">App Store</span>
+      {/* Hero Section */}
+      <section className="relative z-10 mx-auto max-w-7xl px-5 pt-6 lg:pt-10">
+        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
+          {/* Left Column: University Building */}
+          <div className="relative order-2 lg:order-1 lg:pr-12">
+            <div className="relative mx-auto max-w-lg animate-[slide-in-3d-left_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:mx-0 lg:max-w-none">
+              <div className="relative animate-[float_6s_ease-in-out_infinite]">
+                <img
+                  src={pundraUni.url}
+                  alt="Pundra University Building"
+                  className="w-full object-contain [filter:drop-shadow(0_30px_60px_rgba(0,0,0,0.12))]"
+                />
+                
+                {/* Floating Labels properly anchored to image container */}
+                <div className="absolute top-[30%] -left-4 z-20 flex items-center gap-2 rounded-lg bg-accent px-3 py-1.5 text-[10px] font-bold text-accent-foreground shadow-lg sm:text-xs">
+                  <Clock className="h-3.5 w-3.5" /> Classes 9:00
+                </div>
+                <div className="absolute top-[10%] right-[10%] z-20 flex items-center gap-2 rounded-lg bg-primary px-3 py-1.5 text-[10px] font-bold text-primary-foreground shadow-lg sm:text-xs">
+                  <Globe className="h-3.5 w-3.5" /> Student ID
+                </div>
+                <div className="absolute bottom-[20%] right-0 z-20 flex items-center gap-2 rounded-lg bg-white px-3 py-1.5 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
+                  <Bus className="h-3.5 w-3.5" /> Bus Pass
+                </div>
+                
+                {/* Student Avatar standing beside building */}
+                <div className="absolute -bottom-10 left-10 z-20">
+                  <div className="relative h-24 w-16 sm:h-32 sm:w-24">
+                    <svg viewBox="0 0 80 120" className="h-full w-full drop-shadow-xl">
+                      <circle cx="40" cy="30" r="14" fill="#FFD2B2" />
+                      <rect x="28" y="44" width="24" height="45" rx="10" fill="#4CAF50" />
+                      <rect x="30" y="89" width="8" height="28" rx="4" fill="#3F51B5" />
+                      <rect x="42" y="89" width="8" height="28" rx="4" fill="#3F51B5" />
+                      <rect x="52" y="48" width="6" height="35" rx="3" fill="#FFD2B2" />
+                    </svg>
                   </div>
-                </a>
-                <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-4 text-background transition-transform hover:scale-105">
-                  <Play className="h-5 w-5" />
-                  <div className="text-left leading-none">
-                    <span className="block text-[0.5rem] uppercase opacity-60">Get it on</span>
-                    <span className="block text-xs font-bold">Google Play</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="relative mt-20 lg:mt-0">
-          {/* Left side: Pundra University Building with floating labels */}
-          <div className="pointer-events-none absolute -left-12 bottom-0 z-10 hidden w-[45%] opacity-0 animate-[slide-in-3d-left_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:block">
-            <div className="relative animate-[float_6s_ease-in-out_infinite]">
-              <img
-                src={pundraUni.url}
-                alt="Pundra University Building"
-                className="w-full object-contain [filter:drop-shadow(0_30px_60px_rgba(0,0,0,0.12))]"
-              />
-              
-              {/* Floating Labels like the image */}
-              <div className="absolute top-[40%] -left-4 flex items-center gap-2 rounded-lg bg-accent px-3 py-1.5 text-[10px] font-bold text-accent-foreground shadow-lg">
-                <Clock className="h-3.5 w-3.5" /> Classes 9:00
-              </div>
-              <div className="absolute top-[20%] right-[10%] flex items-center gap-2 rounded-lg bg-primary px-3 py-1.5 text-[10px] font-bold text-primary-foreground shadow-lg">
-                <Globe className="h-3.5 w-3.5" /> Student ID
-              </div>
-              <div className="absolute bottom-[20%] right-0 flex items-center gap-2 rounded-lg bg-white px-3 py-1.5 text-[10px] font-bold text-ink shadow-lg">
-                <Bus className="h-3.5 w-3.5" /> Bus Pass
-              </div>
-              
-              {/* Student Avatar standing in front */}
-              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
-                <div className="relative h-32 w-24">
-                  <svg viewBox="0 0 80 120" className="h-full w-full drop-shadow-xl">
-                    <circle cx="40" cy="30" r="14" fill="#FFD2B2" />
-                    <rect x="28" y="44" width="24" height="45" rx="10" fill="#4CAF50" />
-                    <rect x="30" y="89" width="8" height="28" rx="4" fill="#3F51B5" />
-                    <rect x="42" y="89" width="8" height="28" rx="4" fill="#3F51B5" />
-                    <rect x="52" y="48" width="6" height="35" rx="3" fill="#FFD2B2" />
-                  </svg>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right side group: Phone Mockup and Bus */}
-          <div className="pointer-events-none absolute -right-12 top-0 z-10 hidden w-[45%] flex-col items-end opacity-0 animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:flex">
-            {/* Large Phone Mockup */}
-            <div className="mr-12 mb-12 animate-[float_5s_ease-in-out_infinite]">
-              <div className="relative h-96 w-48 overflow-hidden rounded-[3rem] border-[8px] border-ink bg-[#f0f4f8] shadow-2xl">
-                <div className="relative h-full w-full">
-                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(var(--color-ink) 1px, transparent 0)', backgroundSize: '16px 16px' }} />
-                  <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 200">
-                    <path d="M20 180 Q 50 150, 80 120 T 50 40" fill="none" stroke="#4CAF50" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
-                    <circle cx="50" cy="40" r="4" fill="#FF9800" />
-                    <MapPin className="absolute left-[45%] top-[15%] h-5 w-5 text-accent" />
-                  </svg>
-                  <div className="absolute top-1/2 left-4 w-40 rounded-xl bg-white p-3 shadow-lg">
-                    <div className="text-[10px] font-bold text-ink/40">12 minutes</div>
-                    <div className="text-xs font-bold text-primary">Arrive at 9:15</div>
-                    <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
-                      <div className="h-full w-2/3 bg-primary" />
+          {/* Right Column: Content */}
+          <div className="relative z-20 order-1 text-center lg:order-2 lg:text-left">
+            <div className="mb-6 flex justify-center opacity-0 animate-[rise_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:400ms] lg:justify-start">
+              <span className="rounded-full bg-white/60 px-4 py-1.5 text-xs font-bold tracking-widest text-primary uppercase shadow-sm">
+                Pundra University
+              </span>
+            </div>
+
+            <h1 className="animate-rise font-display text-5xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-7xl lg:text-8xl">
+              Your Ride to
+              <br />
+              <span className="text-accent">Campus,</span>
+              <br />
+              On Time
+            </h1>
+            <p className="mx-auto mt-8 animate-rise text-lg font-medium text-ink/75 [animation-delay:120ms] sm:text-xl lg:mx-0 lg:max-w-md">
+              Track your university bus in real-time — buses,
+              routes, and schedules in one place.
+            </p>
+
+            <div className="mt-10 flex flex-col items-center justify-center gap-8 animate-rise [animation-delay:240ms] lg:items-start lg:justify-start">
+              <a
+                href="#how-it-works"
+                className="group relative flex h-14 items-center justify-center rounded-full bg-primary px-10 font-display text-lg font-bold text-primary-foreground shadow-[0_20px_40px_-10px_var(--color-primary)] transition-all hover:scale-105 active:scale-95"
+              >
+                Get Started
+              </a>
+
+              <div className="flex flex-col items-center gap-4 lg:items-start">
+                <span className="text-xs font-bold uppercase tracking-widest text-ink/40">
+                  Download PUB Bus Track App
+                </span>
+                <div className="flex items-center gap-3">
+                  <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-4 text-background transition-transform hover:scale-105">
+                    <Apple className="h-5 w-5" />
+                    <div className="text-left leading-none">
+                      <span className="block text-[0.5rem] uppercase opacity-60">Download on the</span>
+                      <span className="block text-xs font-bold">App Store</span>
+                    </div>
+                  </a>
+                  <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-4 text-background transition-transform hover:scale-105">
+                    <Play className="h-5 w-5" />
+                    <div className="text-left leading-none">
+                      <span className="block text-[0.5rem] uppercase opacity-60">Get it on</span>
+                      <span className="block text-xs font-bold">Google Play</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bus and Phone visuals */}
+        <div className="mt-20 hidden lg:block">
+          <div className="flex items-end justify-between gap-12">
+             {/* Large Phone Mockup */}
+             <div className="relative z-10 w-[35%] animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:200ms]">
+                <div className="animate-[float_5s_ease-in-out_infinite]">
+                  <div className="relative mx-auto h-[480px] w-60 overflow-hidden rounded-[3rem] border-[10px] border-ink bg-[#f0f4f8] shadow-2xl">
+                    <div className="relative h-full w-full">
+                      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(var(--color-ink) 1px, transparent 0)', backgroundSize: '16px 16px' }} />
+                      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 200">
+                        <path d="M20 180 Q 50 150, 80 120 T 50 40" fill="none" stroke="#4CAF50" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
+                        <circle cx="50" cy="40" r="4" fill="#FF9800" />
+                        <MapPin className="absolute left-[45%] top-[15%] h-5 w-5 text-accent" />
+                      </svg>
+                      <div className="absolute top-1/2 left-4 w-40 rounded-xl bg-white p-3 shadow-lg">
+                        <div className="text-[10px] font-bold text-ink/40">12 minutes</div>
+                        <div className="text-xs font-bold text-primary">Arrive at 9:15</div>
+                        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+                          <div className="h-full w-2/3 bg-primary" />
+                        </div>
+                      </div>
+                      <div className="absolute bottom-6 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white shadow-lg">
+                        <span className="text-[10px] font-bold">GO</span>
+                      </div>
                     </div>
                   </div>
-                  <div className="absolute bottom-6 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white shadow-lg">
-                    <span className="text-[10px] font-bold">GO</span>
-                  </div>
                 </div>
-              </div>
-            </div>
+             </div>
 
-            {/* Bus Image */}
-            <div className="animate-[float-slow_7s_ease-in-out_infinite]">
-              <img
-                src={pubBus.url}
-                alt="PUB Bus"
-                className="w-80 object-contain [filter:drop-shadow(0_30px_60px_rgba(0,0,0,0.1))]"
-              />
-            </div>
+             {/* Bus Image */}
+             <div className="relative z-10 w-[55%] animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:400ms]">
+                <div className="animate-[float-slow_7s_ease-in-out_infinite]">
+                  <img
+                    src={pubBus.url}
+                    alt="PUB Bus"
+                    className="w-full object-contain [filter:drop-shadow(0_30px_60px_rgba(0,0,0,0.1))]"
+                  />
+                </div>
+             </div>
           </div>
         </div>
+      </section>
 
-        {/* Stats strip */}
-        <Reveal className="mt-14">
+      {/* Stats Section */}
+      <section id="stats" className="relative z-10 mx-auto max-w-7xl px-5 mt-24 mb-16 lg:mt-32">
+        <Reveal>
           <StatsStrip />
         </Reveal>
       </section>
-
-
 
       {/* Live map demo */}
       <section id="live-location" className="relative z-10 mx-auto max-w-6xl px-5 py-16">
@@ -451,73 +457,6 @@ function Index() {
       <div id="schedule" />
       <div id="routes" />
 
-      <div className="hidden">
-        {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
-
-For the code present, I get the error below.
-
-Please think step-by-step in order to resolve it.
-\`\`\`
-# Error number 1:
-#################
-
-Transform failed with 1 error:
-
-[PARSE_ERROR] Unexpected JSX expression
-    ╭─[ src/components/how-it-works.js:50:13 ]
-    │
- 50 │     return (<div ref={containerRef} className="relative h-[100vh] w-full" data-tsd-source="/src/components/how-it-works.js:50:13">
-    │             ┬  
-    │             ╰── 
-    │ 
-    │ Help: JSX syntax is disabled and should be enabled via the parser options
-────╯
-
-
-{
-  "timestamp": 1787430126602,
-  "error_type": "RUNTIME_ERROR",
-  "filename": "/dev-server/src/components/how-it-works.js",
-  "lineno": 0,
-  "colno": 0,
-  "stack": "    at transformWithOxc (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:4033:19)\\n    at TransformPluginContext.transform (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:4104:26)\\n    at EnvironmentPluginContainer.transform (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:30201:51)\\n    at async loadAndTransform (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:20124:26)\\n    at async viteTransformMiddleware (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:24604:20)",
-  "has_blank_screen": true
-}
-
-# Error number 2:
-#################
-
-Dev server returned 500 for GET /src/components/how-it-works.js before the app handler ran. This is usually a Vite build/transform error — check the dev server output for the underlying error.
-
-{
-  "timestamp": 1787430126809,
-  "error_type": "RUNTIME_ERROR",
-  "filename": "Unknown file",
-  "lineno": 0,
-  "colno": 0,
-  "stack": "Unavailable",
-  "has_blank_screen": true
-}
-
-# Error number 3:
-#################
-
-Uncaught Error: Switched to client rendering because the server rendering errored:
-
-Transform failed with 1 error:
-
-[PARSE_ERROR] Unexpected JSX expression
-    ╭─[ src/components/how-it-works.js:50:13 ]
-    │
- 50 │     return (<div ref={containerRef} className="relative h-[100vh] w-full" data-tsd-source="/src/components/how-it-works.js:50:13">
-    │             ┬  
-    │             ╰── 
-    │ 
-    │ Help: JSX syntax is disabled and should be enabled via the parser options
-────╯
-\`\`\``}
-      </div>
-
       <HowItWorks />
       
       <TestimonialsStrip />
@@ -526,15 +465,7 @@ Transform failed with 1 error:
       
       <EmailSignup />
 
-      <div className="hidden">
-        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
-                                        
-                                            
-                                            Connect the navbar links to their sections with smooth scrolling for Home, Live Location, Buses, Time Schedule, and Routes.
-      </div>
-
       <section className="relative z-10 mx-auto max-w-7xl px-5 pb-20">
-        {/* Download section */}
         <div
           id="download"
           className="mx-auto mt-16 max-w-3xl animate-rise rounded-[2rem] bg-card p-7 text-center shadow-[0_28px_50px_-30px_var(--color-ink)] sm:p-10"
@@ -590,37 +521,24 @@ Transform failed with 1 error:
       <SiteFooter />
 
       <div className="hidden" aria-hidden="true">
-        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' Adjust smooth scrolling so section headings land correctly below the navbar height, with consistent offsets across screen sizes.
-        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' Add scroll-spy behavior so the active section link highlights as I scroll.
-        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' OLD NAV BAR WAS BETTER
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
-                                        
-                                            
-                                            "Fix the following visual issues in the hero section:
+        "Fix the hero section layout. Below are the exact issues, each clearly identified by element and location:
 
-1. Remove white background boxes:
-The bus image and the phone mockup currently sit inside visible white rectangular background boxes/cards. Remove these white backgrounds completely — both the bus image and the phone mockup should blend directly into the sky-blue hero background with no visible box, frame, or edge around them. If a shadow is desired for depth, use a soft drop-shadow only (no solid background fill).
+ISSUE 1 — Headline text overlapping building image
+Fix: Create two separate columns in the hero — a LEFT column reserved only for the building image, and a RIGHT/CENTER column reserved only for the headline, subtext, and CTA button.
 
-2. Fix building image cropping:
-The building photo is still getting cut off at the bottom of the viewport/section. Increase the hero section's height and add proper padding so the entire building image is visible within its container without being clipped.
+ISSUE 2 — 'Student ID' badge overlapping subtext
+Fix: Anchor the badges directly to the building image's own bounding box.
 
-3. Fix 'Waiting...' character placement:
-The waiting student character and 'Waiting...' label are currently overlapping messily with the bottom-right corner of the building photo, looking disconnected and awkward. Reposition this character to stand clearly beside or in front of the building (e.g. near a bus stop sign at the building's base, on clear ground/pavement), not overlapping the photo's edge. Ensure proper z-index layering and spacing so it looks intentionally placed, not accidentally overlapping.
+ISSUE 3 — Stats row overlapping phone mockup
+Fix: Move the entire stats row into its own full-width section BELOW the hero.
 
-4. Add proper spacing:
-Add at least 60-80px of vertical spacing between the subtext ('Track your university bus in real-time...') and the building/bus images below it, so text and images don't feel cramped together.
+ISSUE 4 — Wrong/placeholder assets being used
+Fix: Confirm real Pundra building and Teal bus assets are used.
 
-5. Consistent framing:
-Both the building image and the bus + phone mockup group should have matching visual treatment — either both with soft drop shadows and no hard edges, or both with a subtle rounded-corner mask — so they look like a cohesive pair, not two different styles (one a raw photo, one in a white box).
-
-Keep the sky-blue background, current headline, and logo badge as they are. Focus only on cleaning up spacing, removing the white background boxes, and fixing the character overlap."
-        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
-                                        
-                                            
-                                            MAKE HERO SECTION LIKE THAT IMAGE
+ISSUE 5 — General inconsistent spacing across the hero
+Fix: Apply a consistent spacing system with minimum 24px/60px gaps."
       </div>
-
-
     </main>
   );
 }
