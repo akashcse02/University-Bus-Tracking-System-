@@ -254,7 +254,16 @@ function Index() {
                       if (!id) {
                         window.scrollTo({ top: 0, behavior: "smooth" });
                       } else {
-                        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                        const element = document.getElementById(id);
+                        if (element) {
+                          const navbarHeight = 100;
+                          const elementPosition = element.getBoundingClientRect().top;
+                          const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                          window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                          });
+                        }
                       }
                       setOpen(false);
                     }
