@@ -14,20 +14,24 @@ function StatCard({ number, label, suffix = "" }: StatProps) {
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (isInView) {
-      let start = 0;
-      const end = number;
-      const duration = 2000;
-      const stepTime = Math.abs(Math.floor(duration / end));
-      
-      const timer = setInterval(() => {
-        start += 1;
-        setCount(start);
-        if (start === end) clearInterval(timer);
-      }, stepTime);
+    if (!isInView) return;
 
-      return () => clearInterval(timer);
-    }
+    let start = 0;
+    const end = number;
+    const duration = 2000;
+    const stepTime = Math.abs(Math.floor(duration / end));
+    
+    const timer = setInterval(() => {
+      start += Math.ceil(end / (duration / 16)); // smoother increments
+      if (start >= end) {
+        setCount(end);
+        clearInterval(timer);
+      } else {
+        setCount(start);
+      }
+    }, 16); // ~60fps
+
+    return () => clearInterval(timer);
   }, [isInView, number]);
 
   return (
