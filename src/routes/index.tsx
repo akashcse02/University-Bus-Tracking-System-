@@ -219,8 +219,26 @@ function Index() {
           <div className="col-span-2 rounded-3xl bg-card p-4 shadow-lg animate-scale-in lg:hidden">
             <nav className="flex flex-col gap-1">
               {navLinks.map((l) => (
-                <a key={l} href="#" className="rounded-xl px-3 py-2 text-sm font-bold text-ink hover:bg-secondary">
-                  {l}
+                <a
+                  key={l.label}
+                  href={l.href}
+                  onClick={(e) => {
+                    if (l.href.startsWith("#")) {
+                      e.preventDefault();
+                      const id = l.href.replace("#", "");
+                      if (!id) {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      } else {
+                        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                      }
+                      setOpen(false);
+                    }
+                  }}
+                  className={`rounded-xl px-3 py-2 text-sm font-bold hover:bg-secondary ${
+                    activeSection === l.label ? "text-primary bg-secondary/30" : "text-ink"
+                  }`}
+                >
+                  {l.label}
                 </a>
               ))}
             </nav>
