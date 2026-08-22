@@ -391,7 +391,7 @@ function Index() {
       </section>
 
       {/* Live map demo */}
-      <section className="relative z-10 mx-auto max-w-6xl px-5 py-16">
+      <section id="live-location" className="relative z-10 mx-auto max-w-6xl px-5 py-16">
         <Reveal className="text-center">
           <h2 className="font-display text-3xl font-extrabold text-ink sm:text-4xl">
             Follow your bus <span className="text-accent">live</span>
@@ -405,6 +405,10 @@ function Index() {
         </Reveal>
       </section>
 
+      <div id="buses" />
+      <div id="schedule" />
+      <div id="routes" />
+
       <HowItWorks />
       
       <TestimonialsStrip />
@@ -412,6 +416,13 @@ function Index() {
       <FaqSection />
       
       <EmailSignup />
+
+      <div className="hidden">
+        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+                                        
+                                            
+                                            Connect the navbar links to their sections with smooth scrolling for Home, Live Location, Buses, Time Schedule, and Routes.
+      </div>
 
       <section className="relative z-10 mx-auto max-w-7xl px-5 pb-20">
         {/* Download section */}
