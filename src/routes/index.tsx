@@ -1,6 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Bus, MapPin, Clock, Apple, Play, Menu } from "lucide-react";
 import { useState } from "react";
+import { Reveal } from "@/components/reveal";
+import { StatsStrip } from "@/components/stats-strip";
+import { LiveMapDemo } from "@/components/live-map-demo";
+import { HowItWorks } from "@/components/how-it-works";
+import { SiteFooter } from "@/components/site-footer";
 import campusScene from "@/assets/campus-scene.png";
 import phoneMap from "@/assets/phone-map.png";
 import busImg from "@/assets/bus.png";
@@ -230,6 +235,30 @@ function Index() {
           </div>
         </div>
 
+        {/* Stats strip */}
+        <Reveal className="mt-14">
+          <StatsStrip />
+        </Reveal>
+      </section>
+
+      {/* Live map demo */}
+      <section className="relative z-10 mx-auto max-w-6xl px-5 py-16">
+        <Reveal className="text-center">
+          <h2 className="font-display text-3xl font-extrabold text-ink sm:text-4xl">
+            Follow your bus <span className="text-accent">live</span>
+          </h2>
+          <p className="mx-auto mt-3 max-w-lg text-sm text-muted-foreground sm:text-base">
+            Stops light up as the shuttle passes them — from Gobindaganj all the way to Gabtoli.
+          </p>
+        </Reveal>
+        <Reveal delay={120} className="mt-9">
+          <LiveMapDemo />
+        </Reveal>
+      </section>
+
+      <HowItWorks />
+
+      <section className="relative z-10 mx-auto max-w-7xl px-5 pb-20">
         {/* Download section */}
         <div
           id="download"
@@ -271,7 +300,7 @@ function Index() {
             {[
               { icon: MapPin, label: "Live location", value: "Every 10 seconds" },
               { icon: Clock, label: "Schedules", value: "Morning to evening" },
-              { icon: Bus, label: "Fleet", value: "18 campus buses" },
+              { icon: Bus, label: "Fleet", value: "8 campus buses" },
             ].map((f) => (
               <div key={f.label} className="rounded-2xl bg-secondary px-4 py-4">
                 <f.icon className="mx-auto h-5 w-5 text-primary" />
@@ -283,9 +312,8 @@ function Index() {
         </div>
       </section>
 
-      <footer className="relative z-10 border-t border-border/70 py-7 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} PUB Bus Track · Pundra University of Science &amp; Technology
-      </footer>
+      <SiteFooter />
+
     </main>
   );
 }
