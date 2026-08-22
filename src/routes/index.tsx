@@ -299,7 +299,7 @@ function Index() {
             className="relative z-10 w-full opacity-0 animate-[slide-in-3d-left_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:w-[45%]"
           >
             <div 
-              className="relative overflow-hidden transition-transform duration-700 animate-[float-subtle_5s_ease-in-out_infinite]"
+              className="relative transition-transform duration-700 animate-[float-subtle_5s_ease-in-out_infinite]"
               style={{ 
                 transformStyle: 'preserve-3d',
                 '--resting-rotate': '15deg'
@@ -308,7 +308,7 @@ function Index() {
               <img
                 src={pundraUni.url}
                 alt="Pundra University main campus building with modern architectural design"
-                className="aspect-[4/3] w-full object-contain"
+                className="aspect-[4/3] w-full object-contain [filter:drop-shadow(0_20px_40px_rgba(0,0,0,0.1))]"
                 fetchPriority="high"
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
@@ -342,7 +342,7 @@ function Index() {
             className="relative z-10 mt-12 w-full opacity-0 animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:300ms] lg:mt-0 lg:w-[45%]"
           >
             <div 
-              className="relative overflow-hidden transition-transform duration-700 animate-[float-subtle_6s_ease-in-out_infinite]"
+              className="relative transition-transform duration-700 animate-[float-subtle_6s_ease-in-out_infinite]"
               style={{ 
                 transformStyle: 'preserve-3d',
                 '--resting-rotate': '-15deg'
@@ -351,7 +351,7 @@ function Index() {
               <img
                 src={pubBus.url}
                 alt="PUB Bus Track university shuttle bus with brand livery"
-                className="aspect-[4/3] w-full object-contain"
+                className="aspect-[4/3] w-full object-contain [filter:drop-shadow(0_20px_40px_rgba(0,0,0,0.1))]"
                 fetchPriority="high"
                 sizes="(max-width: 1024px) 100vw, 45vw"
               />
