@@ -42,11 +42,11 @@ export const Route = createFileRoute("/")({
 
 const navLinks = [
   { label: "Home", href: "#" },
+  { label: "Live Location", href: "#live-location" },
+  { label: "Buses", href: "#buses" },
+  { label: "Time Schedule", href: "#schedule" },
+  { label: "Routes", href: "#routes" },
   { label: "How it works", href: "#how-it-works" },
-  { label: "Stats", href: "#stats" },
-  { label: "Footer", href: "#footer" },
-  { label: "Buses", href: "#" },
-  { label: "Time Schedule", href: "#" },
 ];
 
 function Clouds() {
@@ -115,7 +115,7 @@ function HeroAnimation() {
         <div className="h-20 w-20 rounded-3xl bg-white shadow-xl flex items-center justify-center">
           <Bus className="h-10 w-10 text-accent" />
         </div>
-        <span className="mt-2 text-[10px] font-bold uppercase tracking-widest text-ink/60">PUB Campus</span>
+        <span className="mt-2 text-[10px] font-bold uppercase tracking-widest text-accent">PUB Campus</span>
       </div>
     </div>
   );
@@ -128,7 +128,7 @@ function Index() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["how-it-works", "stats", "footer"];
+      const sections = ["how-it-works", "stats", "footer", "live-location", "buses", "schedule", "routes"];
       let current = "Home";
 
       for (const section of sections) {
@@ -136,8 +136,8 @@ function Index() {
         if (element) {
           const rect = element.getBoundingClientRect();
           if (rect.top <= 100) {
-            current = section === "how-it-works" ? "How it works" : 
-                      section === "stats" ? "Stats" : "Footer";
+            const link = navLinks.find(l => l.href === `#${section}`);
+            if (link) current = link.label;
           }
         }
       }
@@ -178,8 +178,8 @@ function Index() {
                   }
                 }
               }}
-              className={`story-link text-sm font-bold transition-colors hover:text-ink ${
-                activeSection === l.label ? "text-primary" : "text-ink/80"
+              className={`story-link text-sm font-bold transition-all duration-300 hover:text-accent hover:scale-110 ${
+                activeSection === l.label ? "text-accent border-b-2 border-accent" : "text-ink/80"
               }`}
             >
               {l.label}
