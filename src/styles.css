@@ -101,17 +101,33 @@
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
   }
+  @keyframes float-subtle {
+    0%, 100% { transform: translateY(0) rotateY(var(--resting-rotate, 0deg)); }
+    50% { transform: translateY(-4px) rotateY(var(--resting-rotate, 0deg)); }
+  }
 @keyframes rise {
   from { opacity: 0; transform: translateY(24px); }
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes slide-left {
-  from { opacity: 0; transform: translateX(-40px); }
-  to { opacity: 1; transform: translateX(0); }
+@keyframes slide-in-3d-left {
+  from { 
+    opacity: 0; 
+    transform: translateX(-100%) rotateY(45deg) scale(0.9);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0) rotateY(15deg) scale(1);
+  }
 }
-@keyframes slide-right {
-  from { opacity: 0; transform: translateX(40px); }
-  to { opacity: 1; transform: translateX(0); }
+@keyframes slide-in-3d-right {
+  from { 
+    opacity: 0; 
+    transform: translateX(100%) rotateY(-45deg) scale(0.9);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0) rotateY(-15deg) scale(1);
+  }
 }
 @keyframes drive {
   from { offset-distance: 0%; }

@@ -15,9 +15,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import campusScene from "@/assets/campus-scene.png";
-import phoneMap from "@/assets/phone-map.png";
-import busImg from "@/assets/bus.png";
+import pubBus from "@/assets/pub-bus.png.asset.json";
+import pubLogo from "@/assets/pub-logo.png.asset.json";
+import pundraUni from "@/assets/pundra-university.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -152,8 +152,8 @@ function Index() {
 
       <header className="relative z-20 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-5 lg:flex lg:justify-between">
         <a href="#" className="flex min-w-0 items-center gap-2.5">
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-primary text-primary-foreground shadow-[0_6px_14px_-6px_var(--color-ink)]">
-            <Bus className="h-5 w-5" />
+          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-[0_6px_14px_-6px_var(--color-ink)] overflow-hidden">
+            <img src={pubLogo.url} alt="Logo" className="w-full h-full object-cover" />
           </span>
           <span className="truncate font-display text-xl font-extrabold tracking-tight text-ink">
             PUB Bus Track
@@ -271,7 +271,7 @@ function Index() {
       <section className="relative z-10 mx-auto max-w-7xl px-5 pb-24 pt-6 lg:pt-10">
         <div className="relative z-20 mx-auto max-w-2xl text-center">
           <h1 className="animate-rise font-display text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl">
-            Your Ride to <span className="text-accent">Campus</span>,
+            Your Ride,
             <br className="hidden sm:block" /> On Time
           </h1>
           <p className="mx-auto mt-5 max-w-lg animate-rise text-base text-ink/75 [animation-delay:120ms] sm:text-lg">
@@ -288,55 +288,60 @@ function Index() {
           </div>
         </div>
 
-        <div className="relative mt-12 grid items-end gap-10 lg:mt-0 lg:grid-cols-[1.05fr_0.9fr] lg:gap-4">
-          {/* Left illustration */}
-          <div className="relative animate-slide-left lg:-mt-24">
-            <img
-              src={campusScene}
-              alt="Pundra University campus building with a bus stop sign and a student holding a backpack"
-              width={1024}
-              height={912}
-              className="w-full max-w-xl drop-shadow-[0_20px_30px_rgba(0,0,0,0.08)]"
-            />
-            <div className="absolute left-2 top-4 animate-float rounded-2xl bg-accent px-3 py-2 text-center font-display text-xs font-extrabold text-accent-foreground shadow-lg">
-              6 Routes
-              <span className="block text-[0.6rem] font-bold opacity-80">across Bogura</span>
+        <div className="relative mt-12 [perspective:1000px] lg:mt-0 lg:flex lg:items-center lg:justify-between">
+          {/* Logo floating element */}
+          <div 
+            className="absolute left-1/2 top-0 z-30 -translate-x-1/2 opacity-0 animate-[rise_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:600ms]"
+          >
+            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white p-2 shadow-2xl animate-float lg:h-20 lg:w-20">
+              <img src={pubLogo.url} alt="PUB Logo" className="h-full w-full object-contain" />
             </div>
-            <HeroAnimation />
           </div>
 
-          {/* Right illustration */}
-          <div className="relative animate-slide-right [animation-delay:150ms] lg:-mt-16">
-            <div className="relative mx-auto w-full max-w-sm">
+          {/* Left side: Pundra University Building */}
+          <div 
+            className="relative z-10 w-full opacity-0 animate-[slide-in-3d-left_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:w-[45%]"
+          >
+            <div 
+              className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-transform duration-700 animate-[float-subtle_5s_ease-in-out_infinite]"
+              style={{ 
+                transformStyle: 'preserve-3d',
+                '--resting-rotate': '15deg'
+              } as React.CSSProperties}
+            >
               <img
-                src={phoneMap}
-                alt="Phone showing the PUB Bus Track live map with a bus moving along its route"
-                width={800}
-                height={1008}
-                className="w-full drop-shadow-[0_24px_40px_rgba(0,0,0,0.12)]"
+                src={pundraUni.url}
+                alt="Pundra University main building"
+                className="aspect-[4/3] w-full object-cover"
               />
-              <div className="absolute -left-4 top-[38%] animate-float rounded-2xl bg-card px-4 py-3 shadow-[0_16px_30px_-14px_var(--color-ink)] sm:-left-10">
-                <p className="font-display text-base font-extrabold text-ink">12 minutes</p>
-                <p className="text-xs font-semibold text-muted-foreground">Arrive at 9:15</p>
-              </div>
-              <div className="absolute -right-2 top-[12%] grid h-11 w-11 animate-float-slow place-items-center rounded-full bg-accent text-accent-foreground shadow-lg">
-                <MapPin className="h-5 w-5" />
-              </div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent pointer-events-none" />
             </div>
+            
+            {/* Ambient shadow beneath */}
+            <div className="absolute -bottom-8 left-1/2 h-8 w-4/5 -translate-x-1/2 rounded-[100%] bg-ink/5 blur-2xl" />
+          </div>
 
-            <div className="relative mt-2">
+          {/* Right side: Bus Image */}
+          <div 
+            className="relative z-10 mt-12 w-full opacity-0 animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:150ms] lg:mt-0 lg:w-[45%]"
+          >
+            <div 
+              className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-transform duration-700 animate-[float-subtle_6s_ease-in-out_infinite]"
+              style={{ 
+                transformStyle: 'preserve-3d',
+                '--resting-rotate': '-15deg'
+              } as React.CSSProperties}
+            >
               <img
-                src={busImg}
-                alt="Pundra University shuttle bus"
-                loading="lazy"
-                width={1104}
-                height={608}
-                className="mx-auto w-full max-w-md"
+                src={pubBus.url}
+                alt="PUB shuttle bus"
+                className="aspect-[4/3] w-full object-contain p-4"
               />
-              <span className="absolute left-1/2 top-[52%] -translate-x-1/2 rounded-md bg-primary px-2.5 py-1 font-display text-[0.6rem] font-extrabold uppercase tracking-widest text-primary-foreground sm:text-xs">
-                PUB Route 3 · Satmatha
-              </span>
+              <div className="absolute inset-0 bg-gradient-to-tl from-black/10 to-transparent pointer-events-none" />
             </div>
+            
+            {/* Ambient shadow beneath */}
+            <div className="absolute -bottom-8 left-1/2 h-8 w-4/5 -translate-x-1/2 rounded-[100%] bg-ink/5 blur-2xl" />
           </div>
         </div>
 
