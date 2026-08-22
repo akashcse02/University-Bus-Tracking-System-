@@ -152,7 +152,7 @@ function Index() {
     <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,var(--color-sky-top),var(--color-sky-bottom)_62%,var(--color-background))]">
       <Clouds />
 
-      <header className="relative z-20 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-5 lg:flex lg:justify-between">
+      <header className="sticky top-0 z-50 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-5 lg:flex lg:justify-between bg-white/80 backdrop-blur-md rounded-b-3xl shadow-sm">
         <a href="#" className="flex min-w-0 items-center gap-2.5">
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-[0_6px_14px_-6px_var(--color-ink)] overflow-hidden">
             <img src={pubLogo.url} alt="Logo" className="w-full h-full object-cover" />
