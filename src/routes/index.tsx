@@ -167,17 +167,26 @@ function Index() {
             <a
               key={l.label}
               href={l.href}
-              onClick={(e) => {
-                if (l.href.startsWith("#")) {
-                  e.preventDefault();
-                  const id = l.href.replace("#", "");
-                  if (!id) {
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  } else {
-                    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+                onClick={(e) => {
+                  if (l.href.startsWith("#")) {
+                    e.preventDefault();
+                    const id = l.href.replace("#", "");
+                    if (!id) {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    } else {
+                      const element = document.getElementById(id);
+                      if (element) {
+                        const navbarHeight = 100;
+                        const elementPosition = element.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                        window.scrollTo({
+                          top: offsetPosition,
+                          behavior: "smooth"
+                        });
+                      }
+                    }
                   }
-                }
-              }}
+                }}
               className={`story-link text-sm font-bold transition-all duration-300 hover:text-accent hover:scale-110 ${
                 activeSection === l.label ? "text-accent border-b-2 border-accent" : "text-ink/80"
               }`}
