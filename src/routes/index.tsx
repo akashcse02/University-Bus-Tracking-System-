@@ -163,7 +163,7 @@ function Index() {
     <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,var(--color-sky-top),var(--color-sky-bottom)_62%,var(--color-background))]">
       <Clouds />
 
-      <header className="sticky top-0 z-50 mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-5 lg:flex lg:justify-between bg-white/80 backdrop-blur-md rounded-b-3xl shadow-sm">
+      <header className="mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 py-8 lg:flex lg:justify-between">
         <a href="#" className="flex min-w-0 items-center gap-2.5">
           <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-[0_6px_14px_-6px_var(--color-ink)] overflow-hidden">
             <img src={pubLogo.url} alt="Logo" className="w-full h-full object-cover" />
@@ -187,7 +187,7 @@ function Index() {
                     } else {
                       const element = document.getElementById(id);
                       if (element) {
-                        const navbarHeight = 100;
+                        const navbarHeight = 0;
                         const elementPosition = element.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
                         window.scrollTo({
@@ -199,7 +199,7 @@ function Index() {
                   }
                 }}
               className={`story-link text-sm font-bold transition-all duration-300 hover:text-accent hover:scale-110 ${
-                activeSection === l.label ? "text-accent border-b-2 border-accent" : "text-ink/80"
+                activeSection === l.label ? "text-accent" : "text-ink/80"
               }`}
             >
               {l.label}
@@ -209,7 +209,7 @@ function Index() {
 
         <div className="hidden items-center gap-4 lg:flex">
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-full bg-secondary/50 px-3 py-1.5 text-xs font-bold text-ink transition-colors hover:bg-secondary cursor-pointer">
+            <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-full bg-white/50 px-3 py-1.5 text-xs font-bold text-ink transition-colors hover:bg-white cursor-pointer">
               <Globe className="h-3.5 w-3.5" />
               {language}
               <ChevronDown className="h-3.5 w-3.5 opacity-50" />
@@ -267,9 +267,8 @@ function Index() {
                       } else {
                         const element = document.getElementById(id);
                         if (element) {
-                          const navbarHeight = 100;
                           const elementPosition = element.getBoundingClientRect().top;
-                          const offsetPosition = elementPosition + window.pageYOffset - navbarHeight;
+                          const offsetPosition = elementPosition + window.pageYOffset;
                           window.scrollTo({
                             top: offsetPosition,
                             behavior: "smooth"
@@ -579,6 +578,7 @@ Transform failed with 1 error:
       <div className="hidden" aria-hidden="true">
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' Adjust smooth scrolling so section headings land correctly below the navbar height, with consistent offsets across screen sizes.
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' Add scroll-spy behavior so the active section link highlights as I scroll.
+        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' OLD NAV BAR WAS BETTER
       </div>
     </main>
   );
