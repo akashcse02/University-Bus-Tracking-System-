@@ -416,17 +416,63 @@ For the code present, I get the error below.
 
 Please think step-by-step in order to resolve it.
 \`\`\`
-Cannot read properties of null (reading 'useRef')
+# Error number 1:
+#################
+
+Transform failed with 1 error:
+
+[PARSE_ERROR] Unexpected JSX expression
+    ╭─[ src/components/how-it-works.js:50:13 ]
+    │
+ 50 │     return (<div ref={containerRef} className="relative h-[100vh] w-full" data-tsd-source="/src/components/how-it-works.js:50:13">
+    │             ┬  
+    │             ╰── 
+    │ 
+    │ Help: JSX syntax is disabled and should be enabled via the parser options
+────╯
+
 
 {
-  "timestamp": 1787429999847,
+  "timestamp": 1787430126602,
   "error_type": "RUNTIME_ERROR",
-  "filename": "/",
+  "filename": "/dev-server/src/components/how-it-works.js",
   "lineno": 0,
   "colno": 0,
-  "stack": "TypeError: Cannot read properties of null (reading 'useRef')\n    at exports.useRef (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react.js?v=32cc71de:745:30)\n    at useConstant (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/framer-motion.js?v=c9bda9af:18:38)\n    at useScroll (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/framer-motion.js?v=c9bda9af:12695:17)\n    at Card (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/src/components/how-it-works.tsx?t=1787429995096:45:30)\n    at Object.react_stack_bottom_frame (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:12864:12)\n    at renderWithHooks (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:4211:19)\n    at updateFunctionComponent (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:5567:16)\n    at beginWork (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:6138:20)\n    at runWithFiberInDEV (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:850:66)\n    at performUnitOfWork (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:8427:92)",
+  "stack": "    at transformWithOxc (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:4033:19)\\n    at TransformPluginContext.transform (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:4104:26)\\n    at EnvironmentPluginContainer.transform (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:30201:51)\\n    at async loadAndTransform (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:20124:26)\\n    at async viteTransformMiddleware (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:24604:20)",
   "has_blank_screen": true
 }
+
+# Error number 2:
+#################
+
+Dev server returned 500 for GET /src/components/how-it-works.js before the app handler ran. This is usually a Vite build/transform error — check the dev server output for the underlying error.
+
+{
+  "timestamp": 1787430126809,
+  "error_type": "RUNTIME_ERROR",
+  "filename": "Unknown file",
+  "lineno": 0,
+  "colno": 0,
+  "stack": "Unavailable",
+  "has_blank_screen": true
+}
+
+# Error number 3:
+#################
+
+Uncaught Error: Switched to client rendering because the server rendering errored:
+
+Transform failed with 1 error:
+
+[PARSE_ERROR] Unexpected JSX expression
+    ╭─[ src/components/how-it-works.js:50:13 ]
+    │
+ 50 │     return (<div ref={containerRef} className="relative h-[100vh] w-full" data-tsd-source="/src/components/how-it-works.js:50:13">
+    │             ┬  
+    │             ╰── 
+    │ 
+    │ Help: JSX syntax is disabled and should be enabled via the parser options
+────╯
 \`\`\``}
       </div>
 
