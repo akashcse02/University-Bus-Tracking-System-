@@ -410,12 +410,12 @@ function Index() {
       <div id="routes" />
 
       <div className="hidden">
-        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+        {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
 
 For the code present, I get the error below.
 
 Please think step-by-step in order to resolve it.
-```
+\`\`\`
 Cannot read properties of null (reading 'useRef')
 
 {
@@ -427,7 +427,7 @@ Cannot read properties of null (reading 'useRef')
   "stack": "TypeError: Cannot read properties of null (reading 'useRef')\n    at exports.useRef (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react.js?v=32cc71de:745:30)\n    at useConstant (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/framer-motion.js?v=c9bda9af:18:38)\n    at useScroll (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/framer-motion.js?v=c9bda9af:12695:17)\n    at Card (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/src/components/how-it-works.tsx?t=1787429995096:45:30)\n    at Object.react_stack_bottom_frame (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:12864:12)\n    at renderWithHooks (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:4211:19)\n    at updateFunctionComponent (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:5567:16)\n    at beginWork (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:6138:20)\n    at runWithFiberInDEV (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:850:66)\n    at performUnitOfWork (https://a6d5566a-cf5d-4912-b2a0-7293faebb634.lovableproject.com/node_modules/.vite/deps/react-dom_client.js?v=0c1fde47:8427:92)",
   "has_blank_screen": true
 }
-```
+\`\`\``}
       </div>
 
       <HowItWorks />
