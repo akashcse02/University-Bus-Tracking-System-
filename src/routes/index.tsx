@@ -299,115 +299,127 @@ function Index() {
       </header>
 
       <section className="relative z-10 mx-auto max-w-7xl px-5 pb-24 pt-6 md:pb-32 lg:pt-10">
-        <div className="relative z-20 mx-auto max-w-2xl text-center">
-          {/* Logo centered in the middle of the hero */}
+        <div className="relative z-20 mx-auto max-w-4xl text-center">
           <div className="mb-6 flex justify-center opacity-0 animate-[rise_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:400ms]">
-            <div 
-              className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white p-2 shadow-2xl animate-float lg:h-20 lg:w-20"
-              role="img"
-              aria-label="PUB Bus Track logo"
-            >
-              <img src={pubLogo.url} alt="" className="h-full w-full object-contain" />
-            </div>
+            <span className="rounded-full bg-white/60 px-4 py-1.5 text-xs font-bold tracking-widest text-primary uppercase shadow-sm">
+              Pundra University
+            </span>
           </div>
 
-          <h1 className="animate-rise font-display text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl">
-            Your Ride, Campus,
-            <br className="hidden sm:block" /> On Time
+          <h1 className="animate-rise font-display text-5xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-7xl lg:text-8xl">
+            Your Ride to
+            <br />
+            <span className="text-accent">Campus,</span>
+            <br />
+            On Time
           </h1>
-          <p className="mx-auto mt-5 max-w-lg animate-rise text-base text-ink/75 [animation-delay:120ms] sm:text-lg">
-            Track your university bus in real-time — buses, routes, and schedules in one
-            place.
+          <p className="mx-auto mt-8 max-w-lg animate-rise text-lg font-medium text-ink/75 [animation-delay:120ms] sm:text-xl">
+            Track your university bus in real-time — buses,
+            <br className="hidden sm:block" />
+            routes, and schedules in one place.
           </p>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-6 animate-rise [animation-delay:240ms]">
+            <a
+              href="#how-it-works"
+              className="group relative flex h-14 items-center justify-center rounded-full bg-primary px-10 font-display text-lg font-bold text-primary-foreground shadow-[0_20px_40px_-10px_var(--color-primary)] transition-all hover:scale-105 active:scale-95"
+            >
+              Get Started
+            </a>
+
+            <div className="flex flex-col items-center gap-4">
+              <span className="text-xs font-bold uppercase tracking-widest text-ink/40">
+                Download PUB Bus Track App
+              </span>
+              <div className="flex items-center gap-3">
+                <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-4 text-background transition-transform hover:scale-105">
+                  <Apple className="h-5 w-5" />
+                  <div className="text-left leading-none">
+                    <span className="block text-[0.5rem] uppercase opacity-60">Download on the</span>
+                    <span className="block text-xs font-bold">App Store</span>
+                  </div>
+                </a>
+                <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-4 text-background transition-transform hover:scale-105">
+                  <Play className="h-5 w-5" />
+                  <div className="text-left leading-none">
+                    <span className="block text-[0.5rem] uppercase opacity-60">Get it on</span>
+                    <span className="block text-xs font-bold">Google Play</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="relative mt-20 [perspective:1000px] lg:mt-24 lg:flex lg:items-center lg:justify-between lg:gap-12">
-          {/* Left side: Pundra University Building */}
-          <div 
-            className="relative z-10 w-full opacity-0 animate-[slide-in-3d-left_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:w-[48%]"
-          >
-            <div 
-              className="relative transition-transform duration-700 animate-[float-subtle_5s_ease-in-out_infinite]"
-              style={{ 
-                transformStyle: 'preserve-3d',
-                '--resting-rotate': '15deg'
-              } as React.CSSProperties}
-            >
+        <div className="relative mt-20 lg:mt-0">
+          {/* Left side: Pundra University Building with floating labels */}
+          <div className="pointer-events-none absolute -left-12 bottom-0 z-10 hidden w-[45%] opacity-0 animate-[slide-in-3d-left_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:block">
+            <div className="relative animate-[float_6s_ease-in-out_infinite]">
               <img
                 src={pundraUni.url}
-                alt="Pundra University main campus building with modern architectural design"
-                className="aspect-auto w-full object-contain [filter:drop-shadow(0_20px_40px_rgba(0,0,0,0.1))]"
-                fetchPriority="high"
-                sizes="(max-width: 1024px) 100vw, 48vw"
+                alt="Pundra University Building"
+                className="w-full object-contain [filter:drop-shadow(0_30px_60px_rgba(0,0,0,0.12))]"
               />
-            </div>
-            
-            {/* Animated Waiting Student Character - Repositioned to not overlap */}
-            <div className="absolute -bottom-12 right-0 z-20 animate-shift-weight md:-bottom-16 md:right-4 lg:-bottom-20 lg:right-8">
-              <div className="relative h-20 w-16 md:h-28 md:w-20">
-                {/* Simplified Illustrated Student SVG */}
-                <svg viewBox="0 0 80 120" className="h-full w-full drop-shadow-lg">
-                  <circle cx="40" cy="30" r="12" fill="#FFD2B2" /> {/* Head */}
-                  <rect x="30" y="42" width="20" height="40" rx="8" fill="var(--color-primary)" /> {/* Torso */}
-                  <rect x="32" y="82" width="8" height="25" rx="4" fill="#333" /> {/* Left Leg */}
-                  <rect x="42" y="82" width="8" height="25" rx="4" fill="#333" /> {/* Right Leg */}
-                  <rect x="48" y="45" width="6" height="30" rx="3" fill="#FFD2B2" transform="rotate(-15, 48, 45)" className="origin-top animate-[shift-weight_3s_infinite]" /> {/* Arm checking phone */}
-                  {/* Phone */}
-                  <rect x="52" y="68" width="8" height="12" rx="2" fill="#000" transform="rotate(-15, 52, 68)" />
-                  {/* Backpack */}
-                  <rect x="25" y="45" width="12" height="25" rx="4" fill="var(--color-accent)" />
-                </svg>
-                {/* Floating "Waiting..." badge */}
-                <div className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white px-3 py-1 text-[10px] font-bold shadow-md animate-bounce">
-                  Waiting...
+              
+              {/* Floating Labels like the image */}
+              <div className="absolute top-[40%] -left-4 flex items-center gap-2 rounded-lg bg-accent px-3 py-1.5 text-[10px] font-bold text-accent-foreground shadow-lg">
+                <Clock className="h-3.5 w-3.5" /> Classes 9:00
+              </div>
+              <div className="absolute top-[20%] right-[10%] flex items-center gap-2 rounded-lg bg-primary px-3 py-1.5 text-[10px] font-bold text-primary-foreground shadow-lg">
+                <Globe className="h-3.5 w-3.5" /> Student ID
+              </div>
+              <div className="absolute bottom-[20%] right-0 flex items-center gap-2 rounded-lg bg-white px-3 py-1.5 text-[10px] font-bold text-ink shadow-lg">
+                <Bus className="h-3.5 w-3.5" /> Bus Pass
+              </div>
+              
+              {/* Student Avatar standing in front */}
+              <div className="absolute -bottom-8 left-1/2 -translate-x-1/2">
+                <div className="relative h-32 w-24">
+                  <svg viewBox="0 0 80 120" className="h-full w-full drop-shadow-xl">
+                    <circle cx="40" cy="30" r="14" fill="#FFD2B2" />
+                    <rect x="28" y="44" width="24" height="45" rx="10" fill="#4CAF50" />
+                    <rect x="30" y="89" width="8" height="28" rx="4" fill="#3F51B5" />
+                    <rect x="42" y="89" width="8" height="28" rx="4" fill="#3F51B5" />
+                    <rect x="52" y="48" width="6" height="35" rx="3" fill="#FFD2B2" />
+                  </svg>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right side: Bus Image & Phone Mockup */}
-          <div 
-            className="relative z-10 mt-20 w-full opacity-0 animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:300ms] lg:mt-0 lg:w-[48%]"
-          >
-            <div 
-              className="relative transition-transform duration-700 animate-[float-subtle_6s_ease-in-out_infinite]"
-              style={{ 
-                transformStyle: 'preserve-3d',
-                '--resting-rotate': '-15deg'
-              } as React.CSSProperties}
-            >
-              <img
-                src={pubBus.url}
-                alt="PUB Bus Track university shuttle bus with brand livery"
-                className="aspect-auto w-full object-contain [filter:drop-shadow(0_20px_40px_rgba(0,0,0,0.1))]"
-                fetchPriority="high"
-                sizes="(max-width: 1024px) 100vw, 48vw"
-              />
-            </div>
-
-            {/* Floating Phone Mockup - Removed white box background */}
-            <div className="absolute -left-6 top-1/2 z-20 -translate-y-1/2 scale-75 md:-left-4 md:scale-100 animate-float">
-              <div className="h-48 w-24 overflow-hidden rounded-[2rem] border-[4px] border-ink bg-[#f8fafc] shadow-2xl md:h-64 md:w-32">
-                {/* Phone Screen: Live Map */}
-                <div className="relative h-full w-full bg-sky-top/20">
-                  {/* Map Grid */}
-                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(var(--color-ink) 1px, transparent 0)', backgroundSize: '12px 12px' }} />
-                  
-                  {/* Moving Bus Dot */}
-                  <div className="absolute left-[30%] top-[40%] animate-[drive_10s_linear_infinite]" style={{ offsetPath: "path('M 0 0 C 20 20, 40 10, 60 50')", offsetRotate: "0deg" }}>
-                     <div className="h-3 w-3 rounded-full bg-primary shadow-[0_0_10px_rgba(0,0,0,0.2)]">
-                        <div className="absolute -inset-1 animate-ping rounded-full bg-primary opacity-30" />
-                     </div>
+          {/* Right side group: Phone Mockup and Bus */}
+          <div className="pointer-events-none absolute -right-12 top-0 z-10 hidden w-[45%] flex-col items-end opacity-0 animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:flex">
+            {/* Large Phone Mockup */}
+            <div className="mr-12 mb-12 animate-[float_5s_ease-in-out_infinite]">
+              <div className="relative h-96 w-48 overflow-hidden rounded-[3rem] border-[8px] border-ink bg-[#f0f4f8] shadow-2xl">
+                <div className="relative h-full w-full">
+                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(var(--color-ink) 1px, transparent 0)', backgroundSize: '16px 16px' }} />
+                  <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 200">
+                    <path d="M20 180 Q 50 150, 80 120 T 50 40" fill="none" stroke="#4CAF50" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
+                    <circle cx="50" cy="40" r="4" fill="#FF9800" />
+                    <MapPin className="absolute left-[45%] top-[15%] h-5 w-5 text-accent" />
+                  </svg>
+                  <div className="absolute top-1/2 left-4 w-40 rounded-xl bg-white p-3 shadow-lg">
+                    <div className="text-[10px] font-bold text-ink/40">12 minutes</div>
+                    <div className="text-xs font-bold text-primary">Arrive at 9:15</div>
+                    <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+                      <div className="h-full w-2/3 bg-primary" />
+                    </div>
                   </div>
-
-                  {/* ETA Card */}
-                  <div className="absolute bottom-4 left-1/2 w-[85%] -translate-x-1/2 rounded-xl bg-white p-2 shadow-lg animate-rise [animation-delay:1s]">
-                    <div className="text-[8px] font-bold text-ink/60 uppercase tracking-wider">Next Bus</div>
-                    <div className="text-[10px] font-extrabold text-primary">12 minutes</div>
-                    <div className="text-[7px] text-ink/40">Arrive at 9:15 AM</div>
+                  <div className="absolute bottom-6 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white shadow-lg">
+                    <span className="text-[10px] font-bold">GO</span>
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Bus Image */}
+            <div className="animate-[float-slow_7s_ease-in-out_infinite]">
+              <img
+                src={pubBus.url}
+                alt="PUB Bus"
+                className="w-80 object-contain [filter:drop-shadow(0_30px_60px_rgba(0,0,0,0.1))]"
+              />
             </div>
           </div>
         </div>
@@ -417,6 +429,7 @@ function Index() {
           <StatsStrip />
         </Reveal>
       </section>
+
 
 
       {/* Live map demo */}
@@ -601,7 +614,12 @@ Add at least 60-80px of vertical spacing between the subtext ('Track your univer
 Both the building image and the bus + phone mockup group should have matching visual treatment — either both with soft drop shadows and no hard edges, or both with a subtle rounded-corner mask — so they look like a cohesive pair, not two different styles (one a raw photo, one in a white box).
 
 Keep the sky-blue background, current headline, and logo badge as they are. Focus only on cleaning up spacing, removing the white background boxes, and fixing the character overlap."
+        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+                                        
+                                            
+                                            MAKE HERO SECTION LIKE THAT IMAGE
       </div>
+
 
     </main>
   );
