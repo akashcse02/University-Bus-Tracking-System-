@@ -347,22 +347,9 @@ function Index() {
 
       <div className="hidden" aria-hidden="true">
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
-        
-        Pundra University
-
-Your Ride to
-Campus,
-On Time
-
-Track your university bus in real-time — buses, routes, and schedules in one place.
-
-Get Started
-
-Download PUB Bus Track App
-
-Download on theApp Store
-
-Get it on in maddle buldind in lest side and bus is side
+                                        
+                                            
+                                            mplemented a premium scroll-stacking "How It Works" section using Framer Motion to tie card progression directly to scroll position, and added a student-focused Testimonials section with reviews from Md Akash Islam, Md Sabbir Hossain, and Irin Mim. The navbar now features enhanced hover effects, smooth scrolling for all links, and an active section highlighter that turns links orange to match the campus branding.
       </div>
     </main>
   );
