@@ -304,32 +304,32 @@ function Index() {
 
       {/* Hero Section */}
       <section className="relative z-10 mx-auto max-w-7xl px-5 pt-6 lg:pt-10">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          {/* Left Column: University Building */}
-          <div className="relative order-2 lg:order-1 lg:pr-12">
-            <div className="relative mx-auto max-w-lg animate-[slide-in-3d-left_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:mx-0 lg:max-w-none">
-              <div className="relative animate-[float_6s_ease-in-out_infinite]">
+        <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+          {/* Left Column: University Building (Smaller Size) */}
+          <div className="relative order-2 lg:order-1 lg:pr-8">
+            <div className="relative mx-auto max-w-sm animate-[slide-in-3d-left_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:mx-0 lg:max-w-[400px]">
+              <div className="relative animate-[float_6s_ease-in-out_infinite] will-change-transform">
                 <img
                   src={pundraUni.url}
                   alt="Pundra University Building"
-                  className="w-full object-contain [filter:drop-shadow(0_30px_60px_rgba(0,0,0,0.12))]"
+                  className="w-full object-contain [filter:drop-shadow(0_20px_40px_rgba(0,0,0,0.1))]"
                 />
                 
-                {/* Floating Labels properly anchored to image container */}
-                <div className="absolute top-[30%] -left-4 z-20 flex items-center gap-2 rounded-lg bg-accent px-3 py-1.5 text-[10px] font-bold text-accent-foreground shadow-lg sm:text-xs">
-                  <Clock className="h-3.5 w-3.5" /> Classes 9:00
+                {/* Floating Labels properly anchored */}
+                <div className="absolute top-[30%] -left-3 z-20 flex items-center gap-2 rounded-lg bg-accent px-2.5 py-1 text-[9px] font-bold text-accent-foreground shadow-lg sm:text-[10px]">
+                  <Clock className="h-3 w-3" /> Classes 9:00
                 </div>
-                <div className="absolute top-[10%] right-[10%] z-20 flex items-center gap-2 rounded-lg bg-primary px-3 py-1.5 text-[10px] font-bold text-primary-foreground shadow-lg sm:text-xs">
-                  <Globe className="h-3.5 w-3.5" /> Student ID
+                <div className="absolute top-[10%] right-[8%] z-20 flex items-center gap-2 rounded-lg bg-primary px-2.5 py-1 text-[9px] font-bold text-primary-foreground shadow-lg sm:text-[10px]">
+                  <Globe className="h-3 w-3" /> Student ID
                 </div>
-                <div className="absolute bottom-[20%] right-0 z-20 flex items-center gap-2 rounded-lg bg-white px-3 py-1.5 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
-                  <Bus className="h-3.5 w-3.5" /> Bus Pass
+                <div className="absolute bottom-[25%] -right-2 z-20 flex items-center gap-2 rounded-lg bg-white px-2.5 py-1 text-[9px] font-bold text-ink shadow-lg sm:text-[10px]">
+                  <Bus className="h-3 w-3" /> Bus Pass
                 </div>
                 
-                {/* Student Avatar standing beside building */}
-                <div className="absolute -bottom-10 left-10 z-20">
-                  <div className="relative h-24 w-16 sm:h-32 sm:w-24">
-                    <svg viewBox="0 0 80 120" className="h-full w-full drop-shadow-xl">
+                {/* Student Avatar */}
+                <div className="absolute -bottom-8 left-8 z-20">
+                  <div className="relative h-20 w-14 sm:h-24 sm:w-18">
+                    <svg viewBox="0 0 80 120" className="h-full w-full drop-shadow-lg">
                       <circle cx="40" cy="30" r="14" fill="#FFD2B2" />
                       <rect x="28" y="44" width="24" height="45" rx="10" fill="#4CAF50" />
                       <rect x="30" y="89" width="8" height="28" rx="4" fill="#3F51B5" />
@@ -344,49 +344,49 @@ function Index() {
 
           {/* Right Column: Content */}
           <div className="relative z-20 order-1 text-center lg:order-2 lg:text-left">
-            <div className="mb-6 flex justify-center opacity-0 animate-[rise_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:400ms] lg:justify-start">
-              <span className="rounded-full bg-white/60 px-4 py-1.5 text-xs font-bold tracking-widest text-primary uppercase shadow-sm">
+            <div className="mb-4 flex justify-center opacity-0 animate-[rise_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:400ms] lg:justify-start">
+              <span className="rounded-full bg-white/60 px-3 py-1 text-[10px] font-bold tracking-widest text-primary uppercase shadow-sm">
                 Pundra University
               </span>
             </div>
 
-            <h1 className="animate-rise font-display text-5xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-7xl lg:text-8xl">
+            <h1 className="animate-rise font-display text-4xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-6xl xl:text-7xl">
               Your Ride to
               <br />
               <span className="text-accent">Campus,</span>
               <br />
               On Time
             </h1>
-            <p className="mx-auto mt-8 animate-rise text-lg font-medium text-ink/75 [animation-delay:120ms] sm:text-xl lg:mx-0 lg:max-w-md">
+            <p className="mx-auto mt-6 animate-rise text-base font-medium text-ink/75 [animation-delay:120ms] sm:text-lg lg:mx-0 lg:max-w-[420px]">
               Track your university bus in real-time — buses,
               routes, and schedules in one place.
             </p>
 
-            <div className="mt-10 flex flex-col items-center justify-center gap-8 animate-rise [animation-delay:240ms] lg:items-start lg:justify-start">
+            <div className="mt-8 flex flex-col items-center justify-center gap-6 animate-rise [animation-delay:240ms] lg:items-start lg:justify-start">
               <a
                 href="#how-it-works"
-                className="group relative flex h-14 items-center justify-center rounded-full bg-primary px-10 font-display text-lg font-bold text-primary-foreground shadow-[0_20px_40px_-10px_var(--color-primary)] transition-all hover:scale-105 active:scale-95"
+                className="group relative flex h-12 items-center justify-center rounded-full bg-primary px-8 font-display text-base font-bold text-primary-foreground shadow-[0_15px_30px_-10px_var(--color-primary)] transition-all hover:scale-105 active:scale-95"
               >
                 Get Started
               </a>
 
-              <div className="flex flex-col items-center gap-4 lg:items-start">
-                <span className="text-xs font-bold uppercase tracking-widest text-ink/40">
+              <div className="flex flex-col items-center gap-3 lg:items-start">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-ink/40">
                   Download PUB Bus Track App
                 </span>
-                <div className="flex items-center gap-3">
-                  <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-4 text-background transition-transform hover:scale-105">
-                    <Apple className="h-5 w-5" />
+                <div className="flex items-center gap-2.5">
+                  <a href="#" className="flex h-9 items-center gap-2 rounded-lg bg-ink px-3 text-background transition-transform hover:scale-105">
+                    <Apple className="h-4 w-4" />
                     <div className="text-left leading-none">
-                      <span className="block text-[0.5rem] uppercase opacity-60">Download on the</span>
-                      <span className="block text-xs font-bold">App Store</span>
+                      <span className="block text-[0.45rem] uppercase opacity-60">Download on the</span>
+                      <span className="block text-[10px] font-bold">App Store</span>
                     </div>
                   </a>
-                  <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-4 text-background transition-transform hover:scale-105">
-                    <Play className="h-5 w-5" />
+                  <a href="#" className="flex h-9 items-center gap-2 rounded-lg bg-ink px-3 text-background transition-transform hover:scale-105">
+                    <Play className="h-4 w-4" />
                     <div className="text-left leading-none">
-                      <span className="block text-[0.5rem] uppercase opacity-60">Get it on</span>
-                      <span className="block text-xs font-bold">Google Play</span>
+                      <span className="block text-[0.45rem] uppercase opacity-60">Get it on</span>
+                      <span className="block text-[10px] font-bold">Google Play</span>
                     </div>
                   </a>
                 </div>
@@ -395,42 +395,42 @@ function Index() {
           </div>
         </div>
 
-        {/* Bus and Phone visuals */}
-        <div className="mt-20 hidden lg:block">
-          <div className="flex items-end justify-between gap-12">
-             {/* Large Phone Mockup */}
-             <div className="relative z-10 w-[35%] animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:200ms]">
-                <div className="animate-[float_5s_ease-in-out_infinite]">
-                  <div className="relative mx-auto h-[480px] w-60 overflow-hidden rounded-[3rem] border-[10px] border-ink bg-[#f0f4f8] shadow-2xl">
+        {/* Bus and Phone visuals (Smaller and Adjusted) */}
+        <div className="mt-16 hidden lg:block">
+          <div className="flex items-end justify-between gap-16 px-12">
+             {/* Large Phone Mockup (Smaller Scale) */}
+             <div className="relative z-10 w-[28%] animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:200ms]">
+                <div className="animate-[float_5s_ease-in-out_infinite] will-change-transform">
+                  <div className="relative mx-auto h-[380px] w-48 overflow-hidden rounded-[2.5rem] border-[8px] border-ink bg-[#f0f4f8] shadow-xl">
                     <div className="relative h-full w-full">
-                      <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(var(--color-ink) 1px, transparent 0)', backgroundSize: '16px 16px' }} />
+                      <div className="absolute inset-0 opacity-15" style={{ backgroundImage: 'radial-gradient(var(--color-ink) 1px, transparent 0)', backgroundSize: '12px 12px' }} />
                       <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 200">
-                        <path d="M20 180 Q 50 150, 80 120 T 50 40" fill="none" stroke="#4CAF50" strokeWidth="2" strokeDasharray="4 4" className="animate-dash" />
-                        <circle cx="50" cy="40" r="4" fill="#FF9800" />
-                        <MapPin className="absolute left-[45%] top-[15%] h-5 w-5 text-accent" />
+                        <path d="M20 180 Q 50 150, 80 120 T 50 40" fill="none" stroke="#4CAF50" strokeWidth="2" strokeDasharray="3 3" className="animate-dash" />
+                        <circle cx="50" cy="40" r="3" fill="#FF9800" />
+                        <MapPin className="absolute left-[45%] top-[15%] h-4 w-4 text-accent" />
                       </svg>
-                      <div className="absolute top-1/2 left-4 w-40 rounded-xl bg-white p-3 shadow-lg">
-                        <div className="text-[10px] font-bold text-ink/40">12 minutes</div>
-                        <div className="text-xs font-bold text-primary">Arrive at 9:15</div>
-                        <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-secondary">
+                      <div className="absolute top-1/2 left-3 w-32 rounded-lg bg-white p-2.5 shadow-lg">
+                        <div className="text-[8px] font-bold text-ink/40">12 minutes</div>
+                        <div className="text-[10px] font-bold text-primary">Arrive at 9:15</div>
+                        <div className="mt-1.5 h-1 w-full overflow-hidden rounded-full bg-secondary">
                           <div className="h-full w-2/3 bg-primary" />
                         </div>
                       </div>
-                      <div className="absolute bottom-6 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-primary text-white shadow-lg">
-                        <span className="text-[10px] font-bold">GO</span>
+                      <div className="absolute bottom-5 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white shadow-lg">
+                        <span className="text-[8px] font-bold">GO</span>
                       </div>
                     </div>
                   </div>
                 </div>
              </div>
 
-             {/* Bus Image */}
-             <div className="relative z-10 w-[55%] animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:400ms]">
-                <div className="animate-[float-slow_7s_ease-in-out_infinite]">
+             {/* Bus Image (Smaller Scale) */}
+             <div className="relative z-10 w-[45%] animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:400ms]">
+                <div className="animate-[float-slow_7s_ease-in-out_infinite] will-change-transform">
                   <img
                     src={pubBus.url}
                     alt="PUB Bus"
-                    className="w-full object-contain [filter:drop-shadow(0_30px_60px_rgba(0,0,0,0.1))]"
+                    className="w-full object-contain [filter:drop-shadow(0_20px_40px_rgba(0,0,0,0.08))]"
                   />
                 </div>
              </div>
@@ -439,7 +439,7 @@ function Index() {
       </section>
 
       {/* Stats Section */}
-      <section id="stats" className="relative z-10 mx-auto max-w-7xl px-5 mt-24 mb-16 lg:mt-32">
+      <section id="stats" className="relative z-10 mx-auto max-w-7xl px-5 mt-16 mb-12 lg:mt-24">
         <Reveal>
           <StatsStrip />
         </Reveal>
@@ -529,22 +529,7 @@ function Index() {
 
       <div className="hidden" aria-hidden="true">
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
-        "Fix the hero section layout. Below are the exact issues, each clearly identified by element and location:
-
-ISSUE 1 — Headline text overlapping building image
-Fix: Create two separate columns in the hero — a LEFT column reserved only for the building image, and a RIGHT/CENTER column reserved only for the headline, subtext, and CTA button.
-
-ISSUE 2 — 'Student ID' badge overlapping subtext
-Fix: Anchor the badges directly to the building image's own bounding box.
-
-ISSUE 3 — Stats row overlapping phone mockup
-Fix: Move the entire stats row into its own full-width section BELOW the hero.
-
-ISSUE 4 — Wrong/placeholder assets being used
-Fix: Confirm real Pundra building and Teal bus assets are used.
-
-ISSUE 5 — General inconsistent spacing across the hero
-Fix: Apply a consistent spacing system with minimum 24px/60px gaps."
+        "Tune the hero animations for smooth performance on mobile by reducing layout shifts and limiting heavy effects. HERO SECTION A BUS OH SHOW KORBE SOB KICU SIZE CHOTO KORE ADJUAST KORO LIKE THE IMAGE AND also real clude add des not face"
       </div>
     </main>
   );
