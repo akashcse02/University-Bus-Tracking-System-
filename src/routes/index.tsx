@@ -614,7 +614,12 @@ Add at least 60-80px of vertical spacing between the subtext ('Track your univer
 Both the building image and the bus + phone mockup group should have matching visual treatment — either both with soft drop shadows and no hard edges, or both with a subtle rounded-corner mask — so they look like a cohesive pair, not two different styles (one a raw photo, one in a white box).
 
 Keep the sky-blue background, current headline, and logo badge as they are. Focus only on cleaning up spacing, removing the white background boxes, and fixing the character overlap."
+        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+                                        
+                                            
+                                            MAKE HERO SECTION LIKE THAT IMAGE
       </div>
+
 
     </main>
   );
