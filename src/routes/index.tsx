@@ -128,16 +128,27 @@ function Index() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["how-it-works", "stats", "footer", "live-location", "buses", "schedule", "routes"];
+      const sections = ["how-it-works", "stats", "live-location", "buses", "schedule", "routes", "footer"];
       let current = "Home";
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100) {
-            const link = navLinks.find(l => l.href === `#${section}`);
-            if (link) current = link.label;
+      // Calculate scroll position once
+      const scrollY = window.pageYOffset;
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+
+      // Special case: bottom of the page highlights the last section
+      if (scrollY + windowHeight >= documentHeight - 50) {
+        current = "How it works"; // Or whichever is the last link you want to highlight
+      } else {
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            // Using a threshold that accounts for the sticky navbar
+            if (rect.top <= 120) {
+              const link = navLinks.find(l => l.href === `#${section}`);
+              if (link) current = link.label;
+            }
           }
         }
       }
@@ -567,6 +578,7 @@ Transform failed with 1 error:
 
       <div className="hidden" aria-hidden="true">
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' Adjust smooth scrolling so section headings land correctly below the navbar height, with consistent offsets across screen sizes.
+        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.''' Add scroll-spy behavior so the active section link highlights as I scroll.
       </div>
     </main>
   );

@@ -10,7 +10,7 @@ const stops = [
 
 export function LiveMapDemo() {
   return (
-    <div className="relative overflow-hidden rounded-[2rem] bg-card p-4 shadow-[0_30px_60px_-40px_var(--color-ink)] sm:p-6">
+    <div id="live-location" className="relative overflow-hidden rounded-[2rem] bg-card p-4 shadow-[0_30px_60px_-40px_var(--color-ink)] sm:p-6">
       <svg viewBox="0 0 820 360" className="w-full" role="img" aria-label="Animated map showing a PUB bus travelling from Gobindaganj to Gabtoli">
         {/* map backdrop */}
         <rect width="820" height="360" rx="24" fill="var(--color-muted)" />
