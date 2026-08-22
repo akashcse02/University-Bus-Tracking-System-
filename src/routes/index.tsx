@@ -32,7 +32,9 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
-      { rel: "icon", href: "/favicon.ico" }
+      { rel: "icon", href: "/favicon.ico" },
+      { rel: "preload", href: pundraUni.url, as: "image", fetchpriority: "high" },
+      { rel: "preload", href: pubBus.url, as: "image", fetchpriority: "high" }
     ]
   }),
   component: Index,
@@ -270,40 +272,34 @@ function Index() {
 
       <section className="relative z-10 mx-auto max-w-7xl px-5 pb-24 pt-6 lg:pt-10">
         <div className="relative z-20 mx-auto max-w-2xl text-center">
+          {/* Logo centered in the middle of the hero */}
+          <div className="mb-6 flex justify-center opacity-0 animate-[rise_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:400ms]">
+            <div 
+              className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white p-2 shadow-2xl animate-float lg:h-20 lg:w-20"
+              role="img"
+              aria-label="PUB Bus Track logo"
+            >
+              <img src={pubLogo.url} alt="" className="h-full w-full object-contain" />
+            </div>
+          </div>
+
           <h1 className="animate-rise font-display text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl">
-            Your Ride,
+            Your Ride, Campus,
             <br className="hidden sm:block" /> On Time
           </h1>
           <p className="mx-auto mt-5 max-w-lg animate-rise text-base text-ink/75 [animation-delay:120ms] sm:text-lg">
             Track your university bus in real-time — buses, routes, and schedules in one
             place.
           </p>
-          <div className="mt-8 flex animate-rise justify-center [animation-delay:220ms]">
-            <a
-              href="#download"
-              className="rounded-full bg-primary px-9 py-4 font-display text-lg font-bold text-primary-foreground shadow-[0_18px_30px_-14px_var(--color-ink)] transition-transform hover:scale-105"
-            >
-              Get Started
-            </a>
-          </div>
         </div>
 
         <div className="relative mt-12 [perspective:1000px] lg:mt-0 lg:flex lg:items-center lg:justify-between">
-          {/* Logo floating element */}
-          <div 
-            className="absolute left-1/2 top-0 z-30 -translate-x-1/2 opacity-0 animate-[rise_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:600ms]"
-          >
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white p-2 shadow-2xl animate-float lg:h-20 lg:w-20">
-              <img src={pubLogo.url} alt="PUB Logo" className="h-full w-full object-contain" />
-            </div>
-          </div>
-
           {/* Left side: Pundra University Building */}
           <div 
             className="relative z-10 w-full opacity-0 animate-[slide-in-3d-left_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:w-[45%]"
           >
             <div 
-              className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-transform duration-700 animate-[float-subtle_5s_ease-in-out_infinite]"
+              className="relative overflow-hidden transition-transform duration-700 animate-[float-subtle_5s_ease-in-out_infinite]"
               style={{ 
                 transformStyle: 'preserve-3d',
                 '--resting-rotate': '15deg'
@@ -311,22 +307,42 @@ function Index() {
             >
               <img
                 src={pundraUni.url}
-                alt="Pundra University main building"
-                className="aspect-[4/3] w-full object-cover"
+                alt="Pundra University main campus building with modern architectural design"
+                className="aspect-[4/3] w-full object-contain"
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 100vw, 45vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-black/20 to-transparent pointer-events-none" />
             </div>
             
-            {/* Ambient shadow beneath */}
-            <div className="absolute -bottom-8 left-1/2 h-8 w-4/5 -translate-x-1/2 rounded-[100%] bg-ink/5 blur-2xl" />
+            {/* Animated Waiting Student Character */}
+            <div className="absolute -right-4 bottom-4 z-20 animate-shift-weight md:right-8">
+              <div className="relative h-20 w-16 md:h-28 md:w-20">
+                {/* Simplified Illustrated Student SVG */}
+                <svg viewBox="0 0 80 120" className="h-full w-full drop-shadow-lg">
+                  <circle cx="40" cy="30" r="12" fill="#FFD2B2" /> {/* Head */}
+                  <rect x="30" y="42" width="20" height="40" rx="8" fill="var(--color-primary)" /> {/* Torso */}
+                  <rect x="32" y="82" width="8" height="25" rx="4" fill="#333" /> {/* Left Leg */}
+                  <rect x="42" y="82" width="8" height="25" rx="4" fill="#333" /> {/* Right Leg */}
+                  <rect x="48" y="45" width="6" height="30" rx="3" fill="#FFD2B2" transform="rotate(-15, 48, 45)" className="origin-top animate-[shift-weight_3s_infinite]" /> {/* Arm checking phone */}
+                  {/* Phone */}
+                  <rect x="52" y="68" width="8" height="12" rx="2" fill="#000" transform="rotate(-15, 52, 68)" />
+                  {/* Backpack */}
+                  <rect x="25" y="45" width="12" height="25" rx="4" fill="var(--color-accent)" />
+                </svg>
+                {/* Floating "Waiting..." badge */}
+                <div className="absolute -top-6 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-white px-3 py-1 text-[10px] font-bold shadow-md animate-bounce">
+                  Waiting...
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Right side: Bus Image */}
+          {/* Right side: Bus Image & Phone Mockup */}
           <div 
-            className="relative z-10 mt-12 w-full opacity-0 animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:150ms] lg:mt-0 lg:w-[45%]"
+            className="relative z-10 mt-12 w-full opacity-0 animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:300ms] lg:mt-0 lg:w-[45%]"
           >
             <div 
-              className="relative overflow-hidden rounded-[2.5rem] bg-white shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] transition-transform duration-700 animate-[float-subtle_6s_ease-in-out_infinite]"
+              className="relative overflow-hidden transition-transform duration-700 animate-[float-subtle_6s_ease-in-out_infinite]"
               style={{ 
                 transformStyle: 'preserve-3d',
                 '--resting-rotate': '-15deg'
@@ -334,14 +350,37 @@ function Index() {
             >
               <img
                 src={pubBus.url}
-                alt="PUB shuttle bus"
-                className="aspect-[4/3] w-full object-contain p-4"
+                alt="PUB Bus Track university shuttle bus with brand livery"
+                className="aspect-[4/3] w-full object-contain"
+                fetchPriority="high"
+                sizes="(max-width: 1024px) 100vw, 45vw"
               />
-              <div className="absolute inset-0 bg-gradient-to-tl from-black/10 to-transparent pointer-events-none" />
             </div>
-            
-            {/* Ambient shadow beneath */}
-            <div className="absolute -bottom-8 left-1/2 h-8 w-4/5 -translate-x-1/2 rounded-[100%] bg-ink/5 blur-2xl" />
+
+            {/* Floating Phone Mockup */}
+            <div className="absolute -left-6 top-1/2 z-20 -translate-y-1/2 scale-75 md:left-0 md:scale-100 animate-float">
+              <div className="h-48 w-24 overflow-hidden rounded-[2rem] border-[4px] border-ink bg-card shadow-2xl md:h-64 md:w-32">
+                {/* Phone Screen: Live Map */}
+                <div className="relative h-full w-full bg-sky-top/20">
+                  {/* Map Grid */}
+                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(var(--color-ink) 1px, transparent 0)', backgroundSize: '12px 12px' }} />
+                  
+                  {/* Moving Bus Dot */}
+                  <div className="absolute left-[30%] top-[40%] animate-[drive_10s_linear_infinite]" style={{ offsetPath: "path('M 0 0 C 20 20, 40 10, 60 50')", offsetRotate: "0deg" }}>
+                     <div className="h-3 w-3 rounded-full bg-primary shadow-[0_0_10px_rgba(0,0,0,0.2)]">
+                        <div className="absolute -inset-1 animate-ping rounded-full bg-primary opacity-30" />
+                     </div>
+                  </div>
+
+                  {/* ETA Card */}
+                  <div className="absolute bottom-4 left-1/2 w-[85%] -translate-x-1/2 rounded-xl bg-white p-2 shadow-lg animate-rise [animation-delay:1s]">
+                    <div className="text-[8px] font-bold text-ink/60 uppercase tracking-wider">Next Bus</div>
+                    <div className="text-[10px] font-extrabold text-primary">12 minutes</div>
+                    <div className="text-[7px] text-ink/40">Arrive at 9:15 AM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
