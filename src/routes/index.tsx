@@ -298,7 +298,7 @@ function Index() {
         )}
       </header>
 
-      <section className="relative z-10 mx-auto max-w-7xl px-5 pb-24 pt-6 lg:pt-10">
+      <section className="relative z-10 mx-auto max-w-7xl px-5 pb-24 pt-6 md:pb-32 lg:pt-10">
         <div className="relative z-20 mx-auto max-w-2xl text-center">
           {/* Logo centered in the middle of the hero */}
           <div className="mb-6 flex justify-center opacity-0 animate-[rise_0.8s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:400ms]">
@@ -321,10 +321,10 @@ function Index() {
           </p>
         </div>
 
-        <div className="relative mt-12 [perspective:1000px] lg:mt-0 lg:flex lg:items-center lg:justify-between">
+        <div className="relative mt-20 [perspective:1000px] lg:mt-24 lg:flex lg:items-center lg:justify-between lg:gap-12">
           {/* Left side: Pundra University Building */}
           <div 
-            className="relative z-10 w-full opacity-0 animate-[slide-in-3d-left_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:w-[45%]"
+            className="relative z-10 w-full opacity-0 animate-[slide-in-3d-left_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] lg:w-[48%]"
           >
             <div 
               className="relative transition-transform duration-700 animate-[float-subtle_5s_ease-in-out_infinite]"
@@ -336,14 +336,14 @@ function Index() {
               <img
                 src={pundraUni.url}
                 alt="Pundra University main campus building with modern architectural design"
-                className="aspect-[4/3] w-full object-contain [filter:drop-shadow(0_20px_40px_rgba(0,0,0,0.1))]"
+                className="aspect-auto w-full object-contain [filter:drop-shadow(0_20px_40px_rgba(0,0,0,0.1))]"
                 fetchPriority="high"
-                sizes="(max-width: 1024px) 100vw, 45vw"
+                sizes="(max-width: 1024px) 100vw, 48vw"
               />
             </div>
             
-            {/* Animated Waiting Student Character */}
-            <div className="absolute right-4 bottom-4 z-20 animate-shift-weight md:right-8 lg:right-12">
+            {/* Animated Waiting Student Character - Repositioned to not overlap */}
+            <div className="absolute -bottom-12 right-0 z-20 animate-shift-weight md:-bottom-16 md:right-4 lg:-bottom-20 lg:right-8">
               <div className="relative h-20 w-16 md:h-28 md:w-20">
                 {/* Simplified Illustrated Student SVG */}
                 <svg viewBox="0 0 80 120" className="h-full w-full drop-shadow-lg">
@@ -367,7 +367,7 @@ function Index() {
 
           {/* Right side: Bus Image & Phone Mockup */}
           <div 
-            className="relative z-10 mt-12 w-full opacity-0 animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:300ms] lg:mt-0 lg:w-[45%]"
+            className="relative z-10 mt-20 w-full opacity-0 animate-[slide-in-3d-right_1.2s_cubic-bezier(0.16,1,0.3,1)_forwards] [animation-delay:300ms] lg:mt-0 lg:w-[48%]"
           >
             <div 
               className="relative transition-transform duration-700 animate-[float-subtle_6s_ease-in-out_infinite]"
@@ -379,17 +379,39 @@ function Index() {
               <img
                 src={pubBus.url}
                 alt="PUB Bus Track university shuttle bus with brand livery"
-                className="aspect-[4/3] w-full object-contain [filter:drop-shadow(0_20px_40px_rgba(0,0,0,0.1))]"
+                className="aspect-auto w-full object-contain [filter:drop-shadow(0_20px_40px_rgba(0,0,0,0.1))]"
                 fetchPriority="high"
-                sizes="(max-width: 1024px) 100vw, 45vw"
+                sizes="(max-width: 1024px) 100vw, 48vw"
               />
             </div>
 
-            {/* Floating Phone Mockup */}
-            <div className="absolute -left-6 top-1/2 z-20 -translate-y-1/2 scale-75 md:left-0 md:scale-100 animate-float">
-              <div className="h-48 w-24 overflow-hidden rounded-[2rem] border-[4px] border-ink bg-card shadow-2xl md:h-64 md:w-32">
+            {/* Floating Phone Mockup - Removed white box background */}
+            <div className="absolute -left-6 top-1/2 z-20 -translate-y-1/2 scale-75 md:-left-4 md:scale-100 animate-float">
+              <div className="h-48 w-24 overflow-hidden rounded-[2rem] border-[4px] border-ink bg-[#f8fafc] shadow-2xl md:h-64 md:w-32">
                 {/* Phone Screen: Live Map */}
                 <div className="relative h-full w-full bg-sky-top/20">
+                  {/* Map Grid */}
+                  <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(var(--color-ink) 1px, transparent 0)', backgroundSize: '12px 12px' }} />
+                  
+                  {/* Moving Bus Dot */}
+                  <div className="absolute left-[30%] top-[40%] animate-[drive_10s_linear_infinite]" style={{ offsetPath: "path('M 0 0 C 20 20, 40 10, 60 50')", offsetRotate: "0deg" }}>
+                     <div className="h-3 w-3 rounded-full bg-primary shadow-[0_0_10px_rgba(0,0,0,0.2)]">
+                        <div className="absolute -inset-1 animate-ping rounded-full bg-primary opacity-30" />
+                     </div>
+                  </div>
+
+                  {/* ETA Card */}
+                  <div className="absolute bottom-4 left-1/2 w-[85%] -translate-x-1/2 rounded-xl bg-white p-2 shadow-lg animate-rise [animation-delay:1s]">
+                    <div className="text-[8px] font-bold text-ink/60 uppercase tracking-wider">Next Bus</div>
+                    <div className="text-[10px] font-extrabold text-primary">12 minutes</div>
+                    <div className="text-[7px] text-ink/40">Arrive at 9:15 AM</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
                   {/* Map Grid */}
                   <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(var(--color-ink) 1px, transparent 0)', backgroundSize: '12px 12px' }} />
                   
