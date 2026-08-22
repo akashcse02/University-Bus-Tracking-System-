@@ -1,55 +1,58 @@
-import { useEffect, useState } from "react";
-import { useInView } from "@/hooks/use-in-view";
+import { Reveal } from "@/components/reveal";
+import { useEffect, useState, useRef } from "react";
+import { useInView } from "framer-motion";
 
-const stats = [
-  { value: 4, suffix: "", label: "Routes" },
-  { value: 8, suffix: "", label: "Buses" },
-  { value: 1000, suffix: "+", label: "Students" },
-  { value: 99, suffix: "%", label: "On-time trips" },
-];
+interface StatProps {
+  number: number;
+  label: string;
+  suffix?: string;
+}
 
-function CountUp({ target, suffix, run }: { target: number; suffix: string; run: boolean }) {
-  const [value, setValue] = useState(0);
+function StatCard({ number, label, suffix = "" }: StatProps) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (!run) return;
-    const duration = 1400;
-    const start = performance.now();
-    let frame = 0;
-    const tick = (now: number) => {
-      const p = Math.min((now - start) / duration, 1);
-      setValue(Math.round(target * (1 - Math.pow(1 - p, 3))));
-      if (p < 1) frame = requestAnimationFrame(tick);
-    };
-    frame = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(frame);
-  }, [run, target]);
+    if (isInView) {
+      let start = 0;
+      const end = number;
+      const duration = 2000;
+      const stepTime = Math.abs(Math.floor(duration / end));
+      
+      const timer = setInterval(() => {
+        start += 1;
+        setCount(start);
+        if (start === end) clearInterval(timer);
+      }, stepTime);
+
+      return () => clearInterval(timer);
+    }
+  }, [isInView, number]);
 
   return (
-    <>
-      {value}
-      {suffix}
-    </>
+    <div ref={ref} className="flex flex-col items-center justify-center rounded-[2.5rem] bg-white p-8 text-center shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-transform hover:scale-105">
+      <span className="font-display text-4xl font-black text-primary sm:text-5xl">
+        {count}{suffix}
+      </span>
+      <span className="mt-2 text-sm font-bold uppercase tracking-widest text-ink/50">
+        {label}
+      </span>
+    </div>
   );
 }
 
 export function StatsStrip() {
-  const { ref, inView } = useInView<HTMLDivElement>(0.3);
-
   return (
-    <div
-      ref={ref}
-      id="stats"
-      className="grid grid-cols-2 gap-3 rounded-[2rem] bg-card p-5 shadow-[0_28px_50px_-36px_var(--color-ink)] sm:gap-5 lg:grid-cols-4"
-    >
-      {stats.map((s) => (
-        <div key={s.label} className="rounded-2xl bg-secondary px-4 py-6 text-center">
-          <p className="font-display text-3xl font-extrabold text-primary sm:text-4xl">
-            <CountUp target={s.value} suffix={s.suffix} run={inView} />
-          </p>
-          <p className="mt-1 text-sm font-bold text-ink/70">{s.label}</p>
+    <section id="stats" className="mx-auto max-w-7xl px-5 mt-24 mb-12 lg:mt-32">
+      <Reveal>
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4 lg:gap-8">
+          <StatCard number={4} label="Routes" />
+          <StatCard number={8} label="Buses" />
+          <StatCard number={1000} label="Students" suffix="+" />
+          <StatCard number={6} label="Routes across Bogura" />
         </div>
-      ))}
-    </div>
+      </Reveal>
+    </section>
   );
 }
