@@ -52,19 +52,26 @@ const navLinks = [
 function Clouds() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <svg className="absolute left-[4%] top-[14%] w-40 opacity-80 animate-float-slow md:w-64" viewBox="0 0 200 70" fill="white">
-        <ellipse cx="60" cy="45" rx="55" ry="22" />
-        <ellipse cx="105" cy="34" rx="42" ry="28" />
-        <ellipse cx="145" cy="48" rx="45" ry="19" />
+      {/* Soft Realistic Clouds using SVG filters */}
+      <svg className="absolute h-0 w-0">
+        <filter id="cloud-filter">
+          <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="5" seed="1" />
+          <feDisplacementMap in="SourceGraphic" scale="25" />
+        </filter>
       </svg>
-      <svg className="absolute right-[6%] top-[9%] w-32 opacity-70 animate-float md:w-52" viewBox="0 0 200 70" fill="white">
-        <ellipse cx="70" cy="44" rx="58" ry="21" />
-        <ellipse cx="118" cy="32" rx="40" ry="26" />
-      </svg>
-      <svg className="absolute left-[38%] top-[3%] hidden w-40 opacity-60 animate-float-slow lg:block" viewBox="0 0 200 70" fill="white">
-        <ellipse cx="90" cy="42" rx="62" ry="20" />
-        <ellipse cx="130" cy="32" rx="38" ry="24" />
-      </svg>
+
+      <div 
+        className="absolute left-[5%] top-[12%] h-24 w-64 opacity-60 animate-float-slow blur-xl lg:h-32 lg:w-96"
+        style={{ filter: 'url(#cloud-filter)', background: 'radial-gradient(circle, white, transparent 70%)' }}
+      />
+      <div 
+        className="absolute right-[8%] top-[8%] h-20 w-48 opacity-50 animate-float blur-lg lg:h-28 lg:w-72"
+        style={{ filter: 'url(#cloud-filter)', background: 'radial-gradient(circle, white, transparent 70%)' }}
+      />
+      <div 
+        className="absolute left-[40%] top-[4%] hidden h-20 w-56 opacity-40 animate-float-slow blur-lg lg:block"
+        style={{ filter: 'url(#cloud-filter)', background: 'radial-gradient(circle, white, transparent 70%)' }}
+      />
     </div>
   );
 }
