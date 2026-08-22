@@ -54,7 +54,7 @@ function RouteLine() {
     <svg
       aria-hidden
       viewBox="0 0 400 120"
-      className="absolute -left-6 bottom-16 w-64 md:w-80"
+      className="absolute left-8 -bottom-4 w-64 md:w-96"
     >
       <path
         id="pubRoute"
@@ -159,7 +159,7 @@ function Index() {
       </header>
 
       <section className="relative z-10 mx-auto max-w-7xl px-5 pb-24 pt-6 lg:pt-10">
-        <div className="mx-auto max-w-2xl text-center">
+        <div className="relative z-20 mx-auto max-w-2xl text-center">
           <h1 className="animate-rise font-display text-[2.6rem] font-extrabold leading-[1.05] tracking-tight text-ink sm:text-6xl lg:text-7xl">
             Your Ride to <span className="text-accent">Campus</span>,
             <br className="hidden sm:block" /> On Time
@@ -180,7 +180,7 @@ function Index() {
 
         <div className="relative mt-12 grid items-end gap-10 lg:mt-0 lg:grid-cols-[1.05fr_0.9fr] lg:gap-4">
           {/* Left illustration */}
-          <div className="relative animate-slide-left lg:-mt-32">
+          <div className="relative animate-slide-left lg:-mt-24">
             <img
               src={campusScene}
               alt="Pundra University campus building with a bus stop sign and a student holding a backpack"
@@ -196,7 +196,7 @@ function Index() {
           </div>
 
           {/* Right illustration */}
-          <div className="relative animate-slide-right [animation-delay:150ms] lg:-mt-40">
+          <div className="relative animate-slide-right [animation-delay:150ms] lg:-mt-16">
             <div className="relative mx-auto w-full max-w-sm">
               <img
                 src={phoneMap}
