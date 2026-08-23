@@ -354,42 +354,7 @@ function Index() {
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            now add 
-Premium Glassmorphism + 3D Hover Effects (Buttons & Navbar):
-
-"Upgrade the hover interactions across the site — currently the buttons and navbar hover states look cheap and flat. Replace them with premium, glass-effect, 3D-feeling interactions:
-
-1. Primary Buttons (Get Started, Sign Up, App Store/Google Play buttons):
-
-Add a subtle glassmorphism layer: on hover, apply a soft frosted-glass shine effect — a diagonal light gradient sweep (using a pseudo-element ::before with background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent)) that animates across the button on hover, like light reflecting off glass.
-
-Add a real 3D lift effect: on hover, the button should lift slightly with transform: translateY(-3px) scale(1.02) combined with a soft layered shadow (box-shadow: 0 10px 20px rgba(0,0,0,0.15), 0 6px 6px rgba(0,0,0,0.1)) that increases in blur/spread on hover, simulating the button physically rising off the page.
-
-Add a subtle inner highlight border (box-shadow: inset 0 1px 0 rgba(255,255,255,0.4)) at the top edge to simulate a glossy, rounded glass surface.
-
-Transition all these properties smoothly with transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) for a premium, weighty easing feel (not linear or bouncy).
-
-On active/click, add a slight press-down effect (transform: translateY(-1px) scale(0.98)) for tactile feedback.
-
-2. Navbar Links (Home, Live Location, Buses, Time Schedule, Routes, How it works):
-
-Replace any flat color-change-only hover with an animated underline effect: a thin accent-colored line that smoothly expands from the center (or left) under the text on hover (transform: scaleX(0) to scaleX(1), transform-origin center, 0.3s ease-out).
-
-Add a subtle text color transition combined with a very slight translateY(-1px) lift on hover for a light, responsive feel.
-
-Add a soft glow/blur effect behind the active/hovered link (a subtle box-shadow or pseudo-element blur in the accent color at low opacity) to reinforce the glass/premium aesthetic.
-
-3. Navbar container itself:
-
-Apply a glassmorphism background to the navbar: background: rgba(255, 255, 255, 0.6) with backdrop-filter: blur(12px) and a subtle bottom border (border-bottom: 1px solid rgba(255,255,255,0.3)), so it looks like frosted glass floating above the page content, especially noticeable if the page has scrollable content behind it.
-
-4. Login/Sign Up buttons specifically:
-
-Sign Up button: keep solid green but apply the glass shine sweep + 3D lift hover described above.
-
-Login button/link: on hover, add a soft glass-pill background that fades in (background: rgba(0,0,0,0.05) with backdrop-filter: blur(4px), rounded corners) behind the text, plus the same slight lift.
-
-Ensure all these effects use only transform, opacity, and box-shadow/backdrop-filter (GPU-friendly properties) for smooth 60fps performance, and respect prefers-reduced-motion by disabling the lift/shine animations (keep only simple color transitions) for users who request reduced motion."
+                                            now  make
       </div>
     </main>
   );
