@@ -190,7 +190,7 @@ function Index() {
 
           <div className="hidden items-center gap-4 lg:flex">
             <DropdownMenu>
-              <DropdownMenuTrigger className="btn-hover-premium flex items-center gap-1.5 rounded-full bg-white/50 px-3 py-1.5 text-xs font-bold text-ink cursor-pointer">
+              <DropdownMenuTrigger className="nav-link-clean flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-ink cursor-pointer">
                 <Globe className="h-3.5 w-3.5" />
                 {language}
                 <ChevronDown className="h-3.5 w-3.5 opacity-50" />
@@ -204,7 +204,7 @@ function Index() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <a href="#" className="btn-hover-premium rounded-full px-5 py-2.5 text-sm font-bold text-ink">Login</a>
+            <a href="#" className="nav-link-clean px-6 py-2.5 text-sm font-bold text-ink">Login</a>
             <a href="#" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground shadow-lg">Sign Up</a>
           </div>
 
@@ -382,23 +382,23 @@ function Index() {
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Replace Flat Clouds with Realistic Clouds:
+                                            Apply Login's Hover Style to All Navbar Items (Except Sign Up):
 
-"Replace the current flat, illustrated cloud shapes in the hero section background with realistic-looking clouds. Requirements:
+"Apply the same hover style currently used on the 'Login' button to ALL other navbar items — Home, Live Location, Buses, Time Schedule, Routes, How it works, and the language selector (English dropdown) — but do NOT apply it to the 'Sign Up' button, which should keep its current solid green button style unchanged.
 
-Use soft, photorealistic-style cloud graphics (soft white/light-grey fluffy texture with subtle shading and depth), instead of simple flat rounded shapes.
+For all these nav items (Home, Live Location, Buses, Time Schedule, Routes, How it works, English selector):
 
-Position them naturally scattered across the sky-blue background — a few small ones near the top corners, and maybe one or two larger, softer ones drifting behind the hero content (lower opacity so they don't distract from text/images).
+On hover, show the same soft pill-shaped background that currently appears on 'Login' hover — a light, subtle background fill (e.g. rgba(0,0,0,0.05) or matching the current Login hover color) with rounded corners.
 
-Add a very slow, subtle horizontal drift animation (e.g. translateX looping slowly over 60-90 seconds) so the clouds feel alive without being distracting.
+Keep the text color transition to the accent green/teal on hover, consistent with the current style.
 
-Ensure the clouds are rendered with soft edges/blur (not hard geometric shapes) — use either high-quality SVG cloud illustrations with gradient shading, or optimized transparent PNG cloud images for a more realistic look.
+Use the same smooth transition timing and easing currently applied to the Login hover (so all nav items feel identical in behavior).
 
-Keep clouds behind all text and interactive elements (lower z-index), and reduce their opacity where they overlap the headline area so text stays fully readable.
+Make sure padding/sizing around each nav item is consistent so the pill background looks uniform across all items (not larger or smaller for different-length text like 'Time Schedule' vs 'Home').
 
-Respect prefers-reduced-motion — disable the drifting animation for users who request reduced motion, keeping clouds static instead.
+Leave the 'Sign Up' button exactly as it is — solid green background, its own existing hover effect (shadow + lift), not the pill hover style.
 
-Keep the sky-blue background color and everything else in the hero unchanged — this is purely a cloud-visual upgrade."
+Keep everything else (layout, colors, spacing, content) unchanged — this is a hover-style consistency update for the navbar only."
       </div>
     </main>
   );
