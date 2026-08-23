@@ -230,11 +230,13 @@ function BusesPage() {
   const busesByRoute = useMemo(() => {
     const grouped: Record<string, BusData[]> = {};
     filteredBuses.forEach(bus => {
-      if (!grouped[bus.route]) grouped[bus.route] = [];
-      grouped[bus.route].push(bus);
+      const route = bus.route;
+      if (!grouped[route]) grouped[route] = [];
+      grouped[route]!.push(bus);
     });
     return grouped;
   }, [filteredBuses]);
+
 
   return (
     <main className="min-h-screen bg-[#F0F9FF]">
