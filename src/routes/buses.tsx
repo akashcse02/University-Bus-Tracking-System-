@@ -338,8 +338,7 @@ Enable the top tab bar to filter buses by route (All, Gobindaganj, Sherpur, Gabt
 
 Implement an ETA countdown that updates the next-stop arrival time periodically for each bus using mock data.`}
 
-
-এখানে সব আপডেট মিলিয়ে সম্পূর্ণ Buses পেজের প্রম্পট:
+${`এখানে সব আপডেট মিলিয়ে সম্পূর্ণ Buses পেজের প্রম্পট:
 
 Lovable Prompt — Buses Page (Full, Final Version):
 
@@ -390,6 +389,7 @@ Clicking a bus card can expand to show the full stop list for that bus, or link 
 Use our established color theme (sky-blue background, green/orange/teal accents), consistent card styling with soft shadow hover, and smooth fade-in animation as cards scroll into view.
 
 This is frontend-only with static/mock data for now — no live backend GPS data wired yet, but structure the component so it's easy to later connect to real-time per-bus location updates."`}
+
       </div>
     </main>
   );
