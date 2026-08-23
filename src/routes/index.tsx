@@ -204,8 +204,8 @@ function Index() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <a href="#" className="nav-link-clean px-6 py-2.5 text-[14px] xl:text-sm text-ink nav-item-nowrap">Login</a>
-            <a href="#" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-[14px] xl:text-sm font-bold text-primary-foreground shadow-lg nav-item-nowrap">Sign Up</a>
+            <a href="/login" className="nav-link-clean px-6 py-2.5 text-[14px] xl:text-sm text-ink nav-item-nowrap">Login</a>
+            <a href="/signup" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-[14px] xl:text-sm font-bold text-primary-foreground shadow-lg nav-item-nowrap">Sign Up</a>
           </div>
 
 
@@ -232,8 +232,8 @@ function Index() {
               ))}
               <hr className="border-border" />
               <div className="flex flex-col gap-3">
-                <a href="#" className="text-center font-bold text-ink">Login</a>
-                <a href="#" className="rounded-full bg-primary py-3 text-center font-bold text-primary-foreground">Sign Up</a>
+                <a href="/login" className="text-center font-bold text-ink">Login</a>
+                <a href="/signup" className="rounded-full bg-primary py-3 text-center font-bold text-primary-foreground">Sign Up</a>
               </div>
             </nav>
           </div>
