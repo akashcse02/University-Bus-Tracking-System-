@@ -364,6 +364,9 @@ function TimeSchedulePage() {
               Back to Home
             </a>
             <a href="/login" className="hidden sm:block rounded-full bg-primary/10 px-6 py-2 text-sm font-black text-primary transition-all hover:bg-primary hover:text-white">Sign In</a>
+            <a href="/login?admin=true" className="p-2 rounded-full hover:bg-slate-100 text-ink/20 hover:text-ink/40 transition-all" title="Admin Portal">
+              <Settings className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </header>
