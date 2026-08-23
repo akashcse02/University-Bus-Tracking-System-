@@ -48,11 +48,14 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(async (position) => {
             await updateBusLocation({
-              tripId: trip.id,
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
+              data: {
+                tripId: trip.id,
+                lat: position.coords.latitude,
+                lng: position.coords.longitude,
+              }
             });
           });
+
         }
       }, 15000); // Every 15s
 
@@ -85,8 +88,9 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
   const handleOccupancyChange = async (level: "low" | "medium" | "high") => {
     setOccupancy(level);
     if (currentTripId) {
-      await updateOccupancy({ tripId: currentTripId, occupancy: level });
+      await updateOccupancy({ data: { tripId: currentTripId, occupancy: level } });
     }
+
   };
 
   return (

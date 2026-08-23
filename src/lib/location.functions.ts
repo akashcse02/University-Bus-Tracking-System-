@@ -1,6 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
-import { z } from "zod";
 
 export const updateBusLocation = createServerFn({ method: "POST" })
   .validator((data: { tripId: string; lat: number; lng: number }) => data)
@@ -30,4 +29,5 @@ export const updateOccupancy = createServerFn({ method: "POST" })
     if (error) throw error;
     return { success: true };
   });
+
 
