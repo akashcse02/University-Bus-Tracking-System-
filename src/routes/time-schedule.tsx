@@ -9,7 +9,12 @@ import {
   Bus as BusIcon, 
   ArrowLeft,
   ChevronRight,
-  Info
+  Info,
+  Search,
+  Download,
+  Bell,
+  Settings,
+  Filter
 } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { motion, AnimatePresence } from "framer-motion";
