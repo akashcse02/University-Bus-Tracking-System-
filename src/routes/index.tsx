@@ -352,21 +352,7 @@ function Index() {
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            "Update the hero section layout as follows:
-
-1. Headline position:
-Move the headline 'Your Ride to Campus, On Time' to be horizontally centered in the hero section (not left-aligned), positioned above or between the building and bus visuals.
-
-2. Building placement:
-Keep the Pundra University building image on the LEFT side of the hero, with its 'Classes 9:00', 'Student ID', and 'Bus Stop' badges anchored within the image's own bounding box as they currently are.
-
-3. Phone mockup size:
-Reduce the size of the phone mockup (the one showing the live location pin) — make it noticeably smaller/more compact than its current size, so it doesn't dominate the layout.
-
-4. Bus placement and animation:
-Position the bus image on the RIGHT side of the hero. Animate it to slide in from the right edge of the screen into its resting position on page load (fade-in + slide, settling smoothly with ease-out timing), rather than appearing statically.
-
-5. Match reference image exactly:
+                                            Fine-tune the bus slide-in animation so its easing, duration, and final position match the reference image precisely.
 I will upload a reference image showing the exact composition and positioning I want for this hero section. Please match the layout, spacing, and element placement in that reference image as closely as possible — including where the headline, subtext, CTA button, building, bus, and phone mockup are positioned relative to each other.
 
 Keep the sky-blue background, current color scheme (green CTA, orange accent), and existing content/copy unchanged — this is a layout/positioning adjustment only."
