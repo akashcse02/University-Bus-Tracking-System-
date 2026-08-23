@@ -385,7 +385,12 @@ Add the thin center-expanding underline animation (transform: scaleX(0) to scale
 
 Make sure the background tint blends naturally with the sky-blue page background rather than looking like a distinct grey/white box — consider using a slightly blue-tinted transparent overlay instead of pure black/grey (e.g. rgba(0, 50, 80, 0.05)) so it feels cohesive with the page color.
 
-Ensure consistent padding and border-radius across all nav items so the hover shape looks uniform regardless of text length."`}
+Ensure consistent padding and border-radius across all nav items so the hover shape looks uniform regardless of text length.
+
+3. Smooth timing:
+Use transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) for a premium, smooth feel — no instant snap, no bounce.
+
+The goal: hover should feel light, modern, and barely-there — enhancing the interaction without looking like a distinct old-style button/pill overlay."`}
       </div>
     </main>
   );
