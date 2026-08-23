@@ -230,33 +230,25 @@
     align-items: center;
     justify-content: center;
     padding: 8px 16px;
-    font-weight: 500;
-    color: #1a202c; /* Deep charcoal/navy tint */
+    font-weight: 600;
+    color: #1a202c;
     text-decoration: none;
     border-radius: 999px;
-    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    letter-spacing: 0.01em;
+    transition: all 0.2s ease-out;
+    letter-spacing: -0.01em;
     white-space: nowrap;
   }
 
   .nav-link-clean:hover,
-  .nav-link-clean.active {
-    background-color: rgba(255, 255, 255, 0.6);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+  .nav-link-clean.active,
+  .nav-link-clean:focus-visible {
+    background-color: rgba(0, 90, 60, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     color: var(--color-primary);
   }
 
   .nav-link-clean::after {
-    content: '';
-    position: absolute;
-    bottom: 4px;
-    left: 50%;
-    width: 12px;
-    height: 2px;
-    background-color: var(--color-primary);
-    transform: translateX(-50%) scaleX(0);
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    border-radius: 1px;
+    display: none;
   }
 
   .nav-link-clean.active::after,
