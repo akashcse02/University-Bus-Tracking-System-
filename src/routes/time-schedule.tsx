@@ -323,7 +323,6 @@ function TimeSchedulePage() {
       replace: true,
     } as any);
   }, [scheduleType, selectedDay, searchQuery, navigate]);
-  }, [scheduleType, selectedDay, searchQuery, navigate]);
 
   const scheduleData = useMemo(() => {
     const baseData = scheduleType === "class" ? CLASS_TIME_SCHEDULE : EXAM_TIME_SCHEDULE;
