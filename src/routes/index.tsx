@@ -204,8 +204,8 @@ function Index() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <a href="#" className="nav-link-clean px-6 py-2.5 text-[14px] xl:text-sm text-ink nav-item-nowrap">Login</a>
-            <a href="#" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-[14px] xl:text-sm font-bold text-primary-foreground shadow-lg nav-item-nowrap">Sign Up</a>
+            <a href="/login" className="nav-link-clean px-6 py-2.5 text-[14px] xl:text-sm text-ink nav-item-nowrap">Login</a>
+            <a href="/signup" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-[14px] xl:text-sm font-bold text-primary-foreground shadow-lg nav-item-nowrap">Sign Up</a>
           </div>
 
 
@@ -232,8 +232,8 @@ function Index() {
               ))}
               <hr className="border-border" />
               <div className="flex flex-col gap-3">
-                <a href="#" className="text-center font-bold text-ink">Login</a>
-                <a href="#" className="rounded-full bg-primary py-3 text-center font-bold text-primary-foreground">Sign Up</a>
+                <a href="/login" className="text-center font-bold text-ink">Login</a>
+                <a href="/signup" className="rounded-full bg-primary py-3 text-center font-bold text-primary-foreground">Sign Up</a>
               </div>
             </nav>
           </div>
@@ -365,11 +365,82 @@ function Index() {
       <SiteFooter />
 
       <div className="hidden" aria-hidden="true">
-        {"'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Lovable Prompt — Add Realistic Clouds to Hero Section:\n\n\"There are currently no clouds visible in the hero section's sky-blue background. Add realistic-looking clouds:\n\nAdd 4-6 soft, photorealistic-style clouds scattered across the hero section's sky-blue background — a mix of small and medium-sized clouds.\n\nUse soft white/light-grey fluffy cloud graphics with subtle shading and gradient depth (not flat geometric shapes) — either high-quality SVG clouds with soft blur/gradient fills, or optimized transparent PNG cloud images for a realistic look.\n\nPosition them naturally: a couple near the top corners (left and right), one or two smaller ones scattered near the middle background (behind the headline, at reduced opacity so text stays readable), and maybe one near the bottom corners.\n\nKeep clouds at a lower z-index, behind all text, buttons, and images — and reduce opacity (e.g. 40-60%) for any clouds that fall behind the headline or subtext area so nothing looks cluttered or hard to read.\n\nAdd a very slow, subtle horizontal drift animation (translateX looping over 60-90 seconds) so clouds feel gently alive, not static — each cloud can drift at a slightly different speed for a natural parallax feel.\n\nRespect prefers-reduced-motion: keep clouds static (no drift animation) for users who request reduced motion.\n\nMake sure clouds render well and don't get cut off awkwardly at section edges — clouds partially exiting the viewport edge is fine and looks natural.\n\nKeep the sky-blue background color, headline, and all other hero content exactly as they are — this is purely adding cloud visuals to the empty sky background.\""}
+        {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+                                        
+                                            
+                                            now 
+Login & Sign Up Pages (Role-Specific Fields + Hidden Admin + Full Homepage Theme):
+
+"Create dedicated Login and Sign Up pages for PUB Bus Track, fully consistent with the homepage's visual theme and animations, with role-specific fields.
+
+Shared visual theme (match homepage exactly):
+
+Sky-blue background with realistic, softly drifting clouds (same style as the hero section).
+
+Decorative animations: a gently idling/bobbing bus illustration, 1-2 butterflies with looping flutter/figure-eight flight paths, and birds gliding slowly across the top — all subtle, non-distracting, positioned around the page edges so they don't interfere with the form.
+
+Same fonts, green/orange/teal color accents, and pill-shaped button styling as the navbar's 'Sign Up' button — including the glass-shine sweep and shadow-lift hover effect used site-wide.
+
+Respect prefers-reduced-motion: disable all decorative animations (bus idle, butterfly flutter, bird glide, cloud drift) for users who request it, showing static illustrations instead.
+
+Fully responsive across desktop, tablet, and mobile — decorative elements can simplify or hide on mobile to keep focus on the form.
+
+Sign Up Page:
+
+Centered form card on the themed background.
+
+Heading: 'Create Your Account', subtext: 'Join PUB Bus Track and never miss your bus.'
+
+Role selector (tabs): Student, Teacher, Driver — do NOT include Admin as a visible option here.
+
+Role-specific fields:
+
+Student: ID, Name, Department, Batch, Email, Password
+
+Teacher: Name, Department, Profession, Email, Password
+
+Driver: Name, Route, Bus Number, Phone (optional), Email, Password
+
+Pill-shaped green 'Sign Up' submit button (same styling as navbar).
+
+Basic client-side validation (required fields, email format, password strength).
+
+Below the form: 'Already have an account? Login' link to the Login page.
+
+Login Page:
+
+Same themed background and decorative animations as Sign Up.
+
+Heading: 'Welcome Back', subtext: 'Log in to track your bus in real-time.'
+
+Role selector (tabs): Student, Teacher, Driver.
+
+Student: ID or Email + Password
+
+Teacher: Email + Password
+
+Driver: Email + Password
+
+'Forgot Password?' link.
+
+Pill-shaped green 'Login' submit button, same styling as navbar.
+
+Below the form: 'Don't have an account? Sign Up' link.
+
+Hidden Admin Access:
+
+Admin should not appear as a visible role option anywhere in the normal Sign Up/Login flow.
+
+Add a hidden trigger to reveal a separate Admin Login form — e.g. clicking the footer copyright text 5 times, or a small unlabeled icon tucked in a corner.
+
+The Admin Login form has just two fields: Phone Number and Password.
+
+Implement simple frontend-only validation checking against fixed demo credentials; on match, redirect to an admin placeholder view, otherwise show an 'Invalid credentials' error.
+
+Add a code comment flagging that this hardcoded check must be replaced with secure backend authentication before production use.
+
+This is frontend-only for now — no real backend auth wiring yet, just the complete UI, field logic, validation, and theme-consistent animations."`}
       </div>
-
-
-
     </main>
   );
 }

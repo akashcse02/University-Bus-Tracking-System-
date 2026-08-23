@@ -79,6 +79,27 @@
   --animate-ping-slow: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
   --animate-slide-in-right: slide-in-right 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   --animate-cloud-drift: cloud-drift 80s linear infinite;
+  --animate-butterfly-1: butterfly-flutter 15s ease-in-out infinite;
+  --animate-butterfly-2: butterfly-flutter 18s ease-in-out infinite reverse;
+  --animate-bird-glide: bird-glide 25s linear infinite;
+  --animate-bus-idle: bus-idle 3s ease-in-out infinite;
+}
+
+@keyframes butterfly-flutter {
+  0%, 100% { transform: translate(0, 0) rotate(0deg); }
+  25% { transform: translate(100px, -50px) rotate(15deg); }
+  50% { transform: translate(200px, 0) rotate(0deg); }
+  75% { transform: translate(100px, 50px) rotate(-15deg); }
+}
+
+@keyframes bird-glide {
+  from { transform: translateX(-10vw) translateY(0); }
+  to { transform: translateX(110vw) translateY(-20px); }
+}
+
+@keyframes bus-idle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 @keyframes cloud-drift {
@@ -290,7 +311,7 @@
     transition-delay: 0s !important;
   }
   
-  .animate-float, .animate-float-slow, .animate-float-subtle, .animate-float-simple, .animate-drive, .animate-dash, .animate-drive-map, .animate-pin-pop, .animate-ping-slow, .animate-shift-weight {
+  .animate-float, .animate-float-slow, .animate-float-subtle, .animate-float-simple, .animate-drive, .animate-dash, .animate-drive-map, .animate-pin-pop, .animate-ping-slow, .animate-shift-weight, .animate-butterfly-1, .animate-butterfly-2, .animate-bird-glide, .animate-bus-idle {
     animation: none !important;
     transform: none !important;
   }
