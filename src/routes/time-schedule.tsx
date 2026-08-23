@@ -384,29 +384,70 @@ function TimeSchedulePage() {
           </div>
         </Reveal>
 
-        {/* Schedule Toggle */}
-        <div className="mb-10 flex justify-center">
-          <Tabs 
-            defaultValue="class" 
-            className="w-full max-w-md"
-            onValueChange={(v) => setScheduleType(v)}
-          >
-            <TabsList className="grid w-full grid-cols-2 rounded-[2rem] bg-white p-1 shadow-sm ring-1 ring-slate-100 h-14">
-              <TabsTrigger 
-                value="class" 
-                className="rounded-[1.8rem] data-[state=active]:bg-primary data-[state=active]:text-white font-black text-sm transition-all h-full"
+        {/* Search and Filters */}
+        <Reveal delay={0.1}>
+          <div className="mb-10 space-y-6">
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white p-4 rounded-[2rem] shadow-sm ring-1 ring-slate-100">
+              <div className="relative w-full md:max-w-md">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-ink/40" />
+                <input 
+                  type="text"
+                  placeholder="Search routes or times (e.g. Bonani, 08:30)..."
+                  className="w-full bg-slate-50/50 border-none rounded-full py-3 pl-12 pr-6 text-sm font-bold focus:ring-2 focus:ring-primary/20 transition-all"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+
+              <div className="flex items-center gap-3 w-full md:w-auto">
+                <div className="relative flex-1 md:flex-none">
+                  <Filter className="absolute left-4 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink/40" />
+                  <select 
+                    className="w-full md:w-48 appearance-none bg-slate-50/50 border-none rounded-full py-3 pl-10 pr-10 text-xs font-black uppercase tracking-wider focus:ring-2 focus:ring-primary/20 transition-all"
+                    value={selectedDay || ""}
+                    onChange={(e) => setSelectedDay(e.target.value || null)}
+                  >
+                    <option value="">All Days</option>
+                    {days.map(day => (
+                      <option key={day} value={day}>{day.split('(')[0]}</option>
+                    ))}
+                  </select>
+                </div>
+                
+                <button 
+                  onClick={handleDownloadPDF}
+                  className="flex items-center gap-2 rounded-full bg-ink/5 px-6 py-3 text-xs font-black text-ink transition-all hover:bg-ink hover:text-white"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline">Download PDF</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="flex justify-center">
+              <Tabs 
+                value={scheduleType}
+                className="w-full max-w-md"
+                onValueChange={(v) => setScheduleType(v)}
               >
-                Class Time
-              </TabsTrigger>
-              <TabsTrigger 
-                value="exam" 
-                className="rounded-[1.8rem] data-[state=active]:bg-primary data-[state=active]:text-white font-black text-sm transition-all h-full"
-              >
-                Exam Time
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
+                <TabsList className="grid w-full grid-cols-2 rounded-[2rem] bg-white p-1 shadow-sm ring-1 ring-slate-100 h-14">
+                  <TabsTrigger 
+                    value="class" 
+                    className="rounded-[1.8rem] data-[state=active]:bg-primary data-[state=active]:text-white font-black text-sm transition-all h-full"
+                  >
+                    Class Time
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="exam" 
+                    className="rounded-[1.8rem] data-[state=active]:bg-primary data-[state=active]:text-white font-black text-sm transition-all h-full"
+                  >
+                    Exam Time
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+          </div>
+        </Reveal>
 
         {/* Schedule Table */}
         <AnimatePresence mode="wait">
