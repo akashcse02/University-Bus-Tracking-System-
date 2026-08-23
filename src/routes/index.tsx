@@ -163,23 +163,23 @@ function Index() {
 
       {/* Navbar */}
       <header className="sticky top-0 z-50 w-full backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
-          <a href="#" onClick={(e) => smoothScroll(e, "#")} className="flex items-center gap-2.5">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 gap-4">
+          <a href="#" onClick={(e) => smoothScroll(e, "#")} className="flex items-center gap-2.5 shrink-0">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-sm overflow-hidden">
               <img src={pubLogo.url} alt="Logo" className="h-full w-full object-cover" />
             </span>
-            <span className="font-display text-xl font-extrabold tracking-tight text-ink">
+            <span className="font-display text-xl font-extrabold tracking-tight text-ink nav-item-nowrap">
               PUB Bus Track
             </span>
           </a>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-4 xl:gap-8 lg:flex">
             {navLinks.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
                 onClick={(e) => smoothScroll(e, l.href)}
-                className={`text-sm font-bold nav-link-clean ${
+                className={`text-[14px] xl:text-sm nav-link-clean ${
                   activeSection === l.label ? "text-primary active" : "text-ink/80"
                 }`}
               >
@@ -188,12 +188,12 @@ function Index() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-4 lg:flex">
+          <div className="hidden items-center gap-2 xl:gap-4 lg:flex shrink-0">
             <DropdownMenu>
-              <DropdownMenuTrigger className="nav-link-clean flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-ink cursor-pointer">
-                <Globe className="h-3.5 w-3.5" />
-                {language}
-                <ChevronDown className="h-3.5 w-3.5 opacity-50" />
+              <DropdownMenuTrigger className="nav-link-clean flex items-center gap-1.5 px-4 py-2 text-[14px] xl:text-sm text-ink cursor-pointer">
+                <Globe className="h-3.5 w-3.5 shrink-0" />
+                <span className="nav-item-nowrap">{language}</span>
+                <ChevronDown className="h-3.5 w-3.5 opacity-50 shrink-0" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="rounded-2xl border-none shadow-xl">
                 {["English", "Bangla", "Arabic"].map((lang) => (
@@ -204,9 +204,10 @@ function Index() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <a href="#" className="nav-link-clean px-6 py-2.5 text-sm font-bold text-ink">Login</a>
-            <a href="#" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground shadow-lg">Sign Up</a>
+            <a href="#" className="nav-link-clean px-6 py-2.5 text-[14px] xl:text-sm text-ink nav-item-nowrap">Login</a>
+            <a href="#" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-[14px] xl:text-sm font-bold text-primary-foreground shadow-lg nav-item-nowrap">Sign Up</a>
           </div>
+
 
 
 
@@ -376,8 +377,9 @@ function Index() {
       <SiteFooter />
 
       <div className="hidden" aria-hidden="true">
-        {"'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            now wrok Reapply Glass Hover Everywhere + Remove FAQ Section Entirely:\n\n\"Make these two changes:\n\n1. Reapply the glass-reflect hover effect across all sections:\nBring back the glassmorphism shine/reflect hover effect (the diagonal light gradient sweep + soft frosted shine on hover) on buttons and cards across the entire site — Hero section, Our Vision section, Stats Row, How It Works cards, Student Reviews, Newsletter Signup, and Footer. Every button and card should show the same soft glass shine sweep on hover, combined with the premium shadow lift (box-shadow + translateY(-2px) for buttons, translateY(-4px) for cards), consistent across all sections as previously set up.\n\n2. Remove the entire FAQ section:\nCompletely remove the 'Frequently Asked Questions' section from the landing page — including the heading ('Frequently Asked Questions'), subtext ('Everything you need to know about the PUB Bus Track system.'), and all accordion items. Remove it entirely from the page structure, not just hide it — and make sure the sections above and below it (e.g. Newsletter Signup and Footer, or whichever sections are adjacent) connect cleanly with proper spacing once the FAQ section is gone.\""}
+        {"'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            now work on \nLovable Prompt — Fix Navbar Text Wrapping & Improve Visual Quality:\n\n\"Fix the navbar — text is currently wrapping into two lines (e.g. 'Live Location', 'Time Schedule', 'How it works', and even the 'PUB Bus Track' logo text), making it look cramped and unpolished. Fix this:\n\n1. Prevent text wrapping:\n\nAdd white-space: nowrap to all navbar items (logo text, nav links, Login, Sign Up) so no text ever breaks into two lines.\n\nIncrease the horizontal spacing/gap between nav items slightly if needed to prevent visual crowding once wrapping is removed.\n\nIf the navbar becomes too tight to fit all items comfortably at smaller desktop widths, reduce the font size slightly (e.g. from 16px to 14-15px) for nav links rather than letting them wrap.\n\n2. Improve visual quality of nav links (Home, Live Location, Buses, Time Schedule, Routes, How it works):\n\nUse a slightly bolder font weight (medium/500 instead of regular/400) for better readability and a more polished look.\n\nEnsure consistent letter-spacing and vertical alignment so all nav items sit on the same baseline as the logo and buttons.\n\nKeep the current hover style (color transition + center-expanding underline) but make sure it renders cleanly now that text won't wrap.\n\n3. Keep transparency:\nKeep the navbar background exactly as it currently is (no glass box, transparent/matching the page's sky-blue background) — do not add any background fill or blur to the navbar container.\n\n4. Responsive fallback:\nOn smaller screens where all nav items genuinely can't fit in one line even after these fixes, switch to a hamburger/mobile menu instead of letting text wrap — never allow individual nav item text to break across two lines at any screen width.\""}
       </div>
+
     </main>
   );
 }
