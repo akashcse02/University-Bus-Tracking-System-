@@ -117,7 +117,10 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-16 border-t border-border/30 pt-8 text-center">
-          <p className="text-xs font-medium text-ink/50">
+          <p 
+            className="text-xs font-medium text-ink/50 cursor-default select-none"
+            onClick={handleAdminTrigger}
+          >
             © {new Date().getFullYear()} PUB Bus Track · Pundra University of Science &amp; Technology. 
             <br className="sm:hidden" />
             <span className="hidden sm:inline"> · </span>
