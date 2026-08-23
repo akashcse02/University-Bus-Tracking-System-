@@ -142,23 +142,6 @@ export function HowItWorks() {
           </div>
         ))}
       </div>
-      <div className="hidden" aria-hidden="true">
-        {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
-
-Reduce Size of "How It Works" Cards:
-
-"The cards in the 'How It Works' scroll-stacking section are currently too large. Reduce their overall size:
-
-Decrease each card's height and width slightly (e.g. reduce section height from ~100vh per card to around 70-80vh, or reduce max-width/padding so the card doesn't fill the entire viewport as dominantly).
-
-Scale down the icon, heading, and description text proportionally so everything stays balanced within the smaller card size — don't just shrink the container while leaving oversized content inside it.
-
-Reduce internal padding slightly so the card feels more compact and proportioned, not sparse.
-
-Keep the same scroll-stacking behavior, color themes (Blue, Teal, Orange, Green), and stacking order — this is a size/scale adjustment only, not a layout or behavior change.
-
-Make sure the smaller cards still look well-proportioned and readable on both desktop and mobile."`}
-      </div>
     </section>
   );
 }
