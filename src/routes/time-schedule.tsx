@@ -303,9 +303,48 @@ const ROUTE_COLUMNS = [
 
 function TimeSchedulePage() {
   const [scheduleType, setScheduleType] = useState("class");
-  const scheduleData = useMemo(() => 
-    scheduleType === "class" ? CLASS_TIME_SCHEDULE : EXAM_TIME_SCHEDULE, 
-  [scheduleType]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedDay, setSelectedDay] = useState<string | null>(null);
+
+  const scheduleData = useMemo(() => {
+    const baseData = scheduleType === "class" ? CLASS_TIME_SCHEDULE : EXAM_TIME_SCHEDULE;
+    
+    return baseData.map(dayGroup => {
+      // Filter slots based on search query
+      const filteredSlots = dayGroup.slots.filter(slot => {
+        if (!searchQuery) return true;
+        
+        const query = searchQuery.toLowerCase();
+        // Check if any route in this slot matches the query
+        return Object.entries(slot).some(([key, val]) => {
+          if (key === 'time') return val.toLowerCase().includes(query);
+          if (val === '-') return false;
+          
+          // Match route names from ROUTE_COLUMNS
+          const routeCol = ROUTE_COLUMNS.find(c => c.key === key);
+          if (routeCol && (routeCol.label.toLowerCase().includes(query) || routeCol.labelBn.includes(query))) {
+            return true;
+          }
+          
+          return val.toLowerCase().includes(query);
+        });
+      });
+
+      return {
+        ...dayGroup,
+        slots: filteredSlots
+      };
+    }).filter(dayGroup => {
+      if (selectedDay && dayGroup.day !== selectedDay) return false;
+      return dayGroup.slots.length > 0;
+    });
+  }, [scheduleType, searchQuery, selectedDay]);
+
+  const days = useMemo(() => CLASS_TIME_SCHEDULE.map(d => d.day), []);
+
+  const handleDownloadPDF = () => {
+    window.print(); // Simple implementation for now
+  };
 
   return (
     <main className="min-h-screen bg-[#F0F9FF]">
