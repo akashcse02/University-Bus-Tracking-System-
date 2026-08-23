@@ -78,6 +78,12 @@
   --animate-pin-pop: pin-pop 12s ease-in-out infinite;
   --animate-ping-slow: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
   --animate-slide-in-right: slide-in-right 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-cloud-drift: cloud-drift 80s linear infinite;
+}
+
+@keyframes cloud-drift {
+  from { transform: translateX(-10%); }
+  to { transform: translateX(10%); }
 }
 
 @layer utilities {

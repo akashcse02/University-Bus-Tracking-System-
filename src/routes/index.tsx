@@ -53,23 +53,49 @@ const navLinks = [
 function Clouds() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-      <svg className="absolute h-0 w-0">
-        <filter id="cloud-filter">
-          <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="5" seed="1" />
-          <feDisplacementMap in="SourceGraphic" scale="25" />
-        </filter>
-      </svg>
+      {/* Top Left Cloud */}
       <div 
-        className="absolute left-[5%] top-[12%] h-24 w-64 opacity-60 animate-float-slow blur-xl lg:h-32 lg:w-96"
-        style={{ filter: 'url(#cloud-filter)', background: 'radial-gradient(circle, white, transparent 70%)' }}
+        className="absolute left-[2%] top-[10%] opacity-30 blur-2xl animate-cloud-drift lg:opacity-40"
+        style={{ 
+          width: '300px', 
+          height: '120px', 
+          background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)',
+          borderRadius: '50%'
+        }}
       />
+      {/* Top Right Cloud */}
       <div 
-        className="absolute right-[8%] top-[8%] h-20 w-48 opacity-50 animate-float blur-lg lg:h-28 lg:w-72"
-        style={{ filter: 'url(#cloud-filter)', background: 'radial-gradient(circle, white, transparent 70%)' }}
+        className="absolute right-[5%] top-[5%] opacity-20 blur-3xl animate-cloud-drift lg:opacity-30"
+        style={{ 
+          width: '400px', 
+          height: '150px', 
+          background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.3) 50%, transparent 80%)',
+          animationDirection: 'reverse',
+          borderRadius: '50%'
+        }}
       />
+      {/* Center Background Cloud (Large/Soft) */}
       <div 
-        className="absolute left-[40%] top-[4%] hidden h-20 w-56 opacity-40 animate-float-slow blur-lg lg:block"
-        style={{ filter: 'url(#cloud-filter)', background: 'radial-gradient(circle, white, transparent 70%)' }}
+        className="absolute left-[20%] top-[30%] opacity-15 blur-[80px] animate-cloud-drift lg:opacity-20"
+        style={{ 
+          width: '800px', 
+          height: '300px', 
+          background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 60%, transparent 90%)',
+          animationDuration: '120s',
+          borderRadius: '50%',
+          zIndex: -1
+        }}
+      />
+      {/* Lower Right Cloud */}
+      <div 
+        className="absolute right-[15%] top-[60%] opacity-20 blur-2xl animate-cloud-drift hidden lg:block"
+        style={{ 
+          width: '350px', 
+          height: '130px', 
+          background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.4) 40%, transparent 70%)',
+          animationDuration: '90s',
+          borderRadius: '50%'
+        }}
       />
     </div>
   );
@@ -356,9 +382,23 @@ function Index() {
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Audit the site to ensure the hover classes apply to every button and card across all sections.
+                                            Replace Flat Clouds with Realistic Clouds:
 
-Enable smooth scrolling and active section highlighting for the navbar links.
+"Replace the current flat, illustrated cloud shapes in the hero section background with realistic-looking clouds. Requirements:
+
+Use soft, photorealistic-style cloud graphics (soft white/light-grey fluffy texture with subtle shading and depth), instead of simple flat rounded shapes.
+
+Position them naturally scattered across the sky-blue background — a few small ones near the top corners, and maybe one or two larger, softer ones drifting behind the hero content (lower opacity so they don't distract from text/images).
+
+Add a very slow, subtle horizontal drift animation (e.g. translateX looping slowly over 60-90 seconds) so the clouds feel alive without being distracting.
+
+Ensure the clouds are rendered with soft edges/blur (not hard geometric shapes) — use either high-quality SVG cloud illustrations with gradient shading, or optimized transparent PNG cloud images for a more realistic look.
+
+Keep clouds behind all text and interactive elements (lower z-index), and reduce their opacity where they overlap the headline area so text stays fully readable.
+
+Respect prefers-reduced-motion — disable the drifting animation for users who request reduced motion, keeping clouds static instead.
+
+Keep the sky-blue background color and everything else in the hero unchanged — this is purely a cloud-visual upgrade."
       </div>
     </main>
   );
