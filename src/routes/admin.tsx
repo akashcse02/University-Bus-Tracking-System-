@@ -106,6 +106,13 @@ function AdminDashboard() {
             Route Schedules
           </button>
           <button 
+            onClick={() => setActiveTab("schedule")}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === "schedule" ? "bg-primary/10 text-primary" : "text-ink/60 hover:bg-slate-50 hover:text-ink"}`}
+          >
+            <CalendarDays className="h-5 w-5" />
+            Schedule Manager
+          </button>
+          <button 
             onClick={() => setActiveTab("users")}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === "users" ? "bg-primary/10 text-primary" : "text-ink/60 hover:bg-slate-50 hover:text-ink"}`}
           >
