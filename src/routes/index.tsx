@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Bus, MapPin, Clock, Apple, Play, Menu, Globe, ChevronDown, Home } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { useInView } from "@/hooks/use-in-view";
 import { Reveal } from "@/components/reveal";
 import { StatsStrip } from "@/components/stats-strip";
 import { LiveMapDemo } from "@/components/live-map-demo";
