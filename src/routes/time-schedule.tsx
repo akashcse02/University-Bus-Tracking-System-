@@ -305,9 +305,24 @@ const ROUTE_COLUMNS = [
 ];
 
 function TimeSchedulePage() {
-  const [scheduleType, setScheduleType] = useState("class");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDay, setSelectedDay] = useState<string | null>(null);
+  const search = useSearch({ from: "/time-schedule" }) as any;
+  const navigate = useNavigate();
+  const [scheduleType, setScheduleType] = useState(search.type || "class");
+  const [searchQuery, setSearchQuery] = useState(search.route || "");
+  const [selectedDay, setSelectedDay] = useState<string | null>(search.day || null);
+
+  // Update URL when filters change
+  useEffect(() => {
+    navigate({
+      search: (prev: any) => ({
+        ...prev,
+        type: scheduleType,
+        day: selectedDay || undefined,
+        route: searchQuery || undefined,
+      }),
+      replace: true,
+    });
+  }, [scheduleType, selectedDay, searchQuery, navigate]);
 
   const scheduleData = useMemo(() => {
     const baseData = scheduleType === "class" ? CLASS_TIME_SCHEDULE : EXAM_TIME_SCHEDULE;
