@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearch, useNavigate } from "@tanstack/react-router";
 import { 
   Clock, 
   Calendar, 
@@ -14,8 +15,10 @@ import {
   Download,
   Bell,
   Settings,
-  Filter
+  Filter,
+  ArrowRight
 } from "lucide-react";
+import { NotificationSettings } from "@/components/notification-settings";
 import { Reveal } from "@/components/reveal";
 import { motion, AnimatePresence } from "framer-motion";
 import {
