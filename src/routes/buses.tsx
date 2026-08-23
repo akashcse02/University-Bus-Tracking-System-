@@ -133,11 +133,12 @@ const ROUTES = ["All", "Gobindaganj", "Sherpur", "Gabtoli", "Sathmatha/Bogura", 
 function BusCard({ bus }: { bus: BusData }) {
   const [expanded, setExpanded] = useState(false);
 
-  const statusColors = {
+  const statusColors: Record<BusStatus, string> = {
     "On Route": "bg-green-500",
     "Not Started": "bg-slate-400",
     "Delayed": "bg-amber-500",
   };
+
 
   return (
     <div 
