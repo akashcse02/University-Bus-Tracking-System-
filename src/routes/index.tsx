@@ -352,7 +352,15 @@ function Index() {
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            all button gulo 3d hover use kor  ekdim sosta
+                                            Apply a simple 3D hover effect to all buttons across the app.
+
+Refactor button components so the 3D hover styling is consistent for primary, secondary, and pill buttons.
+
+Add accessible focus and keyboard states that match the 3D hover visuals for all buttons.
+
+Enable reduced-motion behavior so the 3D hover animations tone down when users prefer less motion.
+
+Optimize the 3D hover animation performance so it stays smooth on mobile and low-end devices.
 I will upload a reference image showing the exact composition and positioning I want for this hero section. Please match the layout, spacing, and element placement in that reference image as closely as possible — including where the headline, subtext, CTA button, building, bus, and phone mockup are positioned relative to each other.
 
 Keep the sky-blue background, current color scheme (green CTA, orange accent), and existing content/copy unchanged — this is a layout/positioning adjustment only."
