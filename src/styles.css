@@ -142,6 +142,16 @@
   from { offset-distance: 0%; }
   to { offset-distance: 100%; }
 }
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 @keyframes dash {
   to { stroke-dashoffset: -24; }
 }
