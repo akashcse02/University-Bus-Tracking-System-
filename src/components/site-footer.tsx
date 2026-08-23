@@ -67,9 +67,10 @@ export function SiteFooter() {
                 <a href="#" className="rounded-full bg-white p-2 shadow-sm transition-transform hover:scale-110"><Twitter className="h-4 w-4 text-blue-400" /></a>
                 <a href="#" className="rounded-full bg-white p-2 shadow-sm transition-transform hover:scale-110"><Facebook className="h-4 w-4 text-blue-700" /></a>
               </div>
-              <Button className="w-full rounded-full bg-primary py-6 font-display font-bold shadow-md transition-all hover:scale-105">
+              <Button className="btn-hover-premium w-full rounded-full bg-primary py-6 font-display font-bold shadow-md">
                 Download the App
               </Button>
+
             </div>
           </div>
         </div>
@@ -97,10 +98,11 @@ export function SiteFooter() {
                   <Input type="email" placeholder="Email" required className="h-12 rounded-2xl bg-white/50 border-none shadow-sm focus:ring-2 focus:ring-primary" />
                 </div>
                 <Textarea placeholder="Your message..." required className="min-h-[120px] rounded-2xl bg-white/50 border-none shadow-sm focus:ring-2 focus:ring-primary" />
-                <Button type="submit" className="w-full rounded-2xl bg-primary py-7 font-display text-lg font-bold shadow-xl transition-all hover:translate-y-[-2px]">
+                <Button type="submit" className="btn-hover-premium w-full rounded-2xl bg-primary py-7 font-display text-lg font-bold shadow-xl">
                   <Send className="mr-2 h-5 w-5" />
                   Send Message
                 </Button>
+
               </form>
             )}
           </div>

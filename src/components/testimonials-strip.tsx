@@ -34,7 +34,7 @@ export function TestimonialsStrip() {
       <div className="mt-16 grid gap-8 md:grid-cols-3">
         {reviews.map((r, i) => (
           <Reveal key={i} delay={i * 100} className="h-full">
-            <div className="flex h-full flex-col rounded-[2.5rem] bg-white p-10 shadow-[0_24px_48px_-20px_rgba(0,0,0,0.08)] transition-transform hover:-translate-y-2">
+            <div className="card-hover-premium flex h-full flex-col rounded-[2.5rem] bg-white p-10 shadow-[0_24px_48px_-20px_rgba(0,0,0,0.08)]">
               <div className="mb-6 flex gap-1">
                 {Array.from({ length: 5 }).map((_, idx) => (
                   <Star
