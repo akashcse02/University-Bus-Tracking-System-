@@ -43,7 +43,7 @@ export const Route = createFileRoute("/")({
 
 const navLinks = [
   { label: "Home", href: "#" },
-  { label: "Live Location", href: "#live-location" },
+  { label: "Live Location", href: "/live-location" },
   { label: "Buses", href: "#buses" },
   { label: "Time Schedule", href: "#schedule" },
   { label: "Routes", href: "#routes" },
