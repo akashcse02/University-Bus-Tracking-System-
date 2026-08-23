@@ -163,23 +163,23 @@ function Index() {
 
       {/* Navbar */}
       <header className="sticky top-0 z-50 w-full backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
-          <a href="#" onClick={(e) => smoothScroll(e, "#")} className="flex items-center gap-2.5">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 gap-4">
+          <a href="#" onClick={(e) => smoothScroll(e, "#")} className="flex items-center gap-2.5 shrink-0">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-sm overflow-hidden">
               <img src={pubLogo.url} alt="Logo" className="h-full w-full object-cover" />
             </span>
-            <span className="font-display text-xl font-extrabold tracking-tight text-ink">
+            <span className="font-display text-xl font-extrabold tracking-tight text-ink nav-item-nowrap">
               PUB Bus Track
             </span>
           </a>
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-4 xl:gap-8 lg:flex">
             {navLinks.map((l) => (
               <a
                 key={l.label}
                 href={l.href}
                 onClick={(e) => smoothScroll(e, l.href)}
-                className={`text-sm font-bold nav-link-clean ${
+                className={`text-[14px] xl:text-sm nav-link-clean ${
                   activeSection === l.label ? "text-primary active" : "text-ink/80"
                 }`}
               >
@@ -188,12 +188,12 @@ function Index() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-4 lg:flex">
+          <div className="hidden items-center gap-2 xl:gap-4 lg:flex shrink-0">
             <DropdownMenu>
-              <DropdownMenuTrigger className="nav-link-clean flex items-center gap-1.5 px-4 py-2 text-sm font-bold text-ink cursor-pointer">
-                <Globe className="h-3.5 w-3.5" />
-                {language}
-                <ChevronDown className="h-3.5 w-3.5 opacity-50" />
+              <DropdownMenuTrigger className="nav-link-clean flex items-center gap-1.5 px-4 py-2 text-[14px] xl:text-sm text-ink cursor-pointer">
+                <Globe className="h-3.5 w-3.5 shrink-0" />
+                <span className="nav-item-nowrap">{language}</span>
+                <ChevronDown className="h-3.5 w-3.5 opacity-50 shrink-0" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="rounded-2xl border-none shadow-xl">
                 {["English", "Bangla", "Arabic"].map((lang) => (
@@ -204,9 +204,10 @@ function Index() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <a href="#" className="nav-link-clean px-6 py-2.5 text-sm font-bold text-ink">Login</a>
-            <a href="#" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground shadow-lg">Sign Up</a>
+            <a href="#" className="nav-link-clean px-6 py-2.5 text-[14px] xl:text-sm text-ink nav-item-nowrap">Login</a>
+            <a href="#" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-[14px] xl:text-sm font-bold text-primary-foreground shadow-lg nav-item-nowrap">Sign Up</a>
           </div>
+
 
 
 

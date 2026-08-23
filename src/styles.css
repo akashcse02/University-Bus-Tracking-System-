@@ -161,6 +161,10 @@
     transition: all 0.25s ease-out;
     padding: 10px 16px;
     border-radius: 9999px;
+    white-space: nowrap;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
   }
 
   .nav-link-clean:hover {
@@ -171,6 +175,11 @@
   .nav-link-clean.active {
     color: var(--color-primary);
   }
+
+  .nav-item-nowrap {
+    white-space: nowrap;
+  }
+
 }
 
 @media (prefers-reduced-motion: reduce) {
