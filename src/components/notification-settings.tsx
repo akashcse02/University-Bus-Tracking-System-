@@ -111,7 +111,7 @@ export function NotificationSettings({ trigger }: NotificationSettingsProps) {
             </div>
             <Slider 
               value={[leadTime]}
-              onValueChange={(val) => setLeadTime(val[0])}
+              onValueChange={(val) => setLeadTime(val[0] ?? 10)}
               max={30}
               min={2}
               step={1}
