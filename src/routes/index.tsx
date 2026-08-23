@@ -25,9 +25,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     title: "PUB Bus Track — Pundra University Bus Tracking System",
     meta: [
-      { name: "description", content: "Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required." },
+      { name: "description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Load the security issues from the scan results and fix the selected issues." },
       { property: "og:title", content: "PUB Bus Track — Pundra University Bus Tracking System" },
-      { property: "og:description", content: "Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required." },
+      { property: "og:description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Load the security issues from the scan results and fix the selected issues." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" }
     ],
