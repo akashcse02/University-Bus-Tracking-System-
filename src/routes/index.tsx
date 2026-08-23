@@ -349,7 +349,7 @@ function Index() {
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            remove than
+                                            Implement a Live Location page with an interactive map and real-time bus position updates with ETA cards.google rreal map 3d bus in on map
       </div>
     </main>
   );
