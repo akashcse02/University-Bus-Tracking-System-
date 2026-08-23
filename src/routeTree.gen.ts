@@ -15,6 +15,7 @@ import { Route as BusesRouteImport } from './routes/buses'
 import { Route as LiveLocationRouteImport } from './routes/live-location'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SignupRouteImport } from './routes/signup'
+import { Route as TimeScheduleRouteImport } from './routes/time-schedule'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,6 +47,11 @@ const SignupRoute = SignupRouteImport.update({
   path: '/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TimeScheduleRoute = TimeScheduleRouteImport.update({
+  id: '/time-schedule',
+  path: '/time-schedule',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/live-location': typeof LiveLocationRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/time-schedule': typeof TimeScheduleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/live-location': typeof LiveLocationRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/time-schedule': typeof TimeScheduleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,12 +79,27 @@ export interface FileRoutesById {
   '/live-location': typeof LiveLocationRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/time-schedule': typeof TimeScheduleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/buses' | '/live-location' | '/login' | '/signup'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/buses'
+    | '/live-location'
+    | '/login'
+    | '/signup'
+    | '/time-schedule'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/buses' | '/live-location' | '/login' | '/signup'
+  to:
+    | '/'
+    | '/admin'
+    | '/buses'
+    | '/live-location'
+    | '/login'
+    | '/signup'
+    | '/time-schedule'
   id:
     | '__root__'
     | '/'
@@ -85,6 +108,7 @@ export interface FileRouteTypes {
     | '/live-location'
     | '/login'
     | '/signup'
+    | '/time-schedule'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,6 +118,7 @@ export interface RootRouteChildren {
   LiveLocationRoute: typeof LiveLocationRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
+  TimeScheduleRoute: typeof TimeScheduleRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -140,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SignupRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/time-schedule': {
+      id: '/time-schedule'
+      path: '/time-schedule'
+      fullPath: '/time-schedule'
+      preLoaderRoute: typeof TimeScheduleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -150,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   LiveLocationRoute: LiveLocationRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
+  TimeScheduleRoute: TimeScheduleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

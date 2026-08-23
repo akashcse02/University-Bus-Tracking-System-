@@ -46,7 +46,7 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "Live Location", href: "/live-location" },
   { label: "Buses", href: "/buses" },
-  { label: "Time Schedule", href: "/#schedule" },
+  { label: "Time Schedule", href: "/time-schedule" },
   { label: "Routes", href: "/#routes" },
   { label: "How it works", href: "/#how-it-works" },
 ];
@@ -389,32 +389,73 @@ function Index() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Cleaner Navbar Hover + Bolder Font:
+                                            Time Schedule Page (Class Time / Exam Time Toggle):
 
-"Refine the navbar link styling — the current hover state still doesn't look clean enough. Make these improvements:
+"Create a 'Time Schedule' page for PUB Bus Track, based on the official university bus schedule format. Structure it as follows:
 
-1. Cleaner hover effect:
+Top toggle:
+Add a prominent toggle/tab switcher at the top with two options: 'Class Time' and 'Exam Time' — switching between them shows a different schedule dataset (same table structure, different times). Default to 'Class Time' on page load.
 
-On hover, use a soft, well-blended pill background: a subtle transparent tint (e.g. rgba(0, 90, 60, 0.06) — a faint green-tinted overlay matching our accent color, instead of plain grey/black) with fully rounded corners (border-radius: 999px).
+Schedule table structure (for each toggle state):
+Group rows by day-group, matching this structure:
 
-Add a very soft, barely-visible shadow (box-shadow: 0 2px 8px rgba(0,0,0,0.05)) so the pill feels lightly lifted, not flat.
+Friday (শুক্রবার)
 
-Smooth, quick transition (transition: all 0.2s ease-out) — no lag, no abrupt snap.
+Saturday (শনিবার)
 
-Ensure consistent padding (e.g. 8px 16px) across all nav items so pill sizes look uniform regardless of text length.
+Sunday to Tuesday (রবিবার থেকে মঙ্গলবার)
 
-Remove any leftover harsh edges, borders, or mismatched background colors from previous hover attempts.
+Each day-group has multiple time-slot rows (e.g. Noon departure, Afternoon departure, Evening departure), and each row shows departure times across these route columns:
 
-2. Bolder font:
+From Campus (ক্যাম্পাস থেকে)
 
-Increase the font-weight of all navbar links (Home, Live Location, Buses, Time Schedule, Routes, How it works) from regular/medium to semi-bold (font-weight 600), for a stronger, more premium look.
+From Sherpur (শেরপুর থেকে)
 
-Keep font size consistent (15-16px) and make sure the bolder weight doesn't cause text to wrap or crowd — adjust letter-spacing slightly tighter if needed to compensate.
+From B-Block (বি-ব্লক থেকে)
 
-Apply the same bold weight to the active/current page link (e.g. 'Home'), and keep the persistent pill background on it as the active-state indicator.
+From Bonani (বনানী থেকে)
 
-3. Final check:
-Confirm hover and active states look crisp, well-spaced, and consistent across all nav items, with no visual glitches or mismatched styles left over from earlier iterations."`}
+From Gobindaganj (গোবিন্দগঞ্জ থেকে)
+
+From Mokamtola (মোকামতলা থেকে)
+
+From Gabtoli (গাবতলী থেকে)
+
+From Sathmatha (সাতমাথা থেকে)
+
+From Dupchachia (দুপচাচিয়া থেকে)
+
+Use '-' for routes with no departure at that time slot. Include a note row style like 'গোবিন্দগঞ্জ বাস যাবে' (bus will go via Gobindaganj) where applicable — a small annotation text within a cell instead of a time.
+
+Contact/Driver Info table (below the schedule):
+A separate table listing: Route name, Bus number, Driver name, Mobile number — grouped in a clean grid (3 columns of route-groups as in the reference, or a simple responsive list on mobile).
+
+Notes section:
+Below both tables, add a small notes block:
+
+'বাস নির্ধারিত সময় অনুযায়ী ক্যাম্পাস থেকে ছাড়বে, উক্ত সময়ের ব্যত্যয় ঘটবে না।' (Buses depart on schedule from campus; no deviation from stated time.)
+
+'বিশেষ কারণে ও কর্তৃপক্ষের নির্দেশনায় বিশ্ববিদ্যালয় বাসের সময়সূচি পরিবর্তন হতে পারে।' (Schedule may change per university directives.)
+
+'হঠাৎ গাড়ি নষ্ট হলে অথবা রাস্তায় ট্রাফিক জ্যামের কারণে বিশ্ববিদ্যালয় বাস গন্তব্যে পৌঁছাতে নির্দিষ্ট সময়ে কিছু তারতম্য হতে পারে।' (Delays possible due to breakdown or traffic.)
+
+Design:
+
+Clean, readable table design with alternating row shading, sticky header row (route names) so it stays visible while scrolling on long tables.
+
+Match the site's sky-blue background and green/orange/teal accent colors — the table itself can sit on a white/light card for readability.
+
+Highlight the currently active toggle (Class Time / Exam Time) with the site's accent color.
+
+Fully responsive: on mobile, allow horizontal scroll for the wide table, or collapse into a per-day accordion/card view for easier reading on small screens.
+
+Add a smooth fade/slide transition when switching between Class Time and Exam Time tabs.
+
+Support Bengali text properly (correct font rendering for Bangla headers/labels) alongside English labels where used elsewhere on the site.
+
+Use the actual schedule data from the attached image for the 'Class Time' view as the initial dataset (structure days, routes, and times exactly as shown); for 'Exam Time' use placeholder/mock data with the same structure for now, which can be updated later with real exam-period timings."
+
+All in english`}
       </div>
     </main>
   );
