@@ -6,10 +6,18 @@ import { Textarea } from "@/components/ui/textarea";
 
 export function SiteFooter() {
   const [submitted, setSubmitted] = useState(false);
+  const [adminClicks, setAdminClicks] = useState(0);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+  };
+
+  const handleAdminTrigger = () => {
+    setAdminClicks(prev => prev + 1);
+    if (adminClicks + 1 >= 5) {
+      window.location.href = "/login?admin=true";
+    }
   };
 
   return (
