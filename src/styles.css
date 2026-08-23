@@ -179,22 +179,44 @@
 
   .nav-link-clean {
     position: relative;
-    transition: all 0.25s ease-out;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     padding: 10px 16px;
-    border-radius: 9999px;
+    border-radius: 12px;
     white-space: nowrap;
     font-weight: 500;
     display: flex;
     align-items: center;
+    color: var(--color-ink);
+  }
+
+  .nav-link-clean::after {
+    content: '';
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    width: 20px;
+    height: 2px;
+    background-color: var(--color-primary);
+    transform: translateX(-50%) scaleX(0);
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
   }
 
   .nav-link-clean:hover {
     color: var(--color-primary);
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 50, 80, 0.05);
+  }
+
+  .nav-link-clean:hover::after {
+    transform: translateX(-50%) scaleX(1);
   }
 
   .nav-link-clean.active {
     color: var(--color-primary);
+  }
+
+  .nav-link-clean.active::after {
+    transform: translateX(-50%) scaleX(1);
   }
 
   .nav-item-nowrap {
