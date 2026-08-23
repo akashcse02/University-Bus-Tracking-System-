@@ -52,7 +52,7 @@ function LoginPage() {
     // Replace with secure backend auth in production
     if (phone === "01700000000" && password === "admin123") {
       toast.success("Admin Login Successful");
-      // navigate({ to: "/admin" }); // Placeholder redirect
+      navigate({ to: "/admin" });
     } else {
       toast.error("Invalid admin credentials");
     }
