@@ -23,6 +23,13 @@ function LoginPage() {
   const [adminClicks, setAdminClicks] = useState(0);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("admin") === "true") {
+      setIsAdminMode(true);
+    }
+  }, []);
+
   // Hidden admin trigger via clicking a small invisible area 5 times
   // But requirement says footer copyright. We'll handle footer in footer component.
   // For the login page itself, let's add a small hidden icon.
