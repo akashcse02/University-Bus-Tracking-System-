@@ -212,114 +212,117 @@ function Index() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative z-10 mx-auto max-w-7xl px-5 pt-12 pb-20 lg:pt-20">
-        <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-          {/* Left Column: Content */}
-          <div className="text-center lg:text-left">
-            <Reveal>
-              <div className="mb-4 flex justify-center lg:justify-start">
-                <span className="rounded-full bg-white/60 px-4 py-1.5 text-xs font-bold tracking-widest text-primary uppercase shadow-sm">
-                  Pundra University
+      <section className="relative z-10 mx-auto max-w-7xl px-5 pt-12 pb-20 lg:pt-16">
+        {/* Centered Headline & Subtext */}
+        <div className="mb-12 text-center">
+          <Reveal>
+            <div className="mb-4 flex justify-center">
+              <span className="rounded-full bg-white/60 px-4 py-1.5 text-xs font-bold tracking-widest text-primary uppercase shadow-sm">
+                Pundra University
+              </span>
+            </div>
+            <h1 className="font-display text-5xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-7xl">
+              Your Ride to
+              <br />
+              <span className="text-accent">Campus,</span> On Time
+            </h1>
+            <p className="mx-auto mt-6 max-w-[600px] text-lg font-medium text-ink/75 sm:text-xl">
+              Track your university bus in real-time — buses, routes, and schedules in one place.
+            </p>
+            <div className="mt-8 flex flex-col items-center gap-6">
+              <a href="#how-it-works" onClick={(e) => smoothScroll(e, "#how-it-works")} className="rounded-full bg-primary px-10 py-4 font-display text-lg font-bold text-primary-foreground shadow-2xl transition-all hover:scale-105 active:scale-95">
+                Get Started
+              </a>
+              <div className="flex flex-col items-center gap-3">
+                <span className="text-[10px] font-bold uppercase tracking-widest text-ink/40">
+                  Download PUB Bus Track App
                 </span>
-              </div>
-              <h1 className="font-display text-5xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-7xl">
-                Your Ride to
-                <br />
-                <span className="text-accent">Campus,</span>
-                <br />
-                On Time
-              </h1>
-              <p className="mx-auto mt-6 text-lg font-medium text-ink/75 sm:text-xl lg:mx-0 lg:max-w-[480px]">
-                Track your university bus in real-time — buses, routes, and schedules in one place.
-              </p>
-              <div className="mt-10 flex flex-col items-center gap-8 lg:items-start">
-                <a href="#how-it-works" onClick={(e) => smoothScroll(e, "#how-it-works")} className="rounded-full bg-primary px-10 py-4 font-display text-lg font-bold text-primary-foreground shadow-2xl transition-all hover:scale-105 active:scale-95">
-                  Get Started
-                </a>
-                <div className="flex flex-col items-center gap-4 lg:items-start">
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-ink/40">
-                    Download PUB Bus Track App
-                  </span>
-                  <div className="flex items-center gap-3">
-                    <a href="#" className="flex h-11 items-center gap-2.5 rounded-xl bg-ink px-4 text-background transition-transform hover:scale-105">
-                      <Apple className="h-5 w-5" />
-                      <div className="text-left leading-none">
-                        <span className="block text-[0.5rem] uppercase opacity-60">Download on the</span>
-                        <span className="block text-[12px] font-bold">App Store</span>
-                      </div>
-                    </a>
-                    <a href="#" className="flex h-11 items-center gap-2.5 rounded-xl bg-ink px-4 text-background transition-transform hover:scale-105">
-                      <Play className="h-5 w-5" />
-                      <div className="text-left leading-none">
-                        <span className="block text-[0.5rem] uppercase opacity-60">Get it on</span>
-                        <span className="block text-[12px] font-bold">Google Play</span>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-
-          {/* Right Column: Visuals */}
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-8 lg:gap-12">
-              {/* Building Image Column */}
-              <div className="relative animate-[slide-in-3d-left_1.2s_ease-out_forwards]">
-                <div className="relative animate-float-slow">
-                  <img src={pundraUni.url} alt="Pundra University" className="w-full rounded-[2.5rem] object-contain drop-shadow-2xl" />
-                  {/* Floating Badges */}
-                  <div className="absolute top-[20%] -left-4 z-20 flex items-center gap-2 rounded-xl bg-accent px-3 py-1.5 text-xs font-bold text-accent-foreground shadow-lg">
-                    <Clock className="h-3.5 w-3.5" /> Classes 9:00
-                  </div>
-                  <div className="absolute bottom-[20%] -right-4 z-20 flex items-center gap-2 rounded-xl bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground shadow-lg">
-                    <Globe className="h-3.5 w-3.5" /> Student ID
-                  </div>
-                  {/* Student Animation */}
-                  <div className="absolute -bottom-10 left-1/4 z-20 flex flex-col items-center">
-                    <div className="h-20 w-16 animate-bounce">
-                      <svg viewBox="0 0 80 120" className="h-full w-full drop-shadow-xl">
-                        <circle cx="40" cy="30" r="14" fill="#FFD2B2" />
-                        <rect x="28" y="44" width="24" height="45" rx="10" fill="#4CAF50" />
-                        <rect x="30" y="89" width="8" height="28" rx="4" fill="#3F51B5" />
-                        <rect x="42" y="89" width="8" height="28" rx="4" fill="#3F51B5" />
-                      </svg>
+                <div className="flex items-center gap-3">
+                  <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background transition-transform hover:scale-105">
+                    <Apple className="h-4 w-4" />
+                    <div className="text-left leading-none">
+                      <span className="block text-[0.4rem] uppercase opacity-60">Download on the</span>
+                      <span className="block text-[10px] font-bold">App Store</span>
                     </div>
-                    <div className="flex h-12 w-1 items-center justify-center rounded-full bg-ink/20" />
-                    <div className="rounded-full bg-ink px-3 py-1 text-[8px] font-bold text-white uppercase tracking-tighter shadow-sm">Bus Stop</div>
-                  </div>
+                  </a>
+                  <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background transition-transform hover:scale-105">
+                    <Play className="h-4 w-4" />
+                    <div className="text-left leading-none">
+                      <span className="block text-[0.4rem] uppercase opacity-60">Get it on</span>
+                      <span className="block text-[10px] font-bold">Google Play</span>
+                    </div>
+                  </a>
                 </div>
               </div>
+            </div>
+          </Reveal>
+        </div>
 
-              {/* Bus & Phone Column */}
-              <div className="relative space-y-8 lg:space-y-12 animate-[slide-in-3d-right_1.2s_ease-out_forwards_0.2s] opacity-0">
-                <div className="relative animate-float">
-                  <img src={pubBus.url} alt="PUB Bus" className="w-full rounded-[2rem] object-contain drop-shadow-2xl" />
+        {/* Visuals Layout: Building (Left), Phone (Center-ish), Bus (Right) */}
+        <div className="relative mt-8">
+          <div className="grid items-center gap-8 lg:grid-cols-[1fr_auto_1fr]">
+            
+            {/* Left Column: Building */}
+            <div className="relative animate-[slide-in-3d-left_1.2s_ease-out_forwards]">
+              <div className="relative animate-float-slow">
+                <img src={pundraUni.url} alt="Pundra University" className="mx-auto w-full max-w-[450px] rounded-[2.5rem] object-contain drop-shadow-2xl" />
+                {/* Floating Badges */}
+                <div className="absolute top-[20%] -left-4 z-20 flex items-center gap-2 rounded-xl bg-accent px-3 py-1.5 text-xs font-bold text-accent-foreground shadow-lg">
+                  <Clock className="h-3.5 w-3.5" /> Classes 9:00
                 </div>
-                <div className="relative animate-float-slow delay-500">
-                  <div className="mx-auto h-64 w-32 rounded-[2rem] border-[4px] border-ink bg-white shadow-2xl lg:h-72 lg:w-36 overflow-hidden">
-                    <div className="h-full w-full bg-blue-50/50 p-2">
-                      <div className="h-full w-full rounded-[1.5rem] bg-white shadow-inner overflow-hidden flex flex-col">
-                        <div className="flex-1 bg-blue-100/30 p-2">
-                           <div className="h-full w-full rounded-xl bg-white shadow-sm flex items-center justify-center">
-                             <MapPin className="h-8 w-8 text-primary animate-bounce" />
-                           </div>
+                <div className="absolute bottom-[20%] -right-4 z-20 flex items-center gap-2 rounded-xl bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground shadow-lg">
+                  <Globe className="h-3.5 w-3.5" /> Student ID
+                </div>
+                {/* Student Animation */}
+                <div className="absolute -bottom-10 left-1/4 z-20 flex flex-col items-center">
+                  <div className="h-20 w-16 animate-bounce">
+                    <svg viewBox="0 0 80 120" className="h-full w-full drop-shadow-xl">
+                      <circle cx="40" cy="30" r="14" fill="#FFD2B2" />
+                      <rect x="28" y="44" width="24" height="45" rx="10" fill="#4CAF50" />
+                      <rect x="30" y="89" width="8" height="28" rx="4" fill="#3F51B5" />
+                      <rect x="42" y="89" width="8" height="28" rx="4" fill="#3F51B5" />
+                    </svg>
+                  </div>
+                  <div className="flex h-12 w-1 items-center justify-center rounded-full bg-ink/20" />
+                  <div className="rounded-full bg-ink px-3 py-1 text-[8px] font-bold text-white uppercase tracking-tighter shadow-sm">Bus Stop</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Center: Small Phone Mockup */}
+            <div className="relative z-20 mx-auto w-32 animate-float lg:w-40">
+              <div className="rounded-[2rem] border-[4px] border-ink bg-white shadow-2xl overflow-hidden aspect-[9/19]">
+                <div className="h-full w-full bg-blue-50/50 p-1.5">
+                  <div className="h-full w-full rounded-[1.4rem] bg-white shadow-inner overflow-hidden flex flex-col">
+                    <div className="flex-1 bg-blue-100/30 p-2">
+                       <div className="h-full w-full rounded-xl bg-white shadow-sm flex items-center justify-center">
+                         <MapPin className="h-6 w-6 text-primary animate-bounce" />
+                       </div>
+                    </div>
+                    <div className="p-2 space-y-1.5">
+                      <div className="h-1.5 w-full rounded-full bg-slate-100" />
+                      <div className="flex items-center gap-1.5">
+                        <div className="h-5 w-5 rounded-full bg-accent flex items-center justify-center">
+                          <Bus className="h-2.5 w-2.5 text-white" />
                         </div>
-                        <div className="p-2 space-y-2">
-                          <div className="h-2 w-full rounded-full bg-slate-100" />
-                          <div className="flex items-center gap-2">
-                            <div className="h-6 w-6 rounded-full bg-accent flex items-center justify-center">
-                              <Bus className="h-3 w-3 text-white" />
-                            </div>
-                            <div className="h-3 w-12 rounded-full bg-slate-100" />
-                          </div>
-                        </div>
+                        <div className="h-2 w-10 rounded-full bg-slate-100" />
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* Right Column: Bus */}
+            <div className="relative animate-[slide-in-right_1.2s_ease-out_forwards]">
+              <div className="relative animate-float">
+                <img src={pubBus.url} alt="PUB Bus" className="mx-auto w-full max-w-[450px] rounded-[2rem] object-contain drop-shadow-2xl" />
+                <div className="absolute -bottom-6 right-10 z-20 flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-xs font-bold text-ink shadow-lg">
+                  <Bus className="h-4 w-4 text-primary" /> Route: Gobindaganj
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
