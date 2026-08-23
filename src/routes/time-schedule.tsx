@@ -517,73 +517,15 @@ function TimeSchedulePage() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Time Schedule Page (Class Time / Exam Time Toggle):
+                                            Add optional push notifications or SMS reminders so I get alerted before my selected bus departure time.
 
-"Create a 'Time Schedule' page for PUB Bus Track, based on the official university bus schedule format. Structure it as follows:
+Add a route search and quick filters on the Time Schedule page so I can instantly narrow the table to the routes I care about.
 
-Top toggle:
-Add a prominent toggle/tab switcher at the top with two options: 'Class Time' and 'Exam Time' — switching between them shows a different schedule dataset (same table structure, different times). Default to 'Class Time' on page load.
+Add a button to download the current Class/Exam schedule (for the selected day) as a clean PDF for offline viewing.
 
-Schedule table structure (for each toggle state):
-Group rows by day-group, matching this structure:
+Add an admin-only interface to update the Class Time schedule and switch in the real Exam Time dataset.
 
-Friday (শুক্রবার)
-
-Saturday (শনিবার)
-
-Sunday to Tuesday (রবিবার থেকে মঙ্গলবার)
-
-Each day-group has multiple time-slot rows (e.g. Noon departure, Afternoon departure, Evening departure), and each row shows departure times across these route columns:
-
-From Campus (ক্যাম্পাস থেকে)
-
-From Sherpur (শেরপুর থেকে)
-
-From B-Block (বি-ব্লক থেকে)
-
-From Bonani (বনানী থেকে)
-
-From Gobindaganj (গোবিন্দগঞ্জ থেকে)
-
-From Mokamtola (মোকামতলা থেকে)
-
-From Gabtoli (গাবতলী থেকে)
-
-From Sathmatha (সাতমাথা থেকে)
-
-From Dupchachia (দুপচাচিয়া থেকে)
-
-Use '-' for routes with no departure at that time slot. Include a note row style like 'গোবিন্দগঞ্জ বাস যাবে' (bus will go via Gobindaganj) where applicable — a small annotation text within a cell instead of a time.
-
-Contact/Driver Info table (below the schedule):
-A separate table listing: Route name, Bus number, Driver name, Mobile number — grouped in a clean grid (3 columns of route-groups as in the reference, or a simple responsive list on mobile).
-
-Notes section:
-Below both tables, add a small notes block:
-
-'বাস নির্ধারিত সময় অনুযায়ী ক্যাম্পাস থেকে ছাড়বে, উক্ত সময়ের ব্যত্যয় ঘটবে না।' (Buses depart on schedule from campus; no deviation from stated time.)
-
-'বিশেষ কারণে ও কর্তৃপক্ষের নির্দেশনায় বিশ্ববিদ্যালয় বাসের সময়সূচি পরিবর্তন হতে পারে।' (Schedule may change per university directives.)
-
-'হঠাৎ গাড়ি নষ্ট হলে অথবা রাস্তায় ট্রাফিক জ্যামের কারণে বিশ্ববিদ্যালয় বাস গন্তব্যে পৌঁছাতে নির্দিষ্ট সময়ে কিছু তারতম্য হতে পারে।' (Delays possible due to breakdown or traffic.)
-
-Design:
-
-Clean, readable table design with alternating row shading, sticky header row (route names) so it stays visible while scrolling on long tables.
-
-Match the site's sky-blue background and green/orange/teal accent colors — the table itself can sit on a white/light card for readability.
-
-Highlight the currently active toggle (Class Time / Exam Time) with the site's accent color.
-
-Fully responsive: on mobile, allow horizontal scroll for the wide table, or collapse into a per-day accordion/card view for easier reading on small screens.
-
-Add a smooth fade/slide transition when switching between Class Time and Exam Time tabs.
-
-Support Bengali text properly (correct font rendering for Bangla headers/labels) alongside English labels where used elsewhere on the site.
-
-Use the actual schedule data from the attached image for the 'Class Time' view as the initial dataset (structure days, routes, and times exactly as shown); for 'Exam Time' use placeholder/mock data with the same structure for now, which can be updated later with real exam-period timings."
-
-All in english`}
+Add deep links so I can open the Time Schedule page directly to a specific day and route with the correct tab selected.`}
       </div>
     </main>
   );
