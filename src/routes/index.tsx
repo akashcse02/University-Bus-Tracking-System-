@@ -356,44 +356,9 @@ function Index() {
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Lovable Prompt — Global Hover Refinement (Navbar Revert + Site-Wide Shadow/Glass Hover):
+                                            Audit the site to ensure the hover classes apply to every button and card across all sections.
 
-"Please make these hover-related adjustments across the entire site:
-
-1. Revert the navbar background:
-Remove the glass/frosted box background on the navbar container (backdrop-filter, rgba background, border). Go back to the simple original navbar style — no glass box effect on the navbar itself.
-
-2. Navbar link hover — simple and smooth only:
-On hover, nav links (Home, Live Location, Buses, Time Schedule, Routes, How it works) should just have a smooth, clean color transition to the accent green/teal color, plus a thin underline that animates in from the center (transform: scaleX(0) to scaleX(1), 0.25s ease-out). No glow, no blur, no box background — just clean and smooth.
-
-3. Global button hover rule — apply to EVERY button across ALL sections (Get Started, Sign Up, Login, App Store/Google Play buttons, Newsletter Sign Up, Footer Download App button, Contact Form Submit button, FAQ accordion triggers, and any other CTA button in Hero, Stats Row, How It Works, Student Reviews, Our Vision, Newsletter, and Footer):
-
-On hover, apply a soft, layered, premium drop shadow: box-shadow: 0 8px 20px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08), appearing smoothly, not abruptly.
-
-Combine with a subtle lift: transform: translateY(-2px).
-
-Smooth easing transition: transition: transform 0.25s ease-out, box-shadow 0.25s ease-out — no bounce, no jitter.
-
-On click/active state, reduce the lift and shadow slightly (transform: translateY(0), reduced shadow) for tactile press feedback.
-
-Keep the shadow soft and dark-neutral (not colored or harsh), working well against both the sky-blue background and any colored card backgrounds.
-
-4. Global card hover rule — apply to all card-style elements (How It Works cards, Student Review cards, Stats cards, any other card component):
-
-On hover, add a soft glass-style shine: a subtle backdrop-filter: blur(2px) with a light rgba(255,255,255,0.05) overlay sweep, combined with the same layered soft shadow described above and a gentle translateY(-4px) lift.
-
-Ensure this reads well against the colored theme backgrounds (Blue/Teal/Orange/Green cards in How It Works) as well as the sky-blue page background.
-
-5. Consistency requirement:
-Every clickable button and card across the entire page should feel identical in hover behavior — same shadow intensity, same lift distance, same easing curve — so the whole site feels cohesive, not just the hero section.
-
-6. Accessibility:
-Respect prefers-reduced-motion — disable the lift/transform animations for users who request reduced motion, keeping only a simple shadow fade-in instead.
-
-7. Implementation approach:
-Apply this globally via a shared CSS class or utility (e.g. .hover-lift-shadow for buttons, .hover-card-glass for cards) rather than duplicating styles per section, so all current and future sections stay consistent automatically.
-
-Keep all colors, layout, and content exactly as they currently are — this is purely a hover-interaction refinement across the whole site."
+Enable smooth scrolling and active section highlighting for the navbar links.
       </div>
     </main>
   );
