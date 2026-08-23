@@ -14,16 +14,260 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      announcements: {
+        Row: {
+          author_id: string
+          content: string
+          created_at: string
+          id: string
+          target_role: Database["public"]["Enums"]["app_role"] | null
+          title: string
+        }
+        Insert: {
+          author_id: string
+          content: string
+          created_at?: string
+          id?: string
+          target_role?: Database["public"]["Enums"]["app_role"] | null
+          title: string
+        }
+        Update: {
+          author_id?: string
+          content?: string
+          created_at?: string
+          id?: string
+          target_role?: Database["public"]["Enums"]["app_role"] | null
+          title?: string
+        }
+        Relationships: []
+      }
+      buses: {
+        Row: {
+          bus_number: string
+          capacity: number | null
+          created_at: string
+          current_route_id: string | null
+          id: string
+          license_plate: string | null
+          status: Database["public"]["Enums"]["bus_status"] | null
+        }
+        Insert: {
+          bus_number: string
+          capacity?: number | null
+          created_at?: string
+          current_route_id?: string | null
+          id?: string
+          license_plate?: string | null
+          status?: Database["public"]["Enums"]["bus_status"] | null
+        }
+        Update: {
+          bus_number?: string
+          capacity?: number | null
+          created_at?: string
+          current_route_id?: string | null
+          id?: string
+          license_plate?: string | null
+          status?: Database["public"]["Enums"]["bus_status"] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "buses_current_route_id_fkey"
+            columns: ["current_route_id"]
+            isOneToOne: false
+            referencedRelation: "routes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      issues: {
+        Row: {
+          category: string | null
+          created_at: string
+          description: string | null
+          id: string
+          status: Database["public"]["Enums"]["issue_status"] | null
+          title: string
+          user_id: string
+        }
+        Insert: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["issue_status"] | null
+          title: string
+          user_id: string
+        }
+        Update: {
+          category?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          status?: Database["public"]["Enums"]["issue_status"] | null
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          department: string | null
+          full_name: string
+          id: string
+          id_number: string | null
+          phone_number: string | null
+          updated_at: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          department?: string | null
+          full_name: string
+          id: string
+          id_number?: string | null
+          phone_number?: string | null
+          updated_at?: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          department?: string | null
+          full_name?: string
+          id?: string
+          id_number?: string | null
+          phone_number?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      routes: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          path_points: Json | null
+          stops: Json | null
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          path_points?: Json | null
+          stops?: Json | null
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          path_points?: Json | null
+          stops?: Json | null
+        }
+        Relationships: []
+      }
+      trips: {
+        Row: {
+          bus_id: string
+          created_at: string
+          current_lat: number | null
+          current_lng: number | null
+          driver_id: string
+          end_time: string | null
+          id: string
+          occupancy: Database["public"]["Enums"]["occupancy_level"] | null
+          route_id: string
+          start_time: string | null
+          status: Database["public"]["Enums"]["trip_status"] | null
+        }
+        Insert: {
+          bus_id: string
+          created_at?: string
+          current_lat?: number | null
+          current_lng?: number | null
+          driver_id: string
+          end_time?: string | null
+          id?: string
+          occupancy?: Database["public"]["Enums"]["occupancy_level"] | null
+          route_id: string
+          start_time?: string | null
+          status?: Database["public"]["Enums"]["trip_status"] | null
+        }
+        Update: {
+          bus_id?: string
+          created_at?: string
+          current_lat?: number | null
+          current_lng?: number | null
+          driver_id?: string
+          end_time?: string | null
+          id?: string
+          occupancy?: Database["public"]["Enums"]["occupancy_level"] | null
+          route_id?: string
+          start_time?: string | null
+          status?: Database["public"]["Enums"]["trip_status"] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "trips_bus_id_fkey"
+            columns: ["bus_id"]
+            isOneToOne: false
+            referencedRelation: "buses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "trips_route_id_fkey"
+            columns: ["route_id"]
+            isOneToOne: false
+            referencedRelation: "routes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "student" | "teacher" | "driver" | "admin"
+      bus_status: "active" | "maintenance" | "inactive"
+      issue_status: "pending" | "investigating" | "resolved" | "closed"
+      occupancy_level: "low" | "medium" | "high"
+      trip_status:
+        | "not_started"
+        | "in_progress"
+        | "completed"
+        | "delayed"
+        | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +394,18 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["student", "teacher", "driver", "admin"],
+      bus_status: ["active", "maintenance", "inactive"],
+      issue_status: ["pending", "investigating", "resolved", "closed"],
+      occupancy_level: ["low", "medium", "high"],
+      trip_status: [
+        "not_started",
+        "in_progress",
+        "completed",
+        "delayed",
+        "cancelled",
+      ],
+    },
   },
 } as const
