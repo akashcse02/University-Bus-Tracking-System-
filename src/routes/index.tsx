@@ -368,7 +368,13 @@ function Index() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Create the admin placeholder view after admin login, including a simple panel layout with sections like bus management, route schedules, and user roles (demo data only).`}
+                                            Add Back to Home Option on Login/Sign Up Pages:
+
+"Add a way to navigate back to the homepage from the Login and Sign Up pages. Add the 'PUB Bus Track' logo (icon + name) at the top-left corner of both pages, styled consistently with the navbar logo, and make it a clickable link that returns to the homepage.
+
+Additionally, add a small 'Back to Home' text link (with a left-arrow icon, e.g. '← Back to Home') positioned near the top of the page, above or beside the 'Welcome Back' / 'Create Your Account' heading, so users have a clear, obvious way to return to the landing page from either the Login or Sign Up screen.
+
+Style both the logo and the back link consistently with the site's existing typography and hover effects (smooth color transition, no jarring hover). Keep everything else on both pages unchanged."`}
       </div>
     </main>
   );
