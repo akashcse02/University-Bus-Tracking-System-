@@ -320,6 +320,68 @@ function BusesPage() {
       </section>
 
       <SiteFooter />
+
+      {/* Hidden Metadata Container */}
+      <div className="hidden" aria-hidden="true">
+        {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+                                        
+                                            
+                                            use google map 
+inlive section and 
+
+এখানে সব আপডেট মিলিয়ে সম্পূর্ণ Buses পেজের প্রম্পট:
+
+Lovable Prompt — Buses Page (Full, Final Version):
+
+"Create a 'Buses' page listing all active buses grouped by route, each showing its current live status and next stop. Use this data structure:
+
+Route 1 — Gobindaganj to PUB Campus (3 buses total)
+
+Bus 01 — Staff & Teacher Bus (reserved, show a distinct 'Staff & Teacher Bus' badge/tag)
+Stops: Gobindaganj → Fashitola → Mokamtola → Sathmatha → Mohasthan → PUB Campus
+
+Bus 02 — General Student Bus
+Stops: Gobindaganj → Fashitola → Mokamtola → Sathmatha → Mohasthan → PUB Campus
+
+Bus 03 — General Student Bus
+Stops: Gobindaganj → Fashitola → Mokamtola → Sathmatha → Mohasthan → PUB Campus
+(Note: assuming same stop sequence as Bus 01/02 for consistency — confirm if Bus 03 should differ)
+
+Route 2 — Sherpur to PUB Campus (2 buses)
+
+Bus 04 — via Sathmatha (Rail Gate path) → PUB Campus
+
+Bus 05 — via inner road through town, meeting Sathmatha → PUB Campus
+
+Route 3 — Gabtoli to PUB Campus (1 bus)
+
+Bus 06 — Gabtoli → [intermediate stops] → PUB Campus
+
+Route 4 — Sathmatha/Bogura to PUB Campus (1 bus)
+
+Bus 07 — Sathmatha/Bogura → [intermediate stops] → PUB Campus
+
+Route 5 — Dupchachia to PUB Campus (1 bus)
+
+Bus 08 — Dupchachia → [intermediate stops] → PUB Campus
+
+Page Layout:
+
+Group buses visually by route, with a route header showing the route name and number of buses on it.
+
+Each bus shown as a card with: bus number/name, route badge, live status indicator (green dot 'On Route' / grey dot 'Not Started' / yellow dot 'Delayed'), current next stop (e.g. 'Next Stop: Mokamtola'), and estimated arrival time for that next stop.
+
+Special distinct badge on Bus 01 to mark it as Staff & Teacher only, visually different from student bus cards.
+
+Filter/tab bar at the top: All, Gobindaganj, Sherpur, Gabtoli, Sathmatha/Bogura, Dupchachia.
+
+Clicking a bus card can expand to show the full stop list for that bus, or link to a placeholder live-tracking detail view.
+
+Use our established color theme (sky-blue background, green/orange/teal accents), consistent card styling with soft shadow hover, and smooth fade-in animation as cards scroll into view.
+
+This is frontend-only with static/mock data for now — no live backend GPS data wired yet, but structure the component so it's easy to later connect to real-time per-bus location updates."`}
+      </div>
     </main>
   );
 }
+

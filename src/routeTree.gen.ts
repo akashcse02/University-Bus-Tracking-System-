@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as BusesRouteImport } from './routes/buses'
 import { Route as LiveLocationRouteImport } from './routes/live-location'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as SignupRouteImport } from './routes/signup'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BusesRoute = BusesRouteImport.update({
+  id: '/buses',
+  path: '/buses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LiveLocationRoute = LiveLocationRouteImport.update({
@@ -44,6 +50,7 @@ const SignupRoute = SignupRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/buses': typeof BusesRoute
   '/live-location': typeof LiveLocationRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/buses': typeof BusesRoute
   '/live-location': typeof LiveLocationRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
@@ -59,21 +67,30 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
+  '/buses': typeof BusesRoute
   '/live-location': typeof LiveLocationRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/live-location' | '/login' | '/signup'
+  fullPaths: '/' | '/admin' | '/buses' | '/live-location' | '/login' | '/signup'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/live-location' | '/login' | '/signup'
-  id: '__root__' | '/' | '/admin' | '/live-location' | '/login' | '/signup'
+  to: '/' | '/admin' | '/buses' | '/live-location' | '/login' | '/signup'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/buses'
+    | '/live-location'
+    | '/login'
+    | '/signup'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
+  BusesRoute: typeof BusesRoute
   LiveLocationRoute: typeof LiveLocationRoute
   LoginRoute: typeof LoginRoute
   SignupRoute: typeof SignupRoute
@@ -93,6 +110,13 @@ declare module '@tanstack/react-router' {
       path: '/admin'
       fullPath: '/admin'
       preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/buses': {
+      id: '/buses'
+      path: '/buses'
+      fullPath: '/buses'
+      preLoaderRoute: typeof BusesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/live-location': {
@@ -122,6 +146,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
+  BusesRoute: BusesRoute,
   LiveLocationRoute: LiveLocationRoute,
   LoginRoute: LoginRoute,
   SignupRoute: SignupRoute,
