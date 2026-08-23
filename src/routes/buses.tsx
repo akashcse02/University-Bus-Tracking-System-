@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
-import { Bus, MapPin, Clock, ChevronRight, Info } from "lucide-react";
+import { Bus, MapPin, Clock, ChevronRight, Info, Menu } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import pubLogo from "@/assets/pub-logo.png.asset.json";
@@ -243,20 +243,27 @@ function BusesPage() {
     <main className="min-h-screen bg-[#F0F9FF]">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
-          <a href="/" className="flex items-center gap-2.5">
-            <span className="grid h-10 w-10 place-items-center rounded-2xl bg-white shadow-sm overflow-hidden">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 gap-4">
+          <a href="/" className="flex items-center gap-2.5 shrink-0">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-sm overflow-hidden">
               <img src={pubLogo.url} alt="Logo" className="h-full w-full object-cover" />
             </span>
-            <span className="font-display text-xl font-extrabold tracking-tight text-ink">
+            <span className="font-display text-xl font-extrabold tracking-tight text-ink nav-item-nowrap">
               PUB Bus Track
             </span>
           </a>
-          <nav className="hidden items-center gap-8 lg:flex">
-            <a href="/" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Home</a>
-            <a href="/live-location" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Live Location</a>
-            <a href="/buses" className="text-sm font-bold text-primary">Buses</a>
+          <nav className="hidden items-center gap-4 lg:flex">
+            <a href="/" className="nav-link-clean text-ink/60">Home</a>
+            <a href="/live-location" className="nav-link-clean text-ink/60">Live Location</a>
+            <a href="/buses" className="nav-link-clean active">Buses</a>
           </nav>
+
+          <button 
+            className="lg:hidden p-2 hover:bg-white/40 rounded-xl transition-colors focus-visible:outline-2 focus-visible:outline-primary"
+            aria-label="Toggle Menu"
+          >
+            <Menu className="h-6 w-6 text-ink" />
+          </button>
         </div>
       </header>
 
@@ -330,7 +337,39 @@ function BusesPage() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Lovable Prompt — Navbar Hover/Active Style (Match Reference: Soft Pill, Refined Font):
+                                            Add Drag-to-Scroll + New Faculty/Staff Reviews (Combined):
+
+"Update the 'Loved by Students' horizontal review section with the following:
+
+1. Add drag-to-scroll interaction:
+Users should be able to click and drag (or touch-swipe on mobile) the card row left/right to manually scroll through the cards, in addition to the existing auto-scroll animation.
+
+On mousedown, pause the auto-scroll and switch to manual drag mode: track cursor movement (mousemove) and translate the row horizontally based on drag distance (transform: translateX()), using cursor: grab normally and cursor: grabbing while actively dragging.
+
+On mouseup or mouseleave, resume the auto-scroll animation after a short delay (2-3 seconds of inactivity).
+
+Add momentum/inertia on release (the row continues scrolling briefly and decelerates smoothly) for a natural, premium feel — similar to native touch scrolling physics.
+
+Support touch drag (swipe) the same way on mobile/tablet.
+
+Keep it smooth and GPU-accelerated using transform only.
+
+2. Add new reviews to the row (alongside existing student reviews):
+
+Md Nahid Hasan (Faculty) — a short positive review about how PUB Bus Track has made monitoring student commute easier and more organized for the department.
+
+Habib Ehsanul Hoque — Head of CSE — a short positive review about how the app reflects well on the university's tech-forward approach and helps both students and faculty stay on schedule.
+
+Indronil Mishra (Faculty) — a short positive review about the app's reliability and how it's reduced complaints about missed buses.
+
+Ononto — Transport System Controller — a short positive review from an operations perspective, about how the app helps coordinate bus routes and respond to delays more efficiently.
+
+Design for these new cards: same style as existing reviews (circular initials avatar, name, role/title shown below the name in smaller text, 1-2 sentence quote, 5-star rating), with an appropriate tag like 'Faculty' or 'Staff' instead of 'App Store review' for these roles. Mix these into the existing scrolling row alongside the student reviews (Md Akash Islam, Md Sabbir Hossain, Irin Mim)."
+
+Implement a responsive mobile navbar with a hamburger menu that preserves the same pill hover/active styling.
+
+Add clear keyboard focus states for all navbar links and buttons so active/hover styling is accessible via tab navigation.`}
+      </div>
 
 "Update the navbar link styling to match this reference look:
 
