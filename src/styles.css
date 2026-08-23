@@ -77,6 +77,7 @@
   --animate-drive-map: drive 12s linear infinite;
   --animate-pin-pop: pin-pop 12s ease-in-out infinite;
   --animate-ping-slow: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  --animate-slide-in-right: slide-in-right 1.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @keyframes pin-pop {
@@ -140,6 +141,16 @@
 @keyframes drive {
   from { offset-distance: 0%; }
   to { offset-distance: 100%; }
+}
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 @keyframes dash {
   to { stroke-dashoffset: -24; }
