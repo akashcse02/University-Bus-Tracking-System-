@@ -45,7 +45,7 @@ function LiveLocationPage() {
           <div className="hidden items-center gap-6 lg:flex">
              <nav className="flex items-center gap-8 mr-4">
               <a href="/" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Home</a>
-              <a href="/#buses" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Buses</a>
+              <a href="/buses" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Buses</a>
               <a href="/#schedule" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Schedule</a>
             </nav>
 
@@ -153,7 +153,7 @@ function LiveLocationPage() {
           </div>
           <nav className="flex flex-col gap-6">
             <a href="/" className="text-2xl font-black text-ink">Home</a>
-            <a href="/#buses" className="text-2xl font-black text-ink">Buses</a>
+            <a href="/buses" className="text-2xl font-black text-ink">Buses</a>
             <a href="/#schedule" className="text-2xl font-black text-ink">Schedule</a>
             <hr className="border-slate-100" />
             <a href="#" className="rounded-[1.5rem] bg-primary py-5 text-center font-display text-xl font-black text-white shadow-xl shadow-primary/20">Sign In</a>
