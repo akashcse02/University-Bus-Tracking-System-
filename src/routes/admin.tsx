@@ -98,7 +98,7 @@ function AdminDashboard() {
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === "buses" ? "bg-primary/10 text-primary" : "text-ink/60 hover:bg-slate-50 hover:text-ink"}`}
           >
             <Bus className="h-5 w-5" />
-            Bus Management
+            Bus Fleet
           </button>
           <button 
             onClick={() => setActiveTab("routes")}
@@ -119,14 +119,14 @@ function AdminDashboard() {
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === "users" ? "bg-primary/10 text-primary" : "text-ink/60 hover:bg-slate-50 hover:text-ink"}`}
           >
             <Users className="h-5 w-5" />
-            User Roles
+            User Management
           </button>
           <button 
             onClick={() => setActiveTab("settings")}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === "settings" ? "bg-primary/10 text-primary" : "text-ink/60 hover:bg-slate-50 hover:text-ink"}`}
           >
             <Settings className="h-5 w-5" />
-            Settings
+            System Settings
           </button>
         </nav>
 
