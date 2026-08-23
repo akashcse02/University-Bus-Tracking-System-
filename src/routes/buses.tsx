@@ -337,38 +337,73 @@ function BusesPage() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Add Drag-to-Scroll + New Faculty/Staff Reviews (Combined):
+                                            Time Schedule Page (Class Time / Exam Time Toggle):
 
-"Update the 'Loved by Students' horizontal review section with the following:
+"Create a 'Time Schedule' page for PUB Bus Track, based on the official university bus schedule format. Structure it as follows:
 
-1. Add drag-to-scroll interaction:
-Users should be able to click and drag (or touch-swipe on mobile) the card row left/right to manually scroll through the cards, in addition to the existing auto-scroll animation.
+Top toggle:
+Add a prominent toggle/tab switcher at the top with two options: 'Class Time' and 'Exam Time' — switching between them shows a different schedule dataset (same table structure, different times). Default to 'Class Time' on page load.
 
-On mousedown, pause the auto-scroll and switch to manual drag mode: track cursor movement (mousemove) and translate the row horizontally based on drag distance (transform: translateX()), using cursor: grab normally and cursor: grabbing while actively dragging.
+Schedule table structure (for each toggle state):
+Group rows by day-group, matching this structure:
 
-On mouseup or mouseleave, resume the auto-scroll animation after a short delay (2-3 seconds of inactivity).
+Friday (শুক্রবার)
 
-Add momentum/inertia on release (the row continues scrolling briefly and decelerates smoothly) for a natural, premium feel — similar to native touch scrolling physics.
+Saturday (শনিবার)
 
-Support touch drag (swipe) the same way on mobile/tablet.
+Sunday to Tuesday (রবিবার থেকে মঙ্গলবার)
 
-Keep it smooth and GPU-accelerated using transform only.
+Each day-group has multiple time-slot rows (e.g. Noon departure, Afternoon departure, Evening departure), and each row shows departure times across these route columns:
 
-2. Add new reviews to the row (alongside existing student reviews):
+From Campus (ক্যাম্পাস থেকে)
 
-Md Nahid Hasan (Faculty) — a short positive review about how PUB Bus Track has made monitoring student commute easier and more organized for the department.
+From Sherpur (শেরপুর থেকে)
 
-Habib Ehsanul Hoque — Head of CSE — a short positive review about how the app reflects well on the university's tech-forward approach and helps both students and faculty stay on schedule.
+From B-Block (বি-ব্লক থেকে)
 
-Indronil Mishra (Faculty) — a short positive review about the app's reliability and how it's reduced complaints about missed buses.
+From Bonani (বনানী থেকে)
 
-Ononto — Transport System Controller — a short positive review from an operations perspective, about how the app helps coordinate bus routes and respond to delays more efficiently.
+From Gobindaganj (গোবিন্দগঞ্জ থেকে)
 
-Design for these new cards: same style as existing reviews (circular initials avatar, name, role/title shown below the name in smaller text, 1-2 sentence quote, 5-star rating), with an appropriate tag like 'Faculty' or 'Staff' instead of 'App Store review' for these roles. Mix these into the existing scrolling row alongside the student reviews (Md Akash Islam, Md Sabbir Hossain, Irin Mim)."
+From Mokamtola (মোকামতলা থেকে)
 
-Implement a responsive mobile navbar with a hamburger menu that preserves the same pill hover/active styling.
+From Gabtoli (গাবতলী থেকে)
 
-Add clear keyboard focus states for all navbar links and buttons so active/hover styling is accessible via tab navigation.`}
+From Sathmatha (সাতমাথা থেকে)
+
+From Dupchachia (দুপচাচিয়া থেকে)
+
+Use '-' for routes with no departure at that time slot. Include a note row style like 'গোবিন্দগঞ্জ বাস যাবে' (bus will go via Gobindaganj) where applicable — a small annotation text within a cell instead of a time.
+
+Contact/Driver Info table (below the schedule):
+A separate table listing: Route name, Bus number, Driver name, Mobile number — grouped in a clean grid (3 columns of route-groups as in the reference, or a simple responsive list on mobile).
+
+Notes section:
+Below both tables, add a small notes block:
+
+'বাস নির্ধারিত সময় অনুযায়ী ক্যাম্পাস থেকে ছাড়বে, উক্ত সময়ের ব্যত্যয় ঘটবে না।' (Buses depart on schedule from campus; no deviation from stated time.)
+
+'বিশেষ কারণে ও কর্তৃপক্ষের নির্দেশনায় বিশ্ববিদ্যালয় বাসের সময়সূচি পরিবর্তন হতে পারে।' (Schedule may change per university directives.)
+
+'হঠাৎ গাড়ি নষ্ট হলে অথবা রাস্তায় ট্রাফিক জ্যামের কারণে বিশ্ববিদ্যালয় বাস গন্তব্যে পৌঁছাতে নির্দিষ্ট সময়ে কিছু তারতম্য হতে পারে।' (Delays possible due to breakdown or traffic.)
+
+Design:
+
+Clean, readable table design with alternating row shading, sticky header row (route names) so it stays visible while scrolling on long tables.
+
+Match the site's sky-blue background and green/orange/teal accent colors — the table itself can sit on a white/light card for readability.
+
+Highlight the currently active toggle (Class Time / Exam Time) with the site's accent color.
+
+Fully responsive: on mobile, allow horizontal scroll for the wide table, or collapse into a per-day accordion/card view for easier reading on small screens.
+
+Add a smooth fade/slide transition when switching between Class Time and Exam Time tabs.
+
+Support Bengali text properly (correct font rendering for Bangla headers/labels) alongside English labels where used elsewhere on the site.
+
+Use the actual schedule data from the attached image for the 'Class Time' view as the initial dataset (structure days, routes, and times exactly as shown); for 'Exam Time' use placeholder/mock data with the same structure for now, which can be updated later with real exam-period timings."
+
+All in english`}
       </div>
     </main>
   );

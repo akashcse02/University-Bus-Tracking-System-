@@ -46,7 +46,7 @@ const navLinks = [
   { label: "Home", href: "/" },
   { label: "Live Location", href: "/live-location" },
   { label: "Buses", href: "/buses" },
-  { label: "Time Schedule", href: "/#schedule" },
+  { label: "Time Schedule", href: "/time-schedule" },
   { label: "Routes", href: "/#routes" },
   { label: "How it works", href: "/#how-it-works" },
 ];

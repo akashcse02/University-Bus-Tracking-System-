@@ -46,7 +46,7 @@ function LiveLocationPage() {
              <nav className="flex items-center gap-8 mr-4">
               <a href="/" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Home</a>
               <a href="/buses" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Buses</a>
-              <a href="/#schedule" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Schedule</a>
+              <a href="/time-schedule" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Schedule</a>
             </nav>
 
             <DropdownMenu>
