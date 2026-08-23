@@ -368,78 +368,7 @@ function Index() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            now 
-Login & Sign Up Pages (Role-Specific Fields + Hidden Admin + Full Homepage Theme):
-
-"Create dedicated Login and Sign Up pages for PUB Bus Track, fully consistent with the homepage's visual theme and animations, with role-specific fields.
-
-Shared visual theme (match homepage exactly):
-
-Sky-blue background with realistic, softly drifting clouds (same style as the hero section).
-
-Decorative animations: a gently idling/bobbing bus illustration, 1-2 butterflies with looping flutter/figure-eight flight paths, and birds gliding slowly across the top — all subtle, non-distracting, positioned around the page edges so they don't interfere with the form.
-
-Same fonts, green/orange/teal color accents, and pill-shaped button styling as the navbar's 'Sign Up' button — including the glass-shine sweep and shadow-lift hover effect used site-wide.
-
-Respect prefers-reduced-motion: disable all decorative animations (bus idle, butterfly flutter, bird glide, cloud drift) for users who request it, showing static illustrations instead.
-
-Fully responsive across desktop, tablet, and mobile — decorative elements can simplify or hide on mobile to keep focus on the form.
-
-Sign Up Page:
-
-Centered form card on the themed background.
-
-Heading: 'Create Your Account', subtext: 'Join PUB Bus Track and never miss your bus.'
-
-Role selector (tabs): Student, Teacher, Driver — do NOT include Admin as a visible option here.
-
-Role-specific fields:
-
-Student: ID, Name, Department, Batch, Email, Password
-
-Teacher: Name, Department, Profession, Email, Password
-
-Driver: Name, Route, Bus Number, Phone (optional), Email, Password
-
-Pill-shaped green 'Sign Up' submit button (same styling as navbar).
-
-Basic client-side validation (required fields, email format, password strength).
-
-Below the form: 'Already have an account? Login' link to the Login page.
-
-Login Page:
-
-Same themed background and decorative animations as Sign Up.
-
-Heading: 'Welcome Back', subtext: 'Log in to track your bus in real-time.'
-
-Role selector (tabs): Student, Teacher, Driver.
-
-Student: ID or Email + Password
-
-Teacher: Email + Password
-
-Driver: Email + Password
-
-'Forgot Password?' link.
-
-Pill-shaped green 'Login' submit button, same styling as navbar.
-
-Below the form: 'Don't have an account? Sign Up' link.
-
-Hidden Admin Access:
-
-Admin should not appear as a visible role option anywhere in the normal Sign Up/Login flow.
-
-Add a hidden trigger to reveal a separate Admin Login form — e.g. clicking the footer copyright text 5 times, or a small unlabeled icon tucked in a corner.
-
-The Admin Login form has just two fields: Phone Number and Password.
-
-Implement simple frontend-only validation checking against fixed demo credentials; on match, redirect to an admin placeholder view, otherwise show an 'Invalid credentials' error.
-
-Add a code comment flagging that this hardcoded check must be replaced with secure backend authentication before production use.
-
-This is frontend-only for now — no real backend auth wiring yet, just the complete UI, field logic, validation, and theme-consistent animations."`}
+                                            Create the admin placeholder view after admin login, including a simple panel layout with sections like bus management, route schedules, and user roles (demo data only).`}
       </div>
     </main>
   );
