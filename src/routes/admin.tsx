@@ -555,6 +555,62 @@ function AdminDashboard() {
                 </div>
               </div>
             )}
+
+            {activeTab === "settings" && (
+              <div className="space-y-6">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div>
+                    <h3 className="text-2xl font-display font-extrabold text-ink">System Settings</h3>
+                    <p className="text-slate-500 font-medium">Global configuration for the PUB Bus Track platform.</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Card className="border-none shadow-sm">
+                    <CardHeader>
+                      <CardTitle className="font-display font-bold">General Config</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                          <Label className="text-base font-bold text-ink">Maintenance Mode</Label>
+                          <p className="text-sm text-slate-500">Disable live tracking for system updates.</p>
+                        </div>
+                        <Switch />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                          <Label className="text-base font-bold text-ink">Public Registration</Label>
+                          <p className="text-sm text-slate-500">Allow new students to sign up.</p>
+                        </div>
+                        <Switch defaultChecked />
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-none shadow-sm">
+                    <CardHeader>
+                      <CardTitle className="font-display font-bold">Notification Gateway</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                          <Label className="text-base font-bold text-ink">SMS Alerts</Label>
+                          <p className="text-sm text-slate-500">Enable automated SMS reminders.</p>
+                        </div>
+                        <Switch defaultChecked />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                          <Label className="text-base font-bold text-ink">Push Notifications</Label>
+                          <p className="text-sm text-slate-500">Enable browser push notifications.</p>
+                        </div>
+                        <Switch defaultChecked />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
           </Reveal>
         </div>
       </main>
