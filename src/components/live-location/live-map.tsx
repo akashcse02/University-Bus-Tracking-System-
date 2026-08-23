@@ -22,7 +22,7 @@ const DUMMY_BUSES: BusData[] = [
 ];
 
 export function LiveMap() {
-  const [selectedBus, setSelectedBus] = useState<BusData | null>(DUMMY_BUSES[0]);
+  const [selectedBus, setSelectedBus] = useState<BusData | null>(DUMMY_BUSES[0] || null);
   const [search, setSearch] = useState("");
 
   const filteredBuses = DUMMY_BUSES.filter(b => 
