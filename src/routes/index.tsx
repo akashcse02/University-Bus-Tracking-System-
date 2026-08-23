@@ -314,7 +314,7 @@ function Index() {
             </div>
 
             {/* Right Column: Bus */}
-            <div className="relative animate-slide-in-right opacity-0" style={{ animationFillMode: 'forwards' }}>
+            <div className="relative animate-slide-in-right [animation-fill-mode:forwards] opacity-0">
               <div className="relative animate-float">
                 <img src={pubBus.url} alt="PUB Bus" className="mx-auto w-full max-w-[450px] rounded-[2rem] object-contain drop-shadow-2xl" />
                 <div className="absolute -bottom-6 right-10 z-20 flex items-center gap-2 rounded-xl bg-white px-4 py-2 text-xs font-bold text-ink shadow-lg">
