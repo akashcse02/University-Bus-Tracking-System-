@@ -314,14 +314,15 @@ function TimeSchedulePage() {
   // Update URL when filters change
   useEffect(() => {
     navigate({
-      search: (prev: any) => ({
-        ...prev,
+      to: "/time-schedule",
+      search: {
         type: scheduleType,
         day: selectedDay || undefined,
         route: searchQuery || undefined,
-      }),
+      },
       replace: true,
-    });
+    } as any);
+  }, [scheduleType, selectedDay, searchQuery, navigate]);
   }, [scheduleType, selectedDay, searchQuery, navigate]);
 
   const scheduleData = useMemo(() => {
