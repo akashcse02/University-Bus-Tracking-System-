@@ -184,14 +184,14 @@ function Index() {
       const documentHeight = document.documentElement.scrollHeight;
 
       if (scrollY + windowHeight >= documentHeight - 100) {
-        current = "How it works"; // fallback or handle footer highlighting
+        current = "How it works";
       } else {
         for (const section of sections) {
           const element = document.getElementById(section);
           if (element) {
             const rect = element.getBoundingClientRect();
             if (rect.top <= 120) {
-              const link = navLinks.find(l => l.href === `#${section}`);
+              const link = navLinks.find(l => l.href === `/#${section}` || l.href === `#${section}`);
               if (link) current = link.label;
             }
           }
@@ -205,9 +205,9 @@ function Index() {
   }, []);
 
   const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("#")) {
+    if (href.includes("#")) {
       e.preventDefault();
-      const id = href.replace("#", "");
+      const id = href.split("#")[1];
       if (!id) {
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
@@ -232,7 +232,7 @@ function Index() {
       {/* Navbar */}
       <header className="sticky top-0 z-50 w-full backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 gap-4">
-          <a href="#" onClick={(e) => smoothScroll(e, "#")} className="flex items-center gap-2.5 shrink-0">
+          <a href="/" onClick={(e) => smoothScroll(e, "/")} className="flex items-center gap-2.5 shrink-0">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-sm overflow-hidden">
               <img src={pubLogo.url} alt="Logo" className="h-full w-full object-cover" />
             </span>
