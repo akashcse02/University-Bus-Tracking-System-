@@ -23,15 +23,13 @@ import pundraUni from "@/assets/pundra-university.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
-    title: "PUB Bus Track — Live Pundra University Bus Tracking",
+    title: "PUB Bus Track — Pundra University Bus Tracking System",
     meta: [
-      { name: "description", content: "Track your Pundra University bus in real time. Live locations, routes, schedules and arrival times for students in Bogura." },
-      { name: "keywords", content: "Pundra University, Bus Track, Bogura, University Transport, Live Tracking, Student Shuttle" },
-      { property: "og:title", content: "PUB Bus Track — Live University Bus Tracking" },
-      { property: "og:description", content: "Live bus locations, routes and time schedules for Pundra University students. Never miss your ride to campus." },
+      { name: "description", content: "Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required." },
+      { property: "og:title", content: "PUB Bus Track — Pundra University Bus Tracking System" },
+      { property: "og:description", content: "Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "https://id-preview--a6d5566a-cf5d-4912-b2a0-7293faebb634.lovable.app/og-image.png" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:card", content: "summary_large_image" }
     ],
     links: [
       { rel: "icon", href: "/favicon.ico" },
@@ -39,6 +37,7 @@ export const Route = createFileRoute("/")({
       { rel: "preload", href: pubBus.url, as: "image", fetchpriority: "high" }
     ]
   }),
+
   component: Index,
 });
 
