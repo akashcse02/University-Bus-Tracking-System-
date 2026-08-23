@@ -427,22 +427,7 @@ Design for these new cards: same style as existing reviews (circular initials av
 Implement a responsive mobile navbar with a hamburger menu that preserves the same pill hover/active styling.
 
 Add clear keyboard focus states for all navbar links and buttons so active/hover styling is accessible via tab navigation.`}
-
-Animation quality:
-
-Use smooth, premium easing: cubic-bezier(0.16, 1, 0.3, 1) (ease-out, no bounce), duration around 0.6-0.8s per element.
-
-Stagger the three elements slightly (e.g. building starts first, phone 100ms later, bus 150-200ms later) so they don't all animate in perfectly simultaneously — creates a more natural, cinematic sequence.
-
-Use only transform (translateX, scale) and opacity for the animation (GPU-accelerated properties) to ensure buttery-smooth 60fps+ performance, avoiding any layout-shifting properties.
-
-Ensure animations feel high-refresh-rate smooth — no stutter or jank — by keeping the animated elements on their own composite layer (will-change: transform, opacity during the animation).
-
-Accessibility:
-
-Respect prefers-reduced-motion: for users who request reduced motion, skip the slide/zoom animations and simply fade the elements in with a quick, simple opacity transition instead."`}
       </div>
-
     </main>
   );
 }
