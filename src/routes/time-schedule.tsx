@@ -498,17 +498,28 @@ function TimeSchedulePage() {
                             const isNote = val !== "-" && isNaN(Number(val.charAt(0)));
                             
                             return (
-                              <TableCell key={col.key} className="text-center py-5">
+                          <div className={`text-center py-5 relative group/cell ${val !== "-" ? "cursor-pointer" : ""}`}>
                                 {isNote ? (
                                   <span className="inline-block rounded-full bg-teal-50 px-3 py-1 text-[11px] font-black text-teal-700 font-bengali shadow-sm ring-1 ring-teal-100">
                                     {val}
                                   </span>
                                 ) : (
-                                  <span className={`text-sm font-bold ${val === "-" ? "text-ink/20" : "text-ink font-mono"}`}>
-                                    {val}
-                                  </span>
+                                  <div className="flex flex-col items-center gap-1">
+                                    <span className={`text-sm font-bold ${val === "-" ? "text-ink/20" : "text-ink font-mono"}`}>
+                                      {val}
+                                    </span>
+                                    {val !== "-" && (
+                                      <button 
+                                        className="opacity-0 group-hover/cell:opacity-100 transition-opacity p-1 rounded-md hover:bg-primary/10 text-primary"
+                                        title="Set Reminder"
+                                        onClick={() => alert(`Reminder set for ${val} at ${col.label}`)}
+                                      >
+                                        <Bell className="h-3 w-3" />
+                                      </button>
+                                    )}
+                                  </div>
                                 )}
-                              </TableCell>
+                              </div>
                             );
                           })}
                         </TableRow>
