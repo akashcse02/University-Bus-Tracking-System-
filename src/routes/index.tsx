@@ -349,7 +349,7 @@ function Index() {
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            mplemented a premium scroll-stacking "How It Works" section using Framer Motion to tie card progression directly to scroll position, and added a student-focused Testimonials section with reviews from Md Akash Islam, Md Sabbir Hossain, and Irin Mim. The navbar now features enhanced hover effects, smooth scrolling for all links, and an active section highlighter that turns links orange to match the campus branding.
+                                            remove than
       </div>
     </main>
   );
