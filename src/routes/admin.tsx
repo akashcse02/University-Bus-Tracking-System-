@@ -14,7 +14,12 @@ import {
   Settings,
   Bell,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  CalendarDays,
+  Edit3,
+  Trash2,
+  Save,
+  Undo
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
