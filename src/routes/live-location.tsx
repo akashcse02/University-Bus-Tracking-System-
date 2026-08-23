@@ -36,9 +36,10 @@ export const Route = createFileRoute("/live-location")({
 function LiveLocationPage() {
   const { role, profile, bus } = Route.useLoaderData();
 
-  if (role === "driver") {
+  if (role === "driver" && profile) {
     return <DriverDashboard driverId={profile.id} />;
   }
+
 
   // Handle case where route data might be missing in TS due to maybeSingle/join
   const routeName = (bus as any)?.routes?.name;
