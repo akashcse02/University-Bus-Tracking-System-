@@ -389,20 +389,32 @@ function Index() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            For the code present, I get the error below.
+                                            Cleaner Navbar Hover + Bolder Font:
 
-Please think step-by-step in order to resolve it.
+"Refine the navbar link styling — the current hover state still doesn't look clean enough. Make these improvements:
 
-# Error number 1:
-#################
+1. Cleaner hover effect:
 
-The app returned 500 while handling GET /.
+On hover, use a soft, well-blended pill background: a subtle transparent tint (e.g. rgba(0, 90, 60, 0.06) — a faint green-tinted overlay matching our accent color, instead of plain grey/black) with fully rounded corners (border-radius: 999px).
 
-# Error number 2:
-#################
+Add a very soft, barely-visible shadow (box-shadow: 0 2px 8px rgba(0,0,0,0.05)) so the pill feels lightly lifted, not flat.
 
-Error: Transform failed with 1 error:
-[PARSE_ERROR] Unexpected token.`}
+Smooth, quick transition (transition: all 0.2s ease-out) — no lag, no abrupt snap.
+
+Ensure consistent padding (e.g. 8px 16px) across all nav items so pill sizes look uniform regardless of text length.
+
+Remove any leftover harsh edges, borders, or mismatched background colors from previous hover attempts.
+
+2. Bolder font:
+
+Increase the font-weight of all navbar links (Home, Live Location, Buses, Time Schedule, Routes, How it works) from regular/medium to semi-bold (font-weight 600), for a stronger, more premium look.
+
+Keep font size consistent (15-16px) and make sure the bolder weight doesn't cause text to wrap or crowd — adjust letter-spacing slightly tighter if needed to compensate.
+
+Apply the same bold weight to the active/current page link (e.g. 'Home'), and keep the persistent pill background on it as the active-state indicator.
+
+3. Final check:
+Confirm hover and active states look crisp, well-spaced, and consistent across all nav items, with no visual glitches or mismatched styles left over from earlier iterations."`}
       </div>
     </main>
   );
