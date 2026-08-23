@@ -330,11 +330,38 @@ function BusesPage() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Remove Large Background Number Watermark from ALL 4 Cards:
+                                            Lovable Prompt — Navbar Hover/Active Style (Match Reference: Soft Pill, Refined Font):
 
-"Remove the large, faded background step-number watermark (e.g. '01', '02', '03', '04') that currently appears behind the content on ALL 4 'How It Works' cards — Blue (Card 1), Teal (Card 2), Orange (Card 3), and Green (Card 4).
+"Update the navbar link styling to match this reference look:
 
-This oversized, semi-transparent number sitting behind the icon/heading/description on each card should be completely removed across all four cards — it looks cluttered and unpolished. Keep only the icon, title, and description text as the visible content on each card, on top of the clean solid/gradient theme-color background, with no large number overlay anywhere in this section."`}
+1. Active/hover pill background:
+
+On hover (and for the active/current page link, like 'Home'), show a soft, light pill-shaped background behind the text — a subtle off-white/light-grey tint with slight transparency (e.g. rgba(255,255,255,0.5) to rgba(255,255,255,0.7)) combined with a very soft box-shadow (e.g. 0 2px 6px rgba(0,0,0,0.06)) for gentle depth, NOT a flat solid color block.
+
+Rounded pill shape (border-radius: 999px or fully rounded), with balanced horizontal/vertical padding (e.g. 8px 16px) so the pill hugs the text comfortably without looking oversized.
+
+Smooth transition: transition: background-color 0.25s ease-out, box-shadow 0.25s ease-out — the pill should fade in/out smoothly on hover, not snap instantly.
+
+For the currently active page (e.g. 'Home' when on the homepage), keep this pill background persistently visible (not just on hover) so users know where they are.
+
+2. Font refinement:
+
+Use a clean, medium-weight sans-serif font (font-weight 500-600) for nav links — not too bold, not too thin — for a crisp, modern look matching the reference.
+
+Slightly darker text color (a deep navy/charcoal rather than pure black) for better harmony with the sky-blue background.
+
+Consistent font size across all nav items (e.g. 15-16px), with balanced letter-spacing (not too tight, not too wide).
+
+3. Non-active/non-hovered links:
+
+Keep them with no background, just the clean font color — the pill background should only appear on hover or for the active page, not on all links simultaneously.
+
+4. Overall polish:
+
+Ensure the pill background and text color work well together in both hover and active states, and that spacing between nav items stays even and comfortable so the pills don't look cramped or overlapping.
+
+Keep the navbar's overall layout (logo left, links center, Login/Sign Up right) and the rest of the site unchanged — this is a hover/active-state and typography refinement only."`}
+
 
 
 ${`এখানে সব আপডেট মিলিয়ে সম্পূর্ণ Buses পেজের প্রম্পট:
