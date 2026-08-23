@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
-import { Bus, MapPin, Clock, ChevronRight, Info } from "lucide-react";
+import { Bus, MapPin, Clock, ChevronRight, Info, Menu } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
 import pubLogo from "@/assets/pub-logo.png.asset.json";
@@ -243,20 +243,27 @@ function BusesPage() {
     <main className="min-h-screen bg-[#F0F9FF]">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
-          <a href="/" className="flex items-center gap-2.5">
-            <span className="grid h-10 w-10 place-items-center rounded-2xl bg-white shadow-sm overflow-hidden">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 gap-4">
+          <a href="/" className="flex items-center gap-2.5 shrink-0">
+            <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-sm overflow-hidden">
               <img src={pubLogo.url} alt="Logo" className="h-full w-full object-cover" />
             </span>
-            <span className="font-display text-xl font-extrabold tracking-tight text-ink">
+            <span className="font-display text-xl font-extrabold tracking-tight text-ink nav-item-nowrap">
               PUB Bus Track
             </span>
           </a>
-          <nav className="hidden items-center gap-8 lg:flex">
-            <a href="/" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Home</a>
-            <a href="/live-location" className="text-sm font-bold text-ink/60 hover:text-primary transition-colors">Live Location</a>
-            <a href="/buses" className="text-sm font-bold text-primary">Buses</a>
+          <nav className="hidden items-center gap-4 lg:flex">
+            <a href="/" className="nav-link-clean text-ink/60">Home</a>
+            <a href="/live-location" className="nav-link-clean text-ink/60">Live Location</a>
+            <a href="/buses" className="nav-link-clean active">Buses</a>
           </nav>
+
+          <button 
+            className="lg:hidden p-2 hover:bg-white/40 rounded-xl transition-colors focus-visible:outline-2 focus-visible:outline-primary"
+            aria-label="Toggle Menu"
+          >
+            <Menu className="h-6 w-6 text-ink" />
+          </button>
         </div>
       </header>
 
@@ -330,92 +337,38 @@ function BusesPage() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Lovable Prompt — Navbar Hover/Active Style (Match Reference: Soft Pill, Refined Font):
+                                            Add Drag-to-Scroll + New Faculty/Staff Reviews (Combined):
 
-"Update the navbar link styling to match this reference look:
+"Update the 'Loved by Students' horizontal review section with the following:
 
-1. Active/hover pill background:
+1. Add drag-to-scroll interaction:
+Users should be able to click and drag (or touch-swipe on mobile) the card row left/right to manually scroll through the cards, in addition to the existing auto-scroll animation.
 
-On hover (and for the active/current page link, like 'Home'), show a soft, light pill-shaped background behind the text — a subtle off-white/light-grey tint with slight transparency (e.g. rgba(255,255,255,0.5) to rgba(255,255,255,0.7)) combined with a very soft box-shadow (e.g. 0 2px 6px rgba(0,0,0,0.06)) for gentle depth, NOT a flat solid color block.
+On mousedown, pause the auto-scroll and switch to manual drag mode: track cursor movement (mousemove) and translate the row horizontally based on drag distance (transform: translateX()), using cursor: grab normally and cursor: grabbing while actively dragging.
 
-Rounded pill shape (border-radius: 999px or fully rounded), with balanced horizontal/vertical padding (e.g. 8px 16px) so the pill hugs the text comfortably without looking oversized.
+On mouseup or mouseleave, resume the auto-scroll animation after a short delay (2-3 seconds of inactivity).
 
-Smooth transition: transition: background-color 0.25s ease-out, box-shadow 0.25s ease-out — the pill should fade in/out smoothly on hover, not snap instantly.
+Add momentum/inertia on release (the row continues scrolling briefly and decelerates smoothly) for a natural, premium feel — similar to native touch scrolling physics.
 
-For the currently active page (e.g. 'Home' when on the homepage), keep this pill background persistently visible (not just on hover) so users know where they are.
+Support touch drag (swipe) the same way on mobile/tablet.
 
-2. Font refinement:
+Keep it smooth and GPU-accelerated using transform only.
 
-Use a clean, medium-weight sans-serif font (font-weight 500-600) for nav links — not too bold, not too thin — for a crisp, modern look matching the reference.
+2. Add new reviews to the row (alongside existing student reviews):
 
-Slightly darker text color (a deep navy/charcoal rather than pure black) for better harmony with the sky-blue background.
+Md Nahid Hasan (Faculty) — a short positive review about how PUB Bus Track has made monitoring student commute easier and more organized for the department.
 
-Consistent font size across all nav items (e.g. 15-16px), with balanced letter-spacing (not too tight, not too wide).
+Habib Ehsanul Hoque — Head of CSE — a short positive review about how the app reflects well on the university's tech-forward approach and helps both students and faculty stay on schedule.
 
-3. Non-active/non-hovered links:
+Indronil Mishra (Faculty) — a short positive review about the app's reliability and how it's reduced complaints about missed buses.
 
-Keep them with no background, just the clean font color — the pill background should only appear on hover or for the active page, not on all links simultaneously.
+Ononto — Transport System Controller — a short positive review from an operations perspective, about how the app helps coordinate bus routes and respond to delays more efficiently.
 
-4. Overall polish:
+Design for these new cards: same style as existing reviews (circular initials avatar, name, role/title shown below the name in smaller text, 1-2 sentence quote, 5-star rating), with an appropriate tag like 'Faculty' or 'Staff' instead of 'App Store review' for these roles. Mix these into the existing scrolling row alongside the student reviews (Md Akash Islam, Md Sabbir Hossain, Irin Mim)."
 
-Ensure the pill background and text color work well together in both hover and active states, and that spacing between nav items stays even and comfortable so the pills don't look cramped or overlapping.
+Implement a responsive mobile navbar with a hamburger menu that preserves the same pill hover/active styling.
 
-Keep the navbar's overall layout (logo left, links center, Login/Sign Up right) and the rest of the site unchanged — this is a hover/active-state and typography refinement only."`}
-
-
-
-${`এখানে সব আপডেট মিলিয়ে সম্পূর্ণ Buses পেজের প্রম্পট:
-
-Lovable Prompt — Buses Page (Full, Final Version):
-
-"Create a 'Buses' page listing all active buses grouped by route, each showing its current live status and next stop. Use this data structure:
-
-Route 1 — Gobindaganj to PUB Campus (3 buses total)
-
-Bus 01 — Staff & Teacher Bus (reserved, show a distinct 'Staff & Teacher Bus' badge/tag)
-Stops: Gobindaganj → Fashitola → Mokamtola → Sathmatha → Mohasthan → PUB Campus
-
-Bus 02 — General Student Bus
-Stops: Gobindaganj → Fashitola → Mokamtola → Sathmatha → Mohasthan → PUB Campus
-
-Bus 03 — General Student Bus
-Stops: Gobindaganj → Fashitola → Mokamtola → Sathmatha → Mohasthan → PUB Campus
-(Note: assuming same stop sequence as Bus 01/02 for consistency — confirm if Bus 03 should differ)
-
-Route 2 — Sherpur to PUB Campus (2 buses)
-
-Bus 04 — via Sathmatha (Rail Gate path) → PUB Campus
-
-Bus 05 — via inner road through town, meeting Sathmatha → PUB Campus
-
-Route 3 — Gabtoli to PUB Campus (1 bus)
-
-Bus 06 — Gabtoli → [intermediate stops] → PUB Campus
-
-Route 4 — Sathmatha/Bogura to PUB Campus (1 bus)
-
-Bus 07 — Sathmatha/Bogura → [intermediate stops] → PUB Campus
-
-Route 5 — Dupchachia to PUB Campus (1 bus)
-
-Bus 08 — Dupchachia → [intermediate stops] → PUB Campus
-
-Page Layout:
-
-Group buses visually by route, with a route header showing the route name and number of buses on it.
-
-Each bus shown as a card with: bus number/name, route badge, live status indicator (green dot 'On Route' / grey dot 'Not Started' / yellow dot 'Delayed'), current next stop (e.g. 'Next Stop: Mokamtola'), and estimated arrival time for that next stop.
-
-Special distinct badge on Bus 01 to mark it as Staff & Teacher only, visually different from student bus cards.
-
-Filter/tab bar at the top: All, Gobindaganj, Sherpur, Gabtoli, Sathmatha/Bogura, Dupchachia.
-
-Clicking a bus card can expand to show the full stop list for that bus, or link to a placeholder live-tracking detail view.
-
-Use our established color theme (sky-blue background, green/orange/teal accents), consistent card styling with soft shadow hover, and smooth fade-in animation as cards scroll into view.
-
-This is frontend-only with static/mock data for now — no live backend GPS data wired yet, but structure the component so it's easy to later connect to real-time per-bus location updates."`}
-
+Add clear keyboard focus states for all navbar links and buttons so active/hover styling is accessible via tab navigation.`}
       </div>
     </main>
   );

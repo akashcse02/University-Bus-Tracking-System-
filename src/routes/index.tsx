@@ -43,12 +43,12 @@ export const Route = createFileRoute("/")({
 });
 
 const navLinks = [
-  { label: "Home", href: "#" },
+  { label: "Home", href: "/" },
   { label: "Live Location", href: "/live-location" },
   { label: "Buses", href: "/buses" },
-  { label: "Time Schedule", href: "#schedule" },
-  { label: "Routes", href: "#routes" },
-  { label: "How it works", href: "#how-it-works" },
+  { label: "Time Schedule", href: "/#schedule" },
+  { label: "Routes", href: "/#routes" },
+  { label: "How it works", href: "/#how-it-works" },
 ];
 
 function Clouds() {
@@ -279,29 +279,35 @@ function Index() {
 
 
 
-          <button onClick={() => setOpen(!open)} className="lg:hidden">
+          <button 
+            onClick={() => setOpen(!open)} 
+            className="lg:hidden p-2 hover:bg-white/40 rounded-xl transition-colors focus-visible:outline-2 focus-visible:outline-primary"
+            aria-label="Toggle Menu"
+          >
             <Menu className="h-6 w-6 text-ink" />
           </button>
         </div>
 
         {/* Mobile Nav */}
         {open && (
-          <div className="absolute top-full left-0 w-full bg-white p-5 shadow-xl animate-in fade-in slide-in-from-top-4 lg:hidden">
-            <nav className="flex flex-col gap-4">
+          <div className="absolute top-full left-0 w-full bg-white/95 backdrop-blur-xl p-5 shadow-2xl border-b border-ink/5 animate-in fade-in slide-in-from-top-4 lg:hidden">
+            <nav className="flex flex-col gap-2">
               {navLinks.map((l) => (
                 <a
                   key={l.label}
                   href={l.href}
                   onClick={(e) => smoothScroll(e, l.href)}
-                  className={`text-base font-bold ${activeSection === l.label ? "text-primary" : "text-ink"}`}
+                  className={`nav-link-clean w-full justify-start ${
+                    activeSection === l.label ? "text-primary active" : "text-ink/80"
+                  }`}
                 >
                   {l.label}
                 </a>
               ))}
-              <hr className="border-border" />
+              <div className="h-px bg-ink/5 my-2" />
               <div className="flex flex-col gap-3">
-                <a href="/login" className="text-center font-bold text-ink">Login</a>
-                <a href="/signup" className="rounded-full bg-primary py-3 text-center font-bold text-primary-foreground">Sign Up</a>
+                <a href="/login" className="nav-link-clean w-full justify-start text-ink">Login</a>
+                <a href="/signup" className="btn-hover-premium rounded-full bg-primary py-3.5 text-center font-bold text-primary-foreground shadow-lg">Sign Up</a>
               </div>
             </nav>
           </div>
@@ -389,39 +395,39 @@ function Index() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Scroll-Triggered Entrance Animation for Building/Phone/Bus Section:
+                                            Add Drag-to-Scroll + New Faculty/Staff Reviews (Combined):
 
-"Currently the building, phone mockup, and bus images in this section just appear statically on page load. Change this so they animate in specifically when the user SCROLLS to this section (not on initial page load), with high-quality, buttery-smooth motion:
+"Update the 'Loved by Students' horizontal review section with the following:
 
-Scroll trigger:
+1. Add drag-to-scroll interaction:
+Users should be able to click and drag (or touch-swipe on mobile) the card row left/right to manually scroll through the cards, in addition to the existing auto-scroll animation.
 
-Use an Intersection Observer (or scroll-triggered animation library) so these elements only start animating once this section enters the viewport (e.g. when ~30% of the section is visible), not before.
+On mousedown, pause the auto-scroll and switch to manual drag mode: track cursor movement (mousemove) and translate the row horizontally based on drag distance (transform: translateX()), using cursor: grab normally and cursor: grabbing while actively dragging.
 
-Animations should trigger once per scroll-into-view (or replay each time it re-enters view, whichever feels more natural — default to triggering once).
+On mouseup or mouseleave, resume the auto-scroll animation after a short delay (2-3 seconds of inactivity).
 
-Element-specific entrance animations:
+Add momentum/inertia on release (the row continues scrolling briefly and decelerates smoothly) for a natural, premium feel — similar to native touch scrolling physics.
 
-Building (left): slides in smoothly from the LEFT edge of the screen into its position, combined with a fade-in (opacity 0 to 1) and a very slight scale-up (from ~0.95 to 1) for a soft, weighty settle.
+Support touch drag (swipe) the same way on mobile/tablet.
 
-Phone mockup (center): animates with a zoom effect — starts slightly scaled down (e.g. scale 0.85) and slightly faded, then scales up smoothly to full size (scale 1) with opacity fading to 1, giving a 'zooming into focus' feel.
+Keep it smooth and GPU-accelerated using transform only.
 
-Bus (right): slides in smoothly from the RIGHT edge of the screen into its position, with the same fade-in and slight scale-up settle as the building.
+2. Add new reviews to the row (alongside existing student reviews):
 
-Animation quality:
+Md Nahid Hasan (Faculty) — a short positive review about how PUB Bus Track has made monitoring student commute easier and more organized for the department.
 
-Use smooth, premium easing: cubic-bezier(0.16, 1, 0.3, 1) (ease-out, no bounce), duration around 0.6-0.8s per element.
+Habib Ehsanul Hoque — Head of CSE — a short positive review about how the app reflects well on the university's tech-forward approach and helps both students and faculty stay on schedule.
 
-Stagger the three elements slightly (e.g. building starts first, phone 100ms later, bus 150-200ms later) so they don't all animate in perfectly simultaneously — creates a more natural, cinematic sequence.
+Indronil Mishra (Faculty) — a short positive review about the app's reliability and how it's reduced complaints about missed buses.
 
-Use only transform (translateX, scale) and opacity for the animation (GPU-accelerated properties) to ensure buttery-smooth 60fps+ performance, avoiding any layout-shifting properties.
+Ononto — Transport System Controller — a short positive review from an operations perspective, about how the app helps coordinate bus routes and respond to delays more efficiently.
 
-Ensure animations feel high-refresh-rate smooth — no stutter or jank — by keeping the animated elements on their own composite layer (will-change: transform, opacity during the animation).
+Design for these new cards: same style as existing reviews (circular initials avatar, name, role/title shown below the name in smaller text, 1-2 sentence quote, 5-star rating), with an appropriate tag like 'Faculty' or 'Staff' instead of 'App Store review' for these roles. Mix these into the existing scrolling row alongside the student reviews (Md Akash Islam, Md Sabbir Hossain, Irin Mim)."
 
-Accessibility:
+Implement a responsive mobile navbar with a hamburger menu that preserves the same pill hover/active styling.
 
-Respect prefers-reduced-motion: for users who request reduced motion, skip the slide/zoom animations and simply fade the elements in with a quick, simple opacity transition instead."`}
+Add clear keyboard focus states for all navbar links and buttons so active/hover styling is accessible via tab navigation.`}
       </div>
-
     </main>
   );
 }

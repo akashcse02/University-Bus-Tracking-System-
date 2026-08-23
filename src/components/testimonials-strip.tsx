@@ -1,6 +1,7 @@
 import { Reveal } from "@/components/reveal";
 import { Star, Apple, Play } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useAnimation, useMotionValue } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import pubBus from "@/assets/pub-bus.png.asset.json";
 
 const reviews = [
@@ -9,31 +10,49 @@ const reviews = [
     quote: "PUB Bus Track helps me catch the bus on time and reduces waiting stress. It's an essential tool for every student commuting to Pundra University.",
     rating: 5,
     source: "Google Play",
+    role: "Student",
+  },
+  {
+    name: "Md Nahid Hasan",
+    quote: "PUB Bus Track has made monitoring student commute easier and more organized for the department. A great leap forward.",
+    rating: 5,
+    source: "Faculty Review",
+    role: "Faculty",
+  },
+  {
+    name: "Habib Ehsanul Hoque",
+    quote: "The app reflects well on the university's tech-forward approach and helps both students and faculty stay on schedule.",
+    rating: 5,
+    source: "Staff Review",
+    role: "Head of CSE",
   },
   {
     name: "Md Sabbir Hossain",
-    quote: "The real-time tracking and ETA notifications are incredibly accurate. It makes planning my day so much easier and I never miss my shuttle.",
+    quote: "The real-time tracking and ETA notifications are incredibly accurate. It makes planning my day so much easier.",
     rating: 5,
     source: "App Store",
+    role: "Student",
+  },
+  {
+    name: "Indronil Mishra",
+    quote: "The app's reliability has significantly reduced complaints about missed buses. It's a game changer for campus logistics.",
+    rating: 5,
+    source: "Faculty Review",
+    role: "Faculty",
+  },
+  {
+    name: "Ononto",
+    quote: "From an operations perspective, the app helps coordinate bus routes and respond to delays more efficiently.",
+    rating: 5,
+    source: "Staff Review",
+    role: "Transport System Controller",
   },
   {
     name: "Irin Mim",
-    quote: "Seeing the live bus location and getting delay alerts makes my commute stress-free. The interface is very intuitive and helpful.",
+    quote: "Seeing the live bus location and getting delay alerts makes my commute stress-free. Very intuitive interface.",
     rating: 5,
     source: "Google Play",
-  },
-  // Duplicated for a fuller row
-  {
-    name: "Tahsin Ahmed",
-    quote: "Finally a tracking app that works! No more guessing where the bus is. Highly recommended for all students.",
-    rating: 5,
-    source: "App Store",
-  },
-  {
-    name: "Sadia Afrin",
-    quote: "Great app! The time schedule is always up-to-date. Makes my campus life much more organized.",
-    rating: 5,
-    source: "Google Play",
+    role: "Student",
   },
 ];
 
@@ -41,26 +60,67 @@ const reviews = [
 const extendedReviews = [...reviews, ...reviews];
 
 export function TestimonialsStrip() {
+  const [isDragging, setIsDragging] = useState(false);
+  const controls = useAnimation();
+  const x = useMotionValue(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
+
+  const startAutoScroll = () => {
+    controls.start({
+      x: -2000,
+      transition: {
+        duration: 40,
+        repeat: Infinity,
+        ease: "linear",
+      },
+    });
+  };
+
+  useEffect(() => {
+    startAutoScroll();
+    return () => {
+      if (autoScrollRef.current) clearTimeout(autoScrollRef.current);
+    };
+  }, []);
+
+  const handleDragStart = () => {
+    setIsDragging(true);
+    controls.stop();
+    if (autoScrollRef.current) clearTimeout(autoScrollRef.current);
+  };
+
+  const handleDragEnd = () => {
+    setIsDragging(false);
+    autoScrollRef.current = setTimeout(() => {
+      startAutoScroll();
+    }, 3000);
+  };
+
   return (
     <section id="testimonials" className="relative overflow-hidden py-24">
       <Reveal className="text-center mb-16 px-5">
         <h2 className="font-display text-4xl font-extrabold text-ink sm:text-6xl">
           Loved by <span className="text-accent">Students</span>
         </h2>
-        <p className="mx-auto mt-6 max-w-lg text-xl font-medium text-ink/70">
-          What our daily commuters have to say about PUB Bus Track.
+        <p className="mx-auto mt-6 max-w-lg text-xl font-medium text-ink/75">
+          What our daily commuters, faculty, and staff have to say about PUB Bus Track.
         </p>
       </Reveal>
 
-      <div className="group relative flex w-full">
-        {/* The Bus "Pulling" the cards */}
+      <div 
+        ref={containerRef}
+        className={`relative flex w-full ${isDragging ? 'cursor-grabbing' : 'cursor-grab'}`}
+      >
         <motion.div
-          animate={{ x: [0, -2000] }}
-          transition={{
-            duration: 40,
-            repeat: Infinity,
-            ease: "linear",
-          }}
+          drag="x"
+          dragConstraints={{ left: -3000, right: 0 }}
+          dragElastic={0.1}
+          dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+          animate={controls}
+          style={{ x }}
           className="flex items-center gap-6"
         >
           {/* Tow Bus */}
@@ -68,7 +128,7 @@ export function TestimonialsStrip() {
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="w-48 drop-shadow-2xl"
+              className="w-48 drop-shadow-2xl pointer-events-none"
             >
               <img src={pubBus.url} alt="PUB Bus" className="w-full object-contain" />
             </motion.div>
@@ -104,11 +164,12 @@ export function TestimonialsStrip() {
                     </div>
                     <div>
                       <p className="font-display text-sm font-black text-ink">{r.name}</p>
+                      <p className="text-[10px] font-bold text-ink/50 uppercase tracking-tighter">{r.role}</p>
                     </div>
                   </div>
                   
                   <div className="flex items-center gap-1.5 rounded-full bg-white/50 px-3 py-1 text-[10px] font-black uppercase tracking-tighter text-ink/50 shadow-sm">
-                    {r.source.includes("App Store") ? <Apple className="h-3 w-3" /> : <Play className="h-3 w-3" />}
+                    {r.source.includes("App Store") ? <Apple className="h-3 w-3" /> : (r.source.includes("Google Play") ? <Play className="h-3 w-3" /> : null)}
                     {r.source}
                   </div>
                 </div>
@@ -121,9 +182,8 @@ export function TestimonialsStrip() {
       <div className="hidden" aria-hidden="true">
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
         
-        "Add a 'Loved by Students' horizontal review section, styled like the reference image, with a unique twist — a bus illustration visually pulling the row of review cards along."
+        Add Drag-to-Scroll + New Faculty/Staff Reviews (Combined)
       </div>
     </section>
   );
 }
-
