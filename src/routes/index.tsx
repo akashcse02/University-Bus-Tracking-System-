@@ -136,7 +136,7 @@ function Index() {
       <Clouds />
 
       {/* Navbar */}
-      <header className="sticky top-0 z-50 w-full backdrop-blur-md">
+      <header className="sticky top-0 z-50 w-full bg-white/60 backdrop-blur-xl border-bottom border-white/30">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
           <a href="#" onClick={(e) => smoothScroll(e, "#")} className="flex items-center gap-2.5">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-sm overflow-hidden">
@@ -153,8 +153,8 @@ function Index() {
                 key={l.label}
                 href={l.href}
                 onClick={(e) => smoothScroll(e, l.href)}
-                className={`text-sm font-bold transition-colors hover:text-primary ${
-                  activeSection === l.label ? "text-primary" : "text-ink/80"
+                className={`text-sm font-bold nav-link-glass ${
+                  activeSection === l.label ? "text-primary active" : "text-ink/80"
                 }`}
               >
                 {l.label}
@@ -164,12 +164,12 @@ function Index() {
 
           <div className="hidden items-center gap-4 lg:flex">
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-full bg-white/50 px-3 py-1.5 text-xs font-bold text-ink transition-colors hover:bg-white cursor-pointer">
+              <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-full bg-white/50 px-3 py-1.5 text-xs font-bold text-ink transition-all hover:bg-white cursor-pointer hover:translate-y-[-1px]">
                 <Globe className="h-3.5 w-3.5" />
                 {language}
                 <ChevronDown className="h-3.5 w-3.5 opacity-50" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="rounded-2xl border-none shadow-xl">
+              <DropdownMenuContent align="end" className="rounded-2xl border-none shadow-xl backdrop-blur-xl bg-white/80">
                 {["English", "Bangla", "Arabic"].map((lang) => (
                   <DropdownMenuItem key={lang} onClick={() => setLanguage(lang)} className="rounded-xl font-bold cursor-pointer">
                     {lang}
@@ -178,9 +178,10 @@ function Index() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <a href="#" className="rounded-full px-5 py-2.5 text-sm font-bold text-ink transition-colors hover:bg-white/50">Login</a>
-            <a href="#" className="rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground shadow-lg transition-transform hover:scale-105">Sign Up</a>
+            <a href="#" className="rounded-full px-5 py-2.5 text-sm font-bold text-ink nav-glass-pill transition-all">Login</a>
+            <a href="#" className="btn-glass rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground">Sign Up</a>
           </div>
+
 
           <button onClick={() => setOpen(!open)} className="lg:hidden">
             <Menu className="h-6 w-6 text-ink" />
@@ -230,7 +231,7 @@ function Index() {
               Track your university bus in real-time — buses, routes, and schedules in one place.
             </p>
             <div className="mt-8 flex flex-col items-center gap-6">
-              <a href="#how-it-works" onClick={(e) => smoothScroll(e, "#how-it-works")} className="rounded-full bg-primary px-10 py-4 font-display text-lg font-bold text-primary-foreground shadow-2xl transition-all hover:scale-105 active:scale-95">
+              <a href="#how-it-works" onClick={(e) => smoothScroll(e, "#how-it-works")} className="btn-glass rounded-full bg-primary px-10 py-4 font-display text-lg font-bold text-primary-foreground">
                 Get Started
               </a>
               <div className="flex flex-col items-center gap-3">
@@ -238,14 +239,14 @@ function Index() {
                   Download PUB Bus Track App
                 </span>
                 <div className="flex items-center gap-3">
-                  <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background transition-transform hover:scale-105">
+                  <a href="#" className="btn-glass flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background">
                     <Apple className="h-4 w-4" />
                     <div className="text-left leading-none">
                       <span className="block text-[0.4rem] uppercase opacity-60">Download on the</span>
                       <span className="block text-[10px] font-bold">App Store</span>
                     </div>
                   </a>
-                  <a href="#" className="flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background transition-transform hover:scale-105">
+                  <a href="#" className="btn-glass flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background">
                     <Play className="h-4 w-4" />
                     <div className="text-left leading-none">
                       <span className="block text-[0.4rem] uppercase opacity-60">Get it on</span>
@@ -254,6 +255,7 @@ function Index() {
                   </a>
                 </div>
               </div>
+
             </div>
           </Reveal>
         </div>
@@ -352,18 +354,42 @@ function Index() {
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Apply a simple 3D hover effect to all buttons across the app.
+                                            now add 
+Premium Glassmorphism + 3D Hover Effects (Buttons & Navbar):
 
-Refactor button components so the 3D hover styling is consistent for primary, secondary, and pill buttons.
+"Upgrade the hover interactions across the site — currently the buttons and navbar hover states look cheap and flat. Replace them with premium, glass-effect, 3D-feeling interactions:
 
-Add accessible focus and keyboard states that match the 3D hover visuals for all buttons.
+1. Primary Buttons (Get Started, Sign Up, App Store/Google Play buttons):
 
-Enable reduced-motion behavior so the 3D hover animations tone down when users prefer less motion.
+Add a subtle glassmorphism layer: on hover, apply a soft frosted-glass shine effect — a diagonal light gradient sweep (using a pseudo-element ::before with background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent)) that animates across the button on hover, like light reflecting off glass.
 
-Optimize the 3D hover animation performance so it stays smooth on mobile and low-end devices.
-I will upload a reference image showing the exact composition and positioning I want for this hero section. Please match the layout, spacing, and element placement in that reference image as closely as possible — including where the headline, subtext, CTA button, building, bus, and phone mockup are positioned relative to each other.
+Add a real 3D lift effect: on hover, the button should lift slightly with transform: translateY(-3px) scale(1.02) combined with a soft layered shadow (box-shadow: 0 10px 20px rgba(0,0,0,0.15), 0 6px 6px rgba(0,0,0,0.1)) that increases in blur/spread on hover, simulating the button physically rising off the page.
 
-Keep the sky-blue background, current color scheme (green CTA, orange accent), and existing content/copy unchanged — this is a layout/positioning adjustment only."
+Add a subtle inner highlight border (box-shadow: inset 0 1px 0 rgba(255,255,255,0.4)) at the top edge to simulate a glossy, rounded glass surface.
+
+Transition all these properties smoothly with transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) for a premium, weighty easing feel (not linear or bouncy).
+
+On active/click, add a slight press-down effect (transform: translateY(-1px) scale(0.98)) for tactile feedback.
+
+2. Navbar Links (Home, Live Location, Buses, Time Schedule, Routes, How it works):
+
+Replace any flat color-change-only hover with an animated underline effect: a thin accent-colored line that smoothly expands from the center (or left) under the text on hover (transform: scaleX(0) to scaleX(1), transform-origin center, 0.3s ease-out).
+
+Add a subtle text color transition combined with a very slight translateY(-1px) lift on hover for a light, responsive feel.
+
+Add a soft glow/blur effect behind the active/hovered link (a subtle box-shadow or pseudo-element blur in the accent color at low opacity) to reinforce the glass/premium aesthetic.
+
+3. Navbar container itself:
+
+Apply a glassmorphism background to the navbar: background: rgba(255, 255, 255, 0.6) with backdrop-filter: blur(12px) and a subtle bottom border (border-bottom: 1px solid rgba(255,255,255,0.3)), so it looks like frosted glass floating above the page content, especially noticeable if the page has scrollable content behind it.
+
+4. Login/Sign Up buttons specifically:
+
+Sign Up button: keep solid green but apply the glass shine sweep + 3D lift hover described above.
+
+Login button/link: on hover, add a soft glass-pill background that fades in (background: rgba(0,0,0,0.05) with backdrop-filter: blur(4px), rounded corners) behind the text, plus the same slight lift.
+
+Ensure all these effects use only transform, opacity, and box-shadow/backdrop-filter (GPU-friendly properties) for smooth 60fps performance, and respect prefers-reduced-motion by disabling the lift/shine animations (keep only simple color transitions) for users who request reduced motion."
       </div>
     </main>
   );

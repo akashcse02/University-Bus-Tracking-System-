@@ -80,6 +80,86 @@
   --animate-slide-in-right: slide-in-right 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@layer utilities {
+  .btn-glass {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 4px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .btn-glass::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .btn-glass:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 10px 20px rgba(0, 0, 0, 0.15), 0 6px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-glass:hover::before {
+    left: 150%;
+  }
+
+  .btn-glass:active {
+    transform: translateY(-1px) scale(0.98);
+  }
+
+  .nav-link-glass {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .nav-link-glass::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease-out;
+  }
+
+  .nav-link-glass:hover {
+    transform: translateY(-1px);
+    text-shadow: 0 0 8px rgba(var(--color-primary), 0.3);
+  }
+
+  .nav-link-glass:hover::after,
+  .nav-link-glass.active::after {
+    transform: scaleX(1);
+  }
+
+  .nav-glass-pill:hover {
+    background: rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(4px);
+    transform: translateY(-1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-glass, .nav-link-glass, .nav-glass-pill {
+    transform: none !important;
+    transition: color 0.2s, background-color 0.2s !important;
+  }
+  .btn-glass::before {
+    display: none !important;
+  }
+}
+
+
 @keyframes pin-pop {
   0%, 4% { opacity: 0; transform: translateY(10px) scale(0.6); }
   10%, 92% { opacity: 1; transform: translateY(0) scale(1); }
