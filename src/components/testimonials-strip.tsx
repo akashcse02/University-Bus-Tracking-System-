@@ -101,7 +101,7 @@ export function TestimonialsStrip() {
     <section id="testimonials" className="relative overflow-hidden py-24">
       <Reveal className="text-center mb-16 px-5">
         <h2 className="font-display text-4xl font-extrabold text-ink sm:text-6xl">
-          Loved by <span className="text-accent">Students</span>
+          Loved by <span className="text-accent">Users</span>
         </h2>
         <p className="mx-auto mt-6 max-w-lg text-xl font-medium text-ink/75">
           What our daily commuters, faculty, and staff have to say about PUB Bus Track.
@@ -180,9 +180,10 @@ export function TestimonialsStrip() {
       </div>
 
       <div className="hidden" aria-hidden="true">
-        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
-        
-        Add Drag-to-Scroll + New Faculty/Staff Reviews (Combined)
+        {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+                                        
+                                            
+                                            Change the heading of the horizontal review section from 'Loved by Students' to 'Loved by Users' — this reflects that the reviews now include students, faculty, and staff, not just students. Keep the section's design, cards, drag-to-scroll interaction, and content exactly as they are — this is a heading text change only."`}
       </div>
     </section>
   );

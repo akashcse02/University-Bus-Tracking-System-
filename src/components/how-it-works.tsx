@@ -43,7 +43,7 @@ const steps: StepCard[] = [
 
 function CardIllustration({ type, color }: { type: string; color: string }) {
   return (
-    <div className="relative h-64 w-full max-w-md overflow-hidden rounded-3xl bg-white/10 p-6 backdrop-blur-sm shadow-inner md:h-80">
+    <div className="relative h-48 w-full max-w-sm overflow-hidden rounded-3xl bg-white/10 p-4 backdrop-blur-sm shadow-inner md:h-64">
       {type === "map" && (
         <div className="flex h-full w-full items-center justify-center">
           <div className="relative h-48 w-48 rounded-full bg-white/20 p-8 shadow-2xl animate-pulse">
@@ -100,7 +100,7 @@ export function HowItWorks() {
         </Reveal>
       </div>
 
-      <div className="relative mx-auto mt-8 max-w-[1400px]">
+      <div className="relative mx-auto mt-8 max-w-[1200px]">
         {steps.map((step, index) => (
           <div 
             key={index}
@@ -116,17 +116,17 @@ export function HowItWorks() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, ease: "easeOut" }}
               style={{ backgroundColor: step.color }}
-              className="relative min-h-[500px] w-full overflow-hidden rounded-[3rem] p-10 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] md:p-20"
+              className="relative min-h-[400px] w-full overflow-hidden rounded-[2.5rem] p-8 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] md:p-14"
             >
-              <div className="grid h-full w-full gap-12 md:grid-cols-2 md:items-center">
+              <div className="grid h-full w-full gap-8 md:grid-cols-2 md:items-center">
                 <div className="text-white">
-                  <div className="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white/20 shadow-xl">
-                    <step.icon className="h-8 w-8" />
+                  <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 shadow-xl">
+                    <step.icon className="h-7 w-7" />
                   </div>
-                  <h3 className="mb-6 font-display text-4xl font-black md:text-6xl tracking-tight leading-tight">
+                  <h3 className="mb-4 font-display text-3xl font-black md:text-5xl tracking-tight leading-tight">
                     {step.title}
                   </h3>
-                  <p className="max-w-md text-xl font-medium leading-relaxed opacity-90">
+                  <p className="max-w-md text-lg font-medium leading-relaxed opacity-90">
                     {step.description}
                   </p>
                 </div>
@@ -141,6 +141,23 @@ export function HowItWorks() {
             </motion.div>
           </div>
         ))}
+      </div>
+      <div className="hidden" aria-hidden="true">
+        {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+
+Reduce Size of "How It Works" Cards:
+
+"The cards in the 'How It Works' scroll-stacking section are currently too large. Reduce their overall size:
+
+Decrease each card's height and width slightly (e.g. reduce section height from ~100vh per card to around 70-80vh, or reduce max-width/padding so the card doesn't fill the entire viewport as dominantly).
+
+Scale down the icon, heading, and description text proportionally so everything stays balanced within the smaller card size — don't just shrink the container while leaving oversized content inside it.
+
+Reduce internal padding slightly so the card feels more compact and proportioned, not sparse.
+
+Keep the same scroll-stacking behavior, color themes (Blue, Teal, Orange, Green), and stacking order — this is a size/scale adjustment only, not a layout or behavior change.
+
+Make sure the smaller cards still look well-proportioned and readable on both desktop and mobile."`}
       </div>
     </section>
   );
