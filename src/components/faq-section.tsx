@@ -6,12 +6,14 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const verbatimText = "";
-
 const faqs = [
   {
-    question: verbatimText,
-    answer: verbatimText,
+    question: "How do I track my bus?",
+    answer: "You can track your bus in real-time through the 'Live Location' page after signing in to your account.",
+  },
+  {
+    question: "Where can I find the bus schedule?",
+    answer: "The complete university bus schedule is available on the 'Time Schedule' page, with options for both Class and Exam periods.",
   },
 ];
 
