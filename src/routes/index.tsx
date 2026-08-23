@@ -289,97 +289,59 @@ function Index() {
           </Reveal>
         </div>
 
-        {/* Grounded Visuals Scene: Building (Left), Phone (Center), Bus (Right) */}
+        {/* Visuals Scene: Building (Left), Phone (Center), Bus (Right) */}
         <div className="relative mt-8 h-[300px] sm:h-[400px] lg:h-[450px]">
-          <div className="absolute inset-x-0 bottom-0 grid h-full items-end gap-0 lg:grid-cols-[1fr_auto_1fr]">
+          <div className="absolute inset-x-0 bottom-0 grid h-full items-end gap-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-12">
             
-            {/* Left: Building Grounded */}
-            <div className="relative z-10 h-full w-full animate-[slide-in-3d-left_1.2s_ease-out_forwards]">
-              <div className="absolute bottom-0 left-0 w-full max-w-[450px]">
+            {/* Left: Building Card */}
+            <div className="relative z-10 hidden animate-[slide-in-3d-left_1.2s_ease-out_forwards] lg:block">
+              <div className="card-hover-premium overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-2xl ring-1 ring-black/5">
                 <img 
                   src={pundraUni.url} 
                   alt="Pundra University" 
-                  className="w-full object-contain object-bottom" 
+                  className="h-64 w-full rounded-[2rem] object-cover lg:h-80" 
                 />
-                
-                {/* Floating Badges/Stickers near building */}
-                <div className="absolute top-[30%] -left-2 z-20 flex animate-float-slow items-center gap-2 rounded-xl bg-accent px-3 py-1.5 text-[10px] font-bold text-accent-foreground shadow-lg sm:text-xs">
+                <div className="absolute top-6 left-6 z-20 flex animate-float-slow items-center gap-2 rounded-xl bg-accent px-3 py-1.5 text-[10px] font-bold text-accent-foreground shadow-lg sm:text-xs">
                   <Clock className="h-3.5 w-3.5" /> Classes 9:00
                 </div>
-                <div className="absolute top-[50%] -right-4 z-20 flex animate-float items-center gap-2 rounded-xl bg-primary px-3 py-1.5 text-[10px] font-bold text-primary-foreground shadow-lg sm:text-xs">
+                <div className="absolute top-20 right-6 z-20 flex animate-float items-center gap-2 rounded-xl bg-primary px-3 py-1.5 text-[10px] font-bold text-primary-foreground shadow-lg sm:text-xs">
                   <Globe className="h-3.5 w-3.5" /> Student ID
-                </div>
-                
-                {/* Student Icon Sticker */}
-                <div className="absolute bottom-[10%] left-[20%] z-20 h-10 w-10 animate-float-subtle rounded-full bg-white p-1.5 shadow-md">
-                  <svg viewBox="0 0 80 120" className="h-full w-full">
-                    <circle cx="40" cy="30" r="14" fill="#FFD2B2" />
-                    <rect x="28" y="44" width="24" height="45" rx="10" fill="#4CAF50" />
-                  </svg>
                 </div>
               </div>
             </div>
 
-            {/* Center: Integrated Phone Grounded */}
-            <div className="relative z-30 mx-auto w-28 animate-float sm:w-32 lg:w-40 h-[80%] flex flex-col justify-end">
-              <div className="w-full rounded-[2rem] border-[3px] border-ink/20 bg-white/10 backdrop-blur-sm overflow-hidden aspect-[9/19] shadow-xl">
-                <div className="h-full w-full p-1">
-                  <div className="h-full w-full rounded-[1.8rem] bg-white/80 overflow-hidden flex flex-col">
-                    <div className="flex-1 bg-blue-100/20 p-2">
-                       <div className="h-full w-full rounded-xl flex items-center justify-center">
-                         <MapPin className="h-6 w-6 text-primary animate-bounce" />
-                       </div>
-                    </div>
-                    <div className="p-3 space-y-2">
-                      <div className="h-1.5 w-full rounded-full bg-slate-200/50" />
-                      <div className="flex items-center gap-1.5">
-                        <div className="h-6 w-6 rounded-full bg-accent flex items-center justify-center shadow-sm">
-                          <Bus className="h-3 w-3 text-white" />
-                        </div>
-                        <div className="h-2 w-12 rounded-full bg-slate-200/50" />
-                      </div>
-                    </div>
+            {/* Center: Phone Mockup */}
+            <div className="relative z-30 mx-auto w-28 animate-float sm:w-32 lg:w-40">
+              <div className="card-hover-premium overflow-hidden rounded-[2.5rem] border-[6px] border-ink bg-white p-1.5 shadow-2xl ring-1 ring-black/5">
+                <div className="aspect-[9/19] w-full overflow-hidden rounded-[2rem] bg-slate-100">
+                  <div className="h-full w-full bg-blue-100/20 p-2">
+                     <div className="h-full w-full rounded-xl flex items-center justify-center">
+                       <MapPin className="h-6 w-6 text-primary animate-bounce" />
+                     </div>
                   </div>
                 </div>
               </div>
-              
-              {/* GO Sticker */}
-              <div className="absolute top-1/2 -right-6 z-40 animate-float-slow">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-400 font-black text-white shadow-lg text-[10px] ring-4 ring-white">
-                  GO
-                </div>
-              </div>
             </div>
 
-            {/* Right: Bus Grounded */}
-            <div className="relative z-20 h-full w-full animate-slide-in-right [animation-fill-mode:forwards] opacity-0">
-              <div className="absolute bottom-0 right-0 w-full max-w-[450px]">
+            {/* Right: Bus Card */}
+            <div className="relative z-20 hidden animate-slide-in-right [animation-fill-mode:forwards] lg:block opacity-0">
+              <div className="card-hover-premium overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-2xl ring-1 ring-black/5">
                 <img 
                   src={pubBus.url} 
                   alt="PUB Bus" 
-                  className="w-full object-contain object-bottom" 
+                  className="h-64 w-full rounded-[2rem] object-cover lg:h-80" 
                 />
-                
-                {/* Floating Badges/Stickers near bus */}
-                <div className="absolute top-[20%] right-[10%] z-20 flex animate-float items-center gap-2 rounded-xl bg-white px-3 py-2 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
+                <div className="absolute top-6 right-6 z-20 flex animate-float items-center gap-2 rounded-xl bg-white px-3 py-2 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
                   <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">
                     <span className="text-primary">3</span>
                   </div>
                   min away
                 </div>
-                
-                <div className="absolute bottom-[30%] -left-4 z-20 flex animate-float-slow items-center gap-2 rounded-xl bg-white px-4 py-2 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
+                <div className="absolute bottom-12 -left-4 z-20 flex animate-float-slow items-center gap-2 rounded-xl bg-white px-4 py-2 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
                   <Bus className="h-4 w-4 text-primary" /> Route: Gobindaganj
-                </div>
-                
-                {/* 1000+ Students Sticker */}
-                <div className="absolute top-[40%] -left-8 z-20 hidden lg:flex flex-col items-center justify-center rounded-xl bg-blue-600 p-2 text-white shadow-xl animate-float-subtle">
-                  <span className="text-[10px] font-black leading-none">1000+</span>
-                  <span className="text-[8px] uppercase tracking-tighter opacity-80">Students</span>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -403,7 +365,7 @@ function Index() {
       <SiteFooter />
 
       <div className="hidden" aria-hidden="true">
-        {"'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Lovable Prompt — Make Hero Section Feel Like Transit App's Reference (Grounded Scene, Not Floating Cards):\n\n\"Redesign the hero section's bottom visual composition to feel more like a grounded, integrated street-level scene (like the attached Transit App reference), instead of isolated floating image cards. Specifically:\n\n1. Remove the card/frame look:\nThe building and bus images currently sit inside distinct rounded rectangle 'cards' with visible edges and drop shadows, floating separately from the background. Instead, blend them directly into the sky-blue background — no visible card border or frame, so they look like part of one continuous scene rather than two separate UI cards placed side by side.\n\n2. Ground the images at the bottom edge:\nLet the building (left) and bus (right) images extend down to and touch the bottom edge of the hero section, like they're standing on the ground within the scene — similar to how the reference shows the building and train/bus sitting directly at the base of the page, not floating mid-air in cards.\n\n3. Add small floating sticker/badge elements around them:\nScatter a few small illustrated sticker-style elements near the images for personality — e.g. a small badge like '12 min' or '3 min' (matching our ETA theme) near the bus, a small icon badge (like a bike/walk icon, or a student icon) near the building, similar in spirit to the reference's floating stickers (the '3 minutes' tag, the bike icon, the emoji stickers). Keep these small, playful, and scattered naturally around — not overlapping the main content.\n\n4. Keep the phone mockup but ground it too:\nPosition the phone mockup between the building and bus, but reduce its visual 'card' weight — remove the heavy white background and thick dark border, keep just the phone frame outline with a transparent/blended interior showing the live location pin, similar to how the reference integrates its floating UI elements naturally into the scene rather than as a boxed card.\n\n5. Overall feel:\nThe goal is for the hero's bottom half to feel like one cohesive illustrated street scene — building, bus, phone, badges — all sitting together at ground level against the sky-blue sky, the way the reference shows a New York street scene with a building, subway, and cyclist all grounded together, rather than three separate floating framed images.\n\nKeep the headline, subtext, CTA button, and color scheme exactly as they are — this update is only about how the bottom visual scene is composed and blended into the background.\""}
+        {"'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            নতুন পরিবর্তনটা করার দরকার নেই, আগে যেভাবে ছিল (কার্ড/ফ্রেম স্টাইলে building আর bus, বর্তমান লেআউট অনুযায়ী) সেভাবেই রাখতে চান। কোনো প্রম্পট পাঠানোর দরকার নেই — এই আপডেটটা বাদ দিয়ে দিচ্ছি।"}
       </div>
 
 
