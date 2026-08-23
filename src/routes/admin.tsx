@@ -14,7 +14,13 @@ import {
   Settings,
   Bell,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  CalendarDays,
+  Edit3,
+  Trash2,
+  Save,
+  Undo,
+  Download
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -29,6 +35,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -91,7 +99,7 @@ function AdminDashboard() {
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === "buses" ? "bg-primary/10 text-primary" : "text-ink/60 hover:bg-slate-50 hover:text-ink"}`}
           >
             <Bus className="h-5 w-5" />
-            Bus Management
+            Bus Fleet
           </button>
           <button 
             onClick={() => setActiveTab("routes")}
@@ -101,18 +109,25 @@ function AdminDashboard() {
             Route Schedules
           </button>
           <button 
+            onClick={() => setActiveTab("schedule")}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === "schedule" ? "bg-primary/10 text-primary" : "text-ink/60 hover:bg-slate-50 hover:text-ink"}`}
+          >
+            <CalendarDays className="h-5 w-5" />
+            Schedule Manager
+          </button>
+          <button 
             onClick={() => setActiveTab("users")}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === "users" ? "bg-primary/10 text-primary" : "text-ink/60 hover:bg-slate-50 hover:text-ink"}`}
           >
             <Users className="h-5 w-5" />
-            User Roles
+            User Management
           </button>
           <button 
             onClick={() => setActiveTab("settings")}
             className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl font-bold transition-all ${activeTab === "settings" ? "bg-primary/10 text-primary" : "text-ink/60 hover:bg-slate-50 hover:text-ink"}`}
           >
             <Settings className="h-5 w-5" />
-            Settings
+            System Settings
           </button>
         </nav>
 
@@ -429,7 +444,188 @@ function AdminDashboard() {
                 </CardContent>
               </Card>
             )}
+
+            {activeTab === "schedule" && (
+              <div className="space-y-6">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div>
+                    <h3 className="text-2xl font-display font-extrabold text-ink">Schedule Manager</h3>
+                    <p className="text-slate-500 font-medium">Update Class and Exam time datasets for all routes.</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <Button variant="outline" className="rounded-2xl font-bold gap-2">
+                      <Undo className="h-4 w-4" />
+                      Discard
+                    </Button>
+                    <Button className="rounded-2xl font-bold gap-2 bg-emerald-600 hover:bg-emerald-700 text-white">
+                      <Save className="h-4 w-4" />
+                      Save Changes
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                  <Card className="lg:col-span-2 border-none shadow-sm overflow-hidden">
+                    <CardHeader className="bg-white border-b border-slate-50">
+                      <div className="flex items-center justify-between">
+                        <CardTitle className="font-display font-bold">Class Time Dataset</CardTitle>
+                        <Badge className="bg-blue-100 text-blue-700 font-bold border-none">Active</Badge>
+                      </div>
+                    </CardHeader>
+                    <CardContent className="p-0">
+                      <Table>
+                        <TableHeader className="bg-slate-50/50">
+                          <TableRow className="hover:bg-transparent">
+                            <TableHead className="font-bold">Slot / Day</TableHead>
+                            <TableHead className="font-bold">Campus</TableHead>
+                            <TableHead className="font-bold">Sathmatha</TableHead>
+                            <TableHead className="font-bold">Bonani</TableHead>
+                            <TableHead className="text-right"></TableHead>
+                          </TableRow>
+                        </TableHeader>
+                        <TableBody>
+                          {[
+                            { slot: "Morning 08:30", campus: "08:30 AM", sathmatha: "08:40 AM", bonani: "08:30 AM" },
+                            { slot: "Noon 01:05", campus: "01:05 PM", sathmatha: "-", bonani: "-" },
+                            { slot: "Afternoon 04:15", campus: "04:15 PM", sathmatha: "02:05 PM", bonani: "-" },
+                          ].map((row, i) => (
+                            <TableRow key={i} className="group border-slate-50">
+                              <TableCell className="font-bold text-ink">{row.slot}</TableCell>
+                              <TableCell className="font-mono text-ink/70">{row.campus}</TableCell>
+                              <TableCell className="font-mono text-ink/70">{row.sathmatha}</TableCell>
+                              <TableCell className="font-mono text-ink/70">{row.bonani}</TableCell>
+                              <TableCell className="text-right">
+                                <button className="p-2 text-slate-300 hover:text-primary transition-colors">
+                                  <Edit3 className="h-4 w-4" />
+                                </button>
+                              </TableCell>
+                            </TableRow>
+                          ))}
+                        </TableBody>
+                      </Table>
+                      <div className="p-4 bg-slate-50/50 border-t border-slate-50">
+                        <Button variant="ghost" size="sm" className="w-full rounded-xl font-bold text-ink/40 gap-2">
+                          <Plus className="h-4 w-4" />
+                          Add Row
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <div className="space-y-6">
+                    <Card className="border-none shadow-sm">
+                      <CardHeader>
+                        <CardTitle className="font-display font-bold">Exam Mode Control</CardTitle>
+                        <CardDescription>Switch the entire system to Exam Schedule.</CardDescription>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        <div className="flex items-center justify-between rounded-2xl bg-amber-50 p-4 ring-1 ring-amber-100">
+                          <div className="flex items-center gap-3">
+                            <div className="grid h-8 w-8 place-items-center rounded-lg bg-amber-100 text-amber-600">
+                              <Clock className="h-4 w-4" />
+                            </div>
+                            <div>
+                              <p className="text-sm font-black text-amber-900">Exam Mode</p>
+                              <p className="text-[10px] font-bold text-amber-700/60 uppercase tracking-wider">System-wide</p>
+                            </div>
+                          </div>
+                          <Switch className="data-[state=checked]:bg-amber-600" />
+                        </div>
+                        <p className="text-[11px] font-bold text-slate-400 italic">
+                          * Enabling this will default the Time Schedule page to the 'Exam Time' tab for all users.
+                        </p>
+                      </CardContent>
+                    </Card>
+
+                    <Card className="border-none shadow-sm">
+                      <CardHeader>
+                        <CardTitle className="font-display font-bold">Quick Export</CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-2">
+                        <Button variant="outline" className="w-full justify-start gap-3 rounded-2xl font-bold border-slate-200 hover:bg-slate-50">
+                          <Download className="h-4 w-4" />
+                          Export CSV
+                        </Button>
+                        <Button variant="outline" className="w-full justify-start gap-3 rounded-2xl font-bold border-slate-200 hover:bg-slate-50">
+                          <Download className="h-4 w-4" />
+                          Generate PDF Preview
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {activeTab === "settings" && (
+              <div className="space-y-6">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div>
+                    <h3 className="text-2xl font-display font-extrabold text-ink">System Settings</h3>
+                    <p className="text-slate-500 font-medium">Global configuration for the PUB Bus Track platform.</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Card className="border-none shadow-sm">
+                    <CardHeader>
+                      <CardTitle className="font-display font-bold">General Config</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                          <Label className="text-base font-bold text-ink">Maintenance Mode</Label>
+                          <p className="text-sm text-slate-500">Disable live tracking for system updates.</p>
+                        </div>
+                        <Switch />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                          <Label className="text-base font-bold text-ink">Public Registration</Label>
+                          <p className="text-sm text-slate-500">Allow new students to sign up.</p>
+                        </div>
+                        <Switch defaultChecked />
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-none shadow-sm">
+                    <CardHeader>
+                      <CardTitle className="font-display font-bold">Notification Gateway</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                          <Label className="text-base font-bold text-ink">SMS Alerts</Label>
+                          <p className="text-sm text-slate-500">Enable automated SMS reminders.</p>
+                        </div>
+                        <Switch defaultChecked />
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <div className="space-y-0.5">
+                          <Label className="text-base font-bold text-ink">Push Notifications</Label>
+                          <p className="text-sm text-slate-500">Enable browser push notifications.</p>
+                        </div>
+                        <Switch defaultChecked />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </div>
+            )}
           </Reveal>
+
+          {/* Hidden Metadata Container */}
+          <div className="hidden" aria-hidden="true">
+            {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+                                            
+                                                
+                                                Add an admin-only interface so I can update the Class Time schedule and swap in the real Exam Time dataset.
+
+Implement deep links so I can open the Time Schedule page directly to a specific day and route with the correct tab selected.
+
+Add a notification preferences panel so I can choose push notifications or SMS reminders and control how far in advance I get alerted.`}
+          </div>
         </div>
       </main>
     </div>

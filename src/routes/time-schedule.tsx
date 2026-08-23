@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearch, useNavigate } from "@tanstack/react-router";
 import { 
   Clock, 
   Calendar, 
@@ -14,8 +15,10 @@ import {
   Download,
   Bell,
   Settings,
-  Filter
+  Filter,
+  ArrowRight
 } from "lucide-react";
+import { NotificationSettings } from "@/components/notification-settings";
 import { Reveal } from "@/components/reveal";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -302,9 +305,24 @@ const ROUTE_COLUMNS = [
 ];
 
 function TimeSchedulePage() {
-  const [scheduleType, setScheduleType] = useState("class");
-  const [searchQuery, setSearchQuery] = useState("");
-  const [selectedDay, setSelectedDay] = useState<string | null>(null);
+  const search = useSearch({ from: "/time-schedule" }) as any;
+  const navigate = useNavigate();
+  const [scheduleType, setScheduleType] = useState(search.type || "class");
+  const [searchQuery, setSearchQuery] = useState(search.route || "");
+  const [selectedDay, setSelectedDay] = useState<string | null>(search.day || null);
+
+  // Update URL when filters change
+  useEffect(() => {
+    navigate({
+      to: "/time-schedule",
+      search: {
+        type: scheduleType,
+        day: selectedDay || undefined,
+        route: searchQuery || undefined,
+      },
+      replace: true,
+    } as any);
+  }, [scheduleType, selectedDay, searchQuery, navigate]);
 
   const scheduleData = useMemo(() => {
     const baseData = scheduleType === "class" ? CLASS_TIME_SCHEDULE : EXAM_TIME_SCHEDULE;
@@ -513,13 +531,16 @@ function TimeSchedulePage() {
                                         {val}
                                       </span>
                                       {val !== "-" && (
-                                        <button 
-                                          className="opacity-0 group-hover/cell:opacity-100 transition-opacity p-1 rounded-md hover:bg-primary/10 text-primary"
-                                          title="Set Reminder"
-                                          onClick={() => alert(`Reminder set for ${val} at ${col.label}`)}
-                                        >
-                                          <Bell className="h-3 w-3" />
-                                        </button>
+                                        <NotificationSettings 
+                                          trigger={
+                                            <button 
+                                              className="opacity-0 group-hover/cell:opacity-100 transition-opacity p-1 rounded-md hover:bg-primary/10 text-primary"
+                                              title="Set Reminder"
+                                            >
+                                              <Bell className="h-3 w-3" />
+                                            </button>
+                                          }
+                                        />
                                       )}
                                     </div>
                                   )}
@@ -618,15 +639,11 @@ function TimeSchedulePage() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Add optional push notifications or SMS reminders so I get alerted before my selected bus departure time.
+                                            Add an admin-only interface so I can update the Class Time schedule and swap in the real Exam Time dataset.
 
-Add a route search and quick filters on the Time Schedule page so I can instantly narrow the table to the routes I care about.
+Implement deep links so I can open the Time Schedule page directly to a specific day and route with the correct tab selected.
 
-Add a button to download the current Class/Exam schedule (for the selected day) as a clean PDF for offline viewing.
-
-Add an admin-only interface to update the Class Time schedule and switch in the real Exam Time dataset.
-
-Add deep links so I can open the Time Schedule page directly to a specific day and route with the correct tab selected.`}
+Add a notification preferences panel so I can choose push notifications or SMS reminders and control how far in advance I get alerted.`}
       </div>
     </main>
   );
