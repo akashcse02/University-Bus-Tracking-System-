@@ -3,7 +3,8 @@ import { AdminDashboard } from "@/components/dashboards/admin-dashboard";
 
 export const Route = createFileRoute("/_authenticated/admin")({
   beforeLoad: ({ context }) => {
-    if (context.role !== "admin") {
+    const role = (context as any).role;
+    if (role !== "admin") {
       throw redirect({
         to: "/live-location",
       });
