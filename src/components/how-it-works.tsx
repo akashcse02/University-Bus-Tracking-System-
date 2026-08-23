@@ -136,10 +136,8 @@ export function HowItWorks() {
                 </div>
               </div>
 
-              {/* Step number watermark */}
-              <div className="absolute -bottom-10 -right-10 text-[15rem] font-black text-white/5 select-none pointer-events-none">
-                0{index + 1}
-              </div>
+              {/* Step number watermark removed for cleaner look */}
+
             </motion.div>
           </div>
         ))}

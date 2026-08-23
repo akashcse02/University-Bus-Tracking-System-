@@ -330,13 +330,12 @@ function BusesPage() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Integrate a Google Map in the Live Location section with a moving bus marker and route polyline for the selected bus.
+                                            Remove Large Background Number Watermark from ALL 4 Cards:
 
-Add expandable bus cards that reveal the full stop list and clearly highlight the current next stop and ETA.
+"Remove the large, faded background step-number watermark (e.g. '01', '02', '03', '04') that currently appears behind the content on ALL 4 'How It Works' cards — Blue (Card 1), Teal (Card 2), Orange (Card 3), and Green (Card 4).
 
-Enable the top tab bar to filter buses by route (All, Gobindaganj, Sherpur, Gabtoli, Sathmatha/Bogura, Dupchachia) with smooth transitions.
+This oversized, semi-transparent number sitting behind the icon/heading/description on each card should be completely removed across all four cards — it looks cluttered and unpolished. Keep only the icon, title, and description text as the visible content on each card, on top of the clean solid/gradient theme-color background, with no large number overlay anywhere in this section."`}
 
-Implement an ETA countdown that updates the next-stop arrival time periodically for each bus using mock data.`}
 
 ${`এখানে সব আপডেট মিলিয়ে সম্পূর্ণ Buses পেজের প্রম্পট:
 
