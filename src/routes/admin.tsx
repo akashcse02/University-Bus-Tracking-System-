@@ -611,6 +611,7 @@ function AdminDashboard() {
                   </Card>
                 </div>
               </div>
+            )}
           </Reveal>
         </div>
       </main>
