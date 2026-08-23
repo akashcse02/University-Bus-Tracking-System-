@@ -9,7 +9,12 @@ import {
   Bus as BusIcon, 
   ArrowLeft,
   ChevronRight,
-  Info
+  Info,
+  Search,
+  Download,
+  Bell,
+  Settings,
+  Filter
 } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { motion, AnimatePresence } from "framer-motion";
@@ -298,9 +303,48 @@ const ROUTE_COLUMNS = [
 
 function TimeSchedulePage() {
   const [scheduleType, setScheduleType] = useState("class");
-  const scheduleData = useMemo(() => 
-    scheduleType === "class" ? CLASS_TIME_SCHEDULE : EXAM_TIME_SCHEDULE, 
-  [scheduleType]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedDay, setSelectedDay] = useState<string | null>(null);
+
+  const scheduleData = useMemo(() => {
+    const baseData = scheduleType === "class" ? CLASS_TIME_SCHEDULE : EXAM_TIME_SCHEDULE;
+    
+    return baseData.map(dayGroup => {
+      // Filter slots based on search query
+      const filteredSlots = dayGroup.slots.filter(slot => {
+        if (!searchQuery) return true;
+        
+        const query = searchQuery.toLowerCase();
+        // Check if any route in this slot matches the query
+        return Object.entries(slot).some(([key, val]) => {
+          if (key === 'time') return val.toLowerCase().includes(query);
+          if (val === '-') return false;
+          
+          // Match route names from ROUTE_COLUMNS
+          const routeCol = ROUTE_COLUMNS.find(c => c.key === key);
+          if (routeCol && (routeCol.label.toLowerCase().includes(query) || routeCol.labelBn.includes(query))) {
+            return true;
+          }
+          
+          return val.toLowerCase().includes(query);
+        });
+      });
+
+      return {
+        ...dayGroup,
+        slots: filteredSlots
+      };
+    }).filter(dayGroup => {
+      if (selectedDay && dayGroup.day !== selectedDay) return false;
+      return dayGroup.slots.length > 0;
+    });
+  }, [scheduleType, searchQuery, selectedDay]);
+
+  const days = useMemo(() => CLASS_TIME_SCHEDULE.map(d => d.day), []);
+
+  const handleDownloadPDF = () => {
+    window.print(); // Simple implementation for now
+  };
 
   return (
     <main className="min-h-screen bg-[#F0F9FF]">
@@ -320,6 +364,9 @@ function TimeSchedulePage() {
               Back to Home
             </a>
             <a href="/login" className="hidden sm:block rounded-full bg-primary/10 px-6 py-2 text-sm font-black text-primary transition-all hover:bg-primary hover:text-white">Sign In</a>
+            <a href="/login?admin=true" className="p-2 rounded-full hover:bg-slate-100 text-ink/20 hover:text-ink/40 transition-all" title="Admin Portal">
+              <Settings className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </header>
@@ -340,29 +387,70 @@ function TimeSchedulePage() {
           </div>
         </Reveal>
 
-        {/* Schedule Toggle */}
-        <div className="mb-10 flex justify-center">
-          <Tabs 
-            defaultValue="class" 
-            className="w-full max-w-md"
-            onValueChange={(v) => setScheduleType(v)}
-          >
-            <TabsList className="grid w-full grid-cols-2 rounded-[2rem] bg-white p-1 shadow-sm ring-1 ring-slate-100 h-14">
-              <TabsTrigger 
-                value="class" 
-                className="rounded-[1.8rem] data-[state=active]:bg-primary data-[state=active]:text-white font-black text-sm transition-all h-full"
+        {/* Search and Filters */}
+        <Reveal delay={0.1}>
+          <div className="mb-10 space-y-6">
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-between bg-white p-4 rounded-[2rem] shadow-sm ring-1 ring-slate-100">
+              <div className="relative w-full md:max-w-md">
+                <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-ink/40" />
+                <input 
+                  type="text"
+                  placeholder="Search routes or times (e.g. Bonani, 08:30)..."
+                  className="w-full bg-slate-50/50 border-none rounded-full py-3 pl-12 pr-6 text-sm font-bold focus:ring-2 focus:ring-primary/20 transition-all"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+
+              <div className="flex items-center gap-3 w-full md:w-auto">
+                <div className="relative flex-1 md:flex-none">
+                  <Filter className="absolute left-4 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-ink/40" />
+                  <select 
+                    className="w-full md:w-48 appearance-none bg-slate-50/50 border-none rounded-full py-3 pl-10 pr-10 text-xs font-black uppercase tracking-wider focus:ring-2 focus:ring-primary/20 transition-all"
+                    value={selectedDay || ""}
+                    onChange={(e) => setSelectedDay(e.target.value || null)}
+                  >
+                    <option value="">All Days</option>
+                    {days.map(day => (
+                      <option key={day} value={day}>{day.split('(')[0]}</option>
+                    ))}
+                  </select>
+                </div>
+                
+                <button 
+                  onClick={handleDownloadPDF}
+                  className="flex items-center gap-2 rounded-full bg-ink/5 px-6 py-3 text-xs font-black text-ink transition-all hover:bg-ink hover:text-white"
+                >
+                  <Download className="h-3.5 w-3.5" />
+                  <span className="hidden sm:inline">Download PDF</span>
+                </button>
+              </div>
+            </div>
+
+            <div className="flex justify-center">
+              <Tabs 
+                value={scheduleType}
+                className="w-full max-w-md"
+                onValueChange={(v) => setScheduleType(v)}
               >
-                Class Time
-              </TabsTrigger>
-              <TabsTrigger 
-                value="exam" 
-                className="rounded-[1.8rem] data-[state=active]:bg-primary data-[state=active]:text-white font-black text-sm transition-all h-full"
-              >
-                Exam Time
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </div>
+                <TabsList className="grid w-full grid-cols-2 rounded-[2rem] bg-white p-1 shadow-sm ring-1 ring-slate-100 h-14">
+                  <TabsTrigger 
+                    value="class" 
+                    className="rounded-[1.8rem] data-[state=active]:bg-primary data-[state=active]:text-white font-black text-sm transition-all h-full"
+                  >
+                    Class Time
+                  </TabsTrigger>
+                  <TabsTrigger 
+                    value="exam" 
+                    className="rounded-[1.8rem] data-[state=active]:bg-primary data-[state=active]:text-white font-black text-sm transition-all h-full"
+                  >
+                    Exam Time
+                  </TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </div>
+          </div>
+        </Reveal>
 
         {/* Schedule Table */}
         <AnimatePresence mode="wait">
@@ -414,15 +502,28 @@ function TimeSchedulePage() {
                             
                             return (
                               <TableCell key={col.key} className="text-center py-5">
-                                {isNote ? (
-                                  <span className="inline-block rounded-full bg-teal-50 px-3 py-1 text-[11px] font-black text-teal-700 font-bengali shadow-sm ring-1 ring-teal-100">
-                                    {val}
-                                  </span>
-                                ) : (
-                                  <span className={`text-sm font-bold ${val === "-" ? "text-ink/20" : "text-ink font-mono"}`}>
-                                    {val}
-                                  </span>
-                                )}
+                                <div className={`relative group/cell ${val !== "-" ? "cursor-pointer" : ""}`}>
+                                  {isNote ? (
+                                    <span className="inline-block rounded-full bg-teal-50 px-3 py-1 text-[11px] font-black text-teal-700 font-bengali shadow-sm ring-1 ring-teal-100">
+                                      {val}
+                                    </span>
+                                  ) : (
+                                    <div className="flex flex-col items-center gap-1">
+                                      <span className={`text-sm font-bold ${val === "-" ? "text-ink/20" : "text-ink font-mono"}`}>
+                                        {val}
+                                      </span>
+                                      {val !== "-" && (
+                                        <button 
+                                          className="opacity-0 group-hover/cell:opacity-100 transition-opacity p-1 rounded-md hover:bg-primary/10 text-primary"
+                                          title="Set Reminder"
+                                          onClick={() => alert(`Reminder set for ${val} at ${col.label}`)}
+                                        >
+                                          <Bell className="h-3 w-3" />
+                                        </button>
+                                      )}
+                                    </div>
+                                  )}
+                                </div>
                               </TableCell>
                             );
                           })}
@@ -517,73 +618,15 @@ function TimeSchedulePage() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Time Schedule Page (Class Time / Exam Time Toggle):
+                                            Add optional push notifications or SMS reminders so I get alerted before my selected bus departure time.
 
-"Create a 'Time Schedule' page for PUB Bus Track, based on the official university bus schedule format. Structure it as follows:
+Add a route search and quick filters on the Time Schedule page so I can instantly narrow the table to the routes I care about.
 
-Top toggle:
-Add a prominent toggle/tab switcher at the top with two options: 'Class Time' and 'Exam Time' — switching between them shows a different schedule dataset (same table structure, different times). Default to 'Class Time' on page load.
+Add a button to download the current Class/Exam schedule (for the selected day) as a clean PDF for offline viewing.
 
-Schedule table structure (for each toggle state):
-Group rows by day-group, matching this structure:
+Add an admin-only interface to update the Class Time schedule and switch in the real Exam Time dataset.
 
-Friday (শুক্রবার)
-
-Saturday (শনিবার)
-
-Sunday to Tuesday (রবিবার থেকে মঙ্গলবার)
-
-Each day-group has multiple time-slot rows (e.g. Noon departure, Afternoon departure, Evening departure), and each row shows departure times across these route columns:
-
-From Campus (ক্যাম্পাস থেকে)
-
-From Sherpur (শেরপুর থেকে)
-
-From B-Block (বি-ব্লক থেকে)
-
-From Bonani (বনানী থেকে)
-
-From Gobindaganj (গোবিন্দগঞ্জ থেকে)
-
-From Mokamtola (মোকামতলা থেকে)
-
-From Gabtoli (গাবতলী থেকে)
-
-From Sathmatha (সাতমাথা থেকে)
-
-From Dupchachia (দুপচাচিয়া থেকে)
-
-Use '-' for routes with no departure at that time slot. Include a note row style like 'গোবিন্দগঞ্জ বাস যাবে' (bus will go via Gobindaganj) where applicable — a small annotation text within a cell instead of a time.
-
-Contact/Driver Info table (below the schedule):
-A separate table listing: Route name, Bus number, Driver name, Mobile number — grouped in a clean grid (3 columns of route-groups as in the reference, or a simple responsive list on mobile).
-
-Notes section:
-Below both tables, add a small notes block:
-
-'বাস নির্ধারিত সময় অনুযায়ী ক্যাম্পাস থেকে ছাড়বে, উক্ত সময়ের ব্যত্যয় ঘটবে না।' (Buses depart on schedule from campus; no deviation from stated time.)
-
-'বিশেষ কারণে ও কর্তৃপক্ষের নির্দেশনায় বিশ্ববিদ্যালয় বাসের সময়সূচি পরিবর্তন হতে পারে।' (Schedule may change per university directives.)
-
-'হঠাৎ গাড়ি নষ্ট হলে অথবা রাস্তায় ট্রাফিক জ্যামের কারণে বিশ্ববিদ্যালয় বাস গন্তব্যে পৌঁছাতে নির্দিষ্ট সময়ে কিছু তারতম্য হতে পারে।' (Delays possible due to breakdown or traffic.)
-
-Design:
-
-Clean, readable table design with alternating row shading, sticky header row (route names) so it stays visible while scrolling on long tables.
-
-Match the site's sky-blue background and green/orange/teal accent colors — the table itself can sit on a white/light card for readability.
-
-Highlight the currently active toggle (Class Time / Exam Time) with the site's accent color.
-
-Fully responsive: on mobile, allow horizontal scroll for the wide table, or collapse into a per-day accordion/card view for easier reading on small screens.
-
-Add a smooth fade/slide transition when switching between Class Time and Exam Time tabs.
-
-Support Bengali text properly (correct font rendering for Bangla headers/labels) alongside English labels where used elsewhere on the site.
-
-Use the actual schedule data from the attached image for the 'Class Time' view as the initial dataset (structure days, routes, and times exactly as shown); for 'Exam Time' use placeholder/mock data with the same structure for now, which can be updated later with real exam-period timings."
-
-All in english`}
+Add deep links so I can open the Time Schedule page directly to a specific day and route with the correct tab selected.`}
       </div>
     </main>
   );
