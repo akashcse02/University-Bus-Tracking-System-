@@ -26,7 +26,7 @@ export function SiteFooter() {
             </div>
             <ul className="space-y-3">
               <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">Home</a></li>
-              <li><a href="#live-location" className="text-sm font-medium text-ink/70 hover:text-primary">Live Location</a></li>
+              <li><a href="/live-location" className="text-sm font-medium text-ink/70 hover:text-primary">Live Location</a></li>
               <li><a href="#buses" className="text-sm font-medium text-ink/70 hover:text-primary">Buses</a></li>
               <li><a href="#schedule" className="text-sm font-medium text-ink/70 hover:text-primary">Time Schedule</a></li>
             </ul>
