@@ -626,7 +626,6 @@ Implement deep links so I can open the Time Schedule page directly to a specific
 
 Add a notification preferences panel so I can choose push notifications or SMS reminders and control how far in advance I get alerted.`}
           </div>
-          </Reveal>
         </div>
       </main>
     </div>
