@@ -639,15 +639,11 @@ function TimeSchedulePage() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Add optional push notifications or SMS reminders so I get alerted before my selected bus departure time.
+                                            Add an admin-only interface so I can update the Class Time schedule and swap in the real Exam Time dataset.
 
-Add a route search and quick filters on the Time Schedule page so I can instantly narrow the table to the routes I care about.
+Implement deep links so I can open the Time Schedule page directly to a specific day and route with the correct tab selected.
 
-Add a button to download the current Class/Exam schedule (for the selected day) as a clean PDF for offline viewing.
-
-Add an admin-only interface to update the Class Time schedule and switch in the real Exam Time dataset.
-
-Add deep links so I can open the Time Schedule page directly to a specific day and route with the correct tab selected.`}
+Add a notification preferences panel so I can choose push notifications or SMS reminders and control how far in advance I get alerted.`}
       </div>
     </main>
   );
