@@ -102,6 +102,73 @@ function Clouds() {
   );
 }
 
+function VisualsScene() {
+  const { ref, inView } = useInView(0.3);
+  
+  return (
+    <div ref={ref} className="absolute inset-x-0 bottom-0 grid h-full items-end gap-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-12">
+      {/* Left: Building Card */}
+      <div 
+        className={`relative z-10 hidden lg:block opacity-0 ${inView ? 'animate-scroll-left' : ''}`}
+        style={{ animationDelay: '0ms' }}
+      >
+        <div className="card-hover-premium overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-2xl ring-1 ring-black/5">
+          <img 
+            src={pundraUni.url} 
+            alt="Pundra University" 
+            className="h-64 w-full rounded-[2rem] object-cover lg:h-80" 
+          />
+          <div className="absolute top-6 left-6 z-20 flex animate-float-slow items-center gap-2 rounded-xl bg-accent px-3 py-1.5 text-[10px] font-bold text-accent-foreground shadow-lg sm:text-xs">
+            <Clock className="h-3.5 w-3.5" /> Classes 9:00
+          </div>
+          <div className="absolute top-20 right-6 z-20 flex animate-float items-center gap-2 rounded-xl bg-primary px-3 py-1.5 text-[10px] font-bold text-primary-foreground shadow-lg sm:text-xs">
+            <Globe className="h-3.5 w-3.5" /> Student ID
+          </div>
+        </div>
+      </div>
+
+      {/* Center: Phone Mockup */}
+      <div 
+        className={`relative z-30 mx-auto w-28 sm:w-32 lg:w-40 opacity-0 ${inView ? 'animate-scroll-zoom' : ''}`}
+        style={{ animationDelay: '100ms' }}
+      >
+        <div className="card-hover-premium overflow-hidden rounded-[2.5rem] border-[6px] border-ink bg-white p-1.5 shadow-2xl ring-1 ring-black/5 animate-float">
+          <div className="aspect-[9/19] w-full overflow-hidden rounded-[2rem] bg-slate-100">
+            <div className="h-full w-full bg-blue-100/20 p-2">
+               <div className="h-full w-full rounded-xl flex items-center justify-center">
+                 <MapPin className="h-6 w-6 text-primary animate-bounce" />
+               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right: Bus Card */}
+      <div 
+        className={`relative z-20 hidden lg:block opacity-0 ${inView ? 'animate-scroll-right' : ''}`}
+        style={{ animationDelay: '200ms' }}
+      >
+        <div className="card-hover-premium overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-2xl ring-1 ring-black/5">
+          <img 
+            src={pubBus.url} 
+            alt="PUB Bus" 
+            className="h-64 w-full rounded-[2rem] object-cover lg:h-80" 
+          />
+          <div className="absolute top-6 right-6 z-20 flex animate-float items-center gap-2 rounded-xl bg-white px-3 py-2 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
+            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">
+              <span className="text-primary">3</span>
+            </div>
+            min away
+          </div>
+          <div className="absolute bottom-12 -left-4 z-20 flex animate-float-slow items-center gap-2 rounded-xl bg-white px-4 py-2 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
+            <Bus className="h-4 w-4 text-primary" /> Route: Gobindaganj
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function Index() {
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("Home");
@@ -291,61 +358,14 @@ function Index() {
         </div>
 
         {/* Visuals Scene: Building (Left), Phone (Center), Bus (Right) */}
-        <div className="relative mt-8 h-[300px] sm:h-[400px] lg:h-[450px]">
-          <div className="absolute inset-x-0 bottom-0 grid h-full items-end gap-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-12">
-            
-            {/* Left: Building Card */}
-            <div className="relative z-10 hidden animate-[slide-in-3d-left_1.2s_ease-out_forwards] lg:block">
-              <div className="card-hover-premium overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-2xl ring-1 ring-black/5">
-                <img 
-                  src={pundraUni.url} 
-                  alt="Pundra University" 
-                  className="h-64 w-full rounded-[2rem] object-cover lg:h-80" 
-                />
-                <div className="absolute top-6 left-6 z-20 flex animate-float-slow items-center gap-2 rounded-xl bg-accent px-3 py-1.5 text-[10px] font-bold text-accent-foreground shadow-lg sm:text-xs">
-                  <Clock className="h-3.5 w-3.5" /> Classes 9:00
-                </div>
-                <div className="absolute top-20 right-6 z-20 flex animate-float items-center gap-2 rounded-xl bg-primary px-3 py-1.5 text-[10px] font-bold text-primary-foreground shadow-lg sm:text-xs">
-                  <Globe className="h-3.5 w-3.5" /> Student ID
-                </div>
-              </div>
-            </div>
-
-            {/* Center: Phone Mockup */}
-            <div className="relative z-30 mx-auto w-28 animate-float sm:w-32 lg:w-40">
-              <div className="card-hover-premium overflow-hidden rounded-[2.5rem] border-[6px] border-ink bg-white p-1.5 shadow-2xl ring-1 ring-black/5">
-                <div className="aspect-[9/19] w-full overflow-hidden rounded-[2rem] bg-slate-100">
-                  <div className="h-full w-full bg-blue-100/20 p-2">
-                     <div className="h-full w-full rounded-xl flex items-center justify-center">
-                       <MapPin className="h-6 w-6 text-primary animate-bounce" />
-                     </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Bus Card */}
-            <div className="relative z-20 hidden animate-slide-in-right [animation-fill-mode:forwards] lg:block opacity-0">
-              <div className="card-hover-premium overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-2xl ring-1 ring-black/5">
-                <img 
-                  src={pubBus.url} 
-                  alt="PUB Bus" 
-                  className="h-64 w-full rounded-[2rem] object-cover lg:h-80" 
-                />
-                <div className="absolute top-6 right-6 z-20 flex animate-float items-center gap-2 rounded-xl bg-white px-3 py-2 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
-                  <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">
-                    <span className="text-primary">3</span>
-                  </div>
-                  min away
-                </div>
-                <div className="absolute bottom-12 -left-4 z-20 flex animate-float-slow items-center gap-2 rounded-xl bg-white px-4 py-2 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
-                  <Bus className="h-4 w-4 text-primary" /> Route: Gobindaganj
-                </div>
-              </div>
-            </div>
-          </div>
+        <div 
+          className="relative mt-8 h-[300px] sm:h-[400px] lg:h-[450px]"
+          id="hero-visuals-scene"
+        >
+          <VisualsScene />
         </div>
       </section>
+
 
       {/* Stats Section */}
       <StatsStrip />
@@ -369,30 +389,39 @@ function Index() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Fix Navbar Hover Background (Make it Smooth & Transparent-Blend, Not Flat/Old-Looking):
+                                            Scroll-Triggered Entrance Animation for Building/Phone/Bus Section:
 
-"The navbar link hover state currently looks outdated — when hovering over a nav item (e.g. 'Live Location'), a flat, solid-looking pill background appears that looks cheap and inconsistent with the rest of the site's polish. Fix this:
+"Currently the building, phone mockup, and bus images in this section just appear statically on page load. Change this so they animate in specifically when the user SCROLLS to this section (not on initial page load), with high-quality, buttery-smooth motion:
 
-1. Remove the flat solid hover background:
-Get rid of the current hard-edged, opaque pill background on nav link hover.
+Scroll trigger:
 
-2. Replace with a smooth, subtle, transparent-blend hover:
+Use an Intersection Observer (or scroll-triggered animation library) so these elements only start animating once this section enters the viewport (e.g. when ~30% of the section is visible), not before.
 
-On hover, apply a very light, semi-transparent background (e.g. rgba(0,0,0,0.04) to rgba(0,0,0,0.06) — barely visible, just enough to give subtle depth) with soft rounded corners, fading in smoothly (transition: background-color 0.25s ease-out), not appearing abruptly.
+Animations should trigger once per scroll-into-view (or replay each time it re-enters view, whichever feels more natural — default to triggering once).
 
-Combine this with a smooth text color transition to the accent green/teal.
+Element-specific entrance animations:
 
-Add the thin center-expanding underline animation (transform: scaleX(0) to scaleX(1), 0.25s ease-out) beneath the text as the primary hover indicator, with the subtle background tint as a secondary, understated effect — not the dominant visual.
+Building (left): slides in smoothly from the LEFT edge of the screen into its position, combined with a fade-in (opacity 0 to 1) and a very slight scale-up (from ~0.95 to 1) for a soft, weighty settle.
 
-Make sure the background tint blends naturally with the sky-blue page background rather than looking like a distinct grey/white box — consider using a slightly blue-tinted transparent overlay instead of pure black/grey (e.g. rgba(0, 50, 80, 0.05)) so it feels cohesive with the page color.
+Phone mockup (center): animates with a zoom effect — starts slightly scaled down (e.g. scale 0.85) and slightly faded, then scales up smoothly to full size (scale 1) with opacity fading to 1, giving a 'zooming into focus' feel.
 
-Ensure consistent padding and border-radius across all nav items so the hover shape looks uniform regardless of text length.
+Bus (right): slides in smoothly from the RIGHT edge of the screen into its position, with the same fade-in and slight scale-up settle as the building.
 
-3. Smooth timing:
-Use transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) for a premium, smooth feel — no instant snap, no bounce.
+Animation quality:
 
-The goal: hover should feel light, modern, and barely-there — enhancing the interaction without looking like a distinct old-style button/pill overlay."`}
+Use smooth, premium easing: cubic-bezier(0.16, 1, 0.3, 1) (ease-out, no bounce), duration around 0.6-0.8s per element.
+
+Stagger the three elements slightly (e.g. building starts first, phone 100ms later, bus 150-200ms later) so they don't all animate in perfectly simultaneously — creates a more natural, cinematic sequence.
+
+Use only transform (translateX, scale) and opacity for the animation (GPU-accelerated properties) to ensure buttery-smooth 60fps+ performance, avoiding any layout-shifting properties.
+
+Ensure animations feel high-refresh-rate smooth — no stutter or jank — by keeping the animated elements on their own composite layer (will-change: transform, opacity during the animation).
+
+Accessibility:
+
+Respect prefers-reduced-motion: for users who request reduced motion, skip the slide/zoom animations and simply fade the elements in with a quick, simple opacity transition instead."`}
       </div>
+
     </main>
   );
 }
