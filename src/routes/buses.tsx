@@ -189,11 +189,12 @@ function BusCard({ bus }: { bus: BusData }) {
 
       <button 
         onClick={() => setExpanded(!expanded)}
-        className="mt-6 flex items-center justify-center gap-2 rounded-2xl bg-slate-50 py-3 text-xs font-bold text-ink/70 transition-colors hover:bg-slate-100"
+        className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-50 py-3 text-xs font-bold text-ink/70 transition-all hover:bg-slate-100 hover:text-primary active:scale-[0.98]"
       >
-        {expanded ? "Hide Route" : "View Full Route"}
-        <ChevronRight className={`h-4 w-4 transition-transform ${expanded ? "rotate-90" : ""}`} />
+        {expanded ? "Hide Route Details" : "View Full Route & ETA"}
+        <ChevronRight className={`h-4 w-4 transition-transform duration-300 ${expanded ? "rotate-90" : ""}`} />
       </button>
+
 
       {expanded && (
         <div className="mt-4 animate-in fade-in slide-in-from-top-2">
@@ -329,8 +330,14 @@ function BusesPage() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            use google map 
-inlive section and 
+                                            Integrate a Google Map in the Live Location section with a moving bus marker and route polyline for the selected bus.
+
+Add expandable bus cards that reveal the full stop list and clearly highlight the current next stop and ETA.
+
+Enable the top tab bar to filter buses by route (All, Gobindaganj, Sherpur, Gabtoli, Sathmatha/Bogura, Dupchachia) with smooth transitions.
+
+Implement an ETA countdown that updates the next-stop arrival time periodically for each bus using mock data.`}
+
 
 এখানে সব আপডেট মিলিয়ে সম্পূর্ণ Buses পেজের প্রম্পট:
 
