@@ -1,9 +1,8 @@
 import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { supabase } from "@/integrations/supabase/client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Sidebar } from "@/components/dashboard/sidebar";
 import { Header } from "@/components/dashboard/header";
-import { toast } from "sonner";
 
 export const Route = createFileRoute("/_authenticated")({
   loader: async ({ location }) => {
@@ -24,6 +23,12 @@ export const Route = createFileRoute("/_authenticated")({
       supabase.from("user_roles").select("role").eq("user_id", session.user.id).single(),
     ]);
 
+    if (!profile) {
+      // If profile doesn't exist yet, we might need to create one or wait
+      // For now, redirect to a setup page or just return empty
+      console.warn("No profile found for authenticated user");
+    }
+
     return {
       session,
       profile,
@@ -32,6 +37,7 @@ export const Route = createFileRoute("/_authenticated")({
   },
   component: AuthenticatedLayout,
 });
+
 
 function AuthenticatedLayout() {
   const { profile, role } = Route.useLoaderData();
