@@ -4,7 +4,7 @@ import { Database } from "@/integrations/supabase/types";
 
 type Bus = Database["public"]["Tables"]["buses"]["Row"];
 
-export function StudentDashboard({ bus }: { bus?: Bus }) {
+export function StudentDashboard({ bus, routeName }: { bus?: Bus, routeName?: string }) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       <div className="lg:col-span-2 space-y-6">
@@ -34,10 +34,10 @@ export function StudentDashboard({ bus }: { bus?: Bus }) {
               <div className="flex items-center justify-between">
                 <div>
                   <p className="font-bold text-lg">{bus.bus_number}</p>
-                  <p className="text-sm text-slate-500">Route: {bus.route_name}</p>
+                  {routeName && <p className="text-sm text-slate-500">Route: {routeName}</p>}
                 </div>
                 <div className="h-10 w-10 bg-primary/10 rounded-full flex items-center justify-center text-primary font-bold">
-                  {bus.bus_number}
+                  {bus.bus_number.split(' ').pop()}
                 </div>
               </div>
             ) : (
@@ -49,3 +49,4 @@ export function StudentDashboard({ bus }: { bus?: Bus }) {
     </div>
   );
 }
+
