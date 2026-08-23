@@ -1,15 +1,13 @@
 import { MapPin, Bus, Radar, Bell, LucideIcon } from "lucide-react";
 import { Reveal } from "@/components/reveal";
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 interface StepCard {
   title: string;
   description: string;
   icon: LucideIcon;
   color: string;
-  bg: string;
-  text: string;
+  illustration: string;
 }
 
 const steps: StepCard[] = [
@@ -17,101 +15,136 @@ const steps: StepCard[] = [
     title: "Enter Your Location",
     description: "Students enter their home/pickup location once. The app saves it so the nearest bus route is automatically matched.",
     icon: MapPin,
-    color: "oklch(0.6 0.15 250)", // Blue
-    bg: "oklch(0.6 0.15 250)",
-    text: "white"
+    color: "#3B82F6", // Blue
+    illustration: "map"
   },
   {
     title: "Select Your Bus",
     description: "Choose your assigned bus number and route from the list — Gobindaganj, Sherpur, Sathmatha, or Gabtoli.",
     icon: Bus,
-    color: "oklch(0.6 0.15 190)", // Teal
-    bg: "oklch(0.6 0.15 190)",
-    text: "white"
+    color: "#0D9488", // Teal
+    illustration: "selection"
   },
   {
     title: "Track in Real-Time",
     description: "See your bus moving live on the map, with accurate ETA so you know exactly when to head to your stop.",
     icon: Radar,
-    color: "oklch(0.7 0.18 45)", // Orange
-    bg: "oklch(0.7 0.18 45)",
-    text: "white"
+    color: "#F59E0B", // Orange
+    illustration: "tracking"
   },
   {
     title: "Get Notified",
     description: "Receive instant alerts for arrival time, delays, or route changes — never miss your bus again.",
     icon: Bell,
-    color: "oklch(0.6 0.16 150)", // Green
-    bg: "oklch(0.6 0.16 150)",
-    text: "white"
+    color: "#10B981", // Green
+    illustration: "notifications"
   },
 ];
 
-function Card({ step, index, total }: { step: StepCard; index: number; total: number }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "start start"],
-  });
-
-  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0, 1]);
-  const y = useTransform(scrollYProgress, [0, 1], [100, 0]);
-
+function CardIllustration({ type, color }: { type: string; color: string }) {
   return (
-    <div ref={containerRef} className="relative h-[100vh] w-full">
-      <motion.div
-        style={{
-          scale,
-          opacity,
-          y,
-          zIndex: index + 1,
-          backgroundColor: step.bg,
-          color: step.text,
-        }}
-        className="sticky top-[15%] mx-auto flex min-h-[450px] w-full max-w-xl flex-col items-center justify-center rounded-[2.5rem] p-10 text-center shadow-2xl md:p-16"
-      >
-        <div className="mb-8 rounded-3xl bg-white/20 p-6">
-          <step.icon className="h-16 w-16" strokeWidth={1.5} />
+    <div className="relative h-64 w-full max-w-md overflow-hidden rounded-3xl bg-white/10 p-6 backdrop-blur-sm shadow-inner md:h-80">
+      {type === "map" && (
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="relative h-48 w-48 rounded-full bg-white/20 p-8 shadow-2xl animate-pulse">
+            <MapPin className="h-full w-full text-white" strokeWidth={1} />
+          </div>
         </div>
-
-        <h3 className="mb-4 font-display text-3xl font-extrabold md:text-4xl">
-          {step.title}
-        </h3>
-
-        <p className="max-w-md text-lg font-medium leading-relaxed opacity-90">
-          {step.description}
-        </p>
-
-        <div className="absolute top-8 right-8 text-5xl font-black opacity-10">
-          0{index + 1}
+      )}
+      {type === "selection" && (
+        <div className="flex h-full w-full flex-col gap-4 p-4">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="flex items-center gap-4 rounded-2xl bg-white/20 p-4 shadow-sm">
+              <div className="h-10 w-10 rounded-full bg-white/30 flex items-center justify-center">
+                <Bus className="h-5 w-5 text-white" />
+              </div>
+              <div className="h-4 w-32 rounded-full bg-white/30" />
+            </div>
+          ))}
         </div>
-      </motion.div>
+      )}
+      {type === "tracking" && (
+        <div className="flex h-full w-full items-center justify-center">
+           <div className="relative h-full w-full rounded-2xl border-2 border-white/30 bg-white/10 overflow-hidden">
+             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.2)_0%,transparent_70%)]" />
+             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                <Radar className="h-32 w-32 text-white animate-spin-slow opacity-50" strokeWidth={0.5} />
+                <Bus className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-12 w-12 text-white drop-shadow-lg" />
+             </div>
+           </div>
+        </div>
+      )}
+      {type === "notifications" && (
+        <div className="flex h-full w-full items-center justify-center">
+          <div className="relative">
+            <Bell className="h-40 w-40 text-white animate-bounce" strokeWidth={0.5} />
+            <div className="absolute top-4 right-4 h-12 w-12 rounded-full bg-red-500 border-4 border-white flex items-center justify-center text-white font-bold shadow-lg">1</div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="relative">
-      <div className="mx-auto max-w-4xl px-5 pt-24 text-center">
+    <section id="how-it-works" className="relative pb-20">
+      <div className="mx-auto max-w-4xl px-5 py-24 text-center">
         <Reveal>
-          <h2 className="font-display text-4xl font-extrabold text-ink sm:text-5xl">
+          <h2 className="font-display text-4xl font-extrabold text-ink sm:text-6xl">
             How PUB Bus Track Works
           </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
+          <p className="mt-6 text-xl text-ink/70 font-medium">
             From your home to campus — track every step of the way.
           </p>
         </Reveal>
       </div>
 
-      <div className="relative mx-auto mt-16 max-w-7xl px-5">
-        <div className="flex flex-col">
-          {steps.map((step, index) => (
-            <Card key={index} step={step} index={index} total={steps.length} />
-          ))}
-        </div>
+      <div className="relative mx-auto mt-8 max-w-[1400px]">
+        {steps.map((step, index) => (
+          <div 
+            key={index}
+            className="sticky top-[100px] w-full px-5"
+            style={{ 
+              paddingTop: `${index * 40}px`,
+              zIndex: index + 1
+            }}
+          >
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              style={{ backgroundColor: step.color }}
+              className="relative min-h-[500px] w-full overflow-hidden rounded-[3rem] p-10 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] md:p-20"
+            >
+              <div className="grid h-full w-full gap-12 md:grid-cols-2 md:items-center">
+                <div className="text-white">
+                  <div className="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-3xl bg-white/20 shadow-xl">
+                    <step.icon className="h-8 w-8" />
+                  </div>
+                  <h3 className="mb-6 font-display text-4xl font-black md:text-6xl tracking-tight leading-tight">
+                    {step.title}
+                  </h3>
+                  <p className="max-w-md text-xl font-medium leading-relaxed opacity-90">
+                    {step.description}
+                  </p>
+                </div>
+                
+                <div className="flex items-center justify-center">
+                  <CardIllustration type={step.illustration} color={step.color} />
+                </div>
+              </div>
+
+              {/* Step number watermark */}
+              <div className="absolute -bottom-10 -right-10 text-[15rem] font-black text-white/5 select-none pointer-events-none">
+                0{index + 1}
+              </div>
+            </motion.div>
+          </div>
+        ))}
       </div>
     </section>
   );
 }
+
