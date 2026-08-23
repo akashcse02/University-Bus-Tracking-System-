@@ -136,7 +136,7 @@ function Index() {
       <Clouds />
 
       {/* Navbar */}
-      <header className="sticky top-0 z-50 w-full bg-white/60 backdrop-blur-xl border-bottom border-white/30">
+      <header className="sticky top-0 z-50 w-full backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5">
           <a href="#" onClick={(e) => smoothScroll(e, "#")} className="flex items-center gap-2.5">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-sm overflow-hidden">
@@ -153,7 +153,7 @@ function Index() {
                 key={l.label}
                 href={l.href}
                 onClick={(e) => smoothScroll(e, l.href)}
-                className={`text-sm font-bold nav-link-glass ${
+                className={`text-sm font-bold nav-link-clean ${
                   activeSection === l.label ? "text-primary active" : "text-ink/80"
                 }`}
               >
@@ -164,12 +164,12 @@ function Index() {
 
           <div className="hidden items-center gap-4 lg:flex">
             <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-full bg-white/50 px-3 py-1.5 text-xs font-bold text-ink transition-all hover:bg-white cursor-pointer hover:translate-y-[-1px]">
+              <DropdownMenuTrigger className="btn-hover-premium flex items-center gap-1.5 rounded-full bg-white/50 px-3 py-1.5 text-xs font-bold text-ink cursor-pointer">
                 <Globe className="h-3.5 w-3.5" />
                 {language}
                 <ChevronDown className="h-3.5 w-3.5 opacity-50" />
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="rounded-2xl border-none shadow-xl backdrop-blur-xl bg-white/80">
+              <DropdownMenuContent align="end" className="rounded-2xl border-none shadow-xl">
                 {["English", "Bangla", "Arabic"].map((lang) => (
                   <DropdownMenuItem key={lang} onClick={() => setLanguage(lang)} className="rounded-xl font-bold cursor-pointer">
                     {lang}
@@ -178,9 +178,10 @@ function Index() {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <a href="#" className="rounded-full px-5 py-2.5 text-sm font-bold text-ink nav-glass-pill transition-all">Login</a>
-            <a href="#" className="btn-glass rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground">Sign Up</a>
+            <a href="#" className="btn-hover-premium rounded-full px-5 py-2.5 text-sm font-bold text-ink">Login</a>
+            <a href="#" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-sm font-bold text-primary-foreground shadow-lg">Sign Up</a>
           </div>
+
 
 
           <button onClick={() => setOpen(!open)} className="lg:hidden">
@@ -231,7 +232,7 @@ function Index() {
               Track your university bus in real-time — buses, routes, and schedules in one place.
             </p>
             <div className="mt-8 flex flex-col items-center gap-6">
-              <a href="#how-it-works" onClick={(e) => smoothScroll(e, "#how-it-works")} className="btn-glass rounded-full bg-primary px-10 py-4 font-display text-lg font-bold text-primary-foreground">
+              <a href="#how-it-works" onClick={(e) => smoothScroll(e, "#how-it-works")} className="btn-hover-premium rounded-full bg-primary px-10 py-4 font-display text-lg font-bold text-primary-foreground shadow-2xl">
                 Get Started
               </a>
               <div className="flex flex-col items-center gap-3">
@@ -239,14 +240,14 @@ function Index() {
                   Download PUB Bus Track App
                 </span>
                 <div className="flex items-center gap-3">
-                  <a href="#" className="btn-glass flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background">
+                  <a href="#" className="btn-hover-premium flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background">
                     <Apple className="h-4 w-4" />
                     <div className="text-left leading-none">
                       <span className="block text-[0.4rem] uppercase opacity-60">Download on the</span>
                       <span className="block text-[10px] font-bold">App Store</span>
                     </div>
                   </a>
-                  <a href="#" className="btn-glass flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background">
+                  <a href="#" className="btn-hover-premium flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background">
                     <Play className="h-4 w-4" />
                     <div className="text-left leading-none">
                       <span className="block text-[0.4rem] uppercase opacity-60">Get it on</span>
@@ -255,6 +256,7 @@ function Index() {
                   </a>
                 </div>
               </div>
+
 
             </div>
           </Reveal>
@@ -354,7 +356,44 @@ function Index() {
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            now  make
+                                            Lovable Prompt — Global Hover Refinement (Navbar Revert + Site-Wide Shadow/Glass Hover):
+
+"Please make these hover-related adjustments across the entire site:
+
+1. Revert the navbar background:
+Remove the glass/frosted box background on the navbar container (backdrop-filter, rgba background, border). Go back to the simple original navbar style — no glass box effect on the navbar itself.
+
+2. Navbar link hover — simple and smooth only:
+On hover, nav links (Home, Live Location, Buses, Time Schedule, Routes, How it works) should just have a smooth, clean color transition to the accent green/teal color, plus a thin underline that animates in from the center (transform: scaleX(0) to scaleX(1), 0.25s ease-out). No glow, no blur, no box background — just clean and smooth.
+
+3. Global button hover rule — apply to EVERY button across ALL sections (Get Started, Sign Up, Login, App Store/Google Play buttons, Newsletter Sign Up, Footer Download App button, Contact Form Submit button, FAQ accordion triggers, and any other CTA button in Hero, Stats Row, How It Works, Student Reviews, Our Vision, Newsletter, and Footer):
+
+On hover, apply a soft, layered, premium drop shadow: box-shadow: 0 8px 20px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.08), appearing smoothly, not abruptly.
+
+Combine with a subtle lift: transform: translateY(-2px).
+
+Smooth easing transition: transition: transform 0.25s ease-out, box-shadow 0.25s ease-out — no bounce, no jitter.
+
+On click/active state, reduce the lift and shadow slightly (transform: translateY(0), reduced shadow) for tactile press feedback.
+
+Keep the shadow soft and dark-neutral (not colored or harsh), working well against both the sky-blue background and any colored card backgrounds.
+
+4. Global card hover rule — apply to all card-style elements (How It Works cards, Student Review cards, Stats cards, any other card component):
+
+On hover, add a soft glass-style shine: a subtle backdrop-filter: blur(2px) with a light rgba(255,255,255,0.05) overlay sweep, combined with the same layered soft shadow described above and a gentle translateY(-4px) lift.
+
+Ensure this reads well against the colored theme backgrounds (Blue/Teal/Orange/Green cards in How It Works) as well as the sky-blue page background.
+
+5. Consistency requirement:
+Every clickable button and card across the entire page should feel identical in hover behavior — same shadow intensity, same lift distance, same easing curve — so the whole site feels cohesive, not just the hero section.
+
+6. Accessibility:
+Respect prefers-reduced-motion — disable the lift/transform animations for users who request reduced motion, keeping only a simple shadow fade-in instead.
+
+7. Implementation approach:
+Apply this globally via a shared CSS class or utility (e.g. .hover-lift-shadow for buttons, .hover-card-glass for cards) rather than duplicating styles per section, so all current and future sections stay consistent automatically.
+
+Keep all colors, layout, and content exactly as they currently are — this is purely a hover-interaction refinement across the whole site."
       </div>
     </main>
   );
