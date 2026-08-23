@@ -368,13 +368,24 @@ function Index() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Add Back to Home Option on Login/Sign Up Pages:
+                                            Fix Navbar Hover Background (Make it Smooth & Transparent-Blend, Not Flat/Old-Looking):
 
-"Add a way to navigate back to the homepage from the Login and Sign Up pages. Add the 'PUB Bus Track' logo (icon + name) at the top-left corner of both pages, styled consistently with the navbar logo, and make it a clickable link that returns to the homepage.
+"The navbar link hover state currently looks outdated — when hovering over a nav item (e.g. 'Live Location'), a flat, solid-looking pill background appears that looks cheap and inconsistent with the rest of the site's polish. Fix this:
 
-Additionally, add a small 'Back to Home' text link (with a left-arrow icon, e.g. '← Back to Home') positioned near the top of the page, above or beside the 'Welcome Back' / 'Create Your Account' heading, so users have a clear, obvious way to return to the landing page from either the Login or Sign Up screen.
+1. Remove the flat solid hover background:
+Get rid of the current hard-edged, opaque pill background on nav link hover.
 
-Style both the logo and the back link consistently with the site's existing typography and hover effects (smooth color transition, no jarring hover). Keep everything else on both pages unchanged."`}
+2. Replace with a smooth, subtle, transparent-blend hover:
+
+On hover, apply a very light, semi-transparent background (e.g. rgba(0,0,0,0.04) to rgba(0,0,0,0.06) — barely visible, just enough to give subtle depth) with soft rounded corners, fading in smoothly (transition: background-color 0.25s ease-out), not appearing abruptly.
+
+Combine this with a smooth text color transition to the accent green/teal.
+
+Add the thin center-expanding underline animation (transform: scaleX(0) to scaleX(1), 0.25s ease-out) beneath the text as the primary hover indicator, with the subtle background tint as a secondary, understated effect — not the dominant visual.
+
+Make sure the background tint blends naturally with the sky-blue page background rather than looking like a distinct grey/white box — consider using a slightly blue-tinted transparent overlay instead of pure black/grey (e.g. rgba(0, 50, 80, 0.05)) so it feels cohesive with the page color.
+
+Ensure consistent padding and border-radius across all nav items so the hover shape looks uniform regardless of text length."`}
       </div>
     </main>
   );
