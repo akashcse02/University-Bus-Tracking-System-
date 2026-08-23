@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
 import { Mail, Lock, User, Phone, ShieldCheck, X } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -21,6 +22,7 @@ function LoginPage() {
   const [role, setRole] = useState("student");
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [adminClicks, setAdminClicks] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,9 +32,6 @@ function LoginPage() {
     }
   }, []);
 
-  // Hidden admin trigger via clicking a small invisible area 5 times
-  // But requirement says footer copyright. We'll handle footer in footer component.
-  // For the login page itself, let's add a small hidden icon.
   const handleAdminTrigger = () => {
     setAdminClicks(prev => prev + 1);
     if (adminClicks + 1 >= 5) {
@@ -42,19 +41,58 @@ function LoginPage() {
     }
   };
 
-  const handleAdminLogin = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setIsLoading(true);
+    
     const formData = new FormData(e.currentTarget);
-    const phone = formData.get("phone");
-    const password = formData.get("password");
+    const email = formData.get("email") as string;
+    const password = formData.get("password") as string;
 
-    // MOCK CREDENTIALS FOR ADMIN
-    // Replace with secure backend auth in production
-    if (phone === "01700000000" && password === "admin123") {
-      toast.success("Admin Login Successful");
-      navigate({ to: "/admin" });
-    } else {
-      toast.error("Invalid admin credentials");
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
+
+      if (error) throw error;
+
+      if (data.user) {
+        // Fetch role to redirect correctly
+        const { data: roleData } = await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", data.user.id)
+          .single();
+
+        const userRole = roleData?.role || "student";
+        
+        toast.success("Login Successful");
+        
+        if (userRole === "admin") {
+          navigate({ to: "/admin" });
+        } else {
+          navigate({ to: "/live-location" });
+        }
+      }
+    } catch (error: any) {
+      toast.error(error.message || "Invalid credentials");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback`,
+        }
+      });
+      if (error) throw error;
+    } catch (error: any) {
+      toast.error(error.message || "Failed to sign in with Google");
     }
   };
 
@@ -95,18 +133,14 @@ function LoginPage() {
                   <TabsTrigger value="driver" className="rounded-xl font-bold transition-all data-[state=active]:bg-white data-[state=active]:shadow-sm">Driver</TabsTrigger>
                 </TabsList>
 
-                <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+                <form className="space-y-6" onSubmit={handleLogin}>
                   <div className="space-y-2">
                     <Label htmlFor="email" className="text-sm font-bold text-ink">
-                      {role === "student" ? "ID or Email Address" : "Email Address"}
+                      Email Address
                     </Label>
                     <div className="relative">
-                      {role === "student" ? (
-                        <User className="absolute top-3.5 left-4 h-5 w-5 text-ink/30" />
-                      ) : (
-                        <Mail className="absolute top-3.5 left-4 h-5 w-5 text-ink/30" />
-                      )}
-                      <Input id="email" placeholder={role === "student" ? "e.g. 21102001" : "name@pub.ac.bd"} className="h-12 rounded-2xl border-slate-200 pl-12 focus:ring-primary" required />
+                      <Mail className="absolute top-3.5 left-4 h-5 w-5 text-ink/30" />
+                      <Input id="email" name="email" type="email" placeholder="name@pub.ac.bd" className="h-12 rounded-2xl border-slate-200 pl-12 focus:ring-primary" required />
                     </div>
                   </div>
 
@@ -117,14 +151,32 @@ function LoginPage() {
                     </div>
                     <div className="relative">
                       <Lock className="absolute top-3.5 left-4 h-5 w-5 text-ink/30" />
-                      <Input id="password" type="password" placeholder="••••••••" className="h-12 rounded-2xl border-slate-200 pl-12 focus:ring-primary" required />
+                      <Input id="password" name="password" type="password" placeholder="••••••••" className="h-12 rounded-2xl border-slate-200 pl-12 focus:ring-primary" required />
                     </div>
                   </div>
 
-                  <Button className="btn-hover-premium w-full rounded-2xl bg-primary py-7 font-display text-lg font-bold text-primary-foreground shadow-xl">
-                    Login
+                  <Button 
+                    disabled={isLoading}
+                    className="btn-hover-premium w-full rounded-2xl bg-primary py-7 font-display text-lg font-bold text-primary-foreground shadow-xl"
+                  >
+                    {isLoading ? "Logging in..." : "Login"}
                   </Button>
                 </form>
+
+                <div className="mt-6 flex items-center gap-4">
+                  <div className="h-px flex-1 bg-slate-100"></div>
+                  <span className="text-xs font-bold text-ink/20 uppercase tracking-widest">Or continue with</span>
+                  <div className="h-px flex-1 bg-slate-100"></div>
+                </div>
+
+                <Button 
+                  onClick={handleGoogleSignIn}
+                  variant="outline" 
+                  className="mt-6 w-full h-14 rounded-2xl border-slate-200 font-bold flex items-center justify-center gap-3 hover:bg-slate-50 transition-all"
+                >
+                  <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5" />
+                  Google Account
+                </Button>
 
                 <div className="mt-8 text-center">
                   <p className="text-sm font-medium text-ink/60">
@@ -134,25 +186,29 @@ function LoginPage() {
                 </div>
               </Tabs>
             ) : (
-              <form className="space-y-6" onSubmit={handleAdminLogin}>
+              <form className="space-y-6" onSubmit={handleLogin}>
                 <div className="space-y-2">
-                  <Label htmlFor="admin-phone" className="text-sm font-bold text-ink">Admin Phone Number</Label>
+                  <Label htmlFor="admin-email" className="text-sm font-bold text-ink">Admin Email</Label>
                   <div className="relative">
-                    <Phone className="absolute top-3.5 left-4 h-5 w-5 text-ink/30" />
-                    <Input id="admin-phone" name="phone" placeholder="017XXXXXXXX" className="h-12 rounded-2xl border-slate-200 pl-12 focus:ring-primary" required />
+                    <Mail className="absolute top-3.5 left-4 h-5 w-5 text-ink/30" />
+                    <Input id="admin-email" name="email" type="email" placeholder="admin@pub.ac.bd" className="h-12 rounded-2xl border-slate-200 pl-12 focus:ring-primary" required />
                   </div>
                 </div>
 
                 <div className="space-y-2">
                   <Label htmlFor="admin-password" className="text-sm font-bold text-ink">Password</Label>
                   <div className="relative">
-                    <ShieldCheck className="absolute top-3.5 left-4 h-5 w-5 text-ink/30" />
+                    <Lock className="absolute top-3.5 left-4 h-5 w-5 text-ink/30" />
                     <Input id="admin-password" name="password" type="password" placeholder="••••••••" className="h-12 rounded-2xl border-slate-200 pl-12 focus:ring-primary" required />
                   </div>
                 </div>
 
-                <Button type="submit" className="btn-hover-premium w-full rounded-2xl bg-slate-900 py-7 font-display text-lg font-bold text-white shadow-xl">
-                  Admin Login
+                <Button 
+                  type="submit" 
+                  disabled={isLoading}
+                  className="btn-hover-premium w-full rounded-2xl bg-slate-900 py-7 font-display text-lg font-bold text-white shadow-xl"
+                >
+                  {isLoading ? "Verifying..." : "Admin Login"}
                 </Button>
               </form>
             )}
@@ -162,3 +218,4 @@ function LoginPage() {
     </AuthLayout>
   );
 }
+
