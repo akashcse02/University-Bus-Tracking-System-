@@ -386,76 +386,130 @@ function Index() {
       <SiteFooter />
 
       <div className="hidden" aria-hidden="true">
-        {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
+            {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Time Schedule Page (Class Time / Exam Time Toggle):
+                                            এখানে আগের full dashboard প্রম্পট (auth + live map + GPS + profile) আর এই এক্সটেন্ডেড ফিচার লিস্ট — দুটো মিলিয়ে একটা সম্পূর্ণ প্রম্পট:
 
-"Create a 'Time Schedule' page for PUB Bus Track, based on the official university bus schedule format. Structure it as follows:
+Lovable Prompt — Complete Authenticated Dashboards with Live GPS Map + Extended Features:
 
-Top toggle:
-Add a prominent toggle/tab switcher at the top with two options: 'Class Time' and 'Exam Time' — switching between them shows a different schedule dataset (same table structure, different times). Default to 'Class Time' on page load.
+"Build complete, authenticated dashboards for all 4 user roles — Student, Teacher, Driver, Admin — with real backend authentication, live GPS bus tracking on a real Google Map, and an extended feature set per role. This requires enabling Lovable Cloud (backend) for auth, database, and real-time data.
 
-Schedule table structure (for each toggle state):
-Group rows by day-group, matching this structure:
+1. Authentication (real, backend-based):
 
-Friday (শুক্রবার)
+Real email/password authentication via Lovable Cloud, replacing the earlier frontend-only demo validation.
 
-Saturday (শনিবার)
+Each user signs up with their role-specific fields (Student, Teacher, Driver as previously defined) and is stored in a database with their role.
 
-Sunday to Tuesday (রবিবার থেকে মঙ্গলবার)
+After login, redirect to the correct role-specific dashboard.
 
-Each day-group has multiple time-slot rows (e.g. Noon departure, Afternoon departure, Evening departure), and each row shows departure times across these route columns:
+Protected routes: dashboards only accessible to authenticated users; redirect to Login otherwise.
 
-From Campus (ক্যাম্পাস থেকে)
+Keep the hidden Admin login flow, connected to real backend authentication instead of hardcoded credentials.
 
-From Sherpur (শেরপুর থেকে)
+2. Live Google Map integration:
 
-From B-Block (বি-ব্লক থেকে)
+Real interactive map using the Google Maps JavaScript API (API key to be provided), showing campus, bus stops, and routes.
 
-From Bonani (বনানী থেকে)
+When a Driver starts a trip (Start Trip toggle), their GPS location (via browser Geolocation API) updates in the database every 10-15 seconds.
 
-From Gobindaganj (গোবিন্দগঞ্জ থেকে)
+Student/Teacher dashboards subscribe to their assigned bus's live location, showing a historical bus marker, route path, and ETA in real-time.
 
-From Mokamtola (মোকামতলা থেকে)
+3. Profile picture upload:
 
-From Gabtoli (গাবতলী থেকে)
+Every user can upload/update a profile picture (via Lovable Cloud storage), shown in dashboard header and profile section, with circular avatar preview and upload/crop UI.
 
-From Sathmatha (সাতমাথা থেকে)
+4. Student Dashboard features:
 
-From Dupchachia (দুপচাচিয়া থেকে)
+Live map with bus location, ETA, route info, delay/arrival notifications
 
-Use '-' for routes with no departure at that time slot. Include a note row style like 'গোবিন্দগঞ্জ বাস যাবে' (bus will go via Gobindaganj) where applicable — a small annotation text within a cell instead of a time.
+Favorite/pinned bus for quick-switching
 
-Contact/Driver Info table (below the schedule):
-A separate table listing: Route name, Bus number, Driver name, Mobile number — grouped in a clean grid (3 columns of route-groups as in the reference, or a simple responsive list on mobile).
+'Notify Me' toggle for proximity alerts
 
-Notes section:
-Below both tables, add a small notes block:
+Weekly commute history (missed/on-time log)
 
-'বাস নির্ধারিত সময় অনুযায়ী ক্যাম্পাস থেকে ছাড়বে, উক্ত সময়ের ব্যত্যয় ঘটবে না।' (Buses depart on schedule from campus; no deviation from stated time.)
+Lost & Found / Report an Issue form
 
-'বিশেষ কারণে ও কর্তৃপক্ষের নির্দেশনায় বিশ্ববিদ্যালয় বাসের সময়সূচি পরিবর্তন হতে পারে।' (Schedule may change per university directives.)
+Bus occupancy status (Low/Medium/High)
 
-'হঠাৎ গাড়ি নষ্ট হলে অথবা রাস্তায় ট্রাফিক জ্যামের কারণে বিশ্ববিদ্যালয় বাস গন্তব্যে পৌঁছাতে নির্দিষ্ট সময়ে কিছু তারতম্য হতে পারে।' (Delays possible due to breakdown or traffic.)
+Dark mode toggle
 
-Design:
+Working language switch (Bangla/English)
 
-Clean, readable table design with alternating row shading, sticky header row (route names) so it stays visible while scrolling on long tables.
+Class schedule sync — suggests which bus to catch based on next class time
 
-Match the site's sky-blue background and green/orange/teal accent colors — the table itself can sit on a white/light card for readability.
+Opt-in friend/group bus tracking
 
-Highlight the currently active toggle (Class Time / Exam Time) with the site's accent color.
+5. Teacher Dashboard features:
 
-Fully responsive: on mobile, allow horizontal scroll for the wide table, or collapse into a per-day accordion/card view for easier reading on small screens.
+Live tracking view for assigned/relevant bus
 
-Add a smooth fade/slide transition when switching between Class Time and Exam Time tabs.
+Notice/announcement panel
 
-Support Bengali text properly (correct font rendering for Bangla headers/labels) alongside English labels where used elsewhere on the site.
+Class-based bus assignment override when class timing changes
 
-Use the actual schedule data from the attached image for the 'Class Time' view as the initial dataset (structure days, routes, and times exactly as shown); for 'Exam Time' use placeholder/mock data with the same structure for now, which can be updated later with real exam-period timings."
+Broadcast announcements to specific routes or all students
 
-All in english`}
+6. Driver Dashboard features:
+
+Start/End Trip toggle to broadcast GPS location
+
+Current route and stop list, trip status panel
+
+Route deviation alert if GPS drifts from expected path
+
+Emergency/SOS button for breakdown/accident reporting — instant alert to Admin
+
+Daily trip log/history
+
+Fuel/maintenance reminder
+
+Passenger count input per stop (feeds occupancy status shown to students)
+
+7. Admin Dashboard features:
+
+Real-time overview map showing ALL active buses at once
+
+Reported issues inbox (status: pending/resolved)
+
+Analytics dashboard — most-used routes, delay patterns, ridership trends (charts)
+
+Driver performance/punctuality overview
+
+Broadcast announcements to all users
+
+User approval queue (new sign-ups, especially Driver/Admin accounts)
+
+Route/schedule editor
+
+Bus maintenance tracker (service due dates, issue logs per bus)
+
+User management (view/manage students, teachers, drivers)
+
+8. Shared across all dashboards:
+
+Notification bell/center (in-dashboard alert history)
+
+Settings page (change password, notification preferences)
+
+Search bar (find route/bus/stop quickly)
+
+Export data (commute history or analytics as PDF/CSV)
+
+Accessibility settings (font size, high-contrast mode)
+
+9. Design & animation consistency:
+
+Match the main site's theme — sky-blue backgrounds where appropriate, green/orange/teal accents, pill-shaped buttons with the established glass-shine + shadow-lift hover effect, smooth fade/slide entrance animations for dashboard panels and cards, consistent typography.
+
+Subtle loading-state animations (skeleton loaders or smooth spinners) while map/location data loads.
+
+Respect prefers-reduced-motion across all dashboard animations.
+
+Fully responsive across desktop, tablet, and mobile for all 4 dashboards.
+
+Note: Before this works fully, you'll need to (a) enable Lovable Cloud for backend/auth/database, and (b) provide a valid Google Maps API key with billing set up in your Google Cloud account. Without these, the map and live GPS features cannot function beyond a static/mock preview."`}
       </div>
     </main>
   );
