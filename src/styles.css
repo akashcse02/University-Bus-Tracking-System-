@@ -311,7 +311,7 @@
     transition-delay: 0s !important;
   }
   
-  .animate-float, .animate-float-slow, .animate-float-subtle, .animate-float-simple, .animate-drive, .animate-dash, .animate-drive-map, .animate-pin-pop, .animate-ping-slow, .animate-shift-weight {
+  .animate-float, .animate-float-slow, .animate-float-subtle, .animate-float-simple, .animate-drive, .animate-dash, .animate-drive-map, .animate-pin-pop, .animate-ping-slow, .animate-shift-weight, .animate-butterfly-1, .animate-butterfly-2, .animate-bird-glide, .animate-bus-idle {
     animation: none !important;
     transform: none !important;
   }
