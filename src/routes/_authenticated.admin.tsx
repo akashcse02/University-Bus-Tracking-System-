@@ -38,7 +38,7 @@ import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 
-export const Route = createFileRoute("/admin")({
+export const Route = createFileRoute("/_authenticated/admin")({
   head: () => ({
     title: "Admin Dashboard — PUB Bus Track",
     meta: [{ name: "description", content: "Administrative panel for PUB Bus Tracking System." }],
