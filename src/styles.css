@@ -83,7 +83,54 @@
   --animate-butterfly-2: butterfly-flutter 18s ease-in-out infinite reverse;
   --animate-bird-glide: bird-glide 25s linear infinite;
   --animate-bus-idle: bus-idle 3s ease-in-out infinite;
+  --animate-scroll-left: scroll-reveal-left 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-scroll-zoom: scroll-reveal-zoom 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-scroll-right: scroll-reveal-right 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+@keyframes scroll-reveal-left {
+  from { opacity: 0; transform: translateX(-100px) scale(0.95); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes scroll-reveal-zoom {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes scroll-reveal-right {
+  from { opacity: 0; transform: translateX(100px) scale(0.95); }
+  to { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes opacity-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@layer utilities {
+  .animate-scroll-left {
+    animation: var(--animate-scroll-left);
+    will-change: transform, opacity;
+  }
+  .animate-scroll-zoom {
+    animation: var(--animate-scroll-zoom);
+    will-change: transform, opacity;
+  }
+  .animate-scroll-right {
+    animation: var(--animate-scroll-right);
+    will-change: transform, opacity;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll-left, .animate-scroll-zoom, .animate-scroll-right {
+    animation: opacity-fade 0.4s ease-out forwards !important;
+    transform: none !important;
+    will-change: opacity;
+  }
+}
+
 
 @keyframes butterfly-flutter {
   0%, 100% { transform: translate(0, 0) rotate(0deg); }
