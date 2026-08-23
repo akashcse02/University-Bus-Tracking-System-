@@ -31,7 +31,7 @@ export function EmailSignup() {
             required 
             className="h-12 flex-1 rounded-full border-border bg-card px-5 text-sm"
           />
-          <Button type="submit" className="h-12 rounded-full bg-primary px-8 font-display font-bold">
+          <Button type="submit" className="btn-hover-premium h-12 rounded-full bg-primary px-8 font-display font-bold">
             Subscribe
           </Button>
         </form>

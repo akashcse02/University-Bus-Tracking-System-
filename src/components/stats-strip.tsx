@@ -35,7 +35,7 @@ function StatCard({ number, label, suffix = "" }: StatProps) {
   }, [isInView, number]);
 
   return (
-    <div ref={ref} className="flex flex-col items-center justify-center rounded-[2.5rem] bg-white p-8 text-center shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] transition-transform hover:scale-105">
+    <div ref={ref} className="card-hover-premium flex flex-col items-center justify-center rounded-[2.5rem] bg-white p-8 text-center shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)]">
       <span className="font-display text-4xl font-black text-primary sm:text-5xl">
         {count}{suffix}
       </span>
