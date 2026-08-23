@@ -34,14 +34,13 @@ export const Route = createFileRoute("/_authenticated")({
 });
 
 function AuthenticatedLayout() {
-  const { session, profile, role } = Route.useLoaderData();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const { profile, role } = Route.useLoaderData();
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
-      {/* Sidebar - Implementation coming in next step */}
-      <div className="flex-1 flex flex-col">
-        {/* Header - Implementation coming in next step */}
+      <Sidebar role={role} />
+      <div className="flex-1 flex flex-col min-h-screen">
+        <Header profile={profile} />
         <main className="flex-1 p-6 overflow-auto">
           <div className="max-w-7xl mx-auto">
              <div className="mb-8 flex items-center justify-between">
@@ -62,3 +61,4 @@ function AuthenticatedLayout() {
     </div>
   );
 }
+
