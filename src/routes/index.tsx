@@ -352,7 +352,7 @@ function Index() {
         '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Fine-tune the bus slide-in animation so its easing, duration, and final position match the reference image precisely.
+                                            all button gulo 3d hover use kor  ekdim sosta
 I will upload a reference image showing the exact composition and positioning I want for this hero section. Please match the layout, spacing, and element placement in that reference image as closely as possible — including where the headline, subtext, CTA button, building, bus, and phone mockup are positioned relative to each other.
 
 Keep the sky-blue background, current color scheme (green CTA, orange accent), and existing content/copy unchanged — this is a layout/positioning adjustment only."
