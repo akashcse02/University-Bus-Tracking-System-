@@ -179,12 +179,6 @@ export function TestimonialsStrip() {
         </motion.div>
       </div>
 
-      <div className="hidden" aria-hidden="true">
-        {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
-                                        
-                                            
-                                            Change the heading of the horizontal review section from 'Loved by Students' to 'Loved by Users' — this reflects that the reviews now include students, faculty, and staff, not just students. Keep the section's design, cards, drag-to-scroll interaction, and content exactly as they are — this is a heading text change only."`}
-      </div>
     </section>
   );
 }
