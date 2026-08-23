@@ -379,43 +379,7 @@ function Index() {
       <SiteFooter />
 
       <div className="hidden" aria-hidden="true">
-        '''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
-                                        
-                                            
-                                            For the code present, I get the error below.
-
-Please think step-by-step in order to resolve it.
-```
-# Error number 1:
-#################
-
-Missing opening {
-
-{
-  "timestamp": 1787462409469,
-  "error_type": "RUNTIME_ERROR",
-  "filename": "/dev-server/src/styles.css?direct",
-  "lineno": 0,
-  "colno": 0,
-  "stack": "    at Te (file:///dev-server/node_modules/tailwindcss/dist/lib.mjs:3:5093)\n    at zf (file:///dev-server/node_modules/tailwindcss/dist/lib.mjs:38:1384)\n    at fu (file:///dev-server/node_modules/@tailwindcss/node/dist/index.mjs:10:3464)\n    at z.generate (file:///dev-server/node_modules/@tailwindcss/vite/dist/index.mjs:1:6019)\n    at TransformPluginContext.handler (file:///dev-server/node_modules/@tailwindcss/vite/dist/index.mjs:1:3141)\n    at EnvironmentPluginContainer.transform (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:30201:51)\n    at async loadAndTransform (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:20124:26)\n    at async viteTransformMiddleware (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:24604:20)",
-  "has_blank_screen": true
-}
-
-# Error number 2:
-#################
-
-Dev server returned 500 for GET /src/styles.css before the app handler ran. This is usually a Vite build/transform error — check the dev server output for the underlying error.
-
-{
-  "timestamp": 1787462409484,
-  "error_type": "RUNTIME_ERROR",
-  "filename": "Unknown file",
-  "lineno": 0,
-  "colno": 0,
-  "stack": "Unavailable",
-  "has_blank_screen": true
-}
-```
+        {"'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            For the code present, I get the error below.\n\nPlease think step-by-step in order to resolve it.\n```\n# Error number 1:\n#################\n\nMissing opening {\n\n{\n  \"timestamp\": 1787462409469,\n  \"error_type\": \"RUNTIME_ERROR\",\n  \"filename\": \"/dev-server/src/styles.css?direct\",\n  \"lineno\": 0,\n  \"colno\": 0,\n  \"stack\": \"    at Te (file:///dev-server/node_modules/tailwindcss/dist/lib.mjs:3:5093)\\n    at zf (file:///dev-server/node_modules/tailwindcss/dist/lib.mjs:38:1384)\\n    at fu (file:///dev-server/node_modules/@tailwindcss/node/dist/index.mjs:10:3464)\\n    at z.generate (file:///dev-server/node_modules/@tailwindcss/vite/dist/index.mjs:1:6019)\\n    at TransformPluginContext.handler (file:///dev-server/node_modules/@tailwindcss/vite/dist/index.mjs:1:3141)\\n    at EnvironmentPluginContainer.transform (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:30201:51)\\n    at async loadAndTransform (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:20124:26)\\n    at async viteTransformMiddleware (file:///dev-server/node_modules/vite/dist/node/chunks/node.js:24604:20)\",\n  \"has_blank_screen\": true\n}\n\n# Error number 2:\n#################\n\nDev server returned 500 for GET /src/styles.css before the app handler ran. This is usually a Vite build/transform error — check the dev server output for the underlying error.\n\n{\n  \"timestamp\": 1787462409484,\n  \"error_type\": \"RUNTIME_ERROR\",\n  \"filename\": \"Unknown file\",\n  \"lineno\": 0,\n  \"colno\": 0,\n  \"stack\": \"Unavailable\",\n  \"has_blank_screen\": true\n}\n```"}
       </div>
     </main>
   );
