@@ -531,13 +531,16 @@ function TimeSchedulePage() {
                                         {val}
                                       </span>
                                       {val !== "-" && (
-                                        <button 
-                                          className="opacity-0 group-hover/cell:opacity-100 transition-opacity p-1 rounded-md hover:bg-primary/10 text-primary"
-                                          title="Set Reminder"
-                                          onClick={() => alert(`Reminder set for ${val} at ${col.label}`)}
-                                        >
-                                          <Bell className="h-3 w-3" />
-                                        </button>
+                                        <NotificationSettings 
+                                          trigger={
+                                            <button 
+                                              className="opacity-0 group-hover/cell:opacity-100 transition-opacity p-1 rounded-md hover:bg-primary/10 text-primary"
+                                              title="Set Reminder"
+                                            >
+                                              <Bell className="h-3 w-3" />
+                                            </button>
+                                          }
+                                        />
                                       )}
                                     </div>
                                   )}
