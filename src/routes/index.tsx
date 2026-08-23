@@ -184,14 +184,14 @@ function Index() {
       const documentHeight = document.documentElement.scrollHeight;
 
       if (scrollY + windowHeight >= documentHeight - 100) {
-        current = "How it works"; // fallback or handle footer highlighting
+        current = "How it works";
       } else {
         for (const section of sections) {
           const element = document.getElementById(section);
           if (element) {
             const rect = element.getBoundingClientRect();
             if (rect.top <= 120) {
-              const link = navLinks.find(l => l.href === `#${section}`);
+              const link = navLinks.find(l => l.href === `/#${section}` || l.href === `#${section}`);
               if (link) current = link.label;
             }
           }
@@ -205,9 +205,9 @@ function Index() {
   }, []);
 
   const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (href.startsWith("#")) {
+    if (href.includes("#")) {
       e.preventDefault();
-      const id = href.replace("#", "");
+      const id = href.split("#")[1];
       if (!id) {
         window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
@@ -232,7 +232,7 @@ function Index() {
       {/* Navbar */}
       <header className="sticky top-0 z-50 w-full backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 gap-4">
-          <a href="#" onClick={(e) => smoothScroll(e, "#")} className="flex items-center gap-2.5 shrink-0">
+          <a href="/" onClick={(e) => smoothScroll(e, "/")} className="flex items-center gap-2.5 shrink-0">
             <span className="grid h-10 w-10 shrink-0 place-items-center rounded-2xl bg-white shadow-sm overflow-hidden">
               <img src={pubLogo.url} alt="Logo" className="h-full w-full object-cover" />
             </span>
@@ -275,9 +275,6 @@ function Index() {
             <a href="/login" className="nav-link-clean px-6 py-2.5 text-[14px] xl:text-sm text-ink nav-item-nowrap">Login</a>
             <a href="/signup" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-[14px] xl:text-sm font-bold text-primary-foreground shadow-lg nav-item-nowrap">Sign Up</a>
           </div>
-
-
-
 
           <button 
             onClick={() => setOpen(!open)} 
@@ -357,8 +354,6 @@ function Index() {
                   </a>
                 </div>
               </div>
-
-
             </div>
           </Reveal>
         </div>
@@ -371,7 +366,6 @@ function Index() {
           <VisualsScene />
         </div>
       </section>
-
 
       {/* Stats Section */}
       <StatsStrip />
@@ -395,38 +389,20 @@ function Index() {
         {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Add Drag-to-Scroll + New Faculty/Staff Reviews (Combined):
+                                            For the code present, I get the error below.
 
-"Update the 'Loved by Students' horizontal review section with the following:
+Please think step-by-step in order to resolve it.
 
-1. Add drag-to-scroll interaction:
-Users should be able to click and drag (or touch-swipe on mobile) the card row left/right to manually scroll through the cards, in addition to the existing auto-scroll animation.
+# Error number 1:
+#################
 
-On mousedown, pause the auto-scroll and switch to manual drag mode: track cursor movement (mousemove) and translate the row horizontally based on drag distance (transform: translateX()), using cursor: grab normally and cursor: grabbing while actively dragging.
+The app returned 500 while handling GET /.
 
-On mouseup or mouseleave, resume the auto-scroll animation after a short delay (2-3 seconds of inactivity).
+# Error number 2:
+#################
 
-Add momentum/inertia on release (the row continues scrolling briefly and decelerates smoothly) for a natural, premium feel — similar to native touch scrolling physics.
-
-Support touch drag (swipe) the same way on mobile/tablet.
-
-Keep it smooth and GPU-accelerated using transform only.
-
-2. Add new reviews to the row (alongside existing student reviews):
-
-Md Nahid Hasan (Faculty) — a short positive review about how PUB Bus Track has made monitoring student commute easier and more organized for the department.
-
-Habib Ehsanul Hoque — Head of CSE — a short positive review about how the app reflects well on the university's tech-forward approach and helps both students and faculty stay on schedule.
-
-Indronil Mishra (Faculty) — a short positive review about the app's reliability and how it's reduced complaints about missed buses.
-
-Ononto — Transport System Controller — a short positive review from an operations perspective, about how the app helps coordinate bus routes and respond to delays more efficiently.
-
-Design for these new cards: same style as existing reviews (circular initials avatar, name, role/title shown below the name in smaller text, 1-2 sentence quote, 5-star rating), with an appropriate tag like 'Faculty' or 'Staff' instead of 'App Store review' for these roles. Mix these into the existing scrolling row alongside the student reviews (Md Akash Islam, Md Sabbir Hossain, Irin Mim)."
-
-Implement a responsive mobile navbar with a hamburger menu that preserves the same pill hover/active styling.
-
-Add clear keyboard focus states for all navbar links and buttons so active/hover styling is accessible via tab navigation.`}
+Error: Transform failed with 1 error:
+[PARSE_ERROR] Unexpected token.`}
       </div>
     </main>
   );
