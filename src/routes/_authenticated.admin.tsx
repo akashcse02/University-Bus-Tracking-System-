@@ -1,14 +1,28 @@
 import { createFileRoute, redirect } from "@tanstack/react-router";
+import { supabase } from "@/integrations/supabase/client";
 import { AdminDashboard } from "@/components/dashboards/admin-dashboard";
 
 export const Route = createFileRoute("/_authenticated/admin")({
-  beforeLoad: ({ context }) => {
-    const role = (context as any).role;
-    if (role !== "admin") {
-      throw redirect({
-        to: "/live-location",
-      });
+  loader: async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (!session) {
+      throw redirect({ to: "/login" });
     }
+
+    // Role is verified against the RLS-protected user_roles table,
+    // never from client state or props.
+    const { data: roles } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", session.user.id)
+      .eq("role", "admin");
+
+    if (!roles || roles.length === 0) {
+      throw redirect({ to: "/live-location" });
+    }
+
+    return { isAdmin: true };
   },
   head: () => ({
     title: "Admin Dashboard — PUB Bus Track",

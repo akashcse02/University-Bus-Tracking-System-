@@ -25,9 +25,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     title: "PUB Bus Track — Pundra University Bus Tracking System",
     meta: [
-      { name: "description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            now work in backend follow my commands" },
+      { name: "description", content: "Track Pundra University buses live, check route timetables, and get departure reminders with PUB Bus Track." },
       { property: "og:title", content: "PUB Bus Track — Pundra University Bus Tracking System" },
-      { property: "og:description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            now work in backend follow my commands" },
+      { property: "og:description", content: "Live bus locations, route schedules, and departure reminders for Pundra University students, teachers, and staff." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" }
     ],
@@ -383,13 +383,6 @@ function Index() {
 
       {/* Footer Section */}
       <SiteFooter />
-
-      <div className="hidden" aria-hidden="true">
-            {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
-                                        
-                                            
-                                            now work in backend follow my commands`}
-      </div>
     </main>
   );
 }
