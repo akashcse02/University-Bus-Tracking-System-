@@ -46,7 +46,7 @@ function LiveLocationPage() {
   }
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-sky">
+    <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,var(--color-sky-top),#F0F9FF_45%)]">
       <Clouds />
       <section className="relative mx-auto w-full max-w-[1280px] px-4 pb-16 pt-10 sm:px-6 lg:pt-14">
         <Link
