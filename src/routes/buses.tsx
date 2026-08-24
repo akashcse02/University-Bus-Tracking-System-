@@ -133,98 +133,114 @@ const BUSES_DATA: BusData[] = [
 
 const ROUTES = ["All", "Gobindaganj", "Sherpur", "Gabtoli", "Sathmatha/Bogura", "Dupchachia"];
 
-function BusCard({ bus }: { bus: BusData }) {
-  const [expanded, setExpanded] = useState(false);
-
-  const statusColors: Record<BusStatus, string> = {
-    "On Route": "bg-green-500",
-    "Not Started": "bg-slate-400",
-    "Delayed": "bg-amber-500",
-  };
-
+function BusTile({ bus, onOpen }: { bus: BusData; onOpen: () => void }) {
+  const premium = bus.type === "Staff & Teacher";
+  const accent = premium ? PREMIUM_TRIM : routeAccent(bus.route);
 
   return (
-    <div 
-      className="card-hover-premium group relative flex flex-col overflow-hidden rounded-3xl bg-white p-6 shadow-xl ring-1 ring-black/5 transition-all duration-300"
+    <button
+      type="button"
+      onClick={onOpen}
+      className="card-hover-premium group relative flex w-full flex-col items-center rounded-3xl bg-white/85 p-5 pt-7 text-left shadow-lg ring-1 ring-black/5 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl focus-visible:outline-2 focus-visible:outline-primary sm:p-6 sm:pt-8"
     >
-      <div className="flex items-start justify-between">
+      <BusIllustration
+        number={bus.number}
+        route={bus.route}
+        status={bus.status}
+        premium={premium}
+      />
+
+      <div className="mt-4 w-full text-center">
+        <h3 className="font-display text-xl font-extrabold tracking-tight text-ink sm:text-2xl">{bus.number}</h3>
+        <p className="mt-1 text-xs font-medium text-ink/50">{bus.route} Route</p>
+        <p className="mt-0.5 text-[11px] font-medium text-ink/40">{bus.name}</p>
+        {premium && (
+          <span
+            className="mt-3 inline-block rounded-full px-3 py-1 text-[10px] font-bold"
+            style={{ backgroundColor: `color-mix(in oklab, ${accent} 22%, transparent)`, color: "oklch(0.5 0.1 88)" }}
+          >
+            Staff & Teacher Bus
+          </span>
+        )}
+      </div>
+    </button>
+  );
+}
+
+function BusModal({ bus, onClose }: { bus: BusData; onClose: () => void }) {
+  const premium = bus.type === "Staff & Teacher";
+  const accent = premium ? PREMIUM_TRIM : routeAccent(bus.route);
+
+  return (
+    <div className="fixed inset-0 z-[100] flex items-end justify-center bg-ink/40 p-4 backdrop-blur-sm animate-in fade-in sm:items-center">
+      <div className="relative w-full max-w-lg rounded-[2rem] bg-white p-7 shadow-2xl animate-in slide-in-from-bottom-4">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute right-5 top-5 rounded-full p-2 text-ink/40 transition-colors hover:bg-slate-100 hover:text-ink"
+        >
+          <X className="h-5 w-5" />
+        </button>
+
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl" style={{ backgroundColor: `color-mix(in oklab, ${accent} 15%, transparent)`, color: accent }}>
             <Bus className="h-6 w-6" />
           </div>
           <div>
-            <h3 className="font-display text-lg font-bold text-ink">{bus.number}</h3>
-            <p className="text-xs font-medium text-ink/60">{bus.name}</p>
+            <h3 className="font-display text-2xl font-extrabold text-ink">{bus.number}</h3>
+            <p className="text-xs font-medium text-ink/60">{bus.name} &middot; {bus.route}</p>
           </div>
         </div>
-        <div className="flex flex-col items-end gap-2">
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-[10px] font-bold text-ink/70">
-            {bus.route}
-          </span>
-          {bus.type === "Staff & Teacher" && (
-            <span className="animate-pulse rounded-full bg-accent/20 px-3 py-1 text-[10px] font-bold text-accent">
-              Staff & Teacher Bus
-            </span>
-          )}
-        </div>
-      </div>
 
-      <div className="mt-6 space-y-4">
-        <div className="flex items-center justify-between border-b border-slate-50 pb-4">
-          <div className="flex items-center gap-2">
-            <div className={`h-2.5 w-2.5 rounded-full ${statusColors[bus.status]}`} />
-            <span className="text-sm font-bold text-ink/80">{bus.status}</span>
+        <div className="mt-6 grid grid-cols-2 gap-4">
+          <div className="rounded-2xl bg-slate-50 p-4">
+            <span className="block text-[10px] font-bold uppercase tracking-wider text-ink/40">Status</span>
+            <span className="text-sm font-bold text-ink">{bus.status}</span>
           </div>
-          <div className="text-right">
+          <div className="rounded-2xl bg-slate-50 p-4">
             <span className="block text-[10px] font-bold uppercase tracking-wider text-ink/40">ETA</span>
             <span className="text-sm font-bold text-primary">{bus.eta}</span>
           </div>
         </div>
 
-        <div className="flex items-start gap-3">
+        <div className="mt-4 flex items-start gap-3 rounded-2xl bg-slate-50 p-4">
           <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
           <div>
             <span className="block text-[10px] font-bold uppercase tracking-wider text-ink/40">Next Stop</span>
             <span className="text-sm font-bold text-ink">{bus.nextStop}</span>
           </div>
         </div>
-      </div>
 
-      <button 
-        onClick={() => setExpanded(!expanded)}
-        className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-50 py-3 text-xs font-bold text-ink/70 transition-all hover:bg-slate-100 hover:text-primary active:scale-[0.98]"
-      >
-        {expanded ? "Hide Route Details" : "View Full Route & ETA"}
-        <ChevronRight className={`h-4 w-4 transition-transform duration-300 ${expanded ? "rotate-90" : ""}`} />
-      </button>
-
-
-      {expanded && (
-        <div className="mt-4 animate-in fade-in slide-in-from-top-2">
-          <div className="relative space-y-4 pl-4 before:absolute before:left-[19px] before:top-2 before:h-[calc(100%-16px)] before:w-0.5 before:bg-slate-100">
-            {bus.stops.map((stop, i) => (
-              <div key={i} className="relative flex items-center gap-4">
-                <div className={`z-10 h-2 w-2 rounded-full ring-4 ring-white ${stop === bus.nextStop ? "bg-primary scale-125" : "bg-slate-300"}`} />
-                <span className={`text-xs font-medium ${stop === bus.nextStop ? "font-bold text-primary" : "text-ink/60"}`}>
-                  {stop}
-                </span>
-              </div>
-            ))}
-          </div>
-          <a 
-            href="/live-location" 
-            className="mt-6 block rounded-2xl bg-primary/10 py-3 text-center text-xs font-bold text-primary transition-colors hover:bg-primary hover:text-white"
-          >
-            Track on Map
-          </a>
+        <div className="mt-6 relative space-y-4 pl-4 before:absolute before:left-[19px] before:top-2 before:h-[calc(100%-16px)] before:w-0.5 before:bg-slate-100">
+          {bus.stops.map((stop, i) => (
+            <div key={i} className="relative flex items-center gap-4">
+              <div
+                className="z-10 h-2 w-2 rounded-full ring-4 ring-white"
+                style={{ backgroundColor: stop === bus.nextStop ? accent : "oklch(0.85 0.01 250)" }}
+              />
+              <span className={`text-xs font-medium ${stop === bus.nextStop ? "font-bold text-ink" : "text-ink/60"}`}>
+                {stop}
+              </span>
+            </div>
+          ))}
         </div>
-      )}
+
+        <a
+          href="/live-location"
+          className="mt-7 block rounded-2xl py-3 text-center text-xs font-bold text-white transition-opacity hover:opacity-90"
+          style={{ backgroundColor: accent }}
+        >
+          Track on Map
+        </a>
+      </div>
     </div>
   );
 }
 
 function BusesPage() {
   const [activeRoute, setActiveRoute] = useState("All");
+  const [selected, setSelected] = useState<BusData | null>(null);
 
   const filteredBuses = useMemo(() => {
     if (activeRoute === "All") return BUSES_DATA;
@@ -243,7 +259,9 @@ function BusesPage() {
 
 
   return (
-    <main className="min-h-screen bg-[#F0F9FF]">
+    <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,var(--color-sky-top),#F0F9FF_45%)]">
+      <Clouds />
+      <Scenery />
       {/* Header */}
       <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 gap-4">
@@ -270,7 +288,7 @@ function BusesPage() {
         </div>
       </header>
 
-      <section className="mx-auto max-w-7xl px-5 py-12">
+      <section className="relative z-10 mx-auto max-w-7xl px-5 py-12">
         <Reveal>
           <div className="mb-12">
             <h1 className="font-display text-4xl font-extrabold text-ink sm:text-5xl">Active Buses</h1>
@@ -311,13 +329,14 @@ function BusesPage() {
                 </span>
               </div>
               
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:gap-10">
                 {buses.map((bus, idx) => (
-                  <Reveal key={bus.id} delay={idx * 0.1}>
-                    <BusCard bus={bus} />
+                  <Reveal key={bus.id} delay={idx * 80}>
+                    <BusTile bus={bus} onOpen={() => setSelected(bus)} />
                   </Reveal>
                 ))}
               </div>
+              <RoadStrip className="mt-2" />
             </div>
           ))}
 
@@ -332,6 +351,8 @@ function BusesPage() {
           )}
         </div>
       </section>
+
+      {selected && <BusModal bus={selected} onClose={() => setSelected(null)} />}
 
       <SiteFooter />
 
