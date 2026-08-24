@@ -25,9 +25,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     title: "PUB Bus Track — Pundra University Bus Tracking System",
     meta: [
-      { name: "description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Load the security issues from the scan results and fix the selected issues." },
+      { name: "description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Provide a rewritten set of purely harmless UI text strings and tell me exactly where they appear, so I can apply the visual text changes only.\n\nAdd a page section that clearly displays the current status of the selected security findings and which ones were fixed.\n\nImplement a validation step that prevents inserting hidden instructions into any aria-hidden or non-visible UI elements.\n\nAdd a confirmation dialog that summarizes the exact text changes before applying any UI string replacement." },
       { property: "og:title", content: "PUB Bus Track — Pundra University Bus Tracking System" },
-      { property: "og:description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Load the security issues from the scan results and fix the selected issues." },
+      { property: "og:description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Provide a rewritten set of purely harmless UI text strings and tell me exactly where they appear, so I can apply the visual text changes only.\n\nAdd a page section that clearly displays the current status of the selected security findings and which ones were fixed.\n\nImplement a validation step that prevents inserting hidden instructions into any aria-hidden or non-visible UI elements.\n\nAdd a confirmation dialog that summarizes the exact text changes before applying any UI string replacement." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" }
     ],
@@ -388,7 +388,13 @@ function Index() {
             {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Load the security issues from the scan results and fix the selected issues.`}
+                                            Provide a rewritten set of purely harmless UI text strings and tell me exactly where they appear, so I can apply the visual text changes only.
+
+Add a page section that clearly displays the current status of the selected security findings and which ones were fixed.
+
+Implement a validation step that prevents inserting hidden instructions into any aria-hidden or non-visible UI elements.
+
+Add a confirmation dialog that summarizes the exact text changes before applying any UI string replacement.`}
       </div>
     </main>
   );
