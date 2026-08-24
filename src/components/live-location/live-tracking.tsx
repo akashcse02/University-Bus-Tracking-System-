@@ -70,6 +70,11 @@ export function LiveTracking() {
     [hiddenRoutes],
   );
 
+  const routePaths = useMemo(
+    () => Object.fromEntries(ROUTES.map((r) => [r.id, r.stops.map((s) => s.position)])) as Record<string, LatLng[]>,
+    [],
+  );
+
   const selected = useMemo(() => FLEET.find((b) => b.id === selectedId) ?? null, [selectedId]);
 
   const focus = useCallback((position: LatLng, zoom = 16) => {
@@ -260,8 +265,12 @@ export function LiveTracking() {
               {ROUTES.filter((r) => !hiddenRoutes.includes(r.id)).map((route) => (
                 <Polyline
                   key={route.id}
-                  path={route.stops.map((s) => s.position)}
-                  options={{ strokeColor: route.color, strokeOpacity: 0.85, strokeWeight: 4 }}
+                  options={{
+                    path: routePaths[route.id],
+                    strokeColor: route.color,
+                    strokeOpacity: 0.85,
+                    strokeWeight: 4,
+                  }}
                 />
               ))}
 
