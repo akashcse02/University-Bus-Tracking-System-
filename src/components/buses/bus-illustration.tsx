@@ -38,6 +38,7 @@ export function BusIllustration({
 }) {
   const accent = premium ? PREMIUM_TRIM : routeAccent(route);
   const plate = number.replace(/^Bus\s*/i, "");
+  const uid = number.replace(/[^a-zA-Z0-9]/g, "");
 
   return (
     <div className={cn("group/bus relative w-full", className)}>
@@ -49,11 +50,11 @@ export function BusIllustration({
 
       <svg viewBox="0 0 220 130" className="w-full overflow-visible" role="img" aria-label={`${number} illustration`}>
         <defs>
-          <linearGradient id={`body-${number}`} x1="0" y1="0" x2="0" y2="1">
+          <linearGradient id={`body-${uid}`} x1="0" y1="0" x2="0" y2="1">
             <stop offset="0%" stopColor="oklch(0.62 0.09 195)" />
             <stop offset="100%" stopColor="oklch(0.5 0.09 200)" />
           </linearGradient>
-          <linearGradient id={`shine-${number}`} x1="0" y1="0" x2="1" y2="1">
+          <linearGradient id={`shine-${uid}`} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="white" stopOpacity="0.55" />
             <stop offset="45%" stopColor="white" stopOpacity="0.12" />
             <stop offset="100%" stopColor="white" stopOpacity="0" />
@@ -68,7 +69,7 @@ export function BusIllustration({
         <ellipse cx="110" cy="118" rx="88" ry="10" fill="url(#ground-shadow)" />
 
         {/* body */}
-        <rect x="16" y="26" width="188" height="72" rx="16" fill={`url(#body-${number})`} />
+        <rect x="16" y="26" width="188" height="72" rx="16" fill={`url(#body-${uid})`} />
         {/* roof trim */}
         <rect x="26" y="22" width="168" height="8" rx="4" fill={accent} opacity="0.9" />
 
@@ -87,13 +88,13 @@ export function BusIllustration({
         <rect x="16" y="76" width="188" height="6" fill={accent} opacity="0.55" />
 
         {/* glass shine overlay */}
-        <rect x="16" y="22" width="188" height="58" rx="16" fill={`url(#shine-${number})`} />
+        <rect x="16" y="22" width="188" height="58" rx="16" fill={`url(#shine-${uid})`} />
 
         {/* license-plate badge */}
         <g>
           <rect
-            x="26"
-            y="80"
+            x="86"
+            y="78"
             width="54"
             height="20"
             rx="5"
@@ -102,8 +103,8 @@ export function BusIllustration({
             strokeWidth="1.5"
           />
           <text
-            x="53"
-            y="94"
+            x="113"
+            y="92"
             textAnchor="middle"
             fontSize="12"
             fontWeight="800"
