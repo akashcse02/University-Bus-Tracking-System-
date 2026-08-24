@@ -157,7 +157,7 @@ function BusTile({ bus, onOpen }: { bus: BusData; onOpen: () => void }) {
         {premium && (
           <span
             className="mt-3 inline-block rounded-full px-3 py-1 text-[10px] font-bold"
-            style={{ backgroundColor: `color-mix(in oklab, ${accent} 22%, transparent)`, color: "oklch(0.5 0.1 88)" }}
+            style={{ backgroundColor: `color-mix(in oklab, ${accent} 22%, transparent)`, color: "#8a6300" }}
           >
             Staff & Teacher Bus
           </span>
@@ -217,7 +217,7 @@ function BusModal({ bus, onClose }: { bus: BusData; onClose: () => void }) {
             <div key={i} className="relative flex items-center gap-4">
               <div
                 className="z-10 h-2 w-2 rounded-full ring-4 ring-white"
-                style={{ backgroundColor: stop === bus.nextStop ? accent : "oklch(0.85 0.01 250)" }}
+                style={{ backgroundColor: stop === bus.nextStop ? accent : "#cbd5e1" }}
               />
               <span className={`text-xs font-medium ${stop === bus.nextStop ? "font-bold text-ink" : "text-ink/60"}`}>
                 {stop}

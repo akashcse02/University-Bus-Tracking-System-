@@ -3,14 +3,14 @@ import { cn } from "@/lib/utils";
 export type BusStatus = "On Route" | "Not Started" | "Delayed";
 
 export const ROUTE_ACCENTS: Record<string, string> = {
-  Gobindaganj: "oklch(0.62 0.16 250)",
-  Sherpur: "oklch(0.7 0.16 55)",
-  Gabtoli: "oklch(0.66 0.12 190)",
-  "Sathmatha/Bogura": "oklch(0.58 0.17 300)",
-  Dupchachia: "oklch(0.68 0.16 350)",
+  Gobindaganj: "#3b82f6",
+  Sherpur: "#f97316",
+  Gabtoli: "#14b8a6",
+  "Sathmatha/Bogura": "#8b5cf6",
+  Dupchachia: "#ec4899",
 };
 
-export const PREMIUM_TRIM = "oklch(0.79 0.14 88)";
+export const PREMIUM_TRIM = "#d4a017";
 
 const STATUS_DOT: Record<BusStatus, string> = {
   "On Route": "bg-green-500",
@@ -19,7 +19,7 @@ const STATUS_DOT: Record<BusStatus, string> = {
 };
 
 export function routeAccent(route: string) {
-  return ROUTE_ACCENTS[route] ?? "oklch(0.62 0.16 250)";
+  return ROUTE_ACCENTS[route] ?? "#3b82f6";
 }
 
 /** Bus-shaped illustration with plate badge, glass shine and rolling wheels. */
@@ -51,8 +51,8 @@ export function BusIllustration({
       <svg viewBox="0 0 220 130" className="w-full overflow-visible" role="img" aria-label={`${number} illustration`}>
         <defs>
           <linearGradient id={`body-${uid}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="oklch(0.62 0.09 195)" />
-            <stop offset="100%" stopColor="oklch(0.5 0.09 200)" />
+            <stop offset="0%" stopColor="#2fa8ac" />
+            <stop offset="100%" stopColor="#1c7f86" />
           </linearGradient>
           <linearGradient id={`shine-${uid}`} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="white" stopOpacity="0.55" />
@@ -60,8 +60,8 @@ export function BusIllustration({
             <stop offset="100%" stopColor="white" stopOpacity="0" />
           </linearGradient>
           <radialGradient id="ground-shadow" cx="0.5" cy="0.5">
-            <stop offset="0%" stopColor="oklch(0.3 0.03 240)" stopOpacity="0.35" />
-            <stop offset="100%" stopColor="oklch(0.3 0.03 240)" stopOpacity="0" />
+            <stop offset="0%" stopColor="#1e293b" stopOpacity="0.35" />
+            <stop offset="100%" stopColor="#1e293b" stopOpacity="0" />
           </radialGradient>
         </defs>
 
@@ -76,10 +76,10 @@ export function BusIllustration({
         {/* windows */}
         {[0, 1, 2, 3].map((i) => (
           <g key={i}>
-            <rect x={32 + i * 40} y={38} width={30} height={24} rx={6} fill="oklch(0.95 0.02 220)" opacity="0.95" />
+            <rect x={32 + i * 40} y={38} width={30} height={24} rx={6} fill="#e8f4fb" opacity="0.95" />
             {/* passenger silhouettes */}
-            <circle cx={41 + i * 40} cy={54} r={5} fill="oklch(0.55 0.03 240)" opacity="0.18" />
-            <circle cx={53 + i * 40} cy={56} r={4} fill="oklch(0.55 0.03 240)" opacity="0.14" />
+            <circle cx={41 + i * 40} cy={54} r={5} fill="#334155" opacity="0.18" />
+            <circle cx={53 + i * 40} cy={56} r={4} fill="#334155" opacity="0.14" />
           </g>
         ))}
 
@@ -98,7 +98,7 @@ export function BusIllustration({
             width="54"
             height="20"
             rx="5"
-            fill="oklch(0.99 0 0)"
+            fill="#ffffff"
             stroke={accent}
             strokeWidth="1.5"
           />
@@ -108,7 +108,7 @@ export function BusIllustration({
             textAnchor="middle"
             fontSize="12"
             fontWeight="800"
-            fill="oklch(0.28 0.03 240)"
+            fill="#1f2937"
             fontFamily="var(--font-display)"
           >
             {plate}
@@ -121,10 +121,10 @@ export function BusIllustration({
         {/* wheels */}
         {[58, 168].map((cx) => (
           <g key={cx} className="origin-center animate-[wheel-roll_1.6s_linear_1] group-hover/bus:animate-[wheel-roll_1.4s_linear_infinite]" style={{ transformBox: "fill-box", transformOrigin: "center" }}>
-            <circle cx={cx} cy={102} r={13} fill="oklch(0.3 0.02 250)" />
-            <circle cx={cx} cy={102} r={6} fill="oklch(0.85 0.01 250)" />
-            <rect x={cx - 1} y={94} width={2} height={16} fill="oklch(0.6 0.01 250)" />
-            <rect x={cx - 8} y={101} width={16} height={2} fill="oklch(0.6 0.01 250)" />
+            <circle cx={cx} cy={102} r={13} fill="#334155" />
+            <circle cx={cx} cy={102} r={6} fill="#cbd5e1" />
+            <rect x={cx - 1} y={94} width={2} height={16} fill="#94a3b8" />
+            <rect x={cx - 8} y={101} width={16} height={2} fill="#94a3b8" />
           </g>
         ))}
       </svg>
