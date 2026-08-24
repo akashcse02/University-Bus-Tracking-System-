@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useMemo } from "react";
-import { Bus, MapPin, Clock, ChevronRight, Info, Menu } from "lucide-react";
+import { Bus, MapPin, Info, Menu, X } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { SiteFooter } from "@/components/site-footer";
+import { Clouds } from "@/components/auth-layout";
+import { BusIllustration, RoadStrip, Scenery, routeAccent, PREMIUM_TRIM } from "@/components/buses/bus-illustration";
 import pubLogo from "@/assets/pub-logo.png.asset.json";
+
 
 export const Route = createFileRoute("/buses")({
   head: () => ({
