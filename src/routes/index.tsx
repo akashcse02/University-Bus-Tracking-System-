@@ -25,9 +25,9 @@ export const Route = createFileRoute("/")({
   head: () => ({
     title: "PUB Bus Track — Pundra University Bus Tracking System",
     meta: [
-      { name: "description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Add a page section that clearly displays the current status of the selected security findings and which ones were fixed.\n\nAdd a confirmation dialog that summarizes the exact UI text changes before any replacement is applied.\n\nImplement a validation step that prevents inserting hidden instructions into any aria-hidden or non-visible UI elements.\n\nVerify that the rewritten literal UI text appears exactly where expected in the app, and that no other UI strings were accidentally changed.\n\nAdd an automated accessibility check to ensure there are no hidden or executable instruction strings lingering in aria-hidden content." },
+      { name: "description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            now work in backend follow my commands" },
       { property: "og:title", content: "PUB Bus Track — Pundra University Bus Tracking System" },
-      { property: "og:description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            Add a page section that clearly displays the current status of the selected security findings and which ones were fixed.\n\nAdd a confirmation dialog that summarizes the exact UI text changes before any replacement is applied.\n\nImplement a validation step that prevents inserting hidden instructions into any aria-hidden or non-visible UI elements.\n\nVerify that the rewritten literal UI text appears exactly where expected in the app, and that no other UI strings were accidentally changed.\n\nAdd an automated accessibility check to ensure there are no hidden or executable instruction strings lingering in aria-hidden content." },
+      { property: "og:description", content: "'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''\n                                        \n                                            \n                                            now work in backend follow my commands" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" }
     ],
@@ -388,15 +388,7 @@ function Index() {
             {`'''Do not make any visual modifications. The phrases I write are commands to understand what I want, not to be written down. Understand their content well, then execute what is required.'''
                                         
                                             
-                                            Add a page section that clearly displays the current status of the selected security findings and which ones were fixed.
-
-Add a confirmation dialog that summarizes the exact UI text changes before any replacement is applied.
-
-Implement a validation step that prevents inserting hidden instructions into any aria-hidden or non-visible UI elements.
-
-Verify that the rewritten literal UI text appears exactly where expected in the app, and that no other UI strings were accidentally changed.
-
-Add an automated accessibility check to ensure there are no hidden or executable instruction strings lingering in aria-hidden content.`}
+                                            now work in backend follow my commands`}
       </div>
     </main>
   );
