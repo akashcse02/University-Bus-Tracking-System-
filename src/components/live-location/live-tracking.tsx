@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { GoogleMap, InfoWindow, Marker, Polyline, useJsApiLoader } from "@react-google-maps/api";
 import { Bus, ChevronUp, MapPin, Radio, Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -14,11 +14,10 @@ import {
   type LatLng,
 } from "@/lib/bus-fleet";
 import { useLiveBusPositions } from "./use-live-positions";
+import { getGoogleMapsApiKey } from "@/config/app-config";
+import { resolveFleet, resolveRoutes, useMapSettings, useRouteConfig } from "@/lib/app-config";
 
-const API_KEY =
-  (import.meta.env['VITE_LOVABLE_CONNECTOR_GOOGLE_MAPS_BROWSER_KEY'] as string | undefined) ||
-  (import.meta.env['VITE_GOOGLE_MAPS_API_KEY'] as string | undefined) ||
-  "";
+const API_KEY = getGoogleMapsApiKey();
 
 const CONTAINER_STYLE = { width: "100%", height: "100%" } as const;
 
@@ -56,26 +55,37 @@ export function LiveTracking() {
     googleMapsApiKey: API_KEY,
   });
 
+  const { settings } = useMapSettings();
+  const { routeConfig } = useRouteConfig();
+  const routes = useMemo(() => resolveRoutes(routeConfig), [routeConfig]);
+  const fleet = useMemo(() => resolveFleet(routes), [routes]);
+
   const live = useLiveBusPositions();
   const mapRef = useRef<google.maps.Map | null>(null);
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [hiddenRoutes, setHiddenRoutes] = useState<string[]>([]);
+  const [bannerDismissed, setBannerDismissed] = useState(false);
   const [query, setQuery] = useState("");
-  const [bannerOpen, setBannerOpen] = useState(true);
   const [sheetOpen, setSheetOpen] = useState(false);
 
+  useEffect(() => {
+    setHiddenRoutes(settings.hiddenRouteIds);
+  }, [settings.hiddenRouteIds]);
+
+  const bannerOpen = settings.bannerEnabled && !bannerDismissed;
+
   const visibleBuses = useMemo(
-    () => FLEET.filter((bus) => !hiddenRoutes.includes(bus.routeId)),
-    [hiddenRoutes],
+    () => fleet.filter((bus) => !hiddenRoutes.includes(bus.routeId)),
+    [fleet, hiddenRoutes],
   );
 
   const routePaths = useMemo(
-    () => Object.fromEntries(ROUTES.map((r) => [r.id, r.stops.map((s) => s.position)])) as Record<string, LatLng[]>,
-    [],
+    () => Object.fromEntries(routes.map((r) => [r.id, r.stops.map((s) => s.position)])) as Record<string, LatLng[]>,
+    [routes],
   );
 
-  const selected = useMemo(() => FLEET.find((b) => b.id === selectedId) ?? null, [selectedId]);
+  const selected = useMemo(() => fleet.find((b) => b.id === selectedId) ?? null, [fleet, selectedId]);
 
   const focus = useCallback((position: LatLng, zoom = 16) => {
     const map = mapRef.current;
@@ -97,14 +107,14 @@ export function LiveTracking() {
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
-    const busHits = FLEET.filter(
+    const busHits = fleet.filter(
       (b) =>
         b.number.toLowerCase().includes(q) ||
         b.label.toLowerCase().includes(q) ||
         b.routeName.toLowerCase().includes(q),
     ).map((b) => ({ kind: "bus" as const, key: b.id, title: b.number, subtitle: b.routeName, bus: b }));
 
-    const stopHits = ROUTES.flatMap((route) =>
+    const stopHits = routes.flatMap((route) =>
       route.stops
         .filter((stop) => stop.name.toLowerCase().includes(q))
         .map((stop) => ({
@@ -117,7 +127,7 @@ export function LiveTracking() {
     );
 
     return [...busHits, ...stopHits].slice(0, 8);
-  }, [query]);
+  }, [fleet, routes, query]);
 
   const toggleRoute = (routeId: string) =>
     setHiddenRoutes((prev) => (prev.includes(routeId) ? prev.filter((id) => id !== routeId) : [...prev, routeId]));
@@ -165,7 +175,7 @@ export function LiveTracking() {
     <div className="rounded-2xl border border-white/70 bg-white/85 p-3 shadow-sm">
       <p className="mb-2 text-[11px] font-bold uppercase tracking-wider text-ink/45">Routes</p>
       <div className="flex flex-wrap gap-2">
-        {ROUTES.map((route) => {
+        {routes.map((route) => {
           const on = !hiddenRoutes.includes(route.id);
           return (
             <button
@@ -194,12 +204,9 @@ export function LiveTracking() {
       {bannerOpen && (
         <div className="mb-4 flex items-start gap-3 rounded-2xl border border-amber-200/80 bg-amber-50/90 p-4 shadow-sm">
           <Radio className="mt-0.5 h-5 w-5 shrink-0 text-amber-600" />
-          <p className="flex-1 text-sm font-medium text-amber-900">
-            Live GPS tracking coming soon — bus positions shown are default (Pundra University campus) until drivers
-            connect their location.
-          </p>
+          <p className="flex-1 text-sm font-medium text-amber-900">{settings.gpsBanner}</p>
           <button
-            onClick={() => setBannerOpen(false)}
+            onClick={() => setBannerDismissed(true)}
             aria-label="Dismiss GPS notice"
             className="rounded-full p-1 text-amber-700/70 transition hover:bg-amber-100 hover:text-amber-900"
           >
@@ -249,8 +256,8 @@ export function LiveTracking() {
           ) : (
             <GoogleMap
               mapContainerStyle={CONTAINER_STYLE}
-              center={PUB_CAMPUS}
-              zoom={15}
+              center={{ lat: settings.centerLat, lng: settings.centerLng }}
+              zoom={settings.defaultZoom}
               onLoad={(map) => {
                 mapRef.current = map;
               }}
