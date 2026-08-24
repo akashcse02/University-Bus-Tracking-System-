@@ -24,7 +24,7 @@ export function useLiveBusPositions() {
       const { data } = await supabase
         .from("trips")
         .select("bus_id, current_lat, current_lng, status, buses(bus_number)")
-        .eq("status", "active");
+        .in("status", ["in_progress", "delayed"]);
 
       if (cancelled || !data) return;
       const next: LivePositions = {};
