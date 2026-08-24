@@ -486,3 +486,14 @@
     font-family: var(--font-display);
   }
 }
+
+@keyframes wheel-roll {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="animate-[wheel-roll"] {
+    animation: none !important;
+  }
+}
