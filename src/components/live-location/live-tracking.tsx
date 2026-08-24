@@ -266,7 +266,7 @@ export function LiveTracking() {
                 <Polyline
                   key={route.id}
                   options={{
-                    path: routePaths[route.id],
+                    path: routePaths[route.id] ?? [],
                     strokeColor: route.color,
                     strokeOpacity: 0.85,
                     strokeWeight: 4,
