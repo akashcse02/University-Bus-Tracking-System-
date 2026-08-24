@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GoogleLiveMap } from "@/components/maps/google-live-map";
+import { MapSettingsPanel } from "@/components/admin/map-settings-panel";
+import { RoutesEditor } from "@/components/admin/routes-editor";
+import { MapsKeyPanel } from "@/components/admin/maps-key-panel";
 import { 
   Users, 
   Bus, 
@@ -111,6 +114,23 @@ export function AdminDashboard() {
           </Card>
         </div>
       </div>
+
+      {/* Configuration */}
+      <section className="space-y-6">
+        <div>
+          <h2 className="font-display text-2xl font-black text-ink">Configuration</h2>
+          <p className="text-sm font-medium text-ink/40">
+            Map defaults, route data, and API key status for the live tracking experience.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          <div className="lg:col-span-2 space-y-6">
+            <MapSettingsPanel />
+            <RoutesEditor />
+          </div>
+          <MapsKeyPanel />
+        </div>
+      </section>
     </div>
   );
 }
