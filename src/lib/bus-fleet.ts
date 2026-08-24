@@ -1,3 +1,10 @@
+import {
+  CAMPUS_COORDS,
+  PREMIUM_TRIM_COLOR,
+  ROUTE_COLOR_DEFAULTS,
+  STATUS_COLORS,
+} from "@/config/app-config";
+
 export type BusStatus = "On Route" | "Not Started" | "Delayed";
 
 export interface LatLng {
@@ -5,18 +12,12 @@ export interface LatLng {
   lng: number;
 }
 
-export const PUB_CAMPUS: LatLng = { lat: 24.9223067, lng: 89.3490259 };
+export const PUB_CAMPUS: LatLng = CAMPUS_COORDS;
 
 /** Route accent colors — must stay in sync with the Buses page illustrations. */
-export const ROUTE_COLORS: Record<string, string> = {
-  Gobindaganj: "#3b82f6",
-  Sherpur: "#f97316",
-  Gabtoli: "#14b8a6",
-  "Sathmatha/Bogura": "#8b5cf6",
-  Dupchachia: "#ec4899",
-};
+export const ROUTE_COLORS: Record<string, string> = ROUTE_COLOR_DEFAULTS;
 
-export const PREMIUM_TRIM = "#d4a017";
+export const PREMIUM_TRIM = PREMIUM_TRIM_COLOR;
 
 export interface Stop {
   name: string;
@@ -138,11 +139,7 @@ export const FLEET: FleetBus[] = RAW.map((bus, index) => ({
   defaultPosition: scatter(index),
 }));
 
-export const STATUS_DOT: Record<BusStatus, string> = {
-  "On Route": "#22c55e",
-  Delayed: "#f59e0b",
-  "Not Started": "#94a3b8",
-};
+export const STATUS_DOT: Record<BusStatus, string> = STATUS_COLORS;
 
 /** Live GPS positions keyed by bus id — empty until drivers broadcast. */
 export type LivePositions = Record<string, LatLng & { updatedAt?: string }>;
