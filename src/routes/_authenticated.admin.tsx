@@ -10,14 +10,15 @@ export const Route = createFileRoute("/_authenticated/admin")({
       throw redirect({ to: "/login" });
     }
 
-    // Role is verified against the database (RLS-protected user_roles table),
+    // Role is verified against the RLS-protected user_roles table,
     // never from client state or props.
-    const { data: isAdmin } = await supabase.rpc("has_role", {
-      _user_id: session.user.id,
-      _role: "admin",
-    });
+    const { data: roles } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", session.user.id)
+      .eq("role", "admin");
 
-    if (!isAdmin) {
+    if (!roles || roles.length === 0) {
       throw redirect({ to: "/live-location" });
     }
 
