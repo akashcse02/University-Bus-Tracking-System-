@@ -49,7 +49,7 @@ export function resolveRoutes(config: RouteConfig[] | null | undefined): RouteIn
     .map((route) => ({
       id: route.id,
       name: route.name,
-      color: route.color || ROUTE_COLOR_DEFAULTS[route.name] || "#3b82f6",
+      color: route.color || ROUTE_COLOR_DEFAULTS[route.name] || "#1F72C8",
       stops: route.stops.map((stop) => ({
         name: stop.name,
         position: { lat: Number(stop.lat), lng: Number(stop.lng) },
