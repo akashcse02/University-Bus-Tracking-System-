@@ -15,28 +15,28 @@ const steps: StepCard[] = [
     title: "Enter Your Location",
     description: "Students enter their home/pickup location once. The app saves it so the nearest bus route is automatically matched.",
     icon: MapPin,
-    color: "#3B82F6", // Blue
+    color: "#1F72C8", // Azure
     illustration: "map"
   },
   {
     title: "Select Your Bus",
     description: "Choose your assigned bus number and route from the list — Gobindaganj, Sherpur, Sathmatha, or Gabtoli.",
     icon: Bus,
-    color: "#0D9488", // Teal
+    color: "#2E8FDD", // Sky
     illustration: "selection"
   },
   {
     title: "Track in Real-Time",
     description: "See your bus moving live on the map, with accurate ETA so you know exactly when to head to your stop.",
     icon: Radar,
-    color: "#F59E0B", // Orange
+    color: "#E0A03A", // Sunlight
     illustration: "tracking"
   },
   {
     title: "Get Notified",
     description: "Receive instant alerts for arrival time, delays, or route changes — never miss your bus again.",
     icon: Bell,
-    color: "#10B981", // Green
+    color: "#3E8E5C", // Foliage
     illustration: "notifications"
   },
 ];

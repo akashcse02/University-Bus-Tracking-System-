@@ -157,7 +157,7 @@ function BusTile({ bus, onOpen }: { bus: BusData; onOpen: () => void }) {
         {premium && (
           <span
             className="mt-3 inline-block rounded-full px-3 py-1 text-[10px] font-bold"
-            style={{ backgroundColor: `color-mix(in oklab, ${accent} 22%, transparent)`, color: "#8a6300" }}
+            style={{ backgroundColor: `color-mix(in oklab, ${accent} 22%, transparent)`, color: "#7a5a12" }}
           >
             Staff & Teacher Bus
           </span>
@@ -217,7 +217,7 @@ function BusModal({ bus, onClose }: { bus: BusData; onClose: () => void }) {
             <div key={i} className="relative flex items-center gap-4">
               <div
                 className="z-10 h-2 w-2 rounded-full ring-4 ring-white"
-                style={{ backgroundColor: stop === bus.nextStop ? accent : "#cbd5e1" }}
+                style={{ backgroundColor: stop === bus.nextStop ? accent : "#c3d3e6" }}
               />
               <span className={`text-xs font-medium ${stop === bus.nextStop ? "font-bold text-ink" : "text-ink/60"}`}>
                 {stop}
@@ -259,7 +259,7 @@ function BusesPage() {
 
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,var(--color-sky-top),#F0F9FF_45%)]">
+    <main className="relative min-h-screen overflow-hidden bg-[linear-gradient(to_bottom,var(--color-sky-top),#F2F7FD_45%)]">
       <Clouds />
       <Scenery />
       {/* Header */}

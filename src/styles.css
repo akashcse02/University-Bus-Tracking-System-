@@ -242,7 +242,7 @@
   .nav-link-clean:hover,
   .nav-link-clean.active,
   .nav-link-clean:focus-visible {
-    background-color: rgba(0, 90, 60, 0.06);
+    background-color: rgba(20, 90, 170, 0.08);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     color: var(--color-primary);
   }
