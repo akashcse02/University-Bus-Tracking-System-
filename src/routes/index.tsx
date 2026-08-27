@@ -20,6 +20,7 @@ import {
 import pubBus from "@/assets/pub-bus.png.asset.json";
 import pubLogo from "@/assets/pub-logo.png.asset.json";
 import pundraUni from "@/assets/pundra-university.jpg.asset.json";
+import heroCampus from "@/assets/hero-campus.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,6 +34,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "icon", href: "/favicon.ico" },
+      { rel: "preload", href: heroCampus.url, as: "image", fetchpriority: "high" },
       { rel: "preload", href: pundraUni.url, as: "image", fetchpriority: "high" },
       { rel: "preload", href: pubBus.url, as: "image", fetchpriority: "high" }
     ]
@@ -311,8 +313,14 @@ function Index() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative z-10 mx-auto max-w-7xl px-5 pt-12 pb-20 lg:pt-16">
-        {/* Centered Headline & Subtext */}
+      <section
+        className="relative z-10 w-full bg-cover bg-center bg-no-repeat px-5 pt-12 pb-20 lg:pt-16"
+        style={{ backgroundImage: `url(${heroCampus.url})` }}
+      >
+        {/* Stronger white tint behind text, lighter toward visuals */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/85 via-white/70 to-white/30" />
+        <div className="relative z-10 mx-auto max-w-7xl">
+          {/* Centered Headline & Subtext */}
         <div className="mb-12 text-center">
           <Reveal>
             <div className="mb-4 flex justify-center">
@@ -363,6 +371,7 @@ function Index() {
           id="hero-visuals-scene"
         >
           <VisualsScene />
+        </div>
         </div>
       </section>
 
