@@ -20,6 +20,7 @@ import {
 import pubBus from "@/assets/pub-bus.png.asset.json";
 import pubLogo from "@/assets/pub-logo.png.asset.json";
 import pundraUni from "@/assets/pundra-university.jpg.asset.json";
+import heroCampus from "@/assets/hero-campus.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
