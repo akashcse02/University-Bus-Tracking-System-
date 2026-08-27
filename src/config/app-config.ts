@@ -47,15 +47,15 @@ export const DEFAULT_MAP_SETTINGS: MapSettings = {
 
 /** Route accent colors — shared by the Buses page, map polylines and markers. */
 export const ROUTE_COLOR_DEFAULTS: Record<string, string> = {
-  Gobindaganj: "#3b82f6",
-  Sherpur: "#f97316",
-  Gabtoli: "#14b8a6",
-  "Sathmatha/Bogura": "#8b5cf6",
-  Dupchachia: "#ec4899",
+  Gobindaganj: "#1F72C8",
+  Sherpur: "#E0A03A",
+  Gabtoli: "#2E8FDD",
+  "Sathmatha/Bogura": "#5B6FD6",
+  Dupchachia: "#3E8E5C",
 };
 
 /** Gold trim reserved for the Staff & Teacher bus (Bus 01). */
-export const PREMIUM_TRIM_COLOR = "#d4a017";
+export const PREMIUM_TRIM_COLOR = "#D9A93C";
 
 export const STATUS_COLORS = {
   "On Route": "#22c55e",

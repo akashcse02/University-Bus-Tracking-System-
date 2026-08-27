@@ -3,14 +3,14 @@ import { cn } from "@/lib/utils";
 export type BusStatus = "On Route" | "Not Started" | "Delayed";
 
 export const ROUTE_ACCENTS: Record<string, string> = {
-  Gobindaganj: "#3b82f6",
-  Sherpur: "#f97316",
-  Gabtoli: "#14b8a6",
-  "Sathmatha/Bogura": "#8b5cf6",
-  Dupchachia: "#ec4899",
+  Gobindaganj: "#1F72C8",
+  Sherpur: "#E0A03A",
+  Gabtoli: "#2E8FDD",
+  "Sathmatha/Bogura": "#5B6FD6",
+  Dupchachia: "#3E8E5C",
 };
 
-export const PREMIUM_TRIM = "#d4a017";
+export const PREMIUM_TRIM = "#D9A93C";
 
 const STATUS_DOT: Record<BusStatus, string> = {
   "On Route": "bg-green-500",
@@ -19,7 +19,7 @@ const STATUS_DOT: Record<BusStatus, string> = {
 };
 
 export function routeAccent(route: string) {
-  return ROUTE_ACCENTS[route] ?? "#3b82f6";
+  return ROUTE_ACCENTS[route] ?? "#1F72C8";
 }
 
 /** Bus-shaped illustration with plate badge, glass shine and rolling wheels. */
@@ -51,8 +51,8 @@ export function BusIllustration({
       <svg viewBox="0 0 220 130" className="w-full overflow-visible" role="img" aria-label={`${number} illustration`}>
         <defs>
           <linearGradient id={`body-${uid}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#2fa8ac" />
-            <stop offset="100%" stopColor="#1c7f86" />
+            <stop offset="0%" stopColor="#3f93e0" />
+            <stop offset="100%" stopColor="#1a63b4" />
           </linearGradient>
           <linearGradient id={`shine-${uid}`} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="white" stopOpacity="0.55" />
