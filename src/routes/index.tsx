@@ -317,8 +317,8 @@ function Index() {
         className="relative z-10 w-full bg-cover bg-center bg-no-repeat px-5 pt-12 pb-20 lg:pt-16"
         style={{ backgroundImage: `url(${heroCampus.url})` }}
       >
-        {/* Light sky-blue/white tint overlay for readability */}
-        <div className="pointer-events-none absolute inset-0 bg-sky-50/55" />
+        {/* Stronger white tint behind text, lighter toward visuals */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/85 via-white/70 to-white/30" />
         <div className="relative z-10 mx-auto max-w-7xl">
           {/* Centered Headline & Subtext */}
         <div className="mb-12 text-center">
