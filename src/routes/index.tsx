@@ -34,6 +34,7 @@ export const Route = createFileRoute("/")({
     ],
     links: [
       { rel: "icon", href: "/favicon.ico" },
+      { rel: "preload", href: heroCampus.url, as: "image", fetchpriority: "high" },
       { rel: "preload", href: pundraUni.url, as: "image", fetchpriority: "high" },
       { rel: "preload", href: pubBus.url, as: "image", fetchpriority: "high" }
     ]
