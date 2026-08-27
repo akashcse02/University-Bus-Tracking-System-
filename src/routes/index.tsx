@@ -371,6 +371,7 @@ function Index() {
         >
           <VisualsScene />
         </div>
+        </div>
       </section>
 
       {/* Stats Section */}
