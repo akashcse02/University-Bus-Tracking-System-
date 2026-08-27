@@ -312,8 +312,14 @@ function Index() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative z-10 mx-auto max-w-7xl px-5 pt-12 pb-20 lg:pt-16">
-        {/* Centered Headline & Subtext */}
+      <section
+        className="relative z-10 w-full bg-cover bg-center bg-no-repeat px-5 pt-12 pb-20 lg:pt-16"
+        style={{ backgroundImage: `url(${heroCampus.url})` }}
+      >
+        {/* Light sky-blue/white tint overlay for readability */}
+        <div className="pointer-events-none absolute inset-0 bg-sky-50/55" />
+        <div className="relative z-10 mx-auto max-w-7xl">
+          {/* Centered Headline & Subtext */}
         <div className="mb-12 text-center">
           <Reveal>
             <div className="mb-4 flex justify-center">
