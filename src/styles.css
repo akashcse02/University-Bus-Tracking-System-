@@ -395,31 +395,34 @@
 
 :root {
   --radius: 1rem;
-  --sky-top: oklch(0.83 0.09 232);
-  --sky-bottom: oklch(0.985 0.008 230);
-  --brand: oklch(0.58 0.16 152);
-  --brand-foreground: oklch(0.99 0.01 150);
-  --sunny: oklch(0.79 0.17 66);
-  --ink: oklch(0.32 0.09 155);
-  --background: oklch(0.99 0.005 230);
-  --foreground: oklch(0.32 0.09 155);
+  /* Palette extracted from the campus hero photo: vivid azure sky, marble
+     white facade, foliage green, warm sunlight gold, deep navy ink. */
+  --sky-top: oklch(0.68 0.15 250);
+  --sky-bottom: oklch(0.97 0.02 245);
+  --brand: oklch(0.55 0.16 250);
+  --brand-foreground: oklch(0.99 0.01 245);
+  --sunny: oklch(0.8 0.14 78);
+  --ink: oklch(0.3 0.08 255);
+  --background: oklch(0.985 0.01 245);
+  --foreground: oklch(0.3 0.08 255);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.32 0.09 155);
+  --card-foreground: oklch(0.3 0.08 255);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.32 0.09 155);
-  --primary: oklch(0.58 0.16 152);
-  --primary-foreground: oklch(0.99 0.01 150);
-  --secondary: oklch(0.96 0.02 150);
-  --secondary-foreground: oklch(0.32 0.09 155);
-  --muted: oklch(0.96 0.01 230);
-  --muted-foreground: oklch(0.52 0.03 200);
-  --accent: oklch(0.79 0.17 66);
-  --accent-foreground: oklch(0.28 0.08 60);
+  --popover-foreground: oklch(0.3 0.08 255);
+  --primary: oklch(0.55 0.16 250);
+  --primary-foreground: oklch(0.99 0.01 245);
+  --secondary: oklch(0.95 0.03 245);
+  --secondary-foreground: oklch(0.3 0.08 255);
+  --muted: oklch(0.96 0.015 245);
+  --muted-foreground: oklch(0.52 0.04 250);
+  --accent: oklch(0.62 0.13 150);
+  --accent-foreground: oklch(0.99 0.01 150);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.92 0.015 220);
-  --input: oklch(0.92 0.015 220);
-  --ring: oklch(0.58 0.16 152);
+  --border: oklch(0.92 0.02 245);
+  --input: oklch(0.92 0.02 245);
+  --ring: oklch(0.55 0.16 250);
+
 
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
