@@ -397,7 +397,7 @@
   --radius: 1rem;
   /* Palette extracted from the campus hero photo: vivid azure sky, marble
      white facade, foliage green, warm sunlight gold, deep navy ink. */
-  --sky-top: oklch(0.68 0.15 250);
+  --sky-top: oklch(0.86 0.075 245);
   --sky-bottom: oklch(0.97 0.02 245);
   --brand: oklch(0.55 0.16 250);
   --brand-foreground: oklch(0.99 0.01 245);
