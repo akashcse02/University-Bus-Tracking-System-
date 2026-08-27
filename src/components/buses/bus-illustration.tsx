@@ -51,8 +51,8 @@ export function BusIllustration({
       <svg viewBox="0 0 220 130" className="w-full overflow-visible" role="img" aria-label={`${number} illustration`}>
         <defs>
           <linearGradient id={`body-${uid}`} x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#2fa8ac" />
-            <stop offset="100%" stopColor="#1c7f86" />
+            <stop offset="0%" stopColor="#3f93e0" />
+            <stop offset="100%" stopColor="#1a63b4" />
           </linearGradient>
           <linearGradient id={`shine-${uid}`} x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="white" stopOpacity="0.55" />
