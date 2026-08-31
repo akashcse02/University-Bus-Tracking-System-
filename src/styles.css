@@ -65,7 +65,7 @@
   --color-brand-foreground: var(--brand-foreground);
   --color-sunny: var(--sunny);
   --color-ink: var(--ink);
-  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Baloo 2", "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
   --animate-float: float 4s ease-in-out infinite;
   --animate-float-slow: float 6s ease-in-out infinite;
