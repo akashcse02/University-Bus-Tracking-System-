@@ -142,7 +142,7 @@ export function TestimonialsStrip() {
             {extendedReviews.map((r, i) => (
               <div 
                 key={i} 
-                className="card-hover-premium w-[350px] shrink-0 flex flex-col rounded-[2.5rem] bg-[#F1F7FE] p-10 shadow-[0_24px_48px_-20px_rgba(0,0,0,0.06)]"
+                className="card-hover-premium w-[350px] shrink-0 flex flex-col rounded-[2.5rem] bg-[#F2F8F4] p-10 shadow-[0_24px_48px_-20px_rgba(0,0,0,0.06)]"
               >
                 <div className="mb-6 flex gap-1">
                   {Array.from({ length: r.rating }).map((_, idx) => (

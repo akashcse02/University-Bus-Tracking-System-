@@ -65,7 +65,7 @@
   --color-brand-foreground: var(--brand-foreground);
   --color-sunny: var(--sunny);
   --color-ink: var(--ink);
-  --font-display: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Baloo 2", "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Nunito Sans", ui-sans-serif, system-ui, sans-serif;
   --animate-float: float 4s ease-in-out infinite;
   --animate-float-slow: float 6s ease-in-out infinite;
@@ -231,7 +231,7 @@
     justify-content: center;
     padding: 8px 16px;
     font-weight: 600;
-    color: #1a202c;
+    color: var(--color-ink);
     text-decoration: none;
     border-radius: 999px;
     transition: all 0.2s ease-out;
@@ -242,7 +242,7 @@
   .nav-link-clean:hover,
   .nav-link-clean.active,
   .nav-link-clean:focus-visible {
-    background-color: rgba(20, 90, 170, 0.08);
+    background-color: color-mix(in oklab, var(--color-primary) 10%, transparent);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     color: var(--color-primary);
   }
@@ -395,33 +395,33 @@
 
 :root {
   --radius: 1rem;
-  /* Palette extracted from the campus hero photo: vivid azure sky, marble
-     white facade, foliage green, warm sunlight gold, deep navy ink. */
-  --sky-top: oklch(0.86 0.075 245);
-  --sky-bottom: oklch(0.97 0.02 245);
-  --brand: oklch(0.55 0.16 250);
-  --brand-foreground: oklch(0.99 0.01 245);
-  --sunny: oklch(0.8 0.14 78);
-  --ink: oklch(0.3 0.08 255);
-  --background: oklch(0.985 0.01 245);
-  --foreground: oklch(0.3 0.08 255);
+  /* Transit-inspired palette: light sky-blue gradient background, solid green
+     CTAs, warm orange highlights, deep forest-green headings. */
+  --sky-top: oklch(0.85 0.085 240);
+  --sky-bottom: oklch(0.98 0.012 90);
+  --brand: oklch(0.58 0.15 150);
+  --brand-foreground: oklch(0.99 0.01 150);
+  --sunny: oklch(0.79 0.16 72);
+  --ink: oklch(0.33 0.09 155);
+  --background: oklch(0.985 0.012 200);
+  --foreground: oklch(0.33 0.09 155);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.3 0.08 255);
+  --card-foreground: oklch(0.33 0.09 155);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.3 0.08 255);
-  --primary: oklch(0.55 0.16 250);
-  --primary-foreground: oklch(0.99 0.01 245);
-  --secondary: oklch(0.95 0.03 245);
-  --secondary-foreground: oklch(0.3 0.08 255);
-  --muted: oklch(0.96 0.015 245);
-  --muted-foreground: oklch(0.52 0.04 250);
-  --accent: oklch(0.62 0.13 150);
-  --accent-foreground: oklch(0.99 0.01 150);
+  --popover-foreground: oklch(0.33 0.09 155);
+  --primary: oklch(0.58 0.15 150);
+  --primary-foreground: oklch(0.99 0.01 150);
+  --secondary: oklch(0.95 0.035 160);
+  --secondary-foreground: oklch(0.33 0.09 155);
+  --muted: oklch(0.96 0.018 170);
+  --muted-foreground: oklch(0.52 0.035 160);
+  --accent: oklch(0.79 0.16 72);
+  --accent-foreground: oklch(0.28 0.07 60);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.92 0.02 245);
-  --input: oklch(0.92 0.02 245);
-  --ring: oklch(0.55 0.16 250);
+  --border: oklch(0.92 0.02 170);
+  --input: oklch(0.92 0.02 170);
+  --ring: oklch(0.58 0.15 150);
 
 
   --chart-1: oklch(0.646 0.222 41.116);
