@@ -1,17 +1,13 @@
 import { Bus, Mail, Instagram, Twitter, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+import { useState } from "react";
+
 export function SiteFooter() {
-  const [submitted, setSubmitted] = useState(false);
   const [adminClicks, setAdminClicks] = useState(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
   const handleAdminTrigger = () => {
-    setAdminClicks(prev => prev + 1);
+    setAdminClicks((prev: number) => prev + 1);
     if (adminClicks + 1 >= 5) {
       window.location.href = "/login?admin=true";
     }
