@@ -1,8 +1,5 @@
-import { useState } from "react";
-import { Bus, Mail, Phone, MapPin, Send, CheckCircle2, Instagram, Twitter, Facebook } from "lucide-react";
+import { Bus, Mail, Instagram, Twitter, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 
 export function SiteFooter() {
   const [submitted, setSubmitted] = useState(false);
