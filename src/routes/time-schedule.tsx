@@ -365,7 +365,7 @@ function TimeSchedulePage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#F2F7FD]">
+    <main className="min-h-screen bg-[#F1F7F8]">
       {/* Navbar (Minimal for Schedule Page) */}
       <header className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-blue-100">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4">
