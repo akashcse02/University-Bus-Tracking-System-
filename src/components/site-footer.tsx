@@ -1,20 +1,13 @@
-import { useState } from "react";
-import { Bus, Mail, Phone, MapPin, Send, CheckCircle2, Instagram, Twitter, Facebook } from "lucide-react";
+import { Bus, Mail, Instagram, Twitter, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+
+import { useState } from "react";
 
 export function SiteFooter() {
-  const [submitted, setSubmitted] = useState(false);
   const [adminClicks, setAdminClicks] = useState(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
   const handleAdminTrigger = () => {
-    setAdminClicks(prev => prev + 1);
+    setAdminClicks((prev: number) => prev + 1);
     if (adminClicks + 1 >= 5) {
       window.location.href = "/login?admin=true";
     }
@@ -83,38 +76,6 @@ export function SiteFooter() {
           </div>
         </div>
 
-        {/* Nested Contact Form */}
-        <div className="mt-8 border-t border-border/50 pt-12">
-          <div className="mx-auto max-w-2xl">
-            <div className="mb-8 text-center">
-              <h3 className="font-display text-2xl font-extrabold text-ink">Have a Question?</h3>
-              <p className="mt-2 text-ink/70">Drop us a message and we'll get back to you shortly.</p>
-            </div>
-            
-            {submitted ? (
-              <div className="flex items-center gap-3 rounded-2xl bg-primary/10 p-8 text-primary animate-rise">
-                <CheckCircle2 className="h-8 w-8" />
-                <div>
-                  <p className="text-lg font-bold">Message Sent Successfully!</p>
-                  <p className="text-sm opacity-90">Thank you for reaching out. Our team will contact you soon.</p>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <Input placeholder="Name" required className="h-12 rounded-2xl bg-white/50 border-none shadow-sm focus:ring-2 focus:ring-primary" />
-                  <Input type="email" placeholder="Email" required className="h-12 rounded-2xl bg-white/50 border-none shadow-sm focus:ring-2 focus:ring-primary" />
-                </div>
-                <Textarea placeholder="Your message..." required className="min-h-[120px] rounded-2xl bg-white/50 border-none shadow-sm focus:ring-2 focus:ring-primary" />
-                <Button type="submit" className="btn-hover-premium w-full rounded-2xl bg-primary py-7 font-display text-lg font-bold shadow-xl">
-                  <Send className="mr-2 h-5 w-5" />
-                  Send Message
-                </Button>
-
-              </form>
-            )}
-          </div>
-        </div>
 
         <div className="mt-16 border-t border-border/30 pt-8 text-center">
           <p 
