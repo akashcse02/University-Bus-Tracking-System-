@@ -4,7 +4,6 @@ import { MapPin, Radio } from "lucide-react";
 import {
   MAP_STYLE,
   PREMIUM_TRIM,
-  PUB_CAMPUS,
   STATUS_DOT,
   resolvePosition,
   type FleetBus,
@@ -54,7 +53,7 @@ export function HeroLiveMap() {
   const live = useLiveBusPositions();
   const [ready, setReady] = useState(false);
 
-  const center = settings?.center ?? PUB_CAMPUS;
+  const center = { lat: settings.centerLat, lng: settings.centerLng };
   const anyLive = fleet.some((b) => resolvePosition(b, live).isLive);
 
   return (
@@ -74,7 +73,7 @@ export function HeroLiveMap() {
           <GoogleMap
             mapContainerStyle={CONTAINER_STYLE}
             center={center}
-            zoom={settings?.zoom ?? 15}
+            zoom={settings.defaultZoom}
             onLoad={() => setReady(true)}
             options={{
               styles: MAP_STYLE,
