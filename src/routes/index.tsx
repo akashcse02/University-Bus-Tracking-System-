@@ -18,6 +18,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import pubLogo from "@/assets/pub-logo.png.asset.json";
+import heroCampus from "@/assets/hero-campus.png.asset.json";
+import { useLanguage, LANGUAGES } from "@/lib/i18n";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -38,12 +40,12 @@ export const Route = createFileRoute("/")({
 });
 
 const navLinks = [
-  { label: "Home", href: "/" },
-  { label: "Live Location", href: "/live-location" },
-  { label: "Buses", href: "/buses" },
-  { label: "Time Schedule", href: "/time-schedule" },
-  { label: "Routes", href: "/#routes" },
-  { label: "How it works", href: "/#how-it-works" },
+  { label: "Home", key: "nav.home", href: "/" },
+  { label: "Live Location", key: "nav.live", href: "/live-location" },
+  { label: "Buses", key: "nav.buses", href: "/buses" },
+  { label: "Time Schedule", key: "nav.schedule", href: "/time-schedule" },
+  { label: "Routes", key: "nav.routes", href: "/#routes" },
+  { label: "How it works", key: "nav.how", href: "/#how-it-works" },
 ];
 
 function Clouds() {
@@ -100,7 +102,7 @@ function Clouds() {
 function Index() {
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("Home");
-  const [language, setLanguage] = useState("English");
+  const { lang, setLang, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -179,7 +181,7 @@ function Index() {
                   activeSection === l.label ? "text-primary active" : "text-ink/80"
                 }`}
               >
-                {l.label}
+                {t(l.key)}
               </a>
             ))}
           </nav>
@@ -188,20 +190,24 @@ function Index() {
             <DropdownMenu>
               <DropdownMenuTrigger className="nav-link-clean flex items-center gap-1.5 px-4 py-2 text-[14px] xl:text-sm text-ink cursor-pointer">
                 <Globe className="h-3.5 w-3.5 shrink-0" />
-                <span className="nav-item-nowrap">{language}</span>
+                <span className="nav-item-nowrap">{LANGUAGES.find((l) => l.code === lang)?.native}</span>
                 <ChevronDown className="h-3.5 w-3.5 opacity-50 shrink-0" />
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="rounded-2xl border-none shadow-xl">
-                {["English", "Bangla", "Arabic"].map((lang) => (
-                  <DropdownMenuItem key={lang} onClick={() => setLanguage(lang)} className="rounded-xl font-bold cursor-pointer">
-                    {lang}
+                {LANGUAGES.map((l) => (
+                  <DropdownMenuItem
+                    key={l.code}
+                    onClick={() => setLang(l.code)}
+                    className={`rounded-xl font-bold cursor-pointer ${l.code === lang ? "text-primary" : ""}`}
+                  >
+                    {l.native}
                   </DropdownMenuItem>
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
 
-            <a href="/login" className="nav-link-clean px-6 py-2.5 text-[14px] xl:text-sm text-ink nav-item-nowrap">Login</a>
-            <a href="/signup" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-[14px] xl:text-sm font-bold text-primary-foreground shadow-lg nav-item-nowrap">Sign Up</a>
+            <a href="/login" className="nav-link-clean px-6 py-2.5 text-[14px] xl:text-sm text-ink nav-item-nowrap">{t("nav.login")}</a>
+            <a href="/signup" className="btn-hover-premium rounded-full bg-primary px-6 py-2.5 text-[14px] xl:text-sm font-bold text-primary-foreground shadow-lg nav-item-nowrap">{t("nav.signup")}</a>
           </div>
 
           <button 
@@ -226,13 +232,13 @@ function Index() {
                     activeSection === l.label ? "text-primary active" : "text-ink/80"
                   }`}
                 >
-                  {l.label}
+                  {t(l.key)}
                 </a>
               ))}
               <div className="h-px bg-ink/5 my-2" />
               <div className="flex flex-col gap-3">
-                <a href="/login" className="nav-link-clean w-full justify-start text-ink">Login</a>
-                <a href="/signup" className="btn-hover-premium rounded-full bg-primary py-3.5 text-center font-bold text-primary-foreground shadow-lg">Sign Up</a>
+                <a href="/login" className="nav-link-clean w-full justify-start text-ink">{t("nav.login")}</a>
+                <a href="/signup" className="btn-hover-premium rounded-full bg-primary py-3.5 text-center font-bold text-primary-foreground shadow-lg">{t("nav.signup")}</a>
               </div>
             </nav>
           </div>
@@ -240,45 +246,52 @@ function Index() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative z-10 w-full px-5 pt-12 pb-20 lg:pt-16">
+      <section className="relative z-10 w-full overflow-hidden px-5 pt-12 pb-20 lg:pt-16">
+        {/* Campus background */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${heroCampus.url})` }}
+        />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/88 via-white/78 to-white/40" />
         <div className="relative z-10 mx-auto max-w-7xl">
           {/* Centered Headline & Subtext */}
         <div className="mb-12 text-center">
           <Reveal>
             <div className="mb-4 flex justify-center">
               <span className="rounded-full bg-white/60 px-4 py-1.5 text-xs font-bold tracking-widest text-primary uppercase shadow-sm">
-                Pundra University
+                {t("hero.badge")}
               </span>
             </div>
             <h1 className="font-display text-5xl font-extrabold leading-[1.1] tracking-tight text-ink sm:text-7xl">
-              Your Ride to
+              {t("hero.title1")}
               <br />
-              <span className="text-accent">Campus,</span> On Time
+              <span className="text-accent">{t("hero.title2")}</span> {t("hero.title3")}
             </h1>
             <p className="mx-auto mt-6 max-w-[600px] text-lg font-medium text-ink/75 sm:text-xl">
-              Track your university bus in real-time — buses, routes, and schedules in one place.
+              {t("hero.subtitle")}
             </p>
             <div className="mt-8 flex flex-col items-center gap-6">
               <a href="#how-it-works" onClick={(e) => smoothScroll(e, "#how-it-works")} className="btn-hover-premium rounded-full bg-primary px-10 py-4 font-display text-lg font-bold text-primary-foreground shadow-2xl">
-                Get Started
+                {t("hero.cta")}
               </a>
               <div className="flex flex-col items-center gap-3">
                 <span className="text-[10px] font-bold uppercase tracking-widest text-ink/40">
-                  Download PUB Bus Track App
+                  {t("hero.download")}
                 </span>
                 <div className="flex items-center gap-3">
                   <a href="#" className="btn-hover-premium flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background">
                     <Apple className="h-4 w-4" />
                     <div className="text-left leading-none">
-                      <span className="block text-[0.4rem] uppercase opacity-60">Download on the</span>
-                      <span className="block text-[10px] font-bold">App Store</span>
+                      <span className="block text-[0.4rem] uppercase opacity-60">{t("hero.appstore.small")}</span>
+                      <span className="block text-[10px] font-bold">{t("hero.appstore")}</span>
                     </div>
                   </a>
                   <a href="#" className="btn-hover-premium flex h-10 items-center gap-2 rounded-xl bg-ink px-3 text-background">
                     <Play className="h-4 w-4" />
                     <div className="text-left leading-none">
-                      <span className="block text-[0.4rem] uppercase opacity-60">Get it on</span>
-                      <span className="block text-[10px] font-bold">Google Play</span>
+                      <span className="block text-[0.4rem] uppercase opacity-60">{t("hero.play.small")}</span>
+                      <span className="block text-[10px] font-bold">{t("hero.play")}</span>
                     </div>
                   </a>
                 </div>
