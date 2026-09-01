@@ -30,10 +30,7 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" }
     ],
     links: [
-      { rel: "icon", href: "/favicon.ico" },
-      { rel: "preload", href: heroCampus.url, as: "image", fetchpriority: "high" },
-      { rel: "preload", href: pundraUni.url, as: "image", fetchpriority: "high" },
-      { rel: "preload", href: pubBus.url, as: "image", fetchpriority: "high" }
+      { rel: "icon", href: "/favicon.ico" }
     ]
   }),
 
@@ -96,73 +93,6 @@ function Clouds() {
           borderRadius: '50%'
         }}
       />
-    </div>
-  );
-}
-
-function VisualsScene() {
-  const { ref, inView } = useInView(0.3);
-  
-  return (
-    <div ref={ref} className="absolute inset-x-0 bottom-0 grid h-full items-end gap-6 lg:grid-cols-[1fr_auto_1fr] lg:gap-12">
-      {/* Left: Building Card */}
-      <div 
-        className={`relative z-10 hidden lg:block opacity-0 ${inView ? 'animate-scroll-left' : ''}`}
-        style={{ animationDelay: '0ms' }}
-      >
-        <div className="card-hover-premium overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-2xl ring-1 ring-black/5">
-          <img 
-            src={pundraUni.url} 
-            alt="Pundra University" 
-            className="h-64 w-full rounded-[2rem] object-cover lg:h-80" 
-          />
-          <div className="absolute top-6 left-6 z-20 flex animate-float-slow items-center gap-2 rounded-xl bg-accent px-3 py-1.5 text-[10px] font-bold text-accent-foreground shadow-lg sm:text-xs">
-            <Clock className="h-3.5 w-3.5" /> Classes 9:00
-          </div>
-          <div className="absolute top-20 right-6 z-20 flex animate-float items-center gap-2 rounded-xl bg-primary px-3 py-1.5 text-[10px] font-bold text-primary-foreground shadow-lg sm:text-xs">
-            <Globe className="h-3.5 w-3.5" /> Student ID
-          </div>
-        </div>
-      </div>
-
-      {/* Center: Phone Mockup */}
-      <div 
-        className={`relative z-30 mx-auto w-28 sm:w-32 lg:w-40 opacity-0 ${inView ? 'animate-scroll-zoom' : ''}`}
-        style={{ animationDelay: '100ms' }}
-      >
-        <div className="card-hover-premium overflow-hidden rounded-[2.5rem] border-[6px] border-ink bg-white p-1.5 shadow-2xl ring-1 ring-black/5 animate-float">
-          <div className="aspect-[9/19] w-full overflow-hidden rounded-[2rem] bg-slate-100">
-            <div className="h-full w-full bg-blue-100/20 p-2">
-               <div className="h-full w-full rounded-xl flex items-center justify-center">
-                 <MapPin className="h-6 w-6 text-primary animate-bounce" />
-               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Right: Bus Card */}
-      <div 
-        className={`relative z-20 hidden lg:block opacity-0 ${inView ? 'animate-scroll-right' : ''}`}
-        style={{ animationDelay: '200ms' }}
-      >
-        <div className="card-hover-premium overflow-hidden rounded-[2.5rem] bg-white p-2 shadow-2xl ring-1 ring-black/5">
-          <img 
-            src={pubBus.url} 
-            alt="PUB Bus" 
-            className="h-64 w-full rounded-[2rem] object-cover lg:h-80" 
-          />
-          <div className="absolute top-6 right-6 z-20 flex animate-float items-center gap-2 rounded-xl bg-white px-3 py-2 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">
-              <span className="text-primary">3</span>
-            </div>
-            min away
-          </div>
-          <div className="absolute bottom-12 -left-4 z-20 flex animate-float-slow items-center gap-2 rounded-xl bg-white px-4 py-2 text-[10px] font-bold text-ink shadow-lg sm:text-xs">
-            <Bus className="h-4 w-4 text-primary" /> Route: Gobindaganj
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
@@ -310,12 +240,7 @@ function Index() {
       </header>
 
       {/* Hero Section */}
-      <section
-        className="relative z-10 w-full bg-cover bg-center bg-no-repeat px-5 pt-12 pb-20 lg:pt-16"
-        style={{ backgroundImage: `url(${heroCampus.url})` }}
-      >
-        {/* Stronger white tint behind text, lighter toward visuals */}
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-white/85 via-white/70 to-white/30" />
+      <section className="relative z-10 w-full px-5 pt-12 pb-20 lg:pt-16">
         <div className="relative z-10 mx-auto max-w-7xl">
           {/* Centered Headline & Subtext */}
         <div className="mb-12 text-center">
@@ -362,12 +287,9 @@ function Index() {
           </Reveal>
         </div>
 
-        {/* Visuals Scene: Building (Left), Phone (Center), Bus (Right) */}
-        <div 
-          className="relative mt-8 h-[300px] sm:h-[400px] lg:h-[450px]"
-          id="hero-visuals-scene"
-        >
-          <VisualsScene />
+        {/* Live map preview */}
+        <div className="mt-10">
+          <HeroLiveMap />
         </div>
         </div>
       </section>
