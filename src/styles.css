@@ -500,3 +500,13 @@
     animation: none !important;
   }
 }
+
+/* Multi-language typography */
+html[lang="bn"] body,
+html[lang="bn"] .font-display {
+  font-family: "Hind Siliguri", "Nunito Sans", sans-serif;
+}
+html[lang="ar"] body,
+html[lang="ar"] .font-display {
+  font-family: "Cairo", "Nunito Sans", sans-serif;
+}
