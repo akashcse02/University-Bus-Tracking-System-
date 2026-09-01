@@ -1,3 +1,4 @@
+import { useLanguage } from "@/lib/i18n";
 import { useMemo, useState } from "react";
 import { GoogleMap, Marker, useJsApiLoader } from "@react-google-maps/api";
 import { MapPin, Radio } from "lucide-react";
@@ -41,6 +42,7 @@ function markerIcon(bus: FleetBus): google.maps.Icon {
 }
 
 export function HeroLiveMap() {
+  const { t } = useLanguage();
   const { isLoaded, loadError } = useJsApiLoader({
     id: "pub-google-map",
     googleMapsApiKey: API_KEY,
@@ -98,14 +100,14 @@ export function HeroLiveMap() {
         {/* GPS status badge */}
         <div className="pointer-events-none absolute left-3 top-3 z-10 flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-2 text-[11px] font-bold text-ink shadow-lg ring-1 ring-black/5 sm:text-xs">
           <Radio className={anyLive ? "h-3.5 w-3.5 text-primary" : "h-3.5 w-3.5 text-amber-500"} />
-          {anyLive ? "Live GPS Connected" : "GPS Not Connected — Default Location"}
+          {anyLive ? "Live GPS Connected" : t("map.gps")}
         </div>
 
         <a
           href="/live-location"
           className="absolute bottom-3 right-3 z-10 rounded-full bg-primary px-4 py-2 text-xs font-bold text-primary-foreground shadow-lg"
         >
-          Open Live Location
+          {t("map.open")}
         </a>
       </div>
     </div>
