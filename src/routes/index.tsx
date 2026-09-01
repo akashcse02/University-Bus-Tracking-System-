@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Bus, MapPin, Clock, Apple, Play, Menu, Globe, ChevronDown, Home } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
-import { useInView } from "@/hooks/use-in-view";
+import { Apple, Play, Menu, Globe, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { HeroLiveMap } from "@/components/live-location/hero-live-map";
 import { Reveal } from "@/components/reveal";
 import { StatsStrip } from "@/components/stats-strip";
 import { LiveMapDemo } from "@/components/live-map-demo";
@@ -17,10 +17,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import pubBus from "@/assets/pub-bus.png.asset.json";
 import pubLogo from "@/assets/pub-logo.png.asset.json";
-import pundraUni from "@/assets/pundra-university.jpg.asset.json";
-import heroCampus from "@/assets/hero-campus.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({

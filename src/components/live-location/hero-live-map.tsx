@@ -4,7 +4,6 @@ import { MapPin, Radio } from "lucide-react";
 import {
   MAP_STYLE,
   PREMIUM_TRIM,
-  PUB_CAMPUS,
   STATUS_DOT,
   resolvePosition,
   type FleetBus,
