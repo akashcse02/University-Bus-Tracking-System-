@@ -139,6 +139,7 @@ export type Database = {
           id: string
           id_number: string | null
           phone_number: string | null
+          preferred_language: string
           updated_at: string
         }
         Insert: {
@@ -149,6 +150,7 @@ export type Database = {
           id: string
           id_number?: string | null
           phone_number?: string | null
+          preferred_language?: string
           updated_at?: string
         }
         Update: {
@@ -159,7 +161,44 @@ export type Database = {
           id?: string
           id_number?: string | null
           phone_number?: string | null
+          preferred_language?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      reviews: {
+        Row: {
+          approved: boolean
+          comment: string
+          created_at: string
+          display_name: string
+          id: string
+          rating: number
+          role_label: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          approved?: boolean
+          comment: string
+          created_at?: string
+          display_name: string
+          id?: string
+          rating?: number
+          role_label?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          approved?: boolean
+          comment?: string
+          created_at?: string
+          display_name?: string
+          id?: string
+          rating?: number
+          role_label?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }
