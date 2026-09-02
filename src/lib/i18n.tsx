@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import { supabase } from "@/integrations/supabase/client";
 
 export type LangCode = "en" | "bn" | "ar";
 
@@ -11,6 +12,7 @@ export const LANGUAGES: { code: LangCode; label: string; native: string }[] = [
 type Dict = Record<string, string>;
 
 const en: Dict = {
+  // Nav
   "nav.home": "Home",
   "nav.live": "Live Location",
   "nav.buses": "Buses",
@@ -19,6 +21,10 @@ const en: Dict = {
   "nav.how": "How it works",
   "nav.login": "Login",
   "nav.signup": "Sign Up",
+  "nav.language": "Language",
+  "nav.dashboard": "Dashboard",
+
+  // Hero
   "hero.badge": "Pundra University",
   "hero.title1": "Your Ride to",
   "hero.title2": "Campus,",
@@ -33,6 +39,159 @@ const en: Dict = {
   "hero.play": "Google Play",
   "map.open": "Open Live Location",
   "map.gps": "GPS Not Connected — Default Location",
+
+  // Stats
+  "stats.routes": "Routes",
+  "stats.buses": "Buses",
+  "stats.students": "Students",
+  "stats.coverage": "Routes across Bogura",
+
+  // How it works
+  "how.title": "How PUB Bus Track Works",
+  "how.subtitle": "From your home to campus — track every step of the way.",
+  "how.step1.title": "Enter Your Location",
+  "how.step1.desc":
+    "Students enter their home/pickup location once. The app saves it so the nearest bus route is automatically matched.",
+  "how.step2.title": "Select Your Bus",
+  "how.step2.desc":
+    "Choose your assigned bus number and route from the list — Gobindaganj, Sherpur, Sathmatha, or Gabtoli.",
+  "how.step3.title": "Track in Real-Time",
+  "how.step3.desc":
+    "See your bus moving live on the map, with accurate ETA so you know exactly when to head to your stop.",
+  "how.step4.title": "Get Notified",
+  "how.step4.desc":
+    "Receive instant alerts for arrival time, delays, or route changes — never miss your bus again.",
+
+  // Reviews
+  "reviews.title1": "Loved by",
+  "reviews.title2": "Users",
+  "reviews.subtitle": "What our daily commuters, faculty, and staff have to say about PUB Bus Track.",
+  "reviews.empty.title": "Be the first to share your experience!",
+  "reviews.empty.body": "Sign in as a student and post a review from your dashboard.",
+  "reviews.loading": "Loading reviews…",
+
+  // Vision
+  "vision.title1": "Our",
+  "vision.title2": "Vision",
+  "vision.p1":
+    "We believe that university transit should be seamless, predictable, and stress-free. By providing real-time data to every student, we're reducing wasted waiting time at bus stops and helping our community start their academic day on the right foot.",
+  "vision.p2":
+    "Our goal is to build a connected, punctual campus commute that prioritizes student safety and convenience through innovative tracking technology.",
+  "vision.cta": "Learn More",
+
+  // Newsletter
+  "news.title": "Stay Updated",
+  "news.subtitle": "Get notified about new routes, schedule changes, and pickup alerts.",
+  "news.placeholder": "Enter your email",
+  "news.cta": "Subscribe",
+  "news.thanks": "Thanks for subscribing!",
+
+  // Footer
+  "footer.about": "About",
+  "footer.support": "Support",
+  "footer.contact": "Contact",
+  "footer.vision": "Our Vision",
+  "footer.team": "Team",
+  "footer.privacy": "Privacy Policy",
+  "footer.terms": "Terms of Use",
+  "footer.help": "Help Center",
+  "footer.contactUs": "Contact Us",
+  "footer.report": "Report an Issue",
+
+  // Auth
+  "auth.welcome": "Welcome Back",
+  "auth.welcome.sub": "Log in to track your bus in real-time.",
+  "auth.admin": "Admin Access",
+  "auth.admin.sub": "Restricted administrative login.",
+  "auth.email": "Email Address",
+  "auth.password": "Password",
+  "auth.forgot": "Forgot Password?",
+  "auth.login": "Login",
+  "auth.loggingIn": "Logging in...",
+  "auth.or": "Or continue with",
+  "auth.google": "Google Account",
+  "auth.noAccount": "Don't have an account?",
+  "auth.haveAccount": "Already have an account?",
+  "auth.signup": "Sign Up",
+  "auth.student": "Student",
+  "auth.teacher": "Teacher",
+  "auth.driver": "Driver",
+  "auth.back": "Back to Home",
+
+  // Dashboard shared
+  "dash.welcome": "Welcome back",
+  "dash.subtitle": "Here's what's happening with PUB Bus Track today.",
+  "dash.liveBus": "Live Bus Location",
+  "dash.yourBus": "Your Bus",
+  "dash.noBus": "No bus assigned",
+  "dash.route": "Route",
+  "dash.notify": "Departure reminders",
+  "dash.notify.on": "Reminders enabled",
+  "dash.notify.off": "Reminders disabled",
+  "dash.eta": "Estimated arrival",
+  "dash.occupancy": "Occupancy",
+  "dash.announcements": "Announcements",
+  "dash.noAnnouncements": "No announcements yet.",
+  "dash.schedule": "Today's schedule",
+  "dash.quickLinks": "Quick links",
+  "dash.viewMap": "Open live map",
+  "dash.viewSchedule": "View time schedule",
+  "dash.viewBuses": "Browse buses",
+
+  // Review form
+  "review.title": "Share your experience",
+  "review.subtitle": "Your review appears on the public 'Loved by Users' section.",
+  "review.rating": "Your rating",
+  "review.placeholder": "Write a short review about PUB Bus Track…",
+  "review.submit": "Post review",
+  "review.posting": "Posting…",
+  "review.success": "Thanks! Your review is live.",
+  "review.error": "Could not post your review.",
+  "review.yours": "Your review",
+  "review.delete": "Delete",
+
+  // Driver
+  "driver.trip": "Trip control",
+  "driver.start": "Start trip",
+  "driver.end": "End trip",
+  "driver.sos": "Send SOS alert",
+  "driver.occupancy": "Passenger occupancy",
+  "driver.low": "Low",
+  "driver.medium": "Medium",
+  "driver.high": "High",
+
+  // Teacher
+  "teacher.notice": "Notice board",
+  "teacher.post": "Post announcement",
+  "teacher.title": "Title",
+  "teacher.message": "Message",
+  "teacher.posted": "Announcement posted",
+
+  // Admin
+  "admin.overview": "Fleet overview",
+  "admin.users": "Users",
+  "admin.fleet": "Fleet status",
+  "admin.logs": "System logs",
+
+  // Sidebar
+  "side.dashboard": "Dashboard",
+  "side.map": "Live Map",
+  "side.myBus": "My Bus",
+  "side.schedule": "Schedule",
+  "side.notifications": "Notifications",
+  "side.settings": "Settings",
+  "side.logout": "Logout",
+  "side.myTrip": "My Trip",
+  "side.sos": "SOS Report",
+
+  // Pages
+  "buses.title": "Our Buses",
+  "buses.subtitle": "All buses grouped by route across Bogura.",
+  "schedule.title": "Time Schedule",
+  "schedule.subtitle": "Class and exam bus timings for every route.",
+  "live.title": "Live Location",
+  "live.subtitle": "Follow every PUB bus in real-time.",
+  "common.loading": "Loading…",
 };
 
 const bn: Dict = {
@@ -44,6 +203,9 @@ const bn: Dict = {
   "nav.how": "কীভাবে কাজ করে",
   "nav.login": "লগইন",
   "nav.signup": "সাইন আপ",
+  "nav.language": "ভাষা",
+  "nav.dashboard": "ড্যাশবোর্ড",
+
   "hero.badge": "পুন্ড্র ইউনিভার্সিটি",
   "hero.title1": "ক্যাম্পাসে আপনার যাত্রা,",
   "hero.title2": "সময়মতো",
@@ -58,6 +220,145 @@ const bn: Dict = {
   "hero.play": "গুগল প্লে",
   "map.open": "লাইভ লোকেশন দেখুন",
   "map.gps": "জিপিএস সংযুক্ত নয় — ডিফল্ট অবস্থান",
+
+  "stats.routes": "রুট",
+  "stats.buses": "বাস",
+  "stats.students": "শিক্ষার্থী",
+  "stats.coverage": "বগুড়াজুড়ে রুট",
+
+  "how.title": "পিইউবি বাস ট্র্যাক যেভাবে কাজ করে",
+  "how.subtitle": "বাসা থেকে ক্যাম্পাস — প্রতিটি ধাপ ট্র্যাক করুন।",
+  "how.step1.title": "আপনার অবস্থান দিন",
+  "how.step1.desc":
+    "শিক্ষার্থীরা একবার তাদের বাসা/পিকআপ পয়েন্ট দিলেই অ্যাপ নিকটতম রুট স্বয়ংক্রিয়ভাবে মিলিয়ে নেয়।",
+  "how.step2.title": "আপনার বাস নির্বাচন করুন",
+  "how.step2.desc":
+    "তালিকা থেকে আপনার বাস নম্বর ও রুট বেছে নিন — গোবিন্দগঞ্জ, শেরপুর, সাতমাথা বা গাবতলী।",
+  "how.step3.title": "রিয়েল-টাইমে ট্র্যাক করুন",
+  "how.step3.desc":
+    "মানচিত্রে বাস চলাচল সরাসরি দেখুন এবং সঠিক ইটিএ জেনে সময়মতো স্টপে পৌঁছান।",
+  "how.step4.title": "নোটিফিকেশন পান",
+  "how.step4.desc":
+    "আগমনের সময়, বিলম্ব বা রুট পরিবর্তনের তাৎক্ষণিক অ্যালার্ট পান — আর কখনো বাস মিস নয়।",
+
+  "reviews.title1": "ব্যবহারকারীদের",
+  "reviews.title2": "প্রিয়",
+  "reviews.subtitle": "প্রতিদিনের যাত্রী, শিক্ষক ও কর্মীরা পিইউবি বাস ট্র্যাক নিয়ে যা বলেন।",
+  "reviews.empty.title": "আপনার অভিজ্ঞতা প্রথম শেয়ার করুন!",
+  "reviews.empty.body": "শিক্ষার্থী হিসেবে লগইন করে ড্যাশবোর্ড থেকে রিভিউ দিন।",
+  "reviews.loading": "রিভিউ লোড হচ্ছে…",
+
+  "vision.title1": "আমাদের",
+  "vision.title2": "লক্ষ্য",
+  "vision.p1":
+    "আমরা বিশ্বাস করি বিশ্ববিদ্যালয়ের যাতায়াত হওয়া উচিত সহজ, অনুমানযোগ্য ও চাপমুক্ত। প্রতিটি শিক্ষার্থীর কাছে রিয়েল-টাইম তথ্য পৌঁছে দিয়ে আমরা অপেক্ষার সময় কমিয়ে আনছি।",
+  "vision.p2":
+    "আমাদের লক্ষ্য হলো উদ্ভাবনী ট্র্যাকিং প্রযুক্তির মাধ্যমে নিরাপদ ও সময়ানুবর্তী ক্যাম্পাস যাতায়াত গড়ে তোলা।",
+  "vision.cta": "আরও জানুন",
+
+  "news.title": "আপডেট থাকুন",
+  "news.subtitle": "নতুন রুট, সময়সূচি পরিবর্তন ও পিকআপ অ্যালার্ট সম্পর্কে জানুন।",
+  "news.placeholder": "আপনার ইমেইল দিন",
+  "news.cta": "সাবস্ক্রাইব",
+  "news.thanks": "সাবস্ক্রাইব করার জন্য ধন্যবাদ!",
+
+  "footer.about": "সম্পর্কে",
+  "footer.support": "সহায়তা",
+  "footer.contact": "যোগাযোগ",
+  "footer.vision": "আমাদের লক্ষ্য",
+  "footer.team": "টিম",
+  "footer.privacy": "গোপনীয়তা নীতি",
+  "footer.terms": "ব্যবহারের শর্ত",
+  "footer.help": "হেল্প সেন্টার",
+  "footer.contactUs": "যোগাযোগ করুন",
+  "footer.report": "সমস্যা জানান",
+
+  "auth.welcome": "স্বাগতম",
+  "auth.welcome.sub": "রিয়েল-টাইমে বাস ট্র্যাক করতে লগইন করুন।",
+  "auth.admin": "অ্যাডমিন প্রবেশ",
+  "auth.admin.sub": "সীমিত প্রশাসনিক লগইন।",
+  "auth.email": "ইমেইল ঠিকানা",
+  "auth.password": "পাসওয়ার্ড",
+  "auth.forgot": "পাসওয়ার্ড ভুলে গেছেন?",
+  "auth.login": "লগইন",
+  "auth.loggingIn": "লগইন হচ্ছে...",
+  "auth.or": "অথবা চালিয়ে যান",
+  "auth.google": "গুগল অ্যাকাউন্ট",
+  "auth.noAccount": "অ্যাকাউন্ট নেই?",
+  "auth.haveAccount": "ইতিমধ্যে অ্যাকাউন্ট আছে?",
+  "auth.signup": "সাইন আপ",
+  "auth.student": "শিক্ষার্থী",
+  "auth.teacher": "শিক্ষক",
+  "auth.driver": "ড্রাইভার",
+  "auth.back": "হোমে ফিরুন",
+
+  "dash.welcome": "আবার স্বাগতম",
+  "dash.subtitle": "আজ পিইউবি বাস ট্র্যাকে যা ঘটছে।",
+  "dash.liveBus": "লাইভ বাস অবস্থান",
+  "dash.yourBus": "আপনার বাস",
+  "dash.noBus": "কোনো বাস নির্ধারিত নেই",
+  "dash.route": "রুট",
+  "dash.notify": "ছাড়ার রিমাইন্ডার",
+  "dash.notify.on": "রিমাইন্ডার চালু",
+  "dash.notify.off": "রিমাইন্ডার বন্ধ",
+  "dash.eta": "সম্ভাব্য আগমন",
+  "dash.occupancy": "যাত্রীসংখ্যা",
+  "dash.announcements": "ঘোষণা",
+  "dash.noAnnouncements": "এখনো কোনো ঘোষণা নেই।",
+  "dash.schedule": "আজকের সময়সূচি",
+  "dash.quickLinks": "দ্রুত লিংক",
+  "dash.viewMap": "লাইভ ম্যাপ দেখুন",
+  "dash.viewSchedule": "সময়সূচি দেখুন",
+  "dash.viewBuses": "বাস দেখুন",
+
+  "review.title": "আপনার অভিজ্ঞতা শেয়ার করুন",
+  "review.subtitle": "আপনার রিভিউ পাবলিক 'ব্যবহারকারীদের প্রিয়' অংশে দেখা যাবে।",
+  "review.rating": "আপনার রেটিং",
+  "review.placeholder": "পিইউবি বাস ট্র্যাক নিয়ে সংক্ষেপে লিখুন…",
+  "review.submit": "রিভিউ দিন",
+  "review.posting": "পোস্ট হচ্ছে…",
+  "review.success": "ধন্যবাদ! আপনার রিভিউ প্রকাশিত হয়েছে।",
+  "review.error": "রিভিউ পোস্ট করা যায়নি।",
+  "review.yours": "আপনার রিভিউ",
+  "review.delete": "মুছুন",
+
+  "driver.trip": "ট্রিপ নিয়ন্ত্রণ",
+  "driver.start": "ট্রিপ শুরু",
+  "driver.end": "ট্রিপ শেষ",
+  "driver.sos": "এসওএস পাঠান",
+  "driver.occupancy": "যাত্রী ধারণ",
+  "driver.low": "কম",
+  "driver.medium": "মাঝারি",
+  "driver.high": "বেশি",
+
+  "teacher.notice": "নোটিশ বোর্ড",
+  "teacher.post": "ঘোষণা দিন",
+  "teacher.title": "শিরোনাম",
+  "teacher.message": "বার্তা",
+  "teacher.posted": "ঘোষণা প্রকাশিত হয়েছে",
+
+  "admin.overview": "ফ্লিট ওভারভিউ",
+  "admin.users": "ব্যবহারকারী",
+  "admin.fleet": "ফ্লিট অবস্থা",
+  "admin.logs": "সিস্টেম লগ",
+
+  "side.dashboard": "ড্যাশবোর্ড",
+  "side.map": "লাইভ ম্যাপ",
+  "side.myBus": "আমার বাস",
+  "side.schedule": "সময়সূচি",
+  "side.notifications": "নোটিফিকেশন",
+  "side.settings": "সেটিংস",
+  "side.logout": "লগআউট",
+  "side.myTrip": "আমার ট্রিপ",
+  "side.sos": "এসওএস রিপোর্ট",
+
+  "buses.title": "আমাদের বাসসমূহ",
+  "buses.subtitle": "বগুড়াজুড়ে রুট অনুযায়ী সব বাস।",
+  "schedule.title": "সময়সূচি",
+  "schedule.subtitle": "প্রতিটি রুটের ক্লাস ও পরীক্ষার বাস সময়।",
+  "live.title": "লাইভ লোকেশন",
+  "live.subtitle": "প্রতিটি পিইউবি বাস রিয়েল-টাইমে দেখুন।",
+  "common.loading": "লোড হচ্ছে…",
 };
 
 const ar: Dict = {
@@ -69,6 +370,9 @@ const ar: Dict = {
   "nav.how": "كيف يعمل",
   "nav.login": "تسجيل الدخول",
   "nav.signup": "إنشاء حساب",
+  "nav.language": "اللغة",
+  "nav.dashboard": "لوحة التحكم",
+
   "hero.badge": "جامعة بوندرا",
   "hero.title1": "رحلتك إلى",
   "hero.title2": "الحرم الجامعي،",
@@ -83,6 +387,140 @@ const ar: Dict = {
   "hero.play": "غوغل بلاي",
   "map.open": "افتح الموقع المباشر",
   "map.gps": "نظام تحديد المواقع غير متصل — الموقع الافتراضي",
+
+  "stats.routes": "المسارات",
+  "stats.buses": "الحافلات",
+  "stats.students": "الطلاب",
+  "stats.coverage": "مسارات في بوغرا",
+
+  "how.title": "كيف يعمل PUB Bus Track",
+  "how.subtitle": "من منزلك إلى الحرم الجامعي — تتبّع كل خطوة.",
+  "how.step1.title": "أدخل موقعك",
+  "how.step1.desc": "يُدخل الطالب موقع الالتقاط مرة واحدة ليطابق التطبيق أقرب مسار تلقائياً.",
+  "how.step2.title": "اختر حافلتك",
+  "how.step2.desc": "اختر رقم حافلتك ومسارها من القائمة — غوبيندغانج، شيربور، ساتماثا أو غابتولي.",
+  "how.step3.title": "تتبّع مباشر",
+  "how.step3.desc": "شاهد حافلتك تتحرك على الخريطة مع وقت وصول دقيق.",
+  "how.step4.title": "تنبيهات فورية",
+  "how.step4.desc": "استقبل تنبيهات الوصول والتأخير وتغيير المسار — لن تفوتك الحافلة.",
+
+  "reviews.title1": "محبوب لدى",
+  "reviews.title2": "المستخدمين",
+  "reviews.subtitle": "ما يقوله الركاب وأعضاء هيئة التدريس والموظفون عن التطبيق.",
+  "reviews.empty.title": "كن أول من يشارك تجربته!",
+  "reviews.empty.body": "سجّل الدخول كطالب وأضف مراجعتك من لوحة التحكم.",
+  "reviews.loading": "جارٍ تحميل المراجعات…",
+
+  "vision.title1": "رؤيتنا",
+  "vision.title2": "",
+  "vision.p1":
+    "نؤمن بأن التنقل الجامعي يجب أن يكون سلساً ويمكن التنبؤ به وخالياً من التوتر عبر توفير بيانات لحظية لكل طالب.",
+  "vision.p2": "هدفنا بناء تنقل جامعي منضبط يعطي الأولوية لسلامة الطلاب وراحتهم.",
+  "vision.cta": "اعرف المزيد",
+
+  "news.title": "ابقَ على اطلاع",
+  "news.subtitle": "احصل على إشعارات المسارات الجديدة وتغييرات الجدول.",
+  "news.placeholder": "أدخل بريدك الإلكتروني",
+  "news.cta": "اشترك",
+  "news.thanks": "شكراً لاشتراكك!",
+
+  "footer.about": "من نحن",
+  "footer.support": "الدعم",
+  "footer.contact": "اتصل بنا",
+  "footer.vision": "رؤيتنا",
+  "footer.team": "الفريق",
+  "footer.privacy": "سياسة الخصوصية",
+  "footer.terms": "شروط الاستخدام",
+  "footer.help": "مركز المساعدة",
+  "footer.contactUs": "تواصل معنا",
+  "footer.report": "أبلغ عن مشكلة",
+
+  "auth.welcome": "مرحباً بعودتك",
+  "auth.welcome.sub": "سجّل الدخول لتتبع حافلتك مباشرة.",
+  "auth.admin": "دخول المشرف",
+  "auth.admin.sub": "دخول إداري مقيّد.",
+  "auth.email": "البريد الإلكتروني",
+  "auth.password": "كلمة المرور",
+  "auth.forgot": "نسيت كلمة المرور؟",
+  "auth.login": "تسجيل الدخول",
+  "auth.loggingIn": "جارٍ الدخول...",
+  "auth.or": "أو تابع عبر",
+  "auth.google": "حساب غوغل",
+  "auth.noAccount": "ليس لديك حساب؟",
+  "auth.haveAccount": "لديك حساب بالفعل؟",
+  "auth.signup": "إنشاء حساب",
+  "auth.student": "طالب",
+  "auth.teacher": "مدرّس",
+  "auth.driver": "سائق",
+  "auth.back": "العودة للرئيسية",
+
+  "dash.welcome": "مرحباً بعودتك",
+  "dash.subtitle": "إليك ما يحدث اليوم.",
+  "dash.liveBus": "موقع الحافلة المباشر",
+  "dash.yourBus": "حافلتك",
+  "dash.noBus": "لا توجد حافلة مخصصة",
+  "dash.route": "المسار",
+  "dash.notify": "تذكيرات المغادرة",
+  "dash.notify.on": "التذكيرات مفعّلة",
+  "dash.notify.off": "التذكيرات متوقفة",
+  "dash.eta": "وقت الوصول المتوقع",
+  "dash.occupancy": "الإشغال",
+  "dash.announcements": "الإعلانات",
+  "dash.noAnnouncements": "لا توجد إعلانات بعد.",
+  "dash.schedule": "جدول اليوم",
+  "dash.quickLinks": "روابط سريعة",
+  "dash.viewMap": "فتح الخريطة",
+  "dash.viewSchedule": "عرض الجدول",
+  "dash.viewBuses": "تصفح الحافلات",
+
+  "review.title": "شارك تجربتك",
+  "review.subtitle": "ستظهر مراجعتك في قسم 'محبوب لدى المستخدمين'.",
+  "review.rating": "تقييمك",
+  "review.placeholder": "اكتب مراجعة قصيرة…",
+  "review.submit": "نشر المراجعة",
+  "review.posting": "جارٍ النشر…",
+  "review.success": "شكراً! تم نشر مراجعتك.",
+  "review.error": "تعذّر نشر المراجعة.",
+  "review.yours": "مراجعتك",
+  "review.delete": "حذف",
+
+  "driver.trip": "التحكم بالرحلة",
+  "driver.start": "بدء الرحلة",
+  "driver.end": "إنهاء الرحلة",
+  "driver.sos": "إرسال استغاثة",
+  "driver.occupancy": "إشغال الركاب",
+  "driver.low": "منخفض",
+  "driver.medium": "متوسط",
+  "driver.high": "مرتفع",
+
+  "teacher.notice": "لوحة الإعلانات",
+  "teacher.post": "نشر إعلان",
+  "teacher.title": "العنوان",
+  "teacher.message": "الرسالة",
+  "teacher.posted": "تم نشر الإعلان",
+
+  "admin.overview": "نظرة على الأسطول",
+  "admin.users": "المستخدمون",
+  "admin.fleet": "حالة الأسطول",
+  "admin.logs": "سجلات النظام",
+
+  "side.dashboard": "لوحة التحكم",
+  "side.map": "الخريطة المباشرة",
+  "side.myBus": "حافلتي",
+  "side.schedule": "الجدول",
+  "side.notifications": "الإشعارات",
+  "side.settings": "الإعدادات",
+  "side.logout": "تسجيل الخروج",
+  "side.myTrip": "رحلتي",
+  "side.sos": "بلاغ استغاثة",
+
+  "buses.title": "حافلاتنا",
+  "buses.subtitle": "جميع الحافلات مرتبة حسب المسار.",
+  "schedule.title": "الجدول الزمني",
+  "schedule.subtitle": "مواعيد حافلات المحاضرات والامتحانات لكل مسار.",
+  "live.title": "الموقع المباشر",
+  "live.subtitle": "تابع كل حافلة في الوقت الفعلي.",
+  "common.loading": "جارٍ التحميل…",
 };
 
 const DICTS: Record<LangCode, Dict> = { en, bn, ar };
@@ -123,6 +561,17 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         } catch {
           /* ignore */
         }
+        // Best-effort sync to the signed-in user's profile.
+        void (async () => {
+          try {
+            const { data } = await supabase.auth.getSession();
+            const userId = data.session?.user.id;
+            if (!userId) return;
+            await supabase.from("profiles").update({ preferred_language: l }).eq("id", userId);
+          } catch {
+            /* ignore */
+          }
+        })();
       },
       t: (key) => DICTS[lang][key] ?? en[key] ?? key,
     }),
