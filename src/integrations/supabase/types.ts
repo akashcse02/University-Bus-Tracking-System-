@@ -62,6 +62,47 @@ export type Database = {
         }
         Relationships: []
       }
+      attendance_records: {
+        Row: {
+          class_id: string
+          created_at: string
+          id: string
+          session_date: string
+          status: string
+          student_name: string
+          teacher_id: string
+          updated_at: string
+        }
+        Insert: {
+          class_id: string
+          created_at?: string
+          id?: string
+          session_date?: string
+          status?: string
+          student_name: string
+          teacher_id: string
+          updated_at?: string
+        }
+        Update: {
+          class_id?: string
+          created_at?: string
+          id?: string
+          session_date?: string
+          status?: string
+          student_name?: string
+          teacher_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "attendance_records_class_id_fkey"
+            columns: ["class_id"]
+            isOneToOne: false
+            referencedRelation: "class_schedules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       buses: {
         Row: {
           bus_number: string
@@ -99,6 +140,45 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      class_schedules: {
+        Row: {
+          course_name: string
+          created_at: string
+          day_of_week: number
+          end_time: string
+          id: string
+          room: string | null
+          section: string | null
+          start_time: string
+          teacher_id: string
+          updated_at: string
+        }
+        Insert: {
+          course_name: string
+          created_at?: string
+          day_of_week?: number
+          end_time: string
+          id?: string
+          room?: string | null
+          section?: string | null
+          start_time: string
+          teacher_id: string
+          updated_at?: string
+        }
+        Update: {
+          course_name?: string
+          created_at?: string
+          day_of_week?: number
+          end_time?: string
+          id?: string
+          room?: string | null
+          section?: string | null
+          start_time?: string
+          teacher_id?: string
+          updated_at?: string
+        }
+        Relationships: []
       }
       issues: {
         Row: {
