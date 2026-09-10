@@ -48,7 +48,7 @@ export function TeacherDashboard({ teacherId }: { teacherId: string }) {
       .order("day_of_week")
       .order("start_time");
     setClasses(data ?? []);
-    if (data && data.length > 0) setSelectedClass((prev) => prev || data[0].id);
+    if (data && data[0]) setSelectedClass((prev) => prev || data[0]!.id);
   }, [teacherId]);
 
   const loadAttendance = useCallback(async () => {

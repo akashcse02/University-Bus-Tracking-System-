@@ -786,7 +786,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
           }
         })();
       },
-      t: (key) => DICTS[lang][key] ?? en[key] ?? key,
+      t: (key) => DICTS[lang][key] ?? DICTS.en[key] ?? key,
     }),
     [lang],
   );
