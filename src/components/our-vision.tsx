@@ -2,8 +2,11 @@ import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import { Bus, MapPin, User, Smartphone, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n";
 
 export function OurVision() {
+  const { t } = useLanguage();
+
   return (
     <section id="vision" className="relative overflow-hidden py-24">
       {/* Background decoration */}
@@ -14,21 +17,14 @@ export function OurVision() {
           <Reveal>
             <div className="space-y-6">
               <h2 className="font-display text-4xl font-extrabold text-ink sm:text-5xl">
-                Our <span className="text-primary">Vision</span>
+                {t("vision.title1")} <span className="text-primary">{t("vision.title2")}</span>
               </h2>
               <div className="space-y-4 text-lg font-medium text-ink/70">
-                <p>
-                  We believe that university transit should be seamless, predictable, and stress-free. 
-                  By providing real-time data to every student, we're reducing wasted waiting time 
-                  at bus stops and helping our community start their academic day on the right foot.
-                </p>
-                <p>
-                  Our goal is to build a connected, punctual campus commute that prioritizes 
-                  student safety and convenience through innovative tracking technology.
-                </p>
+                <p>{t("vision.p1")}</p>
+                <p>{t("vision.p2")}</p>
               </div>
               <Button className="group rounded-full bg-primary px-8 py-6 font-display text-lg font-bold shadow-lg transition-all hover:scale-105">
-                Learn More
+                {t("vision.cta")}
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>
