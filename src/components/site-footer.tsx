@@ -2,8 +2,10 @@ import { Bus, Mail, Instagram, Twitter, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 import { useState } from "react";
+import { useLanguage } from "@/lib/i18n";
 
 export function SiteFooter() {
+  const { t } = useLanguage();
   const [adminClicks, setAdminClicks] = useState(0);
 
   const handleAdminTrigger = () => {
@@ -26,38 +28,38 @@ export function SiteFooter() {
               <span className="font-display text-xl font-extrabold text-ink">PUB Bus Track</span>
             </div>
             <ul className="space-y-3">
-              <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">Home</a></li>
-              <li><a href="/live-location" className="text-sm font-medium text-ink/70 hover:text-primary">Live Location</a></li>
-              <li><a href="#buses" className="text-sm font-medium text-ink/70 hover:text-primary">Buses</a></li>
-              <li><a href="#schedule" className="text-sm font-medium text-ink/70 hover:text-primary">Time Schedule</a></li>
+              <li><a href="/" className="text-sm font-medium text-ink/70 hover:text-primary">{t("nav.home")}</a></li>
+              <li><a href="/live-location" className="text-sm font-medium text-ink/70 hover:text-primary">{t("nav.live")}</a></li>
+              <li><a href="/buses" className="text-sm font-medium text-ink/70 hover:text-primary">{t("nav.buses")}</a></li>
+              <li><a href="/time-schedule" className="text-sm font-medium text-ink/70 hover:text-primary">{t("nav.schedule")}</a></li>
             </ul>
           </div>
 
           {/* Column 2: About */}
           <div className="space-y-6">
-            <h3 className="font-display text-sm font-black uppercase tracking-widest text-ink">About</h3>
+            <h3 className="font-display text-sm font-black uppercase tracking-widest text-ink">{t("footer.about")}</h3>
             <ul className="space-y-3">
-              <li><a href="#vision" className="text-sm font-medium text-ink/70 hover:text-primary">Our Vision</a></li>
-              <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">Team</a></li>
-              <li><a href="#routes" className="text-sm font-medium text-ink/70 hover:text-primary">Routes</a></li>
-              <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">Privacy Policy</a></li>
-              <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">Terms of Use</a></li>
+              <li><a href="#vision" className="text-sm font-medium text-ink/70 hover:text-primary">{t("footer.vision")}</a></li>
+              <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">{t("footer.team")}</a></li>
+              <li><a href="#routes" className="text-sm font-medium text-ink/70 hover:text-primary">{t("nav.routes")}</a></li>
+              <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">{t("footer.privacy")}</a></li>
+              <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">{t("footer.terms")}</a></li>
             </ul>
           </div>
 
           {/* Column 3: Support */}
           <div className="space-y-6">
-            <h3 className="font-display text-sm font-black uppercase tracking-widest text-ink">Support</h3>
+            <h3 className="font-display text-sm font-black uppercase tracking-widest text-ink">{t("footer.support")}</h3>
             <ul className="space-y-3">
-              <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">Help Center</a></li>
-              <li><a href="#footer" className="text-sm font-medium text-ink/70 hover:text-primary">Contact Us</a></li>
-              <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">Report an Issue</a></li>
+              <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">{t("footer.help")}</a></li>
+              <li><a href="#footer" className="text-sm font-medium text-ink/70 hover:text-primary">{t("footer.contactUs")}</a></li>
+              <li><a href="#" className="text-sm font-medium text-ink/70 hover:text-primary">{t("footer.report")}</a></li>
             </ul>
           </div>
 
           {/* Column 4: Contact & Social */}
           <div className="space-y-6">
-            <h3 className="font-display text-sm font-black uppercase tracking-widest text-ink">Contact</h3>
+            <h3 className="font-display text-sm font-black uppercase tracking-widest text-ink">{t("footer.contact")}</h3>
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-sm text-ink/70">
                 <Mail className="h-4 w-4 text-primary" />
@@ -69,7 +71,7 @@ export function SiteFooter() {
                 <a href="#" className="rounded-full bg-white p-2 shadow-sm transition-transform hover:scale-110"><Facebook className="h-4 w-4 text-blue-700" /></a>
               </div>
               <Button className="btn-hover-premium w-full rounded-full bg-primary py-6 font-display font-bold shadow-md">
-                Download the App
+                {t("hero.download")}
               </Button>
 
             </div>
