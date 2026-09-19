@@ -16,13 +16,8 @@ export default function AuthCallback() {
             .eq("user_id", session.user.id)
             .single();
 
-          const role = roleData?.role || "student";
-          
-          if (role === "admin") {
-            navigate({ to: "/admin" });
-          } else {
-            navigate({ to: "/live-location" });
-          }
+          void roleData;
+          navigate({ to: "/dashboard" });
         }
       }
     );

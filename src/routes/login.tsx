@@ -69,11 +69,8 @@ function LoginPage() {
         
         toast.success("Login Successful");
         
-        if (userRole === "admin") {
-          navigate({ to: "/admin" });
-        } else {
-          navigate({ to: "/live-location" });
-        }
+        void userRole;
+        navigate({ to: "/dashboard" });
       }
     } catch (error: any) {
       toast.error(error.message || "Invalid credentials");

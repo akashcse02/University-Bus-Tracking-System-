@@ -201,6 +201,17 @@ export function TeacherDashboard({ teacherId }: { teacherId: string }) {
                           </span>
                         )}
                       </p>
+                      <span
+                        className={`mt-2 inline-block rounded-full px-2.5 py-0.5 text-[10px] font-black uppercase tracking-widest ${
+                          (c as { approved?: boolean }).approved
+                            ? "bg-green-100 text-green-700"
+                            : "bg-amber-100 text-amber-700"
+                        }`}
+                      >
+                        {(c as { approved?: boolean }).approved
+                          ? t("teacher.approved")
+                          : t("teacher.pending")}
+                      </span>
                     </div>
                     <Button
                       variant="ghost"
