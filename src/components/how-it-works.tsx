@@ -1,44 +1,20 @@
 import { MapPin, Bus, Radar, Bell, LucideIcon } from "lucide-react";
 import { Reveal } from "@/components/reveal";
 import { motion } from "framer-motion";
+import { useLanguage } from "@/lib/i18n";
 
 interface StepCard {
-  title: string;
-  description: string;
+  key: string;
   icon: LucideIcon;
   color: string;
   illustration: string;
 }
 
 const steps: StepCard[] = [
-  {
-    title: "Enter Your Location",
-    description: "Students enter their home/pickup location once. The app saves it so the nearest bus route is automatically matched.",
-    icon: MapPin,
-    color: "#1E7A4F", // Green
-    illustration: "map"
-  },
-  {
-    title: "Select Your Bus",
-    description: "Choose your assigned bus number and route from the list — Gobindaganj, Sherpur, Sathmatha, or Gabtoli.",
-    icon: Bus,
-    color: "#2AA6A0", // Teal
-    illustration: "selection"
-  },
-  {
-    title: "Track in Real-Time",
-    description: "See your bus moving live on the map, with accurate ETA so you know exactly when to head to your stop.",
-    icon: Radar,
-    color: "#E8992B", // Orange
-    illustration: "tracking"
-  },
-  {
-    title: "Get Notified",
-    description: "Receive instant alerts for arrival time, delays, or route changes — never miss your bus again.",
-    icon: Bell,
-    color: "#3E8E5C", // Forest
-    illustration: "notifications"
-  },
+  { key: "step1", icon: MapPin, color: "#1E7A4F", illustration: "map" },
+  { key: "step2", icon: Bus, color: "#2AA6A0", illustration: "selection" },
+  { key: "step3", icon: Radar, color: "#E8992B", illustration: "tracking" },
+  { key: "step4", icon: Bell, color: "#3E8E5C", illustration: "notifications" },
 ];
 
 function CardIllustration({ type, color }: { type: string; color: string }) {
