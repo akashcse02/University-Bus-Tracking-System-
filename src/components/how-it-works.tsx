@@ -63,16 +63,16 @@ function CardIllustration({ type, color }: { type: string; color: string }) {
 }
 
 export function HowItWorks() {
+  const { t } = useLanguage();
+
   return (
     <section id="how-it-works" className="relative pb-20">
       <div className="mx-auto max-w-4xl px-5 py-24 text-center">
         <Reveal>
           <h2 className="font-display text-4xl font-extrabold text-ink sm:text-6xl">
-            How PUB Bus Track Works
+            {t("how.title")}
           </h2>
-          <p className="mt-6 text-xl text-ink/70 font-medium">
-            From your home to campus — track every step of the way.
-          </p>
+          <p className="mt-6 text-xl text-ink/70 font-medium">{t("how.subtitle")}</p>
         </Reveal>
       </div>
 
@@ -100,10 +100,10 @@ export function HowItWorks() {
                     <step.icon className="h-7 w-7" />
                   </div>
                   <h3 className="mb-4 font-display text-3xl font-black md:text-5xl tracking-tight leading-tight">
-                    {step.title}
+                    {t(`how.${step.key}.title`)}
                   </h3>
                   <p className="max-w-md text-lg font-medium leading-relaxed opacity-90">
-                    {step.description}
+                    {t(`how.${step.key}.desc`)}
                   </p>
                 </div>
                 

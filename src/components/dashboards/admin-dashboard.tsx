@@ -286,14 +286,20 @@ function ReviewModeration() {
 
   const setApproved = async (id: string, approved: boolean) => {
     const { error } = await supabase.from("reviews").update({ approved }).eq("id", id);
-    if (error) return toast.error(t("admin.failed"));
+    if (error) {
+      toast.error(t("admin.failed"));
+      return;
+    }
     setReviews((prev) => prev.map((r) => (r.id === id ? { ...r, approved } : r)));
     toast.success(t("admin.updated"));
   };
 
   const remove = async (id: string) => {
     const { error } = await supabase.from("reviews").delete().eq("id", id);
-    if (error) return toast.error(t("admin.failed"));
+    if (error) {
+      toast.error(t("admin.failed"));
+      return;
+    }
     setReviews((prev) => prev.filter((r) => r.id !== id));
     toast.success(t("admin.updated"));
   };
@@ -404,7 +410,10 @@ function ScheduleApproval() {
       .from("class_schedules")
       .update({ approved } as never)
       .eq("id", id);
-    if (error) return toast.error(t("admin.failed"));
+    if (error) {
+      toast.error(t("admin.failed"));
+      return;
+    }
     setRows((prev) => prev.map((r) => (r.id === id ? { ...r, approved } : r)));
     toast.success(t("admin.updated"));
   };
