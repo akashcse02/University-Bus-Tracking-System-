@@ -3,6 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useState } from "react";
 import { Sidebar } from "@/components/dashboard/sidebar";
 import { Header } from "@/components/dashboard/header";
+import { useLanguage } from "@/lib/i18n";
 
 export const Route = createFileRoute("/_authenticated")({
   loader: async ({ location }) => {
@@ -41,6 +42,7 @@ export const Route = createFileRoute("/_authenticated")({
 
 function AuthenticatedLayout() {
   const { profile, role } = Route.useLoaderData();
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-slate-50 flex">
@@ -52,9 +54,9 @@ function AuthenticatedLayout() {
              <div className="mb-8 flex items-center justify-between">
                 <div>
                   <h1 className="font-display text-3xl font-bold text-ink">
-                    Welcome back, {profile?.full_name?.split(' ')[0]}
+                    {t("dash.welcome")}, {profile?.full_name?.split(" ")[0]}
                   </h1>
-                  <p className="text-ink/60 font-medium">Here's what's happening with PUB Bus Track today.</p>
+                  <p className="text-ink/60 font-medium">{t("dash.subtitle")}</p>
                 </div>
                 <div className="px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
                   <span className="text-primary font-bold text-sm uppercase tracking-wider">{role}</span>
