@@ -10,7 +10,6 @@ import {
   Users,
   ShieldCheck,
   GraduationCap,
-  Steering,
   AlertCircle,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
@@ -65,7 +64,7 @@ const roleViews: Item[] = [
 export function Sidebar({ role }: { role: string }) {
   const navigate = useNavigate();
   const { t } = useLanguage();
-  const items = commonByRole[role] || commonByRole.student!;
+  const items = commonByRole[role] || commonByRole['student']!;
 
   const handleLogout = async () => {
     await supabase.auth.signOut();

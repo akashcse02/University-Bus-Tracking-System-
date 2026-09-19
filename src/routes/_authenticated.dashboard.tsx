@@ -10,7 +10,7 @@ const VIEWS: View[] = ["student", "teacher", "driver", "admin"];
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
   validateSearch: (search: Record<string, unknown>): { view?: View } => {
-    const raw = typeof search.view === "string" ? (search.view as View) : undefined;
+    const raw = typeof search['view'] === "string" ? (search['view'] as View) : undefined;
     return raw && VIEWS.includes(raw) ? { view: raw } : {};
   },
   head: () => ({
