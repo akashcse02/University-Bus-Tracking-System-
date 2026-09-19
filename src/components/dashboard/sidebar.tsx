@@ -1,50 +1,71 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { 
-  LayoutDashboard, 
-  Map, 
-  Bus, 
-  Calendar, 
-  Bell, 
-  Settings, 
-  LogOut, 
-  HelpCircle,
-  FileText,
+import {
+  LayoutDashboard,
+  Map,
+  Bus,
+  Calendar,
+  Bell,
+  Settings,
+  LogOut,
   Users,
-  AlertCircle
+  ShieldCheck,
+  GraduationCap,
+  Steering,
+  AlertCircle,
 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { useLanguage } from "@/lib/i18n";
 
-const menuItems = {
+type Item = {
+  icon: typeof Map;
+  labelKey: string;
+  to: "/dashboard" | "/live-location" | "/buses" | "/time-schedule";
+  search?: { view: "student" | "teacher" | "driver" | "admin" };
+};
+
+const commonByRole: Record<string, Item[]> = {
   student: [
-    { icon: LayoutDashboard, label: "Dashboard", to: "/live-location" },
-    { icon: Map, label: "Live Map", to: "/live-location" },
-    { icon: Bus, label: "My Bus", to: "/buses" },
-    { icon: Calendar, label: "Schedule", to: "/time-schedule" },
-    { icon: Bell, label: "Notifications", to: "/live-location" },
+    { icon: LayoutDashboard, labelKey: "side.dashboard", to: "/dashboard" },
+    { icon: Map, labelKey: "side.map", to: "/live-location" },
+    { icon: Bus, labelKey: "side.myBus", to: "/buses" },
+    { icon: Calendar, labelKey: "side.schedule", to: "/time-schedule" },
   ],
   teacher: [
-    { icon: LayoutDashboard, label: "Dashboard", to: "/live-location" },
-    { icon: Map, label: "Live Map", to: "/live-location" },
-    { icon: Calendar, label: "Schedule", to: "/time-schedule" },
-    { icon: Bell, label: "Notice Board", to: "/live-location" },
+    { icon: LayoutDashboard, labelKey: "side.dashboard", to: "/dashboard" },
+    { icon: Map, labelKey: "side.map", to: "/live-location" },
+    { icon: Calendar, labelKey: "side.schedule", to: "/time-schedule" },
+    { icon: Bell, labelKey: "side.notifications", to: "/live-location" },
   ],
   driver: [
-    { icon: LayoutDashboard, label: "My Trip", to: "/live-location" },
-    { icon: Map, label: "Route Map", to: "/live-location" },
-    { icon: AlertCircle, label: "SOS Report", to: "/live-location" },
+    { icon: LayoutDashboard, labelKey: "side.myTrip", to: "/dashboard" },
+    { icon: Map, labelKey: "side.map", to: "/live-location" },
+    { icon: AlertCircle, labelKey: "side.sos", to: "/dashboard" },
   ],
   admin: [
-    { icon: LayoutDashboard, label: "Overview", to: "/admin" },
-    { icon: Users, label: "User Manager", to: "/admin" },
-    { icon: Bus, label: "Fleet status", to: "/admin" },
-    { icon: FileText, label: "System Logs", to: "/admin" },
+    { icon: LayoutDashboard, labelKey: "side.dashboard", to: "/dashboard" },
+    { icon: Users, labelKey: "admin.users", to: "/dashboard" },
+    { icon: Bus, labelKey: "admin.fleet", to: "/buses" },
+    { icon: Calendar, labelKey: "side.schedule", to: "/time-schedule" },
   ],
 };
 
+const roleViews: Item[] = [
+  {
+    icon: GraduationCap,
+    labelKey: "side.student",
+    to: "/dashboard",
+    search: { view: "student" },
+  },
+  { icon: Users, labelKey: "side.teacher", to: "/dashboard", search: { view: "teacher" } },
+  { icon: Bus, labelKey: "side.driver", to: "/dashboard", search: { view: "driver" } },
+  { icon: ShieldCheck, labelKey: "side.admin", to: "/dashboard", search: { view: "admin" } },
+];
+
 export function Sidebar({ role }: { role: string }) {
   const navigate = useNavigate();
-  const items = menuItems[role as keyof typeof menuItems] || menuItems.student;
+  const { t } = useLanguage();
+  const items = commonByRole[role] || commonByRole.student!;
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -53,48 +74,65 @@ export function Sidebar({ role }: { role: string }) {
   };
 
   return (
-    <aside className="w-72 bg-white border-r border-slate-200 flex flex-col h-screen sticky top-0">
+    <aside className="sticky top-0 flex h-screen w-72 flex-col overflow-y-auto border-r border-slate-200 bg-white">
       <div className="p-8">
-        <Link to="/" className="flex items-center gap-3 group">
+        <Link to="/" className="group flex items-center gap-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-white shadow-lg shadow-primary/20 transition-transform group-hover:scale-110">
             <Bus className="h-6 w-6" />
           </div>
-          <span className="font-display text-xl font-black tracking-tight text-ink">
-            PUB BUS
-          </span>
+          <span className="font-display text-xl font-black tracking-tight text-ink">PUB BUS</span>
         </Link>
       </div>
 
-      <nav className="flex-1 px-6 space-y-2">
-        {items.map((item) => (
-          <Link
-            key={item.label}
-            to={item.to}
-            className="flex items-center gap-4 px-4 py-3 rounded-2xl text-ink/60 font-bold hover:bg-slate-50 hover:text-primary transition-all active:scale-[0.98]"
-            activeProps={{ className: "bg-primary/5 text-primary" }}
-          >
-            <item.icon className="h-5 w-5" />
-            {item.label}
-          </Link>
+      <nav className="flex-1 space-y-2 px-6">
+        {items.map((item, i) => (
+          <SidebarLink key={`${item.labelKey}-${i}`} item={item} label={t(item.labelKey)} />
         ))}
+
+        {role === "admin" && (
+          <div className="pt-6">
+            <p className="px-4 pb-2 text-[10px] font-black uppercase tracking-widest text-ink/30">
+              {t("nav.dashboard")}
+            </p>
+            <div className="space-y-2">
+              {roleViews.map((item) => (
+                <SidebarLink key={item.labelKey} item={item} label={t(item.labelKey)} />
+              ))}
+            </div>
+          </div>
+        )}
       </nav>
 
-      <div className="p-6 border-t border-slate-100 space-y-2">
+      <div className="space-y-2 border-t border-slate-100 p-6">
         <Link
           to="/live-location"
-          className="flex items-center gap-4 px-4 py-3 rounded-2xl text-ink/60 font-bold hover:bg-slate-50 transition-all"
+          className="flex items-center gap-4 rounded-2xl px-4 py-3 font-bold text-ink/60 transition-all hover:bg-slate-50"
         >
           <Settings className="h-5 w-5" />
-          Settings
+          {t("side.settings")}
         </Link>
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-4 px-4 py-3 rounded-2xl text-red-500 font-bold hover:bg-red-50 transition-all"
+          className="flex w-full items-center gap-4 rounded-2xl px-4 py-3 font-bold text-red-500 transition-all hover:bg-red-50"
         >
           <LogOut className="h-5 w-5" />
-          Logout
+          {t("side.logout")}
         </button>
       </div>
     </aside>
+  );
+}
+
+function SidebarLink({ item, label }: { item: Item; label: string }) {
+  return (
+    <Link
+      to={item.to}
+      search={item.search ?? {}}
+      className="flex items-center gap-4 rounded-2xl px-4 py-3 font-bold text-ink/60 transition-all hover:bg-slate-50 hover:text-primary active:scale-[0.98]"
+      activeProps={{ className: "bg-primary/5 text-primary" }}
+    >
+      <item.icon className="h-5 w-5" />
+      {label}
+    </Link>
   );
 }
