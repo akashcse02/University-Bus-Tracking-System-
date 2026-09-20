@@ -43,40 +43,24 @@ function SignUpPage() {
         email,
         password,
         options: {
+          emailRedirectTo: `${window.location.origin}/auth/callback`,
           data: {
             full_name: fullName,
             role: role,
+            id_number: idNumber,
+            department: department ?? "",
+            phone_number: phoneNumber,
           },
         },
       });
 
       if (authError) throw authError;
 
-      if (authData.user) {
-        // Create profile
-        const { error: profileError } = await supabase
-          .from("profiles")
-          .insert({
-            id: authData.user.id,
-            full_name: fullName,
-            id_number: idNumber,
-            department: department,
-            phone_number: phoneNumber,
-          });
-
-        if (profileError) throw profileError;
-
-        // Create user role
-        const { error: roleError } = await supabase
-          .from("user_roles")
-          .insert({
-            user_id: authData.user.id,
-            role: role,
-          });
-
-        if (roleError) throw roleError;
-
-        toast.success("Account created! Please check your email for verification.");
+      if (authData.session) {
+        toast.success("Account created!");
+        navigate({ to: "/dashboard" });
+      } else {
+        toast.success("Account created! Please check your email to confirm.");
         navigate({ to: "/login" });
       }
     } catch (error: any) {
