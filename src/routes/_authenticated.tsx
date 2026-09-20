@@ -6,6 +6,7 @@ import { Header } from "@/components/dashboard/header";
 import { useLanguage } from "@/lib/i18n";
 
 export const Route = createFileRoute("/_authenticated")({
+  ssr: false,
   loader: async ({ location }) => {
     const { data: { session } } = await supabase.auth.getSession();
 
@@ -20,8 +21,8 @@ export const Route = createFileRoute("/_authenticated")({
 
     // Fetch profile and role
     const [{ data: profile }, { data: roleData }] = await Promise.all([
-      supabase.from("profiles").select("*").eq("id", session.user.id).single(),
-      supabase.from("user_roles").select("role").eq("user_id", session.user.id).single(),
+      supabase.from("profiles").select("*").eq("id", session.user.id).maybeSingle(),
+      supabase.from("user_roles").select("role").eq("user_id", session.user.id).maybeSingle(),
     ]);
 
     if (!profile) {
