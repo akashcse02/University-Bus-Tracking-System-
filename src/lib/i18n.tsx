@@ -78,6 +78,21 @@ const en: Dict = {
   "vision.p2":
     "Our goal is to build a connected, punctual campus commute that prioritizes student safety and convenience through innovative tracking technology.",
   "vision.cta": "Learn More",
+  "vision.details.title": "Building the Future of Campus Transit",
+  "vision.details.description": "More about the vision and mission behind PUB Bus Track.",
+  "vision.details.why.title": "Why We Built This",
+  "vision.details.why.body":
+    "Every day, hundreds of students and faculty at Pundra University rely on university buses to get to class on time. Without visibility into where a bus actually is, waiting becomes guesswork — and guesswork means missed classes, wasted time, and unnecessary stress. PUB Bus Track exists to close that gap with simple, real-time visibility for everyone who depends on the university's transport system.",
+  "vision.details.future.title": "What We're Building Toward",
+  "vision.details.future.body":
+    "Real-time GPS tracking for every bus on every route. Predictive ETAs that account for traffic and stop patterns. Instant alerts for delays, route changes, and cancellations. A single, reliable source of truth for the entire university community — students, faculty, and transport staff alike.",
+  "vision.details.commitment.title": "Our Commitment",
+  "vision.details.commitment.body":
+    "We're committed to keeping this platform free for students, continuously improving accuracy as more buses come online, and listening directly to rider feedback to shape what we build next. Campus transit should never be the reason someone is late — that's the standard we're building toward.",
+  "vision.details.stats.buses": "10 Buses Tracked",
+  "vision.details.stats.routes": "5 Routes Covered",
+  "vision.details.stats.students": "1000+ Students Served",
+  "vision.details.stats.pundra": "Built for Pundra University",
 
   // Newsletter
   "news.title": "Stay Updated",
@@ -255,6 +270,21 @@ const bn: Dict = {
   "vision.p2":
     "আমাদের লক্ষ্য হলো উদ্ভাবনী ট্র্যাকিং প্রযুক্তির মাধ্যমে নিরাপদ ও সময়ানুবর্তী ক্যাম্পাস যাতায়াত গড়ে তোলা।",
   "vision.cta": "আরও জানুন",
+  "vision.details.title": "ক্যাম্পাস যাতায়াতের ভবিষ্যৎ গড়ে তোলা",
+  "vision.details.description": "পিইউবি বাস ট্র্যাকের লক্ষ্য ও উদ্দেশ্য সম্পর্কে বিস্তারিত।",
+  "vision.details.why.title": "কেন আমরা এটি তৈরি করেছি",
+  "vision.details.why.body":
+    "প্রতিদিন পুন্ড্র বিশ্ববিদ্যালয়ের শত শত শিক্ষার্থী ও শিক্ষক সময়মতো ক্লাসে পৌঁছাতে বিশ্ববিদ্যালয়ের বাসের ওপর নির্ভর করেন। বাসটি কোথায় আছে তা জানা না থাকলে অপেক্ষা অনুমানের বিষয় হয়ে দাঁড়ায়—আর এই অনুমানের ফলে ক্লাস মিস, সময় নষ্ট ও অপ্রয়োজনীয় চাপ তৈরি হয়। বিশ্ববিদ্যালয়ের পরিবহন ব্যবস্থার ওপর নির্ভরশীল সবার জন্য সহজ, রিয়েল-টাইম তথ্য দিয়ে এই ব্যবধান দূর করতেই পিইউবি বাস ট্র্যাক।",
+  "vision.details.future.title": "আমরা যে ভবিষ্যৎ গড়ছি",
+  "vision.details.future.body":
+    "প্রতিটি রুটের প্রতিটি বাসের রিয়েল-টাইম জিপিএস ট্র্যাকিং। যানজট ও স্টপের ধরন বিবেচনায় সম্ভাব্য পৌঁছানোর সময়। বিলম্ব, রুট পরিবর্তন ও বাতিলের তাৎক্ষণিক অ্যালার্ট। শিক্ষার্থী, শিক্ষক ও পরিবহনকর্মীসহ পুরো বিশ্ববিদ্যালয় সম্প্রদায়ের জন্য একটি নির্ভরযোগ্য তথ্যকেন্দ্র।",
+  "vision.details.commitment.title": "আমাদের অঙ্গীকার",
+  "vision.details.commitment.body":
+    "শিক্ষার্থীদের জন্য এই প্ল্যাটফর্ম বিনামূল্যে রাখা, আরও বাস যুক্ত হলে নির্ভুলতা বাড়ানো এবং পরবর্তী উন্নয়নে যাত্রীদের মতামত সরাসরি শোনার অঙ্গীকার করছি। ক্যাম্পাস পরিবহনের কারণে কেউ যেন দেরি না করে—এই মানদণ্ডেই আমরা কাজ করছি।",
+  "vision.details.stats.buses": "১০টি বাস ট্র্যাক করা হচ্ছে",
+  "vision.details.stats.routes": "৫টি রুট আওতাভুক্ত",
+  "vision.details.stats.students": "১০০০+ শিক্ষার্থী সেবা পেয়েছেন",
+  "vision.details.stats.pundra": "পুন্ড্র বিশ্ববিদ্যালয়ের জন্য তৈরি",
 
   "news.title": "আপডেট থাকুন",
   "news.subtitle": "নতুন রুট, সময়সূচি পরিবর্তন ও পিকআপ অ্যালার্ট সম্পর্কে জানুন।",
@@ -417,6 +447,21 @@ const ar: Dict = {
     "نؤمن بأن التنقل الجامعي يجب أن يكون سلساً ويمكن التنبؤ به وخالياً من التوتر عبر توفير بيانات لحظية لكل طالب.",
   "vision.p2": "هدفنا بناء تنقل جامعي منضبط يعطي الأولوية لسلامة الطلاب وراحتهم.",
   "vision.cta": "اعرف المزيد",
+  "vision.details.title": "نبني مستقبل النقل الجامعي",
+  "vision.details.description": "المزيد عن رؤية ورسالة PUB Bus Track.",
+  "vision.details.why.title": "لماذا أنشأنا هذا النظام",
+  "vision.details.why.body":
+    "يعتمد مئات الطلاب وأعضاء هيئة التدريس في جامعة بوندرا يومياً على حافلات الجامعة للوصول إلى المحاضرات في الوقت المناسب. ومن دون معرفة موقع الحافلة، يصبح الانتظار مجرد تخمين، ما يؤدي إلى تفويت المحاضرات وإهدار الوقت والتوتر غير الضروري. وُجد PUB Bus Track لسد هذه الفجوة برؤية مباشرة وبسيطة لكل من يعتمد على نظام النقل الجامعي.",
+  "vision.details.future.title": "ما الذي نسعى إلى بنائه",
+  "vision.details.future.body":
+    "تتبّع GPS مباشر لكل حافلة على كل مسار، وأوقات وصول متوقعة تراعي حركة المرور وأنماط التوقف، وتنبيهات فورية للتأخير وتغييرات المسار والإلغاء. مصدر واحد موثوق للمعلومات يخدم مجتمع الجامعة كاملاً من طلاب وأعضاء هيئة تدريس وموظفي النقل.",
+  "vision.details.commitment.title": "التزامنا",
+  "vision.details.commitment.body":
+    "نلتزم بإبقاء المنصة مجانية للطلاب، وتحسين الدقة باستمرار مع انضمام المزيد من الحافلات، والاستماع مباشرة إلى آراء الركاب لتوجيه ما نبنيه لاحقاً. يجب ألا يكون النقل الجامعي سبباً في تأخر أي شخص، وهذا هو المعيار الذي نعمل لتحقيقه.",
+  "vision.details.stats.buses": "تتبّع 10 حافلات",
+  "vision.details.stats.routes": "تغطية 5 مسارات",
+  "vision.details.stats.students": "خدمة أكثر من 1000 طالب",
+  "vision.details.stats.pundra": "صُمم لجامعة بوندرا",
 
   "news.title": "ابقَ على اطلاع",
   "news.subtitle": "احصل على إشعارات المسارات الجديدة وتغييرات الجدول.",
