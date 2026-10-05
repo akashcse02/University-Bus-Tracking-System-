@@ -3,6 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { Map, CalendarDays, Bus as BusIcon } from "lucide-react";
 import { GoogleLiveMap } from "@/components/maps/google-live-map";
 import { ReviewForm } from "@/components/reviews/review-form";
+import { TransitAssistant } from "@/components/dashboards/transit-assistant";
 import { useLanguage } from "@/lib/i18n";
 import { Database } from "@/integrations/supabase/types";
 
@@ -44,6 +45,8 @@ export function StudentDashboard({
             />
           </div>
         </Card>
+
+        <TransitAssistant />
 
         <ReviewForm userId={userId} displayName={displayName} roleLabel="Student" />
       </div>
