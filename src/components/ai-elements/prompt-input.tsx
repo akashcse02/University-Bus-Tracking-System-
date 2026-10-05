@@ -1132,7 +1132,7 @@ export const PromptInputButton = ({
   ...props
 }: PromptInputButtonProps) => {
   const newSize =
-    size ?? (Children.count(props.children) > 1 ? "sm" : "icon-sm");
+    size ?? (Children.count(props.children) > 1 ? "sm" : "icon");
 
   const button = (
     <InputGroupButton
@@ -1216,7 +1216,7 @@ export type PromptInputSubmitProps = ComponentProps<typeof InputGroupButton> & {
 export const PromptInputSubmit = ({
   className,
   variant = "default",
-  size = "icon-sm",
+  size = "icon",
   status,
   onStop,
   onClick,
