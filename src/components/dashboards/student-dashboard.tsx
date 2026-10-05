@@ -4,6 +4,7 @@ import { Map, CalendarDays, Bus as BusIcon } from "lucide-react";
 import { GoogleLiveMap } from "@/components/maps/google-live-map";
 import { ReviewForm } from "@/components/reviews/review-form";
 import { TransitAssistant } from "@/components/dashboards/transit-assistant";
+import { RouteAlertsCard } from "@/components/alerts/route-alerts-card";
 import { useLanguage } from "@/lib/i18n";
 import { Database } from "@/integrations/supabase/types";
 

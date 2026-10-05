@@ -13,6 +13,7 @@ import { GoogleLiveMap } from "@/components/maps/google-live-map";
 import { MapSettingsPanel } from "@/components/admin/map-settings-panel";
 import { RoutesEditor } from "@/components/admin/routes-editor";
 import { MapsKeyPanel } from "@/components/admin/maps-key-panel";
+import { PostAlertForm } from "@/components/alerts/post-alert-form";
 import {
   Users,
   Bus,
@@ -63,7 +64,8 @@ export function AdminDashboard() {
         </TabsTrigger>
       </TabsList>
 
-      <TabsContent value="overview">
+      <TabsContent value="overview" className="space-y-6">
+        <PostAlertForm />
         <Overview />
       </TabsContent>
       <TabsContent value="users">
