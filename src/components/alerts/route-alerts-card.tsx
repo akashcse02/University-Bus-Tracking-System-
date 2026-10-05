@@ -61,18 +61,18 @@ export function RouteAlertsCard({ userId }: { userId: string }) {
         .insert({ user_id: userId, route_id: routeId })
         .select()
         .single();
-      if (error) return toast.error("Couldn't turn on alerts");
+      if (error) { toast.error("Couldn't turn on alerts"); return; }
       setSubs((p) => [...p, data]);
     } else {
       const { error } = await supabase.from("route_subscriptions").delete().eq("user_id", userId).eq("route_id", routeId);
-      if (error) return toast.error("Couldn't turn off alerts");
+      if (error) { toast.error("Couldn't turn off alerts"); return; }
       setSubs((p) => p.filter((s) => s.route_id !== routeId));
     }
   };
 
   const toggleType = async (sub: RouteSubscription, field: (typeof ALERT_TYPES)[number]["field"], value: boolean) => {
     setSubs((p) => p.map((s) => (s.id === sub.id ? { ...s, [field]: value } : s)));
-    const { error } = await supabase.from("route_subscriptions").update({ [field]: value }).eq("id", sub.id);
+    const { error } = await supabase.from("route_subscriptions").update({ [field]: value } as Partial<RouteSubscription>).eq("id", sub.id);
     if (error) {
       toast.error("Couldn't save preference");
       load();

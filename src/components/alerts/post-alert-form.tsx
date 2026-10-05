@@ -23,9 +23,9 @@ export function PostAlertForm() {
     const { data: { user } } = await supabase.auth.getUser();
     const { error } = await supabase
       .from("route_alerts")
-      .insert({ route_id: routeId, alert_type: type, message: message.trim(), created_by: user?.id });
+      .insert({ route_id: routeId, alert_type: type, message: message.trim(), created_by: user?.id ?? null });
     setSaving(false);
-    if (error) return toast.error("Couldn't send alert");
+    if (error) { toast.error("Couldn't send alert"); return; }
     toast.success("Alert sent to subscribed students");
     setMessage("");
   };
