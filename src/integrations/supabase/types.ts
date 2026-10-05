@@ -285,6 +285,63 @@ export type Database = {
         }
         Relationships: []
       }
+      route_alerts: {
+        Row: {
+          alert_type: Database["public"]["Enums"]["alert_type"]
+          created_at: string
+          created_by: string | null
+          id: string
+          message: string
+          route_id: string
+        }
+        Insert: {
+          alert_type: Database["public"]["Enums"]["alert_type"]
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          message: string
+          route_id: string
+        }
+        Update: {
+          alert_type?: Database["public"]["Enums"]["alert_type"]
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          message?: string
+          route_id?: string
+        }
+        Relationships: []
+      }
+      route_subscriptions: {
+        Row: {
+          created_at: string
+          id: string
+          notify_cancellation: boolean
+          notify_delay: boolean
+          notify_route_change: boolean
+          route_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          notify_cancellation?: boolean
+          notify_delay?: boolean
+          notify_route_change?: boolean
+          route_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          notify_cancellation?: boolean
+          notify_delay?: boolean
+          notify_route_change?: boolean
+          route_id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       routes: {
         Row: {
           created_at: string
@@ -401,6 +458,7 @@ export type Database = {
       }
     }
     Enums: {
+      alert_type: "delay" | "route_change" | "cancellation"
       app_role: "student" | "teacher" | "driver" | "admin"
       bus_status: "active" | "maintenance" | "inactive"
       issue_status: "pending" | "investigating" | "resolved" | "closed"
@@ -538,6 +596,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
+      alert_type: ["delay", "route_change", "cancellation"],
       app_role: ["student", "teacher", "driver", "admin"],
       bus_status: ["active", "maintenance", "inactive"],
       issue_status: ["pending", "investigating", "resolved", "closed"],
