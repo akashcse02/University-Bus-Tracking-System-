@@ -53,6 +53,7 @@ export function StudentDashboard({
       </div>
 
       <div className="space-y-6">
+        <RouteAlertsCard userId={userId} />
         <Card className="rounded-[2rem]">
           <CardHeader>
             <CardTitle className="text-lg">{t("dash.yourBus")}</CardTitle>
