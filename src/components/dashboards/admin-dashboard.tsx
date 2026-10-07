@@ -93,6 +93,7 @@ export function AdminDashboard() {
 /* ---------------------------------- Overview --------------------------------- */
 
 function Overview() {
+  const { t } = useLanguage();
   const [buses, setBuses] = useState<BusRow[]>([]);
   const [activeTrips, setActiveTrips] = useState<TripRow[]>([]);
   const [stats, setStats] = useState({
