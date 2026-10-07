@@ -8,6 +8,13 @@
       "when": 1791172284464,
       "tag": "0000_route_alerts",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791376302499,
+      "tag": "0001_trip_status_alerts",
+      "breakpoints": true
     }
   ]
 }

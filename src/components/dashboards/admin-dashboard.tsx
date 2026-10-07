@@ -93,6 +93,7 @@ export function AdminDashboard() {
 /* ---------------------------------- Overview --------------------------------- */
 
 function Overview() {
+  const { t } = useLanguage();
   const [buses, setBuses] = useState<BusRow[]>([]);
   const [activeTrips, setActiveTrips] = useState<TripRow[]>([]);
   const [stats, setStats] = useState({
@@ -143,7 +144,7 @@ function Overview() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <Card className="h-[600px] overflow-hidden rounded-[2.5rem] border-none bg-white shadow-xl ring-1 ring-black/5 lg:col-span-2">
           <CardHeader className="absolute z-10 p-8">
-            <CardTitle className="font-display text-2xl font-black">Fleet Overview</CardTitle>
+            <CardTitle className="font-display text-2xl font-black">{t("admin.overview")}</CardTitle>
             <p className="text-sm font-medium text-ink/40">
               Real-time tracking of all active university buses.
             </p>

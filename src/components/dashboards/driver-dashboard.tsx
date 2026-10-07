@@ -134,6 +134,40 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
             </div>
           </div>
 
+          {isTripActive && currentTripId && (
+            <div className="grid grid-cols-2 gap-3">
+              <Button
+                variant="outline"
+                className="h-12 rounded-xl font-bold"
+                onClick={async () => {
+                  const { error } = await supabase.from("trips").update({ status: "delayed" }).eq("id", currentTripId);
+                  if (error) toast.error(error.message);
+                  else toast.success("Delay reported — subscribed students notified");
+                }}
+              >
+                Report delay
+              </Button>
+              <Button
+                variant="outline"
+                className="h-12 rounded-xl font-bold"
+                onClick={async () => {
+                  const { error } = await supabase
+                    .from("trips")
+                    .update({ status: "cancelled", end_time: new Date().toISOString() })
+                    .eq("id", currentTripId);
+                  if (error) return void toast.error(error.message);
+                  if (locationInterval) clearInterval(locationInterval);
+                  setIsTripActive(false);
+                  setCurrentTripId(null);
+                  toast.success("Trip cancelled — subscribed students notified");
+                }}
+              >
+                Cancel trip
+              </Button>
+            </div>
+          )}
+
+
           <Button 
             variant="destructive" 
             className="w-full h-14 rounded-xl font-bold flex items-center gap-2 shadow-lg"
