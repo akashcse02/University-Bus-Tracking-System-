@@ -378,8 +378,10 @@ export type Database = {
           driver_id: string
           end_time: string | null
           id: string
+          last_moved_at: string | null
           occupancy: Database["public"]["Enums"]["occupancy_level"] | null
           route_id: string
+          stall_alerted: boolean
           start_time: string | null
           status: Database["public"]["Enums"]["trip_status"] | null
         }
@@ -391,8 +393,10 @@ export type Database = {
           driver_id: string
           end_time?: string | null
           id?: string
+          last_moved_at?: string | null
           occupancy?: Database["public"]["Enums"]["occupancy_level"] | null
           route_id: string
+          stall_alerted?: boolean
           start_time?: string | null
           status?: Database["public"]["Enums"]["trip_status"] | null
         }
@@ -404,8 +408,10 @@ export type Database = {
           driver_id?: string
           end_time?: string | null
           id?: string
+          last_moved_at?: string | null
           occupancy?: Database["public"]["Enums"]["occupancy_level"] | null
           route_id?: string
+          stall_alerted?: boolean
           start_time?: string | null
           status?: Database["public"]["Enums"]["trip_status"] | null
         }
@@ -449,6 +455,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_stalled_trips: { Args: never; Returns: undefined }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]

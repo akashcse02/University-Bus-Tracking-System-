@@ -15,6 +15,13 @@
       "when": 1791376302499,
       "tag": "0001_trip_status_alerts",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791639630550,
+      "tag": "0002_auto_stall_delay_alerts",
+      "breakpoints": true
     }
   ]
 }
