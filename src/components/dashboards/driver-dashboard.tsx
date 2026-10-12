@@ -6,9 +6,11 @@ import { Label } from "@/components/ui/label";
 import { Play, Square, AlertTriangle, Users } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/lib/i18n";
 import { updateBusLocation, updateOccupancy } from "@/lib/location.functions";
 
 export function DriverDashboard({ driverId }: { driverId: string }) {
+  const { t } = useLanguage();
   const [isTripActive, setIsTripActive] = useState(false);
   const [currentTripId, setCurrentTripId] = useState<string | null>(null);
   const [occupancy, setOccupancy] = useState<"low" | "medium" | "high">("low");
@@ -41,7 +43,7 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
 
       setCurrentTripId(trip.id);
       setIsTripActive(true);
-      toast.success("Trip Started! Location broadcasting active.");
+      toast.success(t("driver.started"));
 
       // Start location broadcasting
       const interval = setInterval(() => {
@@ -79,7 +81,7 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
       if (locationInterval) clearInterval(locationInterval);
       setIsTripActive(false);
       setCurrentTripId(null);
-      toast.success("Trip Completed");
+      toast.success(t("driver.completed"));
     } catch (error: any) {
       toast.error(error.message);
     }
@@ -99,14 +101,14 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
         <CardHeader className="px-0">
           <CardTitle className="font-display text-2xl flex items-center gap-2">
             <Play className={`h-6 w-6 ${isTripActive ? 'text-green-500' : 'text-slate-300'}`} />
-            Trip Controls
+            {t("driver.controls")}
           </CardTitle>
         </CardHeader>
         <CardContent className="px-0 space-y-8">
           <div className="flex items-center justify-between p-6 bg-slate-50 rounded-2xl border border-slate-100">
             <div>
-              <p className="font-bold text-ink">Trip Status</p>
-              <p className="text-sm text-ink/60">{isTripActive ? "Broadcasting GPS..." : "Ready to start"}</p>
+              <p className="font-bold text-ink">{t("driver.tripStatus")}</p>
+              <p className="text-sm text-ink/60">{isTripActive ? t("driver.broadcasting") : t("driver.ready")}</p>
             </div>
             <Switch 
               checked={isTripActive} 
@@ -116,7 +118,7 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
 
           <div className="space-y-4">
             <Label className="font-bold flex items-center gap-2">
-              <Users className="h-4 w-4" /> Bus Occupancy
+              <Users className="h-4 w-4" /> {t("driver.occupancy")}
             </Label>
             <div className="grid grid-cols-3 gap-3">
               {(['low', 'medium', 'high'] as const).map((level) => (
@@ -128,7 +130,7 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
                   }`}
                   onClick={() => handleOccupancyChange(level)}
                 >
-                  {level}
+                  {t(`driver.${level}`)}
                 </Button>
               ))}
             </div>
@@ -142,10 +144,10 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
                 onClick={async () => {
                   const { error } = await supabase.from("trips").update({ status: "delayed" }).eq("id", currentTripId);
                   if (error) toast.error(error.message);
-                  else toast.success("Delay reported — subscribed students notified");
+                  else toast.success(t("driver.delayReported"));
                 }}
               >
-                Report delay
+                {t("driver.reportDelay")}
               </Button>
               <Button
                 variant="outline"
@@ -159,10 +161,10 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
                   if (locationInterval) clearInterval(locationInterval);
                   setIsTripActive(false);
                   setCurrentTripId(null);
-                  toast.success("Trip cancelled — subscribed students notified");
+                  toast.success(t("driver.tripCancelled"));
                 }}
               >
-                Cancel trip
+                {t("driver.cancelTrip")}
               </Button>
             </div>
           )}
@@ -171,9 +173,9 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
           <Button 
             variant="destructive" 
             className="w-full h-14 rounded-xl font-bold flex items-center gap-2 shadow-lg"
-            onClick={() => toast.warning("Emergency Alert Sent to Admin")}
+            onClick={() => toast.warning(t("driver.sosSent"))}
           >
-            <AlertTriangle className="h-5 w-5" /> SOS / Emergency
+            <AlertTriangle className="h-5 w-5" /> {t("driver.sos")}
           </Button>
         </CardContent>
       </Card>
@@ -181,7 +183,7 @@ export function DriverDashboard({ driverId }: { driverId: string }) {
       {/* Route Info Card */}
       <Card className="rounded-[2rem] shadow-sm border-none bg-slate-900 text-white p-6">
         <CardHeader className="px-0">
-          <CardTitle className="font-display text-2xl">Current Route</CardTitle>
+          <CardTitle className="font-display text-2xl">{t("driver.currentRoute")}</CardTitle>
         </CardHeader>
         <CardContent className="px-0">
           <div className="space-y-6">
