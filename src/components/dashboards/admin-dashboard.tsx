@@ -135,10 +135,10 @@ function Overview() {
   return (
     <div className="space-y-8">
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <StatCard title="Total Students" value={stats.totalStudents} icon={Users} color="blue" />
-        <StatCard title="Active Drivers" value={stats.totalDrivers} icon={MapPin} color="green" />
-        <StatCard title="Buses in Motion" value={stats.activeBuses} icon={Bus} color="orange" />
-        <StatCard title="Pending Issues" value={stats.reportedIssues} icon={AlertCircle} color="red" />
+        <StatCard title={t("admin.stat.students")} value={stats.totalStudents} icon={Users} color="blue" />
+        <StatCard title={t("admin.stat.drivers")} value={stats.totalDrivers} icon={MapPin} color="green" />
+        <StatCard title={t("admin.stat.buses")} value={stats.activeBuses} icon={Bus} color="orange" />
+        <StatCard title={t("admin.stat.issues")} value={stats.reportedIssues} icon={AlertCircle} color="red" />
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
