@@ -1,6 +1,7 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { convertToModelMessages, streamText, type UIMessage } from "ai";
-import { FLEET, ROUTES } from "@/lib/bus-fleet";
+import { ROUTES, type RouteInfo } from "@/lib/bus-fleet";
+import { resolveFleet, resolveRoutes, type RouteConfig } from "@/lib/app-config";
 import {
   createLovableAiGatewayRunIdFetch,
   getLovableAiGatewayRunId,
@@ -10,7 +11,22 @@ import {
 const GATEWAY = "https://ai.gateway.lovable.dev/v1";
 const MODEL = "openai/gpt-6-astra";
 
-function systemPrompt() {
+async function loadRoutes(): Promise<RouteInfo[]> {
+  const url = process.env['SUPABASE_URL'];
+  const key = process.env['SUPABASE_PUBLISHABLE_KEY'] || process.env['SUPABASE_ANON_KEY'];
+  if (!url || !key) return ROUTES;
+  try {
+    const res = await fetch(`${url}/rest/v1/app_config?key=eq.fleet_routes&select=value`, { headers: { apikey: key } });
+    if (!res.ok) return ROUTES;
+    const rows = (await res.json()) as Array<{ value?: { routes?: RouteConfig[] } }>;
+    return resolveRoutes(rows[0]?.value?.routes);
+  } catch {
+    return ROUTES;
+  }
+}
+
+function systemPrompt(ROUTES: RouteInfo[]) {
+  const FLEET = resolveFleet(ROUTES);
   const routes = ROUTES.map((r) => `- ${r.name}: ${r.stops.map((s) => s.name).join(" → ")}`).join("\n");
   const buses = FLEET.map(
     (b) => `- ${b.number} (${b.label}) on ${b.routeName} route — status: ${b.status}, next stop: ${b.nextStop}, ETA: ${b.eta}${b.premium ? " — reserved for staff & teachers" : ""}`,
@@ -52,7 +68,7 @@ export async function handleTransitChat(request: Request) {
 
   const result = streamText({
     model: provider.responses(MODEL),
-    system: systemPrompt(),
+    system: systemPrompt(await loadRoutes()),
     messages: await convertToModelMessages(messages),
     abortSignal: request.signal,
     providerOptions: {

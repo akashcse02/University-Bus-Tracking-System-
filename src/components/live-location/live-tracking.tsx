@@ -269,7 +269,7 @@ export function LiveTracking() {
                 clickableIcons: false,
               }}
             >
-              {ROUTES.filter((r) => !hiddenRoutes.includes(r.id)).map((route) => (
+              {routes.filter((r) => !hiddenRoutes.includes(r.id)).map((route) => (
                 <Polyline
                   key={route.id}
                   options={{
