@@ -6,7 +6,7 @@ import { Switch } from "@/components/ui/switch";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
-import { ROUTES } from "@/lib/bus-fleet";
+import { resolveRoutes, useRouteConfig } from "@/lib/app-config";
 import {
   ALERT_LABEL,
   ALERT_TYPES,
@@ -16,6 +16,8 @@ import {
 } from "@/lib/route-alerts";
 
 export function RouteAlertsCard({ userId }: { userId: string }) {
+  const { routeConfig } = useRouteConfig();
+  const ROUTES = resolveRoutes(routeConfig);
   const [subs, setSubs] = useState<RouteSubscription[]>([]);
   const [alerts, setAlerts] = useState<RouteAlert[]>([]);
   const [permission, setPermission] = useState<NotificationPermission | "unsupported">("default");
